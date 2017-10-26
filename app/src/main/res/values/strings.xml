@@ -6,5 +6,9 @@
     <string name="data_empty">暂无数据</string>
     <string name="net_data_error">无网络数据，请点击刷新</string>
     <string name="retry">点击重试</string>
+    <string name="tab_main">main</string>
+    <string name="tab_course">course</string>
+    <string name="tab_task">task</string>
+    <string name="tab_class_circle">classcircle</string>
 
 </resources>
