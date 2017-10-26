@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WavesLayout">
+        <attr name="waves_alpha" format="integer" />
+        <attr name="waves_alpha_step" format="integer" />
+        <attr name="waves_framerate" format="integer" />
+        <attr name="waves_duration" format="integer" />
+        <attr name="waves_color" format="color" />
+        <attr name="waves_animend_alpha" format="integer" />
+        <attr name="waves_canshowwave" format="boolean" />
+        <attr name="waves_radius" format="dimension" />
+        <attr name="waves_radius_top_left" format="dimension" />
+        <attr name="waves_radius_top_right" format="dimension" />
+        <attr name="waves_radius_bottom_left" format="dimension" />
+        <attr name="waves_radius_bottom_right" format="dimension" />
+    </declare-styleable>
+</resources>

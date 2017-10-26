@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FaceShowAdmin_Android</string>
+
+
+    <!--PublicLoadLayout -->
+    <string name="data_empty">暂无数据</string>
+    <string name="net_data_error">无网络数据，请点击刷新</string>
+    <string name="retry">点击重试</string>
+
 </resources>
