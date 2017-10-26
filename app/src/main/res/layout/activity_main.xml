@@ -20,6 +20,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/color_1da1f2"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/left_drawer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
 </android.support.v4.widget.DrawerLayout>

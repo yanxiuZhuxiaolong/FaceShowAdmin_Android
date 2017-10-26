@@ -4,9 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -16,7 +17,6 @@ import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
-import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tabClassCircle;
     @BindView(R.id.fragment_content)
     FrameLayout fragmentContent;
+    @BindView(R.id.left_drawer_list)
+    RecyclerView mLeftDrawerList;
 
     private Context mContext;
     private final String TAB_MAIN = "tab_main";
@@ -96,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLeftDrawer() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLeftDrawerList.setLayoutManager(linearLayoutManager);
+
 
 
     }
