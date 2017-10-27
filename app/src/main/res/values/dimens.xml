@@ -10,5 +10,11 @@
     <dimen name="net_error_layout_retrybutton_height">40dp</dimen>
     <dimen name="wavesRadius">5dp</dimen>
 
+    <!--commontitlelayout end-->
+    <dimen name="commontitle_margin_left">5dp</dimen>
+    <dimen name="commontitle_title_textsize">20dp</dimen>
+    <dimen name="commontitle_singin_textsize">17dp</dimen>
+    <dimen name="commontitle_title_rightIcon_width">30dp</dimen>
+    <!--commontitlelayout end-->
 
 </resources>

@@ -53,6 +53,10 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
+        <activity
+            android:name=".login.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.yanxiu.gphone.faceshow" />
     </application>
 
 </manifest>

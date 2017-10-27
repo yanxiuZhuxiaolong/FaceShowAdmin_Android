@@ -20,10 +20,12 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
-import com.yanxiu.gphone.faceshowadmin_android.login.WelcomeActivity;
+import com.yanxiu.gphone.faceshowadmin_android.login.LoginActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
+import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
 
 import butterknife.BindView;
@@ -163,7 +165,12 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void exitApp() {
-
+        LoginActivity.toThisAct(this);
+        UserInfo.getInstance().setInfo(null);
+        SpManager.saveToken("");
+//                Constants.UPDATA_TYPE=0;
+        SpManager.loginOut();//设置为登出状态
+        this.finish();
     }
 
     @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle})

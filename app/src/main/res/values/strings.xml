@@ -40,4 +40,10 @@
     <string name="account_name_can_not_be_null">账户名不能为空</string>
     <string name="account_password_can_not_be_null">账户密码不能为空</string>
 
+    <!--forgetPasswordActivity-->
+    <string name="mobile_phone_number">手机号</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="verification_code">验证码</string>
+    <string name="please_input_new_password">请输入6-20位新密码</string>
+    <string name="time_count">%1$ds</string>
 </resources>

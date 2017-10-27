@@ -169,7 +169,7 @@ public class LoginActivity extends FaceShowBaseActivity {
 
                 break;
             case R.id.tv_forget_password:
-//                startActivityForResult(new Intent(LoginActivity.this, ForgetPasswordActivity.class), TO_FORGET_PASSWORD_REQUEST_CODE);
+                startActivityForResult(new Intent(LoginActivity.this, ForgetPasswordActivity.class), TO_FORGET_PASSWORD_REQUEST_CODE);
                 break;
         }
     }
