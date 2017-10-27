@@ -11,8 +11,8 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.SystemUtil;
  */
 
 public class Constants {
-    public static String SDCARD_ROOT_NAME = StoreUtils.getFilePath() + "/FaceShow";//路径;
-    public static final String TAG = "faceshow";
+    public static String SDCARD_ROOT_NAME = StoreUtils.getFilePath() + "/FaceShowAdmin";//路径;
+    public static final String TAG = "faceshowadmin";
     //server配置 开始
     public static final String URL_SERVER_FILE_NAME = "env_config.json"; //存放server配置的文件名
     public static final String MULTICONFIG = "multiConfig"; //多环境节点配置模式

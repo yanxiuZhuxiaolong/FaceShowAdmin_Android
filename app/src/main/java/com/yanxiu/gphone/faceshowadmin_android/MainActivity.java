@@ -1,6 +1,8 @@
 package com.yanxiu.gphone.faceshowadmin_android;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +21,7 @@ import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
+import com.yanxiu.gphone.faceshowadmin_android.login.WelcomeActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
@@ -77,6 +80,10 @@ public class MainActivity extends FaceShowBaseActivity {
 
         }
     };
+
+    public static void invoke(Activity activity) {
+        activity.startActivity(new Intent(activity, MainActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,5 +233,6 @@ public class MainActivity extends FaceShowBaseActivity {
             return super.dispatchKeyEvent(event);
         }
     }
+
 
 }

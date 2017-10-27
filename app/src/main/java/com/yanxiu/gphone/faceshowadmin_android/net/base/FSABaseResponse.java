@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.net;
+package com.yanxiu.gphone.faceshowadmin_android.net.base;
 
 import java.io.Serializable;
 
