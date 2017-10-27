@@ -1,14 +1,31 @@
 <resources>
     <string name="app_name">FaceShowAdmin_Android</string>
+    <string name="app_exit_tip">再按一次退出客户端</string>
+    <!--permissions toast-->
+    <string name="rationale_camera">此应用程序需要访问您的相机，以便您可以拍照.</string>
+    <string name="rationale_write_read">此应用程序需要读取sd卡权限，请前往设置.</string>
+    <string name="rationale_other">此应用程序需要申请使用权限，请前往设置.</string>
+
+    <string name="no_camera_permissions">相机权限被禁用，请在权限设置中开启</string>
+    <string name="no_storage_permissions">存储权限被禁用，请在权限设置中开启</string>
 
 
     <!--PublicLoadLayout -->
     <string name="data_empty">暂无数据</string>
     <string name="net_data_error">无网络数据，请点击刷新</string>
     <string name="retry">点击重试</string>
-    <string name="tab_main">main</string>
-    <string name="tab_course">course</string>
-    <string name="tab_task">task</string>
-    <string name="tab_class_circle">classcircle</string>
+    <string name="tab_main">首页</string>
+    <string name="tab_course">课程</string>
+    <string name="tab_task">任务</string>
+    <string name="tab_class_circle">班级圈</string>
+
+    <!-- leftDrawerLayout-->
+    <string-array name="left_drawer_item_names">
+        <item>班级首页</item>
+        <item>我的资料</item>
+        <item>投诉建议</item>
+        <item>设置</item>
+        <item>退出</item>
+    </string-array>
 
 </resources>

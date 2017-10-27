@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
+import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
+import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
 
@@ -22,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.content_frame)
     FrameLayout mContentFrameLayout;
     @BindView(R.id.left_drawer)
@@ -101,8 +106,56 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mLeftDrawerList.setLayoutManager(linearLayoutManager);
+        LeftDrawerListAdapter leftDrawerListAdapter = new LeftDrawerListAdapter(mContext);
+        mLeftDrawerList.setAdapter(leftDrawerListAdapter);
+        leftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                LeftDrawerListItemToOtherAct(position);
+            }
+        });
 
 
+    }
+
+    private void LeftDrawerListItemToOtherAct(int position) {
+        switch (position) {
+            case 0://class_home_page
+                toClassHomePage();
+                break;
+            case 1://my data
+                toMyDataAct();
+                break;
+            case 2://Complaint suggestion
+                toComplaintSuggestionAct();
+                break;
+            case 3://settings
+                toSettingAct();
+                break;
+            case 4://exit app
+                exitApp();
+                break;
+        }
+        mDrawerLayout.closeDrawer(mLeftDrawerLayout);
+    }
+
+    private void toClassHomePage() {
+
+    }
+
+    private void toMyDataAct() {
+
+    }
+
+    private void toComplaintSuggestionAct() {
+
+    }
+
+    private void toSettingAct() {
+
+    }
+
+    private void exitApp() {
 
     }
 
@@ -114,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.tab_main:
                 changeTabFragment(TAB_MAIN);
+                break;
             case R.id.tab_course:
                 changeTabFragment(TAB_COURSE);
                 break;
@@ -146,6 +200,30 @@ public class MainActivity extends AppCompatActivity {
                 return new ClassCircleFragment();
             default:
                 return null;
+        }
+    }
+
+    /**
+     * 退出间隔时间戳
+     */
+    private long mBackTimestamp = 0;
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            if (System.currentTimeMillis() - mBackTimestamp <= 2000) {
+                //Todo 退出程序
+                ActivityManger.destoryAll();
+            } else {
+                mBackTimestamp = System.currentTimeMillis();
+                Toast.makeText(this, getString(R.string.app_exit_tip), Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        } else {
+            return super.dispatchKeyEvent(event);
         }
     }
 

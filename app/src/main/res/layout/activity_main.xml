@@ -19,7 +19,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/color_1da1f2"
+        android:background="@color/color_edf0ee"
         android:choiceMode="singleChoice">
 
         <android.support.v7.widget.RecyclerView
