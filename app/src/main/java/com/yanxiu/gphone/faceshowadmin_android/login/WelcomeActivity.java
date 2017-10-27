@@ -59,7 +59,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                 WelcomeActivity.this.finish();
             }
             if (isCanLogin) {
-//                LoginActivity.toThisAct(WelcomeActivity.this);
+                LoginActivity.toThisAct(WelcomeActivity.this);
                 WelcomeActivity.this.finish();
             }
 
@@ -134,7 +134,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                 case GO_LOGIN:
                     isCanLogin = true;
                     if (isAnimationEnd) {
-//                        LoginActivity.toThisAct(activity);
+                        LoginActivity.toThisAct(activity);
                         activity.finish();
                     }
                     break;

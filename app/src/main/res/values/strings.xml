@@ -14,6 +14,9 @@
     <string name="data_empty">暂无数据</string>
     <string name="net_data_error">无网络数据，请点击刷新</string>
     <string name="retry">点击重试</string>
+    <string name="net_error">网络异常</string>
+
+    <!--tab name-->
     <string name="tab_main">首页</string>
     <string name="tab_course">课程</string>
     <string name="tab_task">任务</string>
@@ -27,5 +30,14 @@
         <item>设置</item>
         <item>退出</item>
     </string-array>
+
+    <!--loginActivity-->
+    <string name="logo_name">logo</string>
+    <string name="sign_in">登录</string>
+    <string name="please_input_account_number">请输入账号</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="account_name_can_not_be_null">账户名不能为空</string>
+    <string name="account_password_can_not_be_null">账户密码不能为空</string>
 
 </resources>

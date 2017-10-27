@@ -2,8 +2,8 @@ package com.yanxiu.gphone.faceshowadmin_android.net.base;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
-import com.yanxiu.gphone.faceshow.FaceShowApplication;
-import com.yanxiu.gphone.faceshow.util.NetWorkUtils;
+import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
+import com.yanxiu.gphone.faceshowadmin_android.utils.NetWorkUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public abstract class RequestWithCookie extends RequestBase {
 
     @Override
     public <T> UUID startRequest(final Class<T> clazz, final HttpCallback<T> callback) {
-        if (!NetWorkUtils.isNetworkAvailable(FaceShowApplication.getContext())) {
+        if (!NetWorkUtils.isNetworkAvailable(FSAApplication.getInstance().getApplicationContext())) {
             callback.onFail(this, new Error(ResponseConfig.NET_ERROR));
             return null;
         }
