@@ -46,4 +46,7 @@
     <string name="verification_code">验证码</string>
     <string name="please_input_new_password">请输入6-20位新密码</string>
     <string name="time_count">%1$ds</string>
+
+    <!--首页相关 start-->
+    <string name="currentProject">当前项目</string>
 </resources>

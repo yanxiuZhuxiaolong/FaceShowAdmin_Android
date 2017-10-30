@@ -9,7 +9,7 @@ import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListe
  * Created by frc on 17-10-27.
  */
 
-public abstract class BaseRecyclerView extends RecyclerView.Adapter {
+public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     protected RecyclerViewItemClickListener recyclerViewItemClickListener;
 
     public void addItemClickListener(RecyclerViewItemClickListener recyclerViewItemClickListener) {

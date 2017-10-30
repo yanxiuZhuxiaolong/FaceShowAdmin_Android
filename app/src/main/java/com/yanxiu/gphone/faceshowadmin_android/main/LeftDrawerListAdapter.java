@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.utils.recyclerView.BaseRecyclerView;
+import com.yanxiu.gphone.faceshowadmin_android.utils.recyclerView.BaseRecyclerViewAdapter;
 
 /**
  * adapter for LeftDrawerRecyclerView in MainActivity
  * Created by frc on 17-10-26.
  */
 
-public class LeftDrawerListAdapter extends BaseRecyclerView {
+public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
     private final int TYPE_HEAD = 0X01;
     private final int TYPE_NORMAL = 0X02;
 

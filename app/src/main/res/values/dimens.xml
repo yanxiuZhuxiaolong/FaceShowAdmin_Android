@@ -17,4 +17,6 @@
     <dimen name="commontitle_title_rightIcon_width">30dp</dimen>
     <!--commontitlelayout end-->
 
+    <dimen name="bigLine_height">5dp</dimen>
+
 </resources>
