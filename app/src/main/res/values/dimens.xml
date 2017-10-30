@@ -18,5 +18,13 @@
     <!--commontitlelayout end-->
 
     <dimen name="bigLine_height">5dp</dimen>
-
+    <dimen name="today_checkin_height">70dp</dimen>
+    <dimen name="course_height">137dp</dimen>
+    <dimen name="course_adapter_marginleft">15dp</dimen>
+    <dimen name="tag_width">34dp</dimen>
+    <dimen name="tag_height">17dp</dimen>
+    <dimen name="tag_textsize">13dp</dimen>
+    <dimen name="text_textsize">15dp</dimen>
+    <dimen name="tag_marginleft">10dp</dimen>
+    <dimen name="line_height">1dp</dimen>
 </resources>

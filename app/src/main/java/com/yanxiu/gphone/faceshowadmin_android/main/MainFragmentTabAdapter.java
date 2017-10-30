@@ -6,10 +6,16 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.utils.recyclerView.BaseRecyclerViewAdapter;
+
+import java.util.ArrayList;
+
+import static android.R.attr.data;
 
 /**
  * Created by 戴延枫
@@ -20,19 +26,17 @@ public class MainFragmentTabAdapter extends BaseRecyclerViewAdapter {
 
     private Context mContext;
 
-    private final int COURSE_DATE = 1;//课程日期
-    private final int COURSE_COTENT = 2;//内容
+    private ArrayList<MainTabBean> mList;
+    private MainFragmentRecyclerViewItemClickListener mListener;
 
-//    private ArrayList<CourseBean> mList;
-
-
-    public MainFragmentTabAdapter(Context context) {
+    public MainFragmentTabAdapter(Context context, MainFragmentRecyclerViewItemClickListener listener) {
         mContext = context;
+        mListener = listener;
     }
 
-//    public void setData(ArrayList<CourseBean> list) {
-//        mList = list;
-//    }
+    public void setData(ArrayList<MainTabBean> list) {
+        mList = list;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -42,70 +46,61 @@ public class MainFragmentTabAdapter extends BaseRecyclerViewAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        RecyclerView.ViewHolder viewHolder = null;
-//        View view1 = inflater.inflate(R.layout.course_arrange_item1, parent, false);
-//        viewHolder = new CourseDateViewHolder(view1);
+        View view = inflater.inflate(R.layout.mainfragment_tab_item, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-//        final CourseBean data = mList.get(position);
-//
-//        CourseContentViewHolder holder2 = (CourseContentViewHolder) holder;
-//        holder2.course_name.setText(data.getCourseName());
-//        holder2.course_location.setText(TextUtils.isEmpty(data.getSite()) ? "待定" : data.getSite());
-//        holder2.course_teacher.setText(data.getLecturer());
-//        holder2.course_time.setText(StringUtils.getCourseTime(data.getStartTime()));
-//        holder2.course_layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (recyclerViewItemClickListener != null) {
-//                    recyclerViewItemClickListener.onItemClick(position, data);
-//                }
-//            }
-//        });
+        final MainTabBean data = mList.get(position);
+
+        ViewHolder holder2 = (ViewHolder) holder;
+        holder2.name.setText(data.getName());
+        holder2.imageView.setImageResource(data.getImgResourcesId());
+        holder2.setPosition(position);
+
 
     }
 
     @Override
     public int getItemCount() {
-//        return mList.size();
-        return 0;
+        return mList.size();
     }
-//
-//    /**
-//     * 课程日期
-//     */
-//    class CourseDateViewHolder extends RecyclerView.ViewHolder {
-//        private TextView course_date;
-//
-//        public CourseDateViewHolder(View itemView) {
-//            super(itemView);
-//            course_date = (TextView) itemView.findViewById(R.id.course_date);
-//        }
-//    }
 
-//    /**
-//     * 课程内容
-//     */
-//    class CourseContentViewHolder extends RecyclerView.ViewHolder {
-//        private View course_layout;
-//        private TextView course_name;
-//        private TextView course_time;
-//        private TextView course_teacher;
-//        private TextView course_location;
-//
-//        public CourseContentViewHolder(View itemView) {
-//            super(itemView);
-//            course_layout = itemView.findViewById(R.id.course_layout);
-//            course_name = (TextView) itemView.findViewById(R.id.course_name);
-//            course_time = (TextView) itemView.findViewById(R.id.course_time);
-//            course_teacher = (TextView) itemView.findViewById(R.id.course_teacher);
-//            course_location = (TextView) itemView.findViewById(R.id.course_location);
-////            TextTypefaceUtil.setViewTypeface(TextTypefaceUtil.TypefaceType.METRO_PLAY, mPrefixNumber, mPostfixNumber);
-//        }
-//    }
+    /**
+     * 课程内容
+     */
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private View layout;
+        private ImageView imageView;
+        private TextView name;
+
+        private int position;
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            layout = itemView.findViewById(R.id.tab_item_layout);
+            imageView = itemView.findViewById(R.id.tab_img);
+            name = itemView.findViewById(R.id.tab_txt);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        mListener.onTabItemClick(v, position);
+                    }
+                }
+            });
+//            TextTypefaceUtil.setViewTypeface(TextTypefaceUtil.TypefaceType.METRO_PLAY, mPrefixNumber, mPostfixNumber);
+        }
+
+
+    }
+
 }
 
 

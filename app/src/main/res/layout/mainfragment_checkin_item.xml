@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkin_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/color_white"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <TextView
+        android:id="@+id/checkin_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        tools:text="2017年10月30日签到" />
+
+    <TextView
+        android:id="@+id/checkin_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkin_item_title"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="@color/color_999999"
+        android:textSize="11dp"
+        tools:text="2017年10月30日签到" />
+
+    <TextView
+        android:id="@+id/checkin_item_checkin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColor="@color/color_0068bd"
+        android:textSize="12dp"
+        tools:text="14/50" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/checkin_item_checkin"
+        android:gravity="center"
+        android:text="已签到: "
+        android:textColor="@color/color_999999"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/checkin_item_peecent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/checkin_item_title"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="@color/color_999999"
+        android:textSize="11dp"
+        tools:text="50%" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkin_item_title"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/checkin_item_peecent"
+        android:gravity="center"
+        android:text="签到率: "
+        android:textColor="@color/color_999999"
+        android:textSize="11dp" />
+
+</RelativeLayout>

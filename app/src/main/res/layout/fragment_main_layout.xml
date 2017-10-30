@@ -70,22 +70,158 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tab_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/color_1da1f2"/>
+        android:layout_height="100dp" />
 
     <include layout="@layout/big_line" />
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/scroolView_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="课程数量"
+                            android:textColor="@color/color_999999"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/course_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/count"
+                            android:layout_centerHorizontal="true"
+                            android:text="8"
+                            android:textColor="@color/color_333333"
+                            android:textSize="37dp" />
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginRight="6dp"
+                            android:layout_toLeftOf="@id/count" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@color/color_dce0e3" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/coumt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="任务数量"
+                            android:textColor="@color/color_999999"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/task_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/coumt"
+                            android:layout_centerHorizontal="true"
+                            android:text="25"
+                            android:textColor="@color/color_333333"
+                            android:textSize="37dp" />
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginRight="6dp"
+                            android:layout_toLeftOf="@id/coumt" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <include layout="@layout/big_line" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="今日签到"
+                android:textColor="@color/color_0068bd"
+                android:textSize="18dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/checkin_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/no_checkin"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="今日无签到"
+                android:textColor="@color/color_cccccc"
+                android:textSize="16dp"
+                android:visibility="gone" />
+
+            <include layout="@layout/big_line" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/course_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/no_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="今日无课程"
+                android:textColor="@color/color_cccccc"
+                android:textSize="16dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>

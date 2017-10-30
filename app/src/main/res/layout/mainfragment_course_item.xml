@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/course_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_course_adapter_item"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/course_adapter_marginleft">
+
+
+    <TextView
+        android:id="@+id/course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:text="国培计划"
+        android:textColor="@color/color_333333"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/tag_width"
+            android:layout_height="@dimen/tag_height"
+            android:background="@drawable/shape_course_item"
+            android:gravity="center"
+            android:text="@string/time"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/tag_textsize" />
+
+        <TextView
+            android:id="@+id/course_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tag_marginleft"
+            android:gravity="center"
+            android:text="上午 12.00"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_textsize" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/tag_width"
+            android:layout_height="@dimen/tag_height"
+            android:background="@drawable/shape_course_item"
+            android:gravity="center"
+            android:text="专家"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/tag_textsize" />
+
+        <TextView
+            android:id="@+id/course_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tag_marginleft"
+            android:gravity="center"
+            android:text="李老师"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_textsize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="9dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/tag_width"
+            android:layout_height="@dimen/tag_height"
+            android:background="@drawable/shape_course_item"
+            android:gravity="center"
+            android:text="地点"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/tag_textsize" />
+
+        <TextView
+            android:id="@+id/course_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tag_marginleft"
+            android:gravity="center"
+            android:text="2017年9月15日15:37:41"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_textsize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/color_EBEFF2" />
+</LinearLayout>
