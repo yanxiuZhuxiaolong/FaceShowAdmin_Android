@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 
 /**
  * sharePreference管理类
@@ -32,6 +33,8 @@ public class SpManager {
     /*用户唯一标示token*/
     private static final String TOKEN = "token";
     private static final String PASSPORT = "pass_port";
+    private static final String CLASS_LIST = "class_list";
+    private static final String CURRENT_CLASS = "current_class";
 
 
     public static void setFirstStartUp(boolean isFirstStartUp) {
@@ -152,5 +155,27 @@ public class SpManager {
     public static UserInfo.Info getUserInfo() {
         String userInfoStr = mySharedPreferences.getString(USER_INFO, "");
         return RequestBase.getGson().fromJson(userInfoStr, UserInfo.Info.class);
+    }
+
+    public static void saveClassListInfo(GetClazzListResponse.DataBean data) {
+        SharedPreferences.Editor editor = mySharedPreferences.edit();
+        editor.putString(CLASS_LIST, RequestBase.getGson().toJson(data));
+        editor.commit();
+    }
+
+    public static GetClazzListResponse.DataBean getClassListInfo() {
+        String str = mySharedPreferences.getString(CLASS_LIST, "");
+        return RequestBase.getGson().fromJson(str, GetClazzListResponse.DataBean.class);
+    }
+
+    public static void saveCurrentClassInfo(GetClazzListResponse.DataBean.ClazsInfosBean data) {
+        SharedPreferences.Editor editor = mySharedPreferences.edit();
+        editor.putString(CURRENT_CLASS, RequestBase.getGson().toJson(data));
+        editor.commit();
+    }
+
+    public static GetClazzListResponse.DataBean.ClazsInfosBean getCurrentClassInfo() {
+        String str = mySharedPreferences.getString(CURRENT_CLASS, "");
+        return RequestBase.getGson().fromJson(str, GetClazzListResponse.DataBean.ClazsInfosBean.class);
     }
 }

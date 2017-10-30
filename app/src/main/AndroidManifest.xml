@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".login.WelcomeActivity"
+            android:name=".login.activity.WelcomeActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow">
             <intent-filter>
@@ -50,13 +50,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".login.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity
-            android:name=".login.ForgetPasswordActivity"
+            android:name=".login.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
+        <activity android:name=".login.activity.ClassManageActivity"></activity>
     </application>
 
 </manifest>
