@@ -57,7 +57,8 @@
             android:name=".login.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
-        <activity android:name=".login.activity.ClassManageActivity"></activity>
+        <activity android:name=".login.activity.ClassManageActivity" />
+        <activity android:name=".checkIn.CheckInNotesActivity"></activity>
     </application>
 
 </manifest>

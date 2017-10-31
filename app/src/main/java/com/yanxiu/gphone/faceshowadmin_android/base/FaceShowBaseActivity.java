@@ -37,6 +37,10 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
         ActivityManger.addActicity(this);
     }
 
+    protected void toThisAct(Context context) {
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
