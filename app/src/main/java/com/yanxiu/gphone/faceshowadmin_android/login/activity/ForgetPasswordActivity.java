@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.login;
+package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -50,25 +50,25 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
     private boolean isPhoneNumber = false;
     private boolean isVerificationCodeNull = true;
     private boolean isNewPasswordNull = true;
-    private int time = 60;
 
+    private int time = 60;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             time--;
             tvGetVerificationCode.setText(getString(R.string.time_count, time));
+            tvGetVerificationCode.setTextSize(19);
             if (time == 0) {
                 time = 60;
                 if (Utils.isMobileNO(edtPhoneNumber.getText().toString())) {
                     isPhoneNumber = true;
-                    tvGetVerificationCode.setTextColor(Color.parseColor("#1da1f2"));
-                    tvGetVerificationCode.setBackgroundResource(R.drawable.shape_verification_code_selected);
+                    tvGetVerificationCode.setTextColor(Color.parseColor("#0068bd"));
                 } else {
                     isPhoneNumber = false;
                     tvGetVerificationCode.setTextColor(Color.parseColor("#999999"));
-                    tvGetVerificationCode.setBackgroundResource(R.drawable.shape_verification_code_normal);
                 }
+                tvGetVerificationCode.setTextSize(19);
                 tvGetVerificationCode.setText(R.string.get_verification_code);
             } else {
                 handler.sendEmptyMessageDelayed(1, 1000);
@@ -86,12 +86,10 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (Utils.isMobileNO(s)) {
                 isPhoneNumber = true;
-                tvGetVerificationCode.setTextColor(Color.parseColor("#1da1f2"));
-                tvGetVerificationCode.setBackgroundResource(R.drawable.shape_verification_code_selected);
+                tvGetVerificationCode.setTextColor(Color.parseColor("#0068bd"));
             } else {
                 isPhoneNumber = false;
                 tvGetVerificationCode.setTextColor(Color.parseColor("#999999"));
-                tvGetVerificationCode.setBackgroundResource(R.drawable.shape_verification_code_normal);
             }
             changSureBtnColor();
         }
@@ -145,9 +143,9 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
 
     private void changSureBtnColor() {
         if (isCanSure()) {
-            forgetPasswordSure.setBackgroundResource(R.drawable.shape_verification_code_sure_pressed_bg);
+            forgetPasswordSure.setBackgroundResource(R.drawable.selector_can_commit_new_password_bg);
         } else {
-            forgetPasswordSure.setBackgroundResource(R.drawable.shape_verification_code_sure_normal_bg);
+            forgetPasswordSure.setBackgroundResource(R.drawable.shape_cannot_commit_new_password_bg);
         }
     }
 

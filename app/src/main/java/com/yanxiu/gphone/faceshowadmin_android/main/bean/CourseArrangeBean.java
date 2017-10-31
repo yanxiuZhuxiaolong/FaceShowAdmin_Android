@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class CourseArrangeBean extends BaseBean {
     private ArrayList<CourseBean> todayCourses = new ArrayList<>();
-    private ArrayList<ProjectInfoBean> projectInfo = new ArrayList<>();
+    private ProjectInfoBean projectInfo = new ProjectInfoBean();
     private ArrayList<TodaySignInBean> todaySignIns = new ArrayList<>();
-    private ArrayList<ClazsInfoBean> clazsInfo = new ArrayList<>();
+    private ClazsInfoBean clazsInfo = new ClazsInfoBean();
     private ClazsStatisticViewBean clazsStatisticView;
 
     public ArrayList<CourseBean> getTodayCourses() {
@@ -26,11 +26,11 @@ public class CourseArrangeBean extends BaseBean {
         this.todayCourses = todayCourses;
     }
 
-    public ArrayList<ProjectInfoBean> getProjectInfo() {
+    public ProjectInfoBean getProjectInfo() {
         return projectInfo;
     }
 
-    public void setProjectInfo(ArrayList<ProjectInfoBean> projectInfo) {
+    public void setProjectInfo(ProjectInfoBean projectInfo) {
         this.projectInfo = projectInfo;
     }
 
@@ -42,11 +42,11 @@ public class CourseArrangeBean extends BaseBean {
         this.todaySignIns = todaySignIns;
     }
 
-    public ArrayList<ClazsInfoBean> getClazsInfo() {
+    public ClazsInfoBean getClazsInfo() {
         return clazsInfo;
     }
 
-    public void setClazsInfo(ArrayList<ClazsInfoBean> clazsInfo) {
+    public void setClazsInfo(ClazsInfoBean clazsInfo) {
         this.clazsInfo = clazsInfo;
     }
 

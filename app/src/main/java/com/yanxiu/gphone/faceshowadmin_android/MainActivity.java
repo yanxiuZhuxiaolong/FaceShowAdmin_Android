@@ -22,10 +22,11 @@ import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
-import com.yanxiu.gphone.faceshowadmin_android.login.LoginActivity;
+import com.yanxiu.gphone.faceshowadmin_android.login.activity.LoginActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
 
 import butterknife.BindView;
@@ -83,8 +84,10 @@ public class MainActivity extends FaceShowBaseActivity {
         }
     };
 
-    public static void invoke(Activity activity) {
-        activity.startActivity(new Intent(activity, MainActivity.class));
+    public static void invoke(Activity activity, GetClazzListResponse.DataBean.ClazsInfosBean clazsInfosBean) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.putExtra("classInfo", clazsInfosBean);
+        activity.startActivity(intent);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.login;
+package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,12 +24,12 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.SignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.SignInResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.main.MainRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.main.MainResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Utils;
 
@@ -177,9 +177,15 @@ public class LoginActivity extends FaceShowBaseActivity {
 
     private void signInRequest() {
         rootView.showLoadingView();
+        /* clear some info */
+        SpManager.saveToken(null);
+        SpManager.saveCurrentClassInfo(null);
+        SpManager.saveCurrentClassInfo(null);
+
         SignInRequest signInRequest = new SignInRequest();
         signInRequest.loginName = edt_account_number.getText().toString();
         signInRequest.password = Utils.MD5Helper(edt_account_password.getText().toString());
+
         mSignInRequestUUID = signInRequest.startRequest(SignInResponse.class, new HttpCallback<SignInResponse>() {
             @Override
             public void onSuccess(RequestBase request, SignInResponse ret) {
@@ -187,7 +193,7 @@ public class LoginActivity extends FaceShowBaseActivity {
                 if (ret.getCode() == 0) {
                     token = ret.getToken();
                     passPort = ret.getPassport();
-                    requestClassData(LoginActivity.this);
+                    requestClassList(LoginActivity.this);
                 } else {
                     Toast.makeText(mContext, ret.getError().getMessage(), Toast.LENGTH_SHORT).show();
                     rootView.hiddenLoadingView();
@@ -206,7 +212,7 @@ public class LoginActivity extends FaceShowBaseActivity {
     }
 
 
-    private void getUserInfo(final Activity activity) {
+    private void getUserInfo(final Activity activity, final GetClazzListResponse.DataBean data) {
         GetUserInfoRequest getUserInfoRequest = new GetUserInfoRequest();
         getUserInfoRequest.token = token;
         getUserInfoRequest.startRequest(GetUserInfoResponse.class, new HttpCallback<GetUserInfoResponse>() {
@@ -219,7 +225,13 @@ public class LoginActivity extends FaceShowBaseActivity {
                     String userInfoStr = RequestBase.getGson().toJson(ret.getData());
                     SpManager.saveUserInfo(userInfoStr);
                     UserInfo.getInstance().setInfo(ret.getData());
-                    MainActivity.invoke(activity);
+                    SpManager.saveClassListInfo(data);
+                    if (data.getClazsInfos().size() == 1) {
+                        SpManager.saveCurrentClassInfo(data.getClazsInfos().get(0));
+                        MainActivity.invoke(activity, data.getClazsInfos().get(0));
+                    } else {
+                        ClassManageActivity.toThisAct(activity, data);
+                    }
                     LoginActivity.this.finish();
                 } else {
                     ToastUtil.showToast(activity, ret.getError().getMessage());
@@ -238,15 +250,14 @@ public class LoginActivity extends FaceShowBaseActivity {
     /**
      * 请求项目班级信息，如果code!=0，那么，不能进入首页，并且弹出toast提示
      */
-    private void requestClassData(final Activity activity) {
-        MainRequest mainRequest = new MainRequest();
-        mainRequest.token = token;
-        mainRequest.startRequest(MainResponse.class, new HttpCallback<MainResponse>() {
+    private void requestClassList(final Activity activity) {
+        GetClazzListRequest getClazzListRequest = new GetClazzListRequest();
+        getClazzListRequest.token = token;
+        getClazzListRequest.startRequest(GetClazzListResponse.class, new HttpCallback<GetClazzListResponse>() {
             @Override
-            public void onSuccess(RequestBase request, MainResponse ret) {
-
-                if (ret != null && ret.getCode() == 0) {
-                    getUserInfo(activity);
+            public void onSuccess(RequestBase request, GetClazzListResponse ret) {
+                if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null && ret.getData().getClazsInfos().size() > 0) {
+                    getUserInfo(activity, ret.getData());
                 } else {
                     if (ret != null && ret.getError() != null) {
                         ToastUtil.showToast(FSAApplication.getInstance().getApplicationContext(), ret.getError().getMessage());
@@ -262,6 +273,7 @@ public class LoginActivity extends FaceShowBaseActivity {
                 }
             }
         });
+
     }
 
     @Override

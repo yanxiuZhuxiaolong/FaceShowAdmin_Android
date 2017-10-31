@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.login;
+package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -55,7 +55,11 @@ public class WelcomeActivity extends FaceShowBaseActivity {
         public void onAnimationEnd(Animator animator) {
             isAnimationEnd = true;
             if (isGetUserInfoEnd) {
-                MainActivity.invoke(WelcomeActivity.this);
+                if (SpManager.getCurrentClassInfo() == null) {
+                    ClassManageActivity.toThisAct(WelcomeActivity.this, SpManager.getClassListInfo());
+                } else {
+                    MainActivity.invoke(WelcomeActivity.this, SpManager.getCurrentClassInfo());
+                }
                 WelcomeActivity.this.finish();
             }
             if (isCanLogin) {
@@ -157,7 +161,8 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     UserInfo.getInstance().setInfo(SpManager.getUserInfo());
                 }
                 if (isAnimationEnd) {
-                    MainActivity.invoke(activity);
+                    // TODO: 17-10-30
+                    isToClassInfoOrMainAct(activity);
                     activity.finish();
                 }
                 isGetUserInfoEnd = true;
@@ -167,7 +172,8 @@ public class WelcomeActivity extends FaceShowBaseActivity {
             public void onFail(RequestBase request, Error error) {
                 UserInfo.getInstance().setInfo(SpManager.getUserInfo());
                 if (isAnimationEnd) {
-                    MainActivity.invoke(activity);
+                    // TODO: 17-10-30
+                    isToClassInfoOrMainAct(activity);
                     activity.finish();
                 }
                 isGetUserInfoEnd = true;
@@ -176,6 +182,13 @@ public class WelcomeActivity extends FaceShowBaseActivity {
         });
     }
 
+    private static void isToClassInfoOrMainAct(Activity activity) {
+        if (SpManager.getCurrentClassInfo() == null) {
+            ClassManageActivity.toThisAct(activity, SpManager.getClassListInfo());
+        } else {
+            MainActivity.invoke(activity, SpManager.getCurrentClassInfo());
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

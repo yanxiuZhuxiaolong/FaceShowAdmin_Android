@@ -79,20 +79,13 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     private void setData() {
         if (mData != null && mData.getProjectInfo() != null) {
             setTabData();
-            if (mData.getProjectInfo() != null) {
 
-            }
             if (mData.getClazsInfo() != null) {
 
             }
-            if (mData.getTodaySignIns() != null) {
-                mCheckInList = mData.getTodaySignIns();
-                setCheckinData();
-            }
-            if (mData.getTodayCourses() != null) {
-                mCourseList = mData.getTodayCourses();
-                setCourseData();
-            }
+            setCheckinData();
+
+            setCourseData();
             if (mData.getClazsStatisticView() != null) {
 
             }
@@ -107,7 +100,8 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     }
 
     private void setCheckinData() {
-        if (mCheckInList.isEmpty()) {
+        mCheckInList = mData.getTodaySignIns();
+        if (mData.getTodaySignIns() == null || mCheckInList.isEmpty()) {
             no_checkin.setVisibility(View.VISIBLE);
             mCheckin_recyclerView.setVisibility(View.GONE);
         } else {
@@ -119,7 +113,8 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     }
 
     private void setCourseData() {
-        if (mCourseList.isEmpty()) {
+        mCourseList = mData.getTodayCourses();
+        if (mData.getTodayCourses() == null || mCourseList.isEmpty()) {
             no_course.setVisibility(View.VISIBLE);
             mCourse_recyclerView.setVisibility(View.GONE);
         } else {
@@ -189,6 +184,7 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
         mRootView.showLoadingView();
         MainFragmentRequest courseArrangeRequest = new MainFragmentRequest();
         courseArrangeRequest.clazsId = UserInfo.getInstance().getInfo().getClassId();
+        courseArrangeRequest.clazsId = "9";
         courseArrangeRequest.startRequest(MainFragmentRequestResponse.class, new HttpCallback<MainFragmentRequestResponse>() {
             @Override
             public void onSuccess(RequestBase request, MainFragmentRequestResponse ret) {

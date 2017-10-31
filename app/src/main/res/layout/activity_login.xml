@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
-    tools:context="com.yanxiu.gphone.faceshowadmin_android.login.LoginActivity">
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.login.activity.LoginActivity">
 
 
     <LinearLayout
@@ -15,11 +15,11 @@
 
         <ImageView
             android:layout_width="175dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:contentDescription="@null"
-            android:src="@drawable/ic_logo" />
+            android:src="@drawable/ic_app_logo" />
 
 
         <com.yanxiu.gphone.faceshowadmin_android.customView.ClearEditText
@@ -36,10 +36,11 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingStart="10dp"
+            android:text="15655248880"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             android:textCursorDrawable="@null"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
 
         <RelativeLayout
             android:layout_width="250dp"
@@ -61,45 +62,54 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingStart="10dp"
+                android:text="123456"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:textCursorDrawable="@null"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <ImageView
                 android:id="@+id/img_show_password"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
                 android:contentDescription="@null"
                 android:src="@drawable/selector_hide_password" />
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/tv_sign_in"
+        <RelativeLayout
             android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_sign_in_normal_bg"
-            android:gravity="center"
-            android:text="@string/sign_in"
-            android:textColor="@color/color_1da1f2"
-            android:textSize="13dp" />
-
-        <TextView
-            android:id="@+id/tv_forget_password"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="@string/forget_password"
-            android:textColor="@color/color_white"
-            android:textSize="15sp" />
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tv_sign_in"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_sign_in_normal_bg"
+                android:gravity="center"
+                android:text="@string/sign_in"
+                android:textColor="@color/color_0068BD"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/tv_sign_in"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/forget_password"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
     </LinearLayout>
+
 </ScrollView>
