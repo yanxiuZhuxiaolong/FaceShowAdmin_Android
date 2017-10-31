@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
@@ -35,7 +36,7 @@ import butterknife.BindView;
  * Created by frc on 17-10-26.
  */
 
-public class MainFragment extends Fragment implements MainFragmentRecyclerViewItemClickListener {
+public class MainFragment extends Fragment implements View.OnClickListener, MainFragmentRecyclerViewItemClickListener {
     private PublicLoadLayout mRootView;
 
     protected RecyclerView mTab_recyclerView;
@@ -54,6 +55,14 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     private ArrayList<TodaySignInBean> mCheckInList = new ArrayList();
     private ArrayList<CourseBean> mCourseList = new ArrayList();
 
+    private View mProject_layput;
+    private TextView mProject_tv;
+    private TextView mClass_tv;
+    private TextView mStudent_count;
+    private TextView mTeacher_count;
+    private TextView mCourse_count;
+    private TextView mTask_count;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +71,7 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
         mRootView.setContentView(R.layout.fragment_main_layout);
         initData();
         initView();
+        setListener();
         return mRootView;
     }
 
@@ -71,24 +81,42 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     }
 
     private void initView() {
+        mProject_layput = mRootView.findViewById(R.id.project_layput);
+        mProject_tv = mRootView.findViewById(R.id.project_tv);
+        mClass_tv = mRootView.findViewById(R.id.class_tv);
+        mStudent_count = mRootView.findViewById(R.id.student_count);
+        mTeacher_count = mRootView.findViewById(R.id.teacher_count);
+        mCourse_count = mRootView.findViewById(R.id.course_count);
+        mTask_count = mRootView.findViewById(R.id.task_count);
         initTabRecyclerView();
         initCheckinRecyclerView();
         initCourseRecyclerView();
     }
 
+    private void setListener() {
+        mProject_layput.setOnClickListener(this);
+    }
+
     private void setData() {
         if (mData != null && mData.getProjectInfo() != null) {
             setTabData();
-
+            mProject_tv.setText(mData.getProjectInfo().getProjectName());
+            if (mData.getClazsInfo() != null) {
+                mClass_tv.setText(mData.getClazsInfo().getClazsName());
+            }
+            if (mData.getClazsStatisticView() != null) {
+                mStudent_count.setText(mData.getClazsStatisticView().getStudensNum());
+                mTeacher_count.setText(mData.getClazsStatisticView().getMasterNum());
+                mCourse_count.setText(mData.getClazsStatisticView().getCourseNum());
+                mTask_count.setText(mData.getClazsStatisticView().getTaskNum());
+            }
             if (mData.getClazsInfo() != null) {
 
             }
             setCheckinData();
 
             setCourseData();
-            if (mData.getClazsStatisticView() != null) {
 
-            }
         } else {
             mRootView.showOtherErrorView();
         }
@@ -262,5 +290,15 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
     @Override
     public void onCourseTabItemClick(View v, int position) {
         ToastUtil.showToast(getActivity(), "position");
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.project_layput:
+                //TODO @凤清
+                ToastUtil.showToast(getActivity(), "跳转详情");
+                break;
+        }
     }
 }

@@ -9,8 +9,9 @@
         layout="@layout/common_title_layout" />
 
     <LinearLayout
+        android:id="@+id/project_layput"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="175dp"
         android:background="@drawable/homepage_bg"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -30,9 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/currentProject"
+            android:layout_marginBottom="12dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_weight="1"
+            android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
@@ -44,8 +46,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="26dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="18dp"
             android:background="@drawable/shape_homepage_class"
             android:gravity="center">
 
@@ -61,6 +61,67 @@
                 android:text="19号一班"
                 android:textColor="@color/color_ffffff"
                 android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="班级学员："
+                android:textColor="@color/color_ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/student_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="128人"
+                android:textColor="@color/color_ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/color_96bde4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="班主任："
+                android:textColor="@color/color_ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/teacher_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="3人"
+                android:textColor="@color/color_ffffff"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -95,7 +156,7 @@
                     android:layout_weight="1">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true">
 
@@ -123,8 +184,9 @@
                             android:layout_height="13dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginRight="6dp"
+                            android:layout_marginTop="2dp"
                             android:layout_toLeftOf="@id/count"
-                            android:background="@color/color_999999"/>
+                            android:background="@color/color_1da1f2" />
                     </RelativeLayout>
 
 
@@ -142,7 +204,7 @@
                     android:layout_weight="1">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true">
 
@@ -170,7 +232,9 @@
                             android:layout_height="13dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginRight="6dp"
-                            android:layout_toLeftOf="@id/coumt" />
+                            android:layout_marginTop="2dp"
+                            android:layout_toLeftOf="@id/coumt"
+                            android:background="@color/color_1da1f2" />
                     </RelativeLayout>
                 </RelativeLayout>
 
