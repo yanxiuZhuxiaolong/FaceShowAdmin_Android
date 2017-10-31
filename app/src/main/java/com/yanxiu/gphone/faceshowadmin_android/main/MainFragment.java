@@ -221,7 +221,24 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
      */
     @Override
     public void onTabItemClick(View v, int position) {
-        ToastUtil.showToast(getActivity(), position + "");
+        switch (position) {
+            case 0:
+                ToastUtil.showToast(getActivity(), "通讯录");
+                break;
+            case 1:
+                ToastUtil.showToast(getActivity(), "通知管理");
+                break;
+            case 2:
+                ToastUtil.showToast(getActivity(), "签到记录");
+                break;
+            case 3:
+                ToastUtil.showToast(getActivity(), "日程管理");
+                break;
+            case 4:
+                ToastUtil.showToast(getActivity(), "资源管理");
+                break;
+
+        }
     }
 
     /**
@@ -232,6 +249,7 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
      */
     @Override
     public void onCheckInItemClick(View v, int position) {
+        ToastUtil.showToast(getActivity(), "position");
 
     }
 
@@ -243,6 +261,6 @@ public class MainFragment extends Fragment implements MainFragmentRecyclerViewIt
      */
     @Override
     public void onCourseTabItemClick(View v, int position) {
-
+        ToastUtil.showToast(getActivity(), "position");
     }
 }
