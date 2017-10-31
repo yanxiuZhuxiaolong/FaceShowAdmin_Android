@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private ArrayList<TodaySignInBean> mCheckInList = new ArrayList();
     private ArrayList<CourseBean> mCourseList = new ArrayList();
 
+
+    private ImageView mTitle_layout_left_img;
+    private TextView mTitle_layout_title;
     private View mProject_layput;
     private TextView mProject_tv;
     private TextView mClass_tv;
@@ -85,6 +89,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     }
 
     private void initView() {
+        mTitle_layout_left_img = mRootView.findViewById(R.id.title_layout_left_img);
+        mTitle_layout_title = mRootView.findViewById(R.id.title_layout_title);
+        mTitle_layout_left_img.setVisibility(View.VISIBLE);
         mProject_layput = mRootView.findViewById(R.id.project_layput);
         mProject_tv = mRootView.findViewById(R.id.project_tv);
         mClass_tv = mRootView.findViewById(R.id.class_tv);
@@ -99,12 +106,14 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     private void setListener() {
         mProject_layput.setOnClickListener(this);
+        mTitle_layout_left_img.setOnClickListener(this);
     }
 
     private void setData() {
         if (mData != null && mData.getProjectInfo() != null) {
-            setTabData();
+            mTitle_layout_title.setText(getString(R.string.tab_main));
             mProject_tv.setText(mData.getProjectInfo().getProjectName());
+            setTabData();
             if (mData.getClazsInfo() != null) {
                 mClass_tv.setText(mData.getClazsInfo().getClazsName());
             }
@@ -302,6 +311,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             case R.id.project_layput:
                 //TODO @凤清
                 ToastUtil.showToast(getActivity(), "跳转详情");
+                break;
+            case R.id.title_layout_left_img:
+                ToastUtil.showToast(getActivity(), "打开抽屉");
                 break;
         }
     }
