@@ -27,6 +27,11 @@ import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestRespo
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCheckInAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCourseAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -66,7 +71,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_main_layout, container, false);
         mRootView = new PublicLoadLayout(getActivity());
         mRootView.setContentView(R.layout.fragment_main_layout);
         initData();
