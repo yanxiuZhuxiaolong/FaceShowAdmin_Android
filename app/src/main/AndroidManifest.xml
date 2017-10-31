@@ -58,7 +58,8 @@
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity android:name=".login.activity.ClassManageActivity" />
-        <activity android:name=".checkIn.CheckInNotesActivity"></activity>
+        <activity android:name=".checkIn.CheckInNotesActivity" />
+        <activity android:name=".checkIn.CreateNewCheckInActivity"></activity>
     </application>
 
 </manifest>

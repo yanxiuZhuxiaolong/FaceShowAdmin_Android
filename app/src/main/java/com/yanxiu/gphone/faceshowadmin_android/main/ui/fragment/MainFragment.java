@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
+import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.CheckInNotesActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
@@ -224,7 +227,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private void requestData() {
         mRootView.showLoadingView();
         MainFragmentRequest courseArrangeRequest = new MainFragmentRequest();
-        courseArrangeRequest.clazsId = UserInfo.getInstance().getInfo().getClassId();
+        courseArrangeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         courseArrangeRequest.clazsId = "9";
         courseArrangeRequest.startRequest(MainFragmentRequestResponse.class, new HttpCallback<MainFragmentRequestResponse>() {
             @Override
@@ -270,7 +273,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 ToastUtil.showToast(getActivity(), "通知管理");
                 break;
             case 2:
-                ToastUtil.showToast(getActivity(), "签到记录");
+                CheckInNotesActivity.toThisAct(MainFragment.this.getContext(), "0");
                 break;
             case 3:
                 ToastUtil.showToast(getActivity(), "日程管理");

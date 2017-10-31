@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="71dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_check_in_statue"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/check_in_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/color_333333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:text="2017年10月30日签到" />
+
+        <TextView
+            android:id="@+id/check_in_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/check_in_item_title"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_999999"
+            android:textSize="11dp"
+            tools:text="2017年10月30日签到" />
+
+        <TextView
+            android:id="@+id/has_check_in_Proportion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/color_0068bd"
+            android:textSize="12dp"
+            tools:text="@string/has_check_in_proportion" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/has_check_in_Proportion"
+            android:gravity="center"
+            android:text="@string/has_check_in"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/check_in_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/check_in_item_title"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_999999"
+            android:textSize="11dp"
+            tools:text="50%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/check_in_item_title"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_toStartOf="@id/check_in_percentage"
+            android:gravity="center"
+            android:text="@string/check_in_percentage"
+            android:textColor="@color/color_999999"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/color_edf0ee" />
+</LinearLayout>

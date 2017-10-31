@@ -56,6 +56,25 @@
 
     <string name="check_in_notes">签到记录</string>
     <string name="create_new_notes">新建</string>
+    <string name="create_new_check_in_name_hint">签到标题（最多20字）</string>
+    <string name="check_in_success_hint">签到成功提示语（20字以内）</string>
+    <string name="use_code">使用动态刷新的二维码</string>
+    <string name="only_useful_in_check_in_time">只在签到时间内签到有效</string>
+    <string name="end_time">结束时间</string>
+    <string name="start_time">开始时间</string>
+    <string name="check_in_time">签到时间</string>
+    <string name="create_new_check_in">新建签到</string>
+    <string name="commit_new_check_in">提交</string>
+    <string name="check_in_title_can_not_be_null">签到标题不能为空</string>
+    <string name="check_in_time_can_not_be_null">签到时间不能为空</string>
+    <string name="check_in_start_time_can_not_be_null">签到开始时间不能为空</string>
+    <string name="check_in_end_title_can_not_be_null">签到结束时间不能为空</string>
+    <string name="check_in_success_toast_can_not_be_null">签到成功提示语不能为空</string>
+    <string name="check_in_notes_is_null">签到记录为空</string>
+    <string name="data_error">数据加载异常</string>
+    <string name="has_check_in">已签到:</string>
+    <string name="check_in_percentage">签到率:</string>
+    <string name="has_check_in_proportion">%1$d/%2$d</string>
 
 
 </resources>

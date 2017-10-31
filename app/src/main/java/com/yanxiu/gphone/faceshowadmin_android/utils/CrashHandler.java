@@ -23,7 +23,6 @@ import java.util.Calendar;
  * Crash捕获机制
  * Created by sunpeng on 2016/12/27.
  */
-
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static final String TAG = "CrashHandler";
     private static final boolean DEBUG = true;
@@ -35,7 +34,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static CrashHandler sInstance = new CrashHandler();
     private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
     private Context mContext;
-
 
     private CrashHandler() {
     }
