@@ -310,6 +310,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         switch (view.getId()) {
             case R.id.project_layput:
                 //TODO @凤清
+                // mData 数据
                 ToastUtil.showToast(getActivity(), "跳转详情");
                 break;
             case R.id.title_layout_left_img:
