@@ -11,4 +11,8 @@
     <style name="MySwitch" parent="@android:style/Widget.CompoundButton">
         <item name="android:button">@drawable/switch_button</item>
     </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>1
+
 </resources>

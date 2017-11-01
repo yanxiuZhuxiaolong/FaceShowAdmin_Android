@@ -25,6 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListe
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
+import com.yanxiu.gphone.faceshowadmin_android.main.ui.activity.MainDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestResponse;
@@ -312,9 +313,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.project_layput:
-                //TODO @凤清
-                // mData 数据
-                ToastUtil.showToast(getActivity(), "跳转详情");
+//                ToastUtil.showToast(getActivity(), "跳转详情");
+                MainDetailActivity.invoke(getActivity(), mData);
                 break;
             case R.id.title_layout_left_img:
                 ToastUtil.showToast(getActivity(), "打开抽屉");
