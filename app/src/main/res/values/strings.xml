@@ -69,7 +69,7 @@
     <string name="only_useful_in_check_in_time">只在签到时间内签到有效</string>
     <string name="end_time">结束时间</string>
     <string name="start_time">开始时间</string>
-    <string name="check_in_time">签到时间</string>
+    <string name="check_in_time">签到日期</string>
     <string name="create_new_check_in">新建签到</string>
     <string name="commit_new_check_in">提交</string>
     <string name="check_in_title_can_not_be_null">签到标题不能为空</string>
@@ -82,6 +82,14 @@
     <string name="has_check_in">已签到:</string>
     <string name="check_in_percentage">签到率:</string>
     <string name="has_check_in_proportion">%1$d/%2$d</string>
+    <string name="signature_member">补签成员:</string>
+    <string name="submit_a_supplement">提交补签</string>
+    <string name="attendance_number"><Data><![CDATA[<font color="#99d5fe"><b>签到人数: <b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></Data></string>
+    <string name="check_in_percentage_new"><![CDATA[<font color="#99d5fe"><b>签到率:  <b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></string>
+    <string name="no_sign_in">未签到</string>
+    <string name="signed_in">已签到</string>
+    <string name="check_in_detail">签到详情</string>
+    <string name="end_time_must_be_greater_than_start_time">结束时间必须大于开始时间</string>
 
 
 </resources>

@@ -38,6 +38,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'pub.devrel:easypermissions:0.4.2'
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
+    compile 'com.contrarywind:Android-PickerView:3.2.6'
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     testCompile 'junit:junit:4.12'

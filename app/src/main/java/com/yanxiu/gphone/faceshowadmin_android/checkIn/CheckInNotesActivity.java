@@ -62,12 +62,6 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         checkInNotesAdapter = new CheckInNotesAdapter();
         recyclerView.setAdapter(checkInNotesAdapter);
-        checkInNotesAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                // TODO: 17-10-31  
-            }
-        });
 
         getCheckInNotesData();
 //        publicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
@@ -129,5 +123,12 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
         }
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK)
+                getCheckInNotesData();
+        }
+    }
 }

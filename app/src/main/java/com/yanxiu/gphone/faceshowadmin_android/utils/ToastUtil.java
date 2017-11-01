@@ -1,12 +1,16 @@
 package com.yanxiu.gphone.faceshowadmin_android.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 public class ToastUtil {
     private static Toast toast;
 
     public static void showToast(Context context, String text) {
+        if (TextUtils.isEmpty(text)) {
+            return;
+        }
         if (toast == null) {
             toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
         } else {
@@ -16,6 +20,9 @@ public class ToastUtil {
     }
 
     public static void showToast(Context context, int id) {
+        if (TextUtils.isEmpty(context.getString(id))) {
+            return;
+        }
         if (toast == null) {
             toast = Toast.makeText(context, context.getString(id), Toast.LENGTH_SHORT);
         } else {

@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,10 +12,22 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.suke.widget.SwitchButton;
+import com.test.yanxiu.network.HttpCallback;
+import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
+import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.CreateNewCheckInRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.CreateNewCheckInResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +69,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     @BindView(R.id.check_in_success_toast)
     EditText checkInSuccessToast;
 
-
+    private PublicLoadLayout publicLoadLayout;
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -77,7 +90,9 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create__new__check_in);
+        publicLoadLayout = new PublicLoadLayout(this);
+        publicLoadLayout.setContentView(R.layout.activity_create__new__check_in);
+        setContentView(publicLoadLayout);
         ButterKnife.bind(this);
         initTitle();
         checkInName.addTextChangedListener(textWatcher);
@@ -108,17 +123,105 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
                 }
                 break;
             case R.id.rl_check_in_time:
+                toSelectedData();
                 break;
             case R.id.rl_check_in_start_time:
+                toSelectedStartTime();
                 break;
             case R.id.rl_check_in_end_time:
+                toSelectedEndTime();
                 break;
 
         }
     }
 
+    private void toSelectedData() {
+        TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                tvCheckInTime.setText(getDay(date));
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .build();
+        timePickerView.show();
+    }
+
+    private Date startTime;
+
+    private void toSelectedStartTime() {
+        TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                startTime =date;
+                tvCheckInStartTime.setText(getTime(date));
+            }
+        })
+                .setType(new boolean[]{false, false, false, true, true, false})
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .build();
+        timePickerView.show();
+    }
+
+    private void toSelectedEndTime() {
+        TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                if (date.compareTo(startTime)>0) {
+                    tvCheckInEndTime.setText(getTime(date));
+                }else {
+                    ToastUtil.showToast(getApplicationContext(),getString(R.string.end_time_must_be_greater_than_start_time));
+                }
+            }
+        })
+                .setType(new boolean[]{false, false, false, true, true, false})
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .build();
+        timePickerView.show();
+    }
+
+    private String getDay(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+        return format.format(date);
+    }
+
+    private String getTime(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(date);
+    }
+
     private void toCommit() {
-        // TODO: 17-10-31
+        publicLoadLayout.showLoadingView();
+        CreateNewCheckInRequest createNewCheckInRequest = new CreateNewCheckInRequest();
+        createNewCheckInRequest.title = checkInName.getText().toString();
+        createNewCheckInRequest.startTime = tvCheckInTime.getText().toString() + " " + tvCheckInStartTime.getText().toString();
+        createNewCheckInRequest.endTime = tvCheckInTime.getText().toString() + " " + tvCheckInEndTime.getText().toString();
+        createNewCheckInRequest.successPrompt = checkInSuccessToast.getText().toString();
+        createNewCheckInRequest.antiCheat = switchBtnUseful.isChecked() ? "1" : "0";
+        createNewCheckInRequest.qrcodeRefreshRate = switchBtnUseCode.isChecked() ? "1" : "0";
+        createNewCheckInRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
+        createNewCheckInRequest.startRequest(CreateNewCheckInResponse.class, new HttpCallback<CreateNewCheckInResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, CreateNewCheckInResponse ret) {
+                publicLoadLayout.hiddenLoadingView();
+                if (ret.getCode() == ResponseConfig.SUCCESS) {
+                    CreateNewCheckInActivity.this.setResult(RESULT_OK);
+                    CreateNewCheckInActivity.this.finish();
+                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                }
+
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                publicLoadLayout.hiddenLoadingView();
+                ToastUtil.showToast(getApplicationContext(), error.getMessage());
+
+            }
+        });
     }
 
     private boolean canCommit() {
