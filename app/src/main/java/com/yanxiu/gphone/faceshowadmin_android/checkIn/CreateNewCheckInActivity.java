@@ -1,6 +1,5 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +26,7 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -70,6 +70,8 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     EditText checkInSuccessToast;
 
     private PublicLoadLayout publicLoadLayout;
+    private Date startTime;
+    private UUID requestUUID;
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -131,7 +133,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
             case R.id.rl_check_in_end_time:
                 toSelectedEndTime();
                 break;
-
+            default:
         }
     }
 
@@ -148,13 +150,11 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         timePickerView.show();
     }
 
-    private Date startTime;
-
     private void toSelectedStartTime() {
         TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                startTime =date;
+                startTime = date;
                 tvCheckInStartTime.setText(getTime(date));
             }
         })
@@ -168,10 +168,10 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                if (date.compareTo(startTime)>0) {
+                if (date.compareTo(startTime) > 0) {
                     tvCheckInEndTime.setText(getTime(date));
-                }else {
-                    ToastUtil.showToast(getApplicationContext(),getString(R.string.end_time_must_be_greater_than_start_time));
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), getString(R.string.end_time_must_be_greater_than_start_time));
                 }
             }
         })
@@ -182,12 +182,12 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     }
 
     private String getDay(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault());
         return format.format(date);
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
         return format.format(date);
     }
 
@@ -201,7 +201,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         createNewCheckInRequest.antiCheat = switchBtnUseful.isChecked() ? "1" : "0";
         createNewCheckInRequest.qrcodeRefreshRate = switchBtnUseCode.isChecked() ? "1" : "0";
         createNewCheckInRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        createNewCheckInRequest.startRequest(CreateNewCheckInResponse.class, new HttpCallback<CreateNewCheckInResponse>() {
+        requestUUID = createNewCheckInRequest.startRequest(CreateNewCheckInResponse.class, new HttpCallback<CreateNewCheckInResponse>() {
             @Override
             public void onSuccess(RequestBase request, CreateNewCheckInResponse ret) {
                 publicLoadLayout.hiddenLoadingView();
@@ -261,6 +261,16 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
             titleLayoutRightTxt.setTextColor(Color.parseColor("#0088BD"));
         } else {
             titleLayoutRightTxt.setTextColor(Color.parseColor("#CCCCCC"));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (requestUUID != null) {
+            {
+                RequestBase.cancelRequestWithUUID(requestUUID);
+            }
         }
     }
 }

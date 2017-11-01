@@ -72,6 +72,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
         tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getIntent().getStringExtra("percentage"))));
 
     }
+
     private void toShowTimePickerView() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
@@ -97,7 +98,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                         });
                     }
                 })
-                .setType(new boolean[]{false, false, false, true,true, false})
+                .setType(new boolean[]{false, false, false, true, true, false})
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .build();
 //        timePickerView.setDate(Calendar.getInstance());
@@ -123,6 +124,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 break;
             case R.id.img_code:
                 break;
+            default:
         }
     }
 }

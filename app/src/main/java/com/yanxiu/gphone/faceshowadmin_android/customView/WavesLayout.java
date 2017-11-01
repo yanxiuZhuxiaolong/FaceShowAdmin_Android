@@ -275,13 +275,15 @@ public class WavesLayout extends RelativeLayout {
                 if (mCanShowWave) {
                     deliveryTouchDownEvent(ev);
                 }
-                if(mOtherView != null)
+                if(mOtherView != null) {
                     mOtherView.setPressed(true);
+                }
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                if(mOtherView != null)
+                if(mOtherView != null) {
                     mOtherView.setPressed(false);
+                }
                 reset();
                 break;
         }

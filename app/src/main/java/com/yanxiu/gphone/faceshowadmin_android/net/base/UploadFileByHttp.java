@@ -35,7 +35,7 @@ public class UploadFileByHttp {
     public void uploadForm(Map<String, String> params, String fileFormName,
                            final File uploadFile, String newFileName, String urlStr, final UpLoadFileByHttpCallBack callBack)
             throws IOException {
-        if (newFileName == null || newFileName.trim().equals("")) {
+        if (newFileName == null || "".equals(newFileName.trim())) {
             newFileName = uploadFile.getName();
         }
 
@@ -85,8 +85,9 @@ public class UploadFileByHttp {
 
                     byte[] buf = new byte[1024];
                     int len;
-                    while ((len = in.read(buf)) != -1)
+                    while ((len = in.read(buf)) != -1) {
                         out.write(buf, 0, len);
+                    }
 
                     out.write(endInfo);
                     in.close();

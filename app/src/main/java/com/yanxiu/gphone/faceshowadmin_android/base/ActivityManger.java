@@ -50,7 +50,7 @@ public class ActivityManger {
     }
 
 
-    public static void LogOut(String... isMain) {
+    public static void logOut(String... isMain) {
         Activity activitys = null;
         if (activityList != null && activityList.size() > 0) {
             for (int i = 0; i < activityList.size(); i++) {

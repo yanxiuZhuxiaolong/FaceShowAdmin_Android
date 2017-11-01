@@ -97,7 +97,7 @@ public class CheckInNotesAdapter extends BaseRecyclerViewAdapter {
             if (y == 0) {
                 return "0%";
             } else {
-                String baifenbi = "";// 接受百分比的值
+                String baifenbi;// 接受百分比的值
                 double baiy = y * 1.0;
                 double baiz = z * 1.0;
                 double fen = baiy / baiz;

@@ -81,8 +81,9 @@ public class LoginActivity extends FaceShowBaseActivity {
 //            StatusBarUtils.setStatusBarFullScreen(LoginActivity.this);
 //        }
         unbinder = ButterKnife.bind(this);
-        if (SpManager.isFirstStartUp())
+        if (SpManager.isFirstStartUp()) {
             SpManager.setFirstStartUp(false);
+        }
 
         edt_account_number.addTextChangedListener(accountNumberChangedListener);
         edt_account_password.addTextChangedListener(accountPasswordChangedListener);
@@ -171,6 +172,7 @@ public class LoginActivity extends FaceShowBaseActivity {
             case R.id.tv_forget_password:
                 startActivityForResult(new Intent(LoginActivity.this, ForgetPasswordActivity.class), TO_FORGET_PASSWORD_REQUEST_CODE);
                 break;
+                default:
         }
     }
 

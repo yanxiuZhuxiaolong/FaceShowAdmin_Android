@@ -78,8 +78,9 @@ public class PermissionUtil {
             result = false;
         } finally {
             try {
-                if (fis != null)
+                if (fis != null) {
                     fis.close();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -108,8 +109,9 @@ public class PermissionUtil {
             result = false;
         } finally {
             try {
-                if (fos != null)
+                if (fos != null) {
                     fos.close();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

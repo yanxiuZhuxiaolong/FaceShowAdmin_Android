@@ -20,14 +20,14 @@ import javax.crypto.NoSuchPaddingException;
 public class SysEncryptUtil {
     private static final String EN_DE_CODE_PWD = "ws3edaw4";
     public static Key getKey(byte[] arrBTmp, String alg) {
-        if (!(alg.equalsIgnoreCase("DES") || alg.equalsIgnoreCase("DESede") || alg.equalsIgnoreCase("AES"))) {
+        if (!("DES".equalsIgnoreCase(alg) || "DESede".equalsIgnoreCase(alg) || "AES".equalsIgnoreCase(alg))) {
             System.out.println("alg type not find: " + alg);
             return null;
         }
         byte[] arrB;
-        if (alg.equalsIgnoreCase("DES")) {
+        if ("DES".equalsIgnoreCase(alg)) {
             arrB = new byte[8];
-        } else if (alg.equalsIgnoreCase("DESede")) {
+        } else if ("DESede".equalsIgnoreCase(alg)) {
             arrB = new byte[24];
         } else {
             arrB = new byte[16];
@@ -47,7 +47,7 @@ public class SysEncryptUtil {
     }
 
     public static byte[] encrypt(String s, String strKey, String alg) {
-        if (!(alg.equalsIgnoreCase("DES") || alg.equalsIgnoreCase("DESede") || alg.equalsIgnoreCase("AES"))) {
+        if (!("DES".equalsIgnoreCase(alg) || "DESede".equalsIgnoreCase(alg) || "AES".equalsIgnoreCase(alg))) {
             System.out.println("alg type not find: " + alg);
             return null;
         }
@@ -73,7 +73,7 @@ public class SysEncryptUtil {
     }
 
     public static String decrypt(byte[] code, String strKey, String alg) {
-        if (!(alg.equalsIgnoreCase("DES") || alg.equalsIgnoreCase("DESede") || alg.equalsIgnoreCase("AES"))) {
+        if (!("DES".equalsIgnoreCase(alg) || "DESede".equalsIgnoreCase(alg) || "AES".equalsIgnoreCase(alg))) {
             System.out.println("alg type not find: " + alg);
             return null;
         }
@@ -155,10 +155,12 @@ public class SysEncryptUtil {
             StringBuilder hexString = new StringBuilder();
 
             for (int b : bytes) {
-                if (b < 0)
+                if (b < 0) {
                     b += 256;
-                if (b < 16)
+                }
+                if (b < 16) {
                     hexString.append("0");
+                }
                 hexString.append(Integer.toHexString(b));
             }
             result=hexString.toString();

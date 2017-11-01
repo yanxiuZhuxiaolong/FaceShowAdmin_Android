@@ -15,12 +15,9 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
-import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesResponse;
-
-import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,6 +117,7 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
                 Intent intent = new Intent(CheckInNotesActivity.this, CreateNewCheckInActivity.class);
                 startActivityForResult(intent, 1);
                 break;
+                default:
         }
     }
 
@@ -127,8 +125,9 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            if (resultCode == RESULT_OK)
+            if (resultCode == RESULT_OK) {
                 getCheckInNotesData();
+            }
         }
     }
 }

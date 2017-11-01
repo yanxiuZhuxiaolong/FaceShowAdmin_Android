@@ -148,6 +148,7 @@ public class MainActivity extends FaceShowBaseActivity {
             case 4://exit app
                 exitApp();
                 break;
+                default:
         }
         mDrawerLayout.closeDrawer(mLeftDrawerLayout);
     }

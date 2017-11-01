@@ -132,8 +132,9 @@ public class PublicLoadLayout extends FrameLayout {
      */
     public void setOtherView(int viewId) {
         int childCound = mOtherErrorLayoutContainer.getChildCount();
-        if (childCound > 0)
+        if (childCound > 0) {
             mOtherErrorLayoutContainer.removeAllViews();//先移除容器内的默认布局
+        }
         inflate(mContext, viewId, mOtherErrorLayoutContainer);//加载其他页面（如数据为空页面）
     }
 
@@ -142,8 +143,9 @@ public class PublicLoadLayout extends FrameLayout {
      */
     public void setOtherView(View view) {
         int childCound = mOtherErrorLayoutContainer.getChildCount();
-        if (childCound > 0)
+        if (childCound > 0) {
             mOtherErrorLayoutContainer.removeAllViews();//先移除容器内的默认布局
+        }
         mOtherErrorLayoutContainer.addView(view);//加载其他页面（如数据为空页面）
     }
 

@@ -143,7 +143,7 @@ public class Utils {
         }
         return time;
     }
-
+   private static Pattern mobileNoP = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,2-9]))\\d{8}$");
     /**
      * 验证注册手机号码是否正确
      */
@@ -151,8 +151,8 @@ public class Utils {
         if (mobiles == null) {
             return false;
         }
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,2-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
+
+        Matcher m = mobileNoP.matcher(mobiles);
         return m.matches();
     }
 
@@ -163,8 +163,7 @@ public class Utils {
         if (mobiles == null) {
             return false;
         }
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,2-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
+        Matcher m = mobileNoP.matcher(mobiles);
         return m.matches();
     }
 
@@ -216,8 +215,9 @@ public class Utils {
 
 
     public static int convertDpToPx(Context context, int dp) {
-        if (context == null)
+        if (context == null) {
             return 0;
+        }
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return Math.round(dp * displayMetrics.density);
     }
@@ -244,10 +244,12 @@ public class Utils {
      * 时间戳转换成日期
      */
     public static String timeStamp2Date(String seconds, String format) {
-        if (seconds == null || seconds.isEmpty() || seconds.equals("null")) {
+        if (seconds == null || seconds.isEmpty() || "null".equals(seconds)) {
             return "";
         }
-        if (format == null || format.isEmpty()) format = "yyyy-MM-dd HH:mm:ss";
+        if (format == null || format.isEmpty()) {
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(Long.valueOf(seconds)));
     }
@@ -441,8 +443,9 @@ public class Utils {
      * @param fontPath
      */
     public static void setTextFont(Context context, TextView textView, String fontPath) {
-        if (textView == null)
+        if (textView == null) {
             return;
+        }
         AssetManager assetManager = context.getAssets();
         Typeface typeface = Typeface.createFromAsset(assetManager, fontPath);
         textView.setTypeface(typeface);

@@ -168,8 +168,9 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
 
             List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
                     .getRunningAppProcesses();
-            if (appProcesses == null)
+            if (appProcesses == null) {
                 return false;
+            }
 
             for (android.app.ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
                 if (appProcess.processName.equals(packageName)

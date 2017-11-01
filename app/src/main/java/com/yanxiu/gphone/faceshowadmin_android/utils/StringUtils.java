@@ -102,17 +102,18 @@ public class StringUtils {
         int hour = 0;
         int minute = 0;
         int second = 0;
-        if (time <= 0)
+        if (time <= 0) {
             return "00:00";
-        else {
+        } else {
             minute = time / 60;
             if (minute < 60) {
                 second = time % 60;
                 timeStr = unitFormat(minute) + ":" + unitFormat(second);
             } else {
                 hour = minute / 60;
-                if (hour > 99)
+                if (hour > 99) {
                     return "99:59:59";
+                }
                 minute = minute % 60;
                 second = time - hour * 3600 - minute * 60;
                 timeStr = unitFormat(hour) + ":" + unitFormat(minute) + ":"
@@ -177,18 +178,19 @@ public class StringUtils {
 
     public static String unitFormat(int i) {
         String retStr = null;
-        if (i >= 0 && i < 10)
+        if (i >= 0 && i < 10) {
             retStr = "0" + Integer.toString(i);
-        else
+        } else {
             retStr = "" + i;
+        }
         return retStr;
     }
 
+    private static Pattern replaceBlankP = Pattern.compile("\\s*|\t|\r|\n");
     public static String replaceBlank(String str) {
         String dest = "";
         if (str != null) {
-            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
-            Matcher m = p.matcher(str);
+            Matcher m = replaceBlankP.matcher(str);
             dest = m.replaceAll("");
         }
         return dest;
@@ -304,8 +306,9 @@ public class StringUtils {
             long serverTime = dateToStamp(date);
             long nowTime = System.currentTimeMillis();
             long time = (nowTime - serverTime) / 1000;//秒
-            if (time < 0)
+            if (time < 0) {
                 return date;
+            }
             if (time <= minutes) {
                 result = "刚刚";
             } else if (time < hour) {

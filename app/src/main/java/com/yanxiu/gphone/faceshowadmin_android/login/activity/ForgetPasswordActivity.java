@@ -193,6 +193,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     }
                 }
                 break;
+                default:
         }
     }
 

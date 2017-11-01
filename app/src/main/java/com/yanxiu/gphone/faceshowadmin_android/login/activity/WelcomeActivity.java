@@ -146,6 +146,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     //获取用户基本信息
                     getUserInfo(activity);
                     break;
+                    default:
             }
         }
     }

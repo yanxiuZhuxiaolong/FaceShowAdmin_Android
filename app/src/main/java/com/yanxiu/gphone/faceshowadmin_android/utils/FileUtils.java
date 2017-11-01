@@ -73,8 +73,9 @@ public class FileUtils {
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line = "";
             String Result = "";
-            while ((line = bufReader.readLine()) != null)
+            while ((line = bufReader.readLine()) != null) {
                 Result += line;
+            }
             return Result;
         } catch (Exception e) {
             e.printStackTrace();
@@ -626,8 +627,9 @@ public class FileUtils {
         } else if (size >= kb) {
             float f = (float) size / kb;
             return String.format(f > 100 ? "%.0f KB" : "%.1f KB", f);
-        } else
+        } else {
             return String.format("%d B", size);
+        }
     }
 
     /**
