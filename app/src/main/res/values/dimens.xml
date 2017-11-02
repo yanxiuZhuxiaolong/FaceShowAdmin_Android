@@ -6,13 +6,13 @@
     <dimen name="net_error_layout_retrybutton_top">55dp</dimen>
     <dimen name="net_error_layout_margintop">22dp</dimen>
     <dimen name="text_size_16">16dp</dimen>
-    <dimen name="net_error_layout_retrybutton_width">125dp</dimen>
+    <dimen name="net_error_layout_retrybutton_width">112dp</dimen>
     <dimen name="net_error_layout_retrybutton_height">40dp</dimen>
-    <dimen name="wavesRadius">5dp</dimen>
+    <dimen name="wavesRadius">7dp</dimen>
 
     <!--commontitlelayout end-->
     <dimen name="commontitle_margin_left">5dp</dimen>
-    <dimen name="commontitle_title_textsize">20dp</dimen>
+    <dimen name="commontitle_title_textsize">18dp</dimen>
     <dimen name="commontitle_singin_textsize">17dp</dimen>
     <dimen name="commontitle_title_rightIcon_width">30dp</dimen>
     <!--commontitlelayout end-->
@@ -22,12 +22,16 @@
     <dimen name="course_height">137dp</dimen>
     <dimen name="course_adapter_marginleft">15dp</dimen>
     <dimen name="tag_width">34dp</dimen>
-    <dimen name="tag_height">17dp</dimen>
-    <dimen name="tag_textsize">13dp</dimen>
-    <dimen name="text_textsize">15dp</dimen>
+    <dimen name="tag_height">15dp</dimen>
+    <dimen name="tag_textsize">11dp</dimen>
+    <dimen name="text_textsize">13dp</dimen>
     <dimen name="tag_marginleft">10dp</dimen>
     <dimen name="line_height">1dp</dimen>
     <dimen name="subtitle_height">34dp</dimen>
     <dimen name="dimen_0dp">0dp</dimen>
     <dimen name="dimen_2dp">2dp</dimen>
+    <dimen name="maintab_item_img_width">50dp</dimen>
+    <dimen name="maintab_lastitem_">10dp</dimen>
+    <dimen name="maintab_recyclerView_marginleft">25dp</dimen>
+
 </resources>

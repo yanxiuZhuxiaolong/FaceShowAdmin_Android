@@ -103,7 +103,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/checkin_item_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:background="@color/color_EBEFF2" />
+        android:background="@color/color_EBEFF2"
+        android:orientation="horizontal"/>
 </LinearLayout>

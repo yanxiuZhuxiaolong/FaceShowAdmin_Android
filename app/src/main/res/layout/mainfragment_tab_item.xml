@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="100dp"
-    android:layout_marginLeft="25dp"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/tab_img"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/maintab_item_img_width"
         android:layout_centerInParent="true" />
 
     <TextView

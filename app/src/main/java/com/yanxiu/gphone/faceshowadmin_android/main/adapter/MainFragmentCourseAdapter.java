@@ -68,7 +68,11 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
                 }
             }
         });
-
+        if (position < (mList.size() - 1)) {
+            holder2.checkin_item_line.setVisibility(View.VISIBLE);
+        } else {
+            holder2.checkin_item_line.setVisibility(View.GONE);
+        }
 
     }
 
@@ -82,6 +86,7 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
      */
     class ViewHolder extends RecyclerView.ViewHolder {
         private View course_layout;
+        private View checkin_item_line;
         private TextView course_name;
         private TextView course_time;
         private TextView course_teacher;
@@ -90,10 +95,11 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
         public ViewHolder(View itemView) {
             super(itemView);
             course_layout = itemView.findViewById(R.id.course_layout);
-            course_name = (TextView) itemView.findViewById(R.id.course_name);
-            course_time = (TextView) itemView.findViewById(R.id.course_time);
-            course_teacher = (TextView) itemView.findViewById(R.id.course_teacher);
-            course_location = (TextView) itemView.findViewById(R.id.course_location);
+            checkin_item_line = itemView.findViewById(R.id.checkin_item_line);
+            course_name = itemView.findViewById(R.id.course_name);
+            course_time = itemView.findViewById(R.id.course_time);
+            course_teacher = itemView.findViewById(R.id.course_teacher);
+            course_location = itemView.findViewById(R.id.course_location);
 //            TextTypefaceUtil.setViewTypeface(TextTypefaceUtil.TypefaceType.METRO_PLAY, mPrefixNumber, mPostfixNumber);
         }
 

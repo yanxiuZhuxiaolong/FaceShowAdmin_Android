@@ -31,6 +31,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.TextTypefaceUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
@@ -77,6 +78,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private TextView mCourse_count;
     private TextView mTask_count;
 
+    private MainFragmentRequest mCourseArrangeRequest;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private void initView() {
         mTitle_layout_left_img = mRootView.findViewById(R.id.title_layout_left_img);
         mTitle_layout_title = mRootView.findViewById(R.id.title_layout_title);
+        mTitle_layout_title.setText(getString(R.string.tab_main));
         mTitle_layout_left_img.setVisibility(View.VISIBLE);
         mProject_layput = mRootView.findViewById(R.id.project_layput);
         mProject_tv = mRootView.findViewById(R.id.project_tv);
@@ -103,7 +107,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         mStudent_count = mRootView.findViewById(R.id.student_count);
         mTeacher_count = mRootView.findViewById(R.id.teacher_count);
         mCourse_count = mRootView.findViewById(R.id.course_count);
+        TextTypefaceUtil.setViewTypeface(TextTypefaceUtil.TypefaceType.METRO_LIGHT, mCourse_count);
         mTask_count = mRootView.findViewById(R.id.task_count);
+        TextTypefaceUtil.setViewTypeface(TextTypefaceUtil.TypefaceType.METRO_LIGHT, mTask_count);
         initTabRecyclerView();
         initCheckinRecyclerView();
         initCourseRecyclerView();
@@ -112,11 +118,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private void setListener() {
         mProject_layput.setOnClickListener(this);
         mTitle_layout_left_img.setOnClickListener(this);
+        mRootView.setRetryButtonOnclickListener(this);
     }
 
     private void setData() {
         if (mData != null && mData.getProjectInfo() != null) {
-            mTitle_layout_title.setText(getString(R.string.tab_main));
             mProject_tv.setText(mData.getProjectInfo().getProjectName());
             setTabData();
             if (mData.getClazsInfo() != null) {
@@ -154,7 +160,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             no_checkin.setVisibility(View.GONE);
             mCheckin_recyclerView.setVisibility(View.VISIBLE);
             mCheckinAdapter.setData(mCheckInList);
-            mCheckin_recyclerView.setAdapter(mTabAdapter);
+            mCheckin_recyclerView.setAdapter(mCheckinAdapter);
         }
     }
 
@@ -167,7 +173,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             no_course.setVisibility(View.GONE);
             mCourse_recyclerView.setVisibility(View.VISIBLE);
             mCourseAdapter.setData(mCourseList);
-            mCourse_recyclerView.setAdapter(mTabAdapter);
+            mCourse_recyclerView.setAdapter(mCourseAdapter);
         }
     }
 
@@ -228,17 +234,17 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     private void requestData() {
         mRootView.showLoadingView();
-        MainFragmentRequest courseArrangeRequest = new MainFragmentRequest();
-        courseArrangeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        courseArrangeRequest.clazsId = "9";
-        courseArrangeRequest.startRequest(MainFragmentRequestResponse.class, new HttpCallback<MainFragmentRequestResponse>() {
+        mCourseArrangeRequest = new MainFragmentRequest();
+        mCourseArrangeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
+        mCourseArrangeRequest.startRequest(MainFragmentRequestResponse.class, new HttpCallback<MainFragmentRequestResponse>() {
             @Override
             public void onSuccess(RequestBase request, MainFragmentRequestResponse ret) {
                 mRootView.finish();
                 if (ret != null && ret.getCode() == 0) {
                     if (ret.getData() != null) {
                         mData = ret.getData();
-                        setData();
+                        if (isAdded() && getActivity() != null) // 防止Fragment被移除
+                            setData();
                     } else {
                         mRootView.showOtherErrorView();
                     }
@@ -250,9 +256,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                mRootView.hiddenLoadingView();
                 mRootView.showNetErrorView();
-
             }
         });
 
@@ -296,7 +300,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
      */
     @Override
     public void onCheckInItemClick(View v, int position) {
-        ToastUtil.showToast(getActivity(), "position");
+        ToastUtil.showToast(getActivity(), "签到item点击 position = " + position);
 
     }
 
@@ -308,7 +312,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
      */
     @Override
     public void onCourseTabItemClick(View v, int position) {
-        ToastUtil.showToast(getActivity(), "position");
+        ToastUtil.showToast(getActivity(), "课程item点击 position = " + position);
     }
 
     @Override
@@ -321,6 +325,16 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             case R.id.title_layout_left_img:
                 ToastUtil.showToast(getActivity(), "打开抽屉");
                 break;
+            case R.id.retry_button:
+                requestData();
+                break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mCourseArrangeRequest != null)
+            mCourseArrangeRequest.cancelRequest();
+        super.onDestroy();
     }
 }

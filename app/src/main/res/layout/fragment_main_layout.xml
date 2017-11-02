@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -24,7 +25,7 @@
             android:gravity="center"
             android:text="@string/currentProject"
             android:textColor="@color/color_ffffff"
-            android:textSize="12dp" />
+            android:textSize="10dp" />
 
         <TextView
             android:id="@+id/project_tv"
@@ -38,10 +39,11 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
-            android:text="项目名称项目名称项目名称项目名称项目名称"
+            android:minLines="2"
             android:textColor="@color/color_ffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="项目名称项目名称项目名称项目名称项目名称" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -58,17 +60,17 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
-                android:text="19号一班"
                 android:textColor="@color/color_ffffff"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="19号一班" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="14dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:gravity="center">
 
             <TextView
@@ -89,10 +91,10 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
-                android:text="128人"
                 android:textColor="@color/color_ffffff"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="128人" />
 
             <View
                 android:layout_width="1dp"
@@ -119,10 +121,10 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
-                android:text="3人"
                 android:textColor="@color/color_ffffff"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="3人" />
 
         </LinearLayout>
 
@@ -131,6 +133,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tab_recyclerView"
         android:layout_width="match_parent"
+        android:paddingLeft="@dimen/maintab_recyclerView_marginleft"
+        android:clipToPadding="false"
         android:layout_height="100dp" />
 
     <include layout="@layout/big_line" />
@@ -158,7 +162,8 @@
                     <RelativeLayout
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:id="@+id/count"
@@ -175,9 +180,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/count"
                             android:layout_centerHorizontal="true"
-                            android:text="8"
                             android:textColor="@color/color_333333"
-                            android:textSize="37dp" />
+                            android:textSize="37dp"
+                            tools:text="8" />
 
                         <ImageView
                             android:layout_width="13dp"
@@ -206,7 +211,8 @@
                     <RelativeLayout
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:id="@+id/coumt"
@@ -223,9 +229,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/coumt"
                             android:layout_centerHorizontal="true"
-                            android:text="25"
                             android:textColor="@color/color_333333"
-                            android:textSize="37dp" />
+                            android:textSize="37dp"
+                            tools:text="25" />
 
                         <ImageView
                             android:layout_width="13dp"
@@ -290,10 +296,8 @@
             <TextView
                 android:id="@+id/no_course"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="137dp"
                 android:gravity="center"
-                android:minHeight="70dp"
                 android:text="今日无课程"
                 android:textColor="@color/color_cccccc"
                 android:textSize="16dp"

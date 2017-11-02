@@ -71,7 +71,7 @@ public class PublicLoadLayout extends FrameLayout {
      */
     private void initDefaultLayout() {
 //        mNetErrorLayout = inflate(mContext, R.layout.net_error_layout, mNetErrorLayoutContainer);
-        inflate(mContext, R.layout.public_data_empty_layout, mNetErrorLayoutContainer);
+        inflate(mContext, R.layout.public_net_error_layout, mNetErrorLayoutContainer);
         mRetry_button = (TextView) findViewById(R.id.retry_button);
     }
 

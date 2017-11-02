@@ -28,7 +28,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/net_data_error"
             android:textColor="@color/color_999999"
-            android:textSize="@dimen/text_size_16" />
+            android:textSize="13dp" />
 
 
         <com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout
@@ -48,7 +48,8 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:text="@string/retry"
-                android:textColor="@drawable/selector_refresh_text_color" />
+                android:textColor="@drawable/selector_refresh_text_color"
+                android:textSize="14dp"/>
         </com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout>
     </LinearLayout>
 </RelativeLayout>
