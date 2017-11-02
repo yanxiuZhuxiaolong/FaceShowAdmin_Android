@@ -3,6 +3,7 @@ package com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserRes
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserSignInsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +47,8 @@ public class NoSignInFragment extends FaceShowBaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     Unbinder unbinder;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     private NoSignInAdapter mNoSignInAdapter;
     private String mSignInTime = "";
     private String id = "";
@@ -68,6 +72,16 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                 toShowTimePickerView(data.get(position).getUserName(), position);
             }
         });
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                id = "";
+                mSignInTime = "";
+                data.clear();
+                initData();
+            }
+        });
         return mPublicLoadLayout;
     }
 
@@ -82,10 +96,6 @@ public class NoSignInFragment extends FaceShowBaseFragment {
 
     private void toShowTimePickerView(final String userName, final int position) {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(2014, 1, 23);
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(2027, 2, 28);
         timePickerView = new TimePickerView.Builder(getContext(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -93,7 +103,6 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             }
         })
                 .setDate(selectedDate)
-                .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.time_picker_layout, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
@@ -126,14 +135,14 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     timePickerView.dismiss();
                 } else {
-
+                    ToastUtil.showToast(getActivity(), ret.getMessage());
                 }
             }
 
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.hiddenLoadingView();
-
+                ToastUtil.showToast(getActivity(), error.getMessage());
             }
         });
     }
@@ -153,13 +162,29 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                 mPublicLoadLayout.hiddenLoadingView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
-                        data = ret.getData().getElements();
+                        for (int i = 0; i < ret.getData().getCallbacks().size(); i++) {
+                            if (ret.getData().getCallbacks().get(i).getCallbackParam().endsWith("signinTime")) {
+                                mSignInTime = String.valueOf(ret.getData().getCallbacks().get(i).getCallbackValue());
+                            }
+                            if (ret.getData().getCallbacks().get(i).getCallbackParam().endsWith("id")) {
+                                id = String.valueOf(ret.getData().getCallbacks().get(i).getCallbackValue());
+                            }
+                        }
+                        data.addAll(ret.getData().getElements());
                         mNoSignInAdapter.update(ret.getData().getElements());
                     } else {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.data_empty));
+                        if (data.size() == 0) {
+                            mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        } else {
+                            ToastUtil.showToast(getActivity(), ret.getMessage());
+                        }
                     }
                 } else {
-                    mPublicLoadLayout.showOtherErrorView(getString(R.string.data_error));
+                    if (data.size() == 0) {
+                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                    } else {
+                        ToastUtil.showToast(getActivity(), ret.getMessage());
+                    }
 
                 }
             }
@@ -167,7 +192,11 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.hiddenLoadingView();
-                mPublicLoadLayout.showNetErrorView();
+                if (data.size() == 0) {
+                    mPublicLoadLayout.showNetErrorView();
+                } else {
+                    ToastUtil.showToast(getActivity(), error.getMessage());
+                }
             }
         });
     }
