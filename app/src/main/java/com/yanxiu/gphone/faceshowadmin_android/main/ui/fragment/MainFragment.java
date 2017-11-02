@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.main;
+package com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
@@ -21,26 +19,21 @@ import com.yanxiu.gphone.faceshowadmin_android.checkIn.CheckInNotesActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
-import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
+import com.yanxiu.gphone.faceshowadmin_android.main.FullyLinearLayoutManager;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCheckInAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCourseAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.activity.MainDetailActivity;
-import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity;
-import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
-import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
-import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCheckInAdapter;
-import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCourseAdapter;
-import com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
 
 /**
  * main tab
@@ -315,12 +308,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.project_layput:
-//                ToastUtil.showToast(getActivity(), "跳转详情");
                 MainDetailActivity.invoke(getActivity(), mData);
                 break;
             case R.id.title_layout_left_img:
-                ToastUtil.showToast(getActivity(), "打开抽屉");
+                ((MainActivity) getActivity()).openLeftDrawer();
                 break;
+            default:
         }
     }
 }

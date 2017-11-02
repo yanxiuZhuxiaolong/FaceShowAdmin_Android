@@ -88,6 +88,8 @@ public class CheckInNotesAdapter extends BaseRecyclerViewAdapter {
                     intent.putExtra("time", time);
                     intent.putExtra("percentage", getPercent(data.getSignInUserNum(), data.getTotalUserNum()));
                     intent.putExtra("proportion", proportion);
+                    intent.putExtra("stepId", String.valueOf(data.getStepId()));
+                    intent.putExtra("qrCodeRefreshRate",data.getQrcodeRefreshRate());
                     itemView.getContext().startActivity(intent);
                 }
             });

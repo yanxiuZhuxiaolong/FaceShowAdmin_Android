@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.checkIn.CheckInNotesActivity;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
@@ -25,7 +24,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.login.activity.LoginActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
-import com.yanxiu.gphone.faceshowadmin_android.main.MainFragment;
+import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
@@ -148,7 +147,7 @@ public class MainActivity extends FaceShowBaseActivity {
             case 4://exit app
                 exitApp();
                 break;
-                default:
+            default:
         }
         mDrawerLayout.closeDrawer(mLeftDrawerLayout);
     }
@@ -246,5 +245,7 @@ public class MainActivity extends FaceShowBaseActivity {
         }
     }
 
-
+    public void openLeftDrawer() {
+        mDrawerLayout.openDrawer(mLeftDrawerLayout);
+    }
 }

@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -101,7 +102,6 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 .setType(new boolean[]{false, false, false, true, true, false})
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .build();
-//        timePickerView.setDate(Calendar.getInstance());
         timePickerView.show();
 
     }
@@ -119,10 +119,15 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
+                this.finish();
                 break;
             case R.id.title_layout_right_img:
                 break;
             case R.id.img_code:
+                Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
+                intent.putExtra("stepId", getIntent().getStringExtra("stepId"));
+                intent.putExtra("qrCodeRefreshRate",getIntent().getIntExtra("qrCodeRefreshRate",0));
+                startActivity(intent);
                 break;
             default:
         }
