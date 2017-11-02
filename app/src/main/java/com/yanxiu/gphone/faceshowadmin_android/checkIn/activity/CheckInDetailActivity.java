@@ -1,12 +1,18 @@
-package com.yanxiu.gphone.faceshowadmin_android.checkIn;
+package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,9 +21,13 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.NoSignInFragment;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.SignedInFragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +69,37 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
         initTitle();
         initHead();
         initTabLayout();
+        final List<Fragment> list = new ArrayList<>();
+        Bundle bundle = new Bundle();
+        bundle.putString("stepId", getIntent().getStringExtra("stepId"));
+        SignedInFragment signedInFragment = new SignedInFragment();
+        signedInFragment.setArguments(bundle);
+        NoSignInFragment noSignInFragment = new NoSignInFragment();
+        noSignInFragment.setArguments(bundle);
+        list.add(noSignInFragment);
+        list.add(signedInFragment);
+        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return list.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return list.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                if (position == 0) {
+                    return getString(R.string.no_sign_in);
+                } else {
+                    return getString(R.string.signed_in);
+                }
+            }
+        });
+        tabLayout.setupWithViewPager(viewPager, true);
     }
 
     private void initTitle() {
@@ -74,45 +115,11 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
 
     }
 
-    private void toShowTimePickerView() {
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(2014, 1, 23);
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(2027, 2, 28);
-        final TimePickerView timePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                tvCheckInTime.setText(date.toString());
-            }
-        })
-                .setDate(selectedDate)
-                .setRangDate(startDate, endDate)
-                .setLayoutRes(R.layout.time_picker_layout, new CustomListener() {
-                    @Override
-                    public void customLayout(View v) {
-                        v.findViewById(R.id.submit_a_supplement).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                toSubmit();
-                            }
-                        });
-                    }
-                })
-                .setType(new boolean[]{false, false, false, true, true, false})
-                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .build();
-        timePickerView.show();
-
-    }
-
-    private void toSubmit() {
-
-    }
 
     private void initTabLayout() {
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.no_sign_in));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.signed_in));
+        tabLayout.setTabTextColors(R.color.color_333333, R.color.color_999999);
+//        tabLayout.addTab(tabLayout.newTab().setText(R.string.no_sign_in));
+//        tabLayout.addTab(tabLayout.newTab().setText(R.string.signed_in));
     }
 
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code})
@@ -126,7 +133,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
             case R.id.img_code:
                 Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
                 intent.putExtra("stepId", getIntent().getStringExtra("stepId"));
-                intent.putExtra("qrCodeRefreshRate",getIntent().getIntExtra("qrCodeRefreshRate",0));
+                intent.putExtra("qrCodeRefreshRate", getIntent().getIntExtra("qrCodeRefreshRate", 0));
                 startActivity(intent);
                 break;
             default:
