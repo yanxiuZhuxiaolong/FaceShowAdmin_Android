@@ -77,6 +77,8 @@
             android:name=".checkIn.CheckInDetailActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
+        <activity android:name=".notice.NoticeManageActivity"></activity>
+        <activity android:name=".notice.NoticeDetailActivity"></activity>
     </application>
 
 </manifest>

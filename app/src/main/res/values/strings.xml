@@ -60,6 +60,10 @@
     <string name="num_class_member">班级学员： %s</string>
     <string name="num_master">班主任： %s</string>
     <string name="main_detail_title">详情</string>
+    <string name="notice_manage_title">通知管理</string>
+    <string name="notice_post">发布</string>
+    <string name="notice_detail_title">通知详情</string>
+    <string name="has_read">已阅读:</string>
 
     <string name="check_in_notes">签到记录</string>
     <string name="create_new_notes">新建</string>

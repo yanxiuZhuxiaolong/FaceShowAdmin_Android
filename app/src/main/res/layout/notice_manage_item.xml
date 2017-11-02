@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notice_manage_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/course_adapter_marginleft"
+    android:paddingRight="@dimen/course_adapter_marginleft">
+
+
+    <TextView
+        android:id="@+id/notice_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="通知标题"
+        android:textColor="@color/color_333333"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/num_reader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+           android:layout_alignParentRight="true"
+            android:text="13/40"
+            android:textColor="@color/color_0068bd"
+            android:textSize="12dp" />
+
+    <TextView
+        android:layout_toLeftOf="@id/num_reader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/has_read"
+        android:textColor="@color/color_999999"
+        android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/notice_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_below="@id/notice_name"
+            android:layout_marginTop="9dp"
+            android:text="2017.10.07 17:13"
+            android:textColor="@color/color_999999"
+            android:textSize="11dp" />
+
+
+    <TextView
+        android:id="@+id/notice_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notice_time"
+        android:layout_marginTop="13dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="通知内容"
+        android:textColor="@color/color_333333"
+        android:textSize="13dp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/notice_content"
+        android:background="@color/color_EBEFF2" />
+</RelativeLayout>

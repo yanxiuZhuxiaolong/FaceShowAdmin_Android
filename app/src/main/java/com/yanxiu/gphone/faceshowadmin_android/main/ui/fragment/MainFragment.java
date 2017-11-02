@@ -29,6 +29,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.ui.activity.MainDetailActivi
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
@@ -272,6 +273,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 break;
             case 1:
                 ToastUtil.showToast(getActivity(), "通知管理");
+                NoticeManageActivity.invoke(getActivity());
                 break;
             case 2:
                 CheckInNotesActivity.toThisAct(MainFragment.this.getContext(), "0");

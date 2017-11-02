@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_title_layout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/color_EBEFF2"
+        android:layout_height="@dimen/commontitle_margin_left" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="375dp"
+                android:layout_height="120dp"
+                android:background="@drawable/main_detail_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="25dp"
+                    android:text="19号一班"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/notice_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/detail_duration"
+                    android:textColor="@color/color_999999"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:id="@+id/project_layput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/has_read"
+                        android:textColor="@color/color_999999"
+                        android:textSize="13dp" />
+
+
+                    <TextView
+                        android:id="@+id/read_percent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="left"
+                        android:text="@string/has_check_in_proportion"
+                        android:textColor="@color/color_0068bd"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/notice_descr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="21dp"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/notice_attachpic"
+                    android:visibility="gone"
+                    android:scaleType="center"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="21dp"/>
+
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>
