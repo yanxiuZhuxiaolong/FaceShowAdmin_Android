@@ -79,6 +79,10 @@
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity android:name=".notice.NoticeManageActivity"></activity>
         <activity android:name=".notice.NoticeDetailActivity"></activity>
+        <activity
+            android:name=".checkIn.QrCodeShowActivity"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.yanxiu.gphone.faceshow" />
     </application>
 
 </manifest>
