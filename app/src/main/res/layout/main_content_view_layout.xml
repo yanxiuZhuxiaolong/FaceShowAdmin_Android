@@ -11,45 +11,37 @@
         android:layout_weight="1"
         android:background="@color/color_edf0ee" />
 
-    <LinearLayout
+    <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorAccent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/color_EBEFF2" />
+
+    <LinearLayout
+        android:id="@+id/navi_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_ffffff"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
+        <include
             android:id="@+id/tab_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tab_main" />
+            layout="@layout/home_nav_bar_1_layout" />
 
-        <TextView
+        <include
             android:id="@+id/tab_course"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tab_course" />
+            layout="@layout/home_nav_bar_2_layout" />
 
-        <TextView
+
+        <include
             android:id="@+id/tab_task"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tab_task" />
+            layout="@layout/home_nav_bar_3_layout" />
 
-        <TextView
+        <include
             android:id="@+id/tab_class_circle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tab_class_circle" />
-
+            layout="@layout/home_nav_bar_4_layout" />
     </LinearLayout>
-
 
 </LinearLayout>

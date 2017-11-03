@@ -13,6 +13,16 @@
     </style>
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/text_size_16</item>
-    </style>1
+    </style>
+
+    <style name="HomeNavBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/home_nav_bar__style_marginleft</item>
+        <item name="android:textColor">@color/color_0065b8</item>
+        <item name="android:textSize">@dimen/home_nav_bar_textsize</item>
+        <item name="android:duplicateParentState">true</item>
+    </style>
 
 </resources>

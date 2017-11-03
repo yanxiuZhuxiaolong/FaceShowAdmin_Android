@@ -34,4 +34,17 @@
     <dimen name="maintab_lastitem_">10dp</dimen>
     <dimen name="maintab_recyclerView_marginleft">25dp</dimen>
 
+    <!--首页tab start-->
+
+    <dimen name="home_bottom_bar_height">65dp</dimen>
+    <dimen name="home_bottom_bar_paddingtop">7dp</dimen>
+    <dimen name="home_bottom_bar_paddingbottom">5dp</dimen>
+    <dimen name="home_bottom_bar_paddingleft">3dp</dimen>
+    <dimen name="home_bottom_bar_paddingright">3dp</dimen>
+    <dimen name="home_nav_bar_marginleft">1dp</dimen>
+    <dimen name="home_nav_bar__style_marginleft">8dp</dimen>
+    <dimen name="nav_icon_width">25dp</dimen>
+    <dimen name="home_nav_bar_textsize">10dp</dimen>
+    <!--首页tab end-->
+
 </resources>

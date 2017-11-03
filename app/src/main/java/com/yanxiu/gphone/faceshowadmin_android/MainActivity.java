@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +42,13 @@ public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.tab_main)
-    TextView tabMain;
+    View tabMain;
     @BindView(R.id.tab_course)
-    TextView tabCourse;
+    View tabCourse;
     @BindView(R.id.tab_task)
-    TextView tabTask;
+    View tabTask;
     @BindView(R.id.tab_class_circle)
-    TextView tabClassCircle;
+    View tabClassCircle;
     @BindView(R.id.fragment_content)
     FrameLayout fragmentContent;
     @BindView(R.id.left_drawer_list)
@@ -58,6 +59,12 @@ public class MainActivity extends FaceShowBaseActivity {
     private final String TAB_TASK = "tab_task";
     private final String TAB_COURSE = "tab_course";
     private final String TAB_CLASS_CIRCLE = "tab_class_circle";
+
+    private final int mNavBarViewsCount = 4;
+    private View[] mNavBarViews = new View[mNavBarViewsCount];
+    private ImageView[] mNavIconViews = new ImageView[mNavBarViewsCount];
+    private TextView[] mNavTextViews = new TextView[mNavBarViewsCount];
+    private int mNormalNavTxtColor, mSelNavTxtColor;
 
 
     private FragmentManager fragmentManager;
@@ -104,9 +111,24 @@ public class MainActivity extends FaceShowBaseActivity {
 
     }
 
-    private void setMainContentView() {
-        initFragments();
+    private void initBottomBar() {
+        mSelNavTxtColor = getResources().getColor(R.color.color_0065b8);
+        mNormalNavTxtColor = getResources().getColor(R.color.color_aab1bd);
+        mNavBarViews[0] = findViewById(R.id.tab_main);
+        mNavBarViews[1] = findViewById(R.id.tab_course);
+        mNavBarViews[2] = findViewById(R.id.tab_task);
+        mNavBarViews[3] = findViewById(R.id.tab_class_circle);
+        for (int i = 0; i < mNavBarViews.length; i++) {
+            mNavIconViews[i] = mNavBarViews[i].findViewById(R.id.nav_icon);
+            mNavTextViews[i] = mNavBarViews[i].findViewById(R.id.nav_txt);
+        }
+        mNavIconViews[0].setEnabled(false);
+        checkBottomBar(0);
+    }
 
+    private void setMainContentView() {
+        initBottomBar();
+        initFragments();
     }
 
     private void initFragments() {
@@ -184,22 +206,39 @@ public class MainActivity extends FaceShowBaseActivity {
         }
         switch (view.getId()) {
             case R.id.tab_main:
-                changeTabFragment(TAB_MAIN);
+                mNavIconViews[0].setEnabled(false);
+                mNavIconViews[1].setEnabled(true);
+                mNavIconViews[2].setEnabled(true);
+                mNavIconViews[3].setEnabled(true);
+                changeTabFragment(TAB_MAIN, 0);
                 break;
             case R.id.tab_course:
-                changeTabFragment(TAB_COURSE);
+                mNavIconViews[0].setEnabled(true);
+                mNavIconViews[1].setEnabled(false);
+                mNavIconViews[2].setEnabled(true);
+                mNavIconViews[3].setEnabled(true);
+                changeTabFragment(TAB_COURSE, 1);
                 break;
             case R.id.tab_task:
-                changeTabFragment(TAB_TASK);
+                mNavIconViews[0].setEnabled(true);
+                mNavIconViews[1].setEnabled(true);
+                mNavIconViews[2].setEnabled(false);
+                mNavIconViews[3].setEnabled(true);
+                changeTabFragment(TAB_TASK, 2);
                 break;
             case R.id.tab_class_circle:
-                changeTabFragment(TAB_CLASS_CIRCLE);
+                mNavIconViews[0].setEnabled(true);
+                mNavIconViews[1].setEnabled(true);
+                mNavIconViews[2].setEnabled(true);
+                mNavIconViews[3].setEnabled(false);
+                changeTabFragment(TAB_CLASS_CIRCLE, 3);
                 break;
             default:
         }
     }
 
-    private void changeTabFragment(String tabName) {
+    private void changeTabFragment(String tabName, int index) {
+        checkBottomBar(index);
         fragmentManager.beginTransaction().
                 replace(R.id.fragment_content, fragmentManager.findFragmentByTag(tabName) != null ?
                         fragmentManager.findFragmentByTag(tabName) : createdNewFragment(tabName)).commit();
@@ -218,6 +257,18 @@ public class MainActivity extends FaceShowBaseActivity {
                 return new ClassCircleFragment();
             default:
                 return null;
+        }
+    }
+
+    private void checkBottomBar(int index) {
+        if (index >= 0 && index < mNavBarViews.length) {
+            for (int i = 0; i < mNavBarViews.length; i++) {
+                if (i == index) {
+                    mNavTextViews[index].setTextColor(mSelNavTxtColor);
+                } else {
+                    mNavTextViews[i].setTextColor(mNormalNavTxtColor);
+                }
+            }
         }
     }
 
