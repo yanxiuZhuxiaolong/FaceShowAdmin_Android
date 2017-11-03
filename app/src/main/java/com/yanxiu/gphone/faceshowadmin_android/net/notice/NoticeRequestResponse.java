@@ -151,7 +151,7 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
                  * viewed : false
                  */
 
-                private int id;
+                private String id;
                 private String title;
                 private String content;
                 private int authorId;
@@ -170,11 +170,11 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
                 private int noticeReadUserNum;
                 private boolean viewed;
 
-                public int getId() {
+                public String getId() {
                     return id;
                 }
 
-                public void setId(int id) {
+                public void setId(String id) {
                     this.id = id;
                 }
 

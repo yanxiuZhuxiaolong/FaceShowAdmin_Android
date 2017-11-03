@@ -1,22 +1,37 @@
 package com.yanxiu.gphone.faceshowadmin_android.notice;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.test.yanxiu.network.HttpCallback;
+import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
+import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeDeleteRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity.NOTICE_DETAIL;
 
 /**
  * Created by lufengqing on 2017/11/1.
@@ -42,8 +57,9 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
     private Context mContext;
     private PublicLoadLayout mRootView;
     private Unbinder unbinder;
-    private NoticeRequestResponse.DataBean mData;
-    private NoticeManagerListAdapter mNoticeManagerListAdapter;
+    private PopupWindow mPopupWindow;
+    private String mNoticeId;
+    private boolean isDeleteSuccess;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +78,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         titleLayoutRightImg.setVisibility(View.VISIBLE);
         NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean noticeBean = (NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean) getIntent().getSerializableExtra("NOTICE_DETAIL");
         int mNoticeNum = getIntent().getIntExtra("NOTICE_TOTAL_READ_NUM", 0);
+        mNoticeId = noticeBean.getId();
         detailTitle.setText(noticeBean.getTitle());
         noticeCreateTime.setText(noticeBean.getCreateTime());
         readPercent.setText(noticeBean.getNoticeReadNumSum() + "/" + mNoticeNum);
@@ -81,8 +98,71 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
                 finish();
                 break;
             case R.id.title_layout_right_img:
+                showCancelPopupWindow(NoticeDetailActivity.this);
                 break;
         }
+    }
+
+    private void showCancelPopupWindow(Activity context) {
+        if (mPopupWindow == null) {
+            View pop = LayoutInflater.from(context).inflate(R.layout.popupwindow_notice, null);
+            (pop.findViewById(R.id.notice_delete)).setOnClickListener(popupWindowClickListener);
+            (pop.findViewById(R.id.notice_cancel)).setOnClickListener(popupWindowClickListener);
+            mPopupWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mPopupWindow.setFocusable(true);
+            mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+        }
+        mPopupWindow.showAtLocation(context.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+    }
+
+    private void dismissPopupWindow() {
+        if (mPopupWindow != null) {
+            mPopupWindow.dismiss();
+        }
+    }
+
+    View.OnClickListener popupWindowClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.notice_delete:
+                    requestDeleteNotice();
+                    dismissPopupWindow();
+                    break;
+                case R.id.notice_cancel:
+                    dismissPopupWindow();
+                    break;
+            }
+
+        }
+    };
+
+    private void requestDeleteNotice() {
+        mRootView.showLoadingView();
+        NoticeDeleteRequest noticeDeleteRequest = new NoticeDeleteRequest();
+        noticeDeleteRequest.noticeId = mNoticeId;
+        noticeDeleteRequest.startRequest(FaceShowBaseResponse.class, new HttpCallback<FaceShowBaseResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, FaceShowBaseResponse ret) {
+                mRootView.finish();
+                if (ret != null && ret.getCode() == 0) {
+                        ToastUtil.showToast(NoticeDetailActivity.this, "删除成功");
+                    isDeleteSuccess = true;
+                    Intent intent = new Intent();
+                    intent.putExtra("isDeleteSuccess", isDeleteSuccess);
+                    setResult(NOTICE_DETAIL, intent);
+                    finish();
+                } else {
+                    ToastUtil.showToast(NoticeDetailActivity.this, "删除失败");
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                mRootView.hiddenLoadingView();
+                ToastUtil.showToast(NoticeDetailActivity.this, "删除失败");
+            }
+        });
     }
 
     public static void invoke(Context context, NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean noticeBean, int totalNum) {
