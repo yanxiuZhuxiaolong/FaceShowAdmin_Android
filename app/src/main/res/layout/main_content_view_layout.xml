@@ -4,18 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fragment_content"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/color_edf0ee" />
+        android:layout_weight="1">
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/line_height"
-        android:background="@color/color_EBEFF2" />
+        <FrameLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_edf0ee" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/item_color_gradient_new"
+            android:orientation="vertical" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/navi_switcher"
