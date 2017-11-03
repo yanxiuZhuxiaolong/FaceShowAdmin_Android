@@ -372,7 +372,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     }
 
     private void postFinish() {
-        NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean bean = new NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean();
+        NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean bean = new NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean();
         bean.setId(mReturnNoticeBean.getId());
         bean.setTitle(mReturnNoticeBean.getTitle());
         bean.setContent(mReturnNoticeBean.getContent());

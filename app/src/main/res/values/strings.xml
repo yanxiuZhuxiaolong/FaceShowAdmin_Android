@@ -37,16 +37,53 @@
     <string name="please_input_account_number">请输入账号</string>
     <string name="please_input_password">请输入密码</string>
     <string name="forget_password">忘记密码?</string>
+    <string name="forget_password_title">忘记密码</string>
     <string name="account_name_can_not_be_null">账户名不能为空</string>
     <string name="account_password_can_not_be_null">账户密码不能为空</string>
 
     <!--forgetPasswordActivity-->
-    <string name="mobile_phone_number">手机号</string>
+    <string name="mobile_phone_number">输入手机号</string>
     <string name="get_verification_code">获取验证码</string>
-    <string name="verification_code">验证码</string>
+    <string name="verification_code">输入短信验证码</string>
     <string name="please_input_new_password">请输入6-20位新密码</string>
+    <string name="reset_password_success">密码重置成功</string>
     <string name="time_count">%1$d</string>
     <string name="commit">提 交</string>
+
+    <!-- check in page-->
+    <string name="no_no_sign_in_data">无未签到数据</string>
+    <string name="no_signed_in_data">无未已签到数据</string>
+    <string name="check_in_notes">签到记录</string>
+    <string name="create_new_notes">新建</string>
+    <string name="create_new_check_in_name_hint">签到标题（最多20字）</string>
+    <string name="check_in_success_hint">签到成功提示语（20字以内）</string>
+    <string name="use_code">使用动态刷新的二维码</string>
+    <string name="only_useful_in_check_in_time">只在签到时间内签到有效</string>
+    <string name="end_time">结束时间</string>
+    <string name="start_time">开始时间</string>
+    <string name="check_in_time">签到日期</string>
+    <string name="create_new_check_in">新建签到</string>
+    <string name="commit_new_check_in">提交</string>
+    <string name="check_in_title_can_not_be_null">签到标题不能为空</string>
+    <string name="check_in_time_can_not_be_null">签到时间不能为空</string>
+    <string name="check_in_start_time_can_not_be_null">签到开始时间不能为空</string>
+    <string name="check_in_end_title_can_not_be_null">签到结束时间不能为空</string>
+    <string name="check_in_success_toast_can_not_be_null">签到成功提示语不能为空</string>
+    <string name="check_in_notes_is_null">签到记录为空</string>
+    <string name="data_error">数据加载异常</string>
+    <string name="has_check_in">已签到:&#160;&#160;</string>
+    <string name="check_in_percentage">签到率:&#160;&#160;</string>
+    <string name="has_check_in_proportion">%1$d/%2$d</string>
+    <string name="signature_member">补签成员:</string>
+    <string name="submit_a_supplement">提交补签</string>
+    <string name="attendance_number"><Data><![CDATA[<font color="#99d5fe"><b>签到人数 :&#160;<b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></Data></string>
+    <string name="check_in_percentage_new"><![CDATA[<font color="#99d5fe"><b>签到率 :&#160;<b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></string>
+    <string name="no_sign_in">未签到</string>
+    <string name="signed_in">已签到</string>
+    <string name="check_in_detail">签到详情</string>
+    <string name="end_time_must_be_greater_than_start_time">结束时间必须大于开始时间</string>
+    <string name="check_in_code">签到二维码</string>
+    <string name="retroactive">补签</string>
 
     <string name="manager_clazz">班级管理</string>
     <!--首页相关 start-->
@@ -76,38 +113,10 @@
     <string name="notice_detail_title">通知详情</string>
     <string name="has_read">已阅读:</string>
 
-    <string name="check_in_notes">签到记录</string>
-    <string name="create_new_notes">新建</string>
-    <string name="create_new_check_in_name_hint">签到标题（最多20字）</string>
-    <string name="check_in_success_hint">签到成功提示语（20字以内）</string>
-    <string name="use_code">使用动态刷新的二维码</string>
-    <string name="only_useful_in_check_in_time">只在签到时间内签到有效</string>
-    <string name="end_time">结束时间</string>
-    <string name="start_time">开始时间</string>
-    <string name="check_in_time">签到日期</string>
-    <string name="create_new_check_in">新建签到</string>
-    <string name="commit_new_check_in">提交</string>
-    <string name="check_in_title_can_not_be_null">签到标题不能为空</string>
-    <string name="check_in_time_can_not_be_null">签到时间不能为空</string>
-    <string name="check_in_start_time_can_not_be_null">签到开始时间不能为空</string>
-    <string name="check_in_end_title_can_not_be_null">签到结束时间不能为空</string>
-    <string name="check_in_success_toast_can_not_be_null">签到成功提示语不能为空</string>
-    <string name="check_in_notes_is_null">签到记录为空</string>
-    <string name="data_error">数据加载异常</string>
-    <string name="has_check_in">已签到:</string>
-    <string name="check_in_percentage">签到率:</string>
-    <string name="has_check_in_proportion">%1$d/%2$d</string>
-    <string name="signature_member">补签成员:</string>
-    <string name="submit_a_supplement">提交补签</string>
-    <string name="attendance_number"><Data><![CDATA[<font color="#99d5fe"><b>签到人数: <b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></Data></string>
-    <string name="check_in_percentage_new"><![CDATA[<font color="#99d5fe"><b>签到率:  <b/></font><font color="#FFFFFF"><b>%1$s</b></font>]]></string>
-    <string name="no_sign_in">未签到</string>
-    <string name="signed_in">已签到</string>
-    <string name="check_in_detail">签到详情</string>
-    <string name="end_time_must_be_greater_than_start_time">结束时间必须大于开始时间</string>
-    <string name="check_in_code">签到二维码</string>
-    <string name="retroactive">补签</string>
+
     <string name="no_more_data">没有更多数据</string>
     <string name="send_class_circle_fail">发布失败，请重试！</string>
+
+
 
 </resources>

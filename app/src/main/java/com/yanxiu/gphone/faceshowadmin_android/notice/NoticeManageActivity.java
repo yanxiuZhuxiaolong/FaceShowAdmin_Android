@@ -55,9 +55,9 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
     private NoticeRequestResponse.DataBean mData;
     private NoticeManagerListAdapter mNoticeManagerListAdapter;
     private int mCurrentNoticePosition;
-    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean> mNoticeList = new ArrayList<>();
+    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean> mNoticeList = new ArrayList<>();
     private int mNewCount;
-    private int mNowNoticeSize;
+    private String mRequestId;
 
 
     @Override
@@ -80,7 +80,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                mNowNoticeSize = 0;
+                mRequestId = null;
                 mNoticeList.clear();
                 requestData(true);
             }
@@ -109,8 +109,10 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             mRootView.showLoadingView();
         NoticeRequest noticeRequest = new NoticeRequest();
         noticeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        noticeRequest.offset = Integer.toString(mNowNoticeSize);
-        noticeRequest.pageSize =Integer.toString(PAGESIZE);
+        if(mRequestId != null) {
+            noticeRequest.id = mRequestId;
+        }
+        noticeRequest.pageSize = Integer.toString(PAGESIZE);
         noticeRequest.startRequest(NoticeRequestResponse.class, new HttpCallback<NoticeRequestResponse>() {
             @Override
             public void onSuccess(RequestBase request, NoticeRequestResponse ret) {
@@ -120,8 +122,8 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
                 if (ret != null && ret.getCode() == 0) {
                     if (ret.getData() != null) {
                         mData = ret.getData();
+                        mRequestId = mData.getNoticeInfos().getCallbackValue();
                         mNewCount = mData.getNoticeInfos().getElements().size();
-                        mNowNoticeSize += mNewCount;
                         if (mNewCount >= PAGESIZE) {
                             recyclerView.setLoadMoreEnable(true);
                         } else {
@@ -197,7 +199,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
-                    NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean) data.getSerializableExtra("noticeBean");
+                    NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) data.getSerializableExtra("noticeBean");
                     if (isPostSuccess) {
                         mNoticeList.add(0, bean);
                         setData();

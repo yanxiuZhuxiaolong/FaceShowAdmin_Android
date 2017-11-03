@@ -29,7 +29,7 @@
         <activity
             android:name=".login.activity.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow">
+            android:taskAffinity="com.yanxiu.gphone.faceshowadmin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,39 +51,37 @@
         </activity>
         <activity
             android:name=".login.activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.activity.ForgetPasswordActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.activity.ClassManageActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".checkIn.activity.CheckInNotesActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".checkIn.activity.CreateNewCheckInActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.ui.activity.MainDetailActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".checkIn.activity.CheckInDetailActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
-        <activity android:name=".notice.NoticeManageActivity" />
-        <activity android:name=".notice.NoticeDetailActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".notice.NoticeManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".notice.NoticeDetailActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".checkIn.activity.QrCodeShowActivity"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.yanxiu.gphone.faceshow" />
-        <activity android:name=".notice.NoticePostActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".notice.NoticePostActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

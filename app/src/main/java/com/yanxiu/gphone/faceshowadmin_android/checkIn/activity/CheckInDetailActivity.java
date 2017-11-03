@@ -2,6 +2,7 @@ package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,16 +15,26 @@ import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.test.yanxiu.network.HttpCallback;
+import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.NoSignInFragment;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.SignedInFragment;
+import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,7 +80,27 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
         initTitle();
         initHead();
         initTabLayout();
-        final List<Fragment> list = new ArrayList<>();
+
+    }
+
+    private void initTitle() {
+        titleLayoutLeftImg.setVisibility(View.VISIBLE);
+        titleLayoutTitle.setText(R.string.check_in_detail);
+    }
+
+    private void initHead() {
+        tvCheckInTitle.setText(getIntent().getStringExtra("title"));
+        tvCheckInTime.setText(getIntent().getStringExtra("time"));
+        tvAttendanceNumber.setText(Html.fromHtml(getString(R.string.attendance_number, getIntent().getStringExtra("proportion"))));
+        tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getIntent().getStringExtra("percentage"))));
+
+    }
+
+    private List<Fragment> list = new ArrayList<>();
+
+
+    private void initTabLayout() {
+
         Bundle bundle = new Bundle();
         bundle.putString("stepId", getIntent().getStringExtra("stepId"));
         SignedInFragment signedInFragment = new SignedInFragment();
@@ -99,32 +130,48 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 }
             }
         });
-        tabLayout.setupWithViewPager(viewPager, true);
-    }
-
-    private void initTitle() {
-        titleLayoutLeftImg.setVisibility(View.VISIBLE);
-        titleLayoutTitle.setText(R.string.check_in_detail);
-    }
-
-    private void initHead() {
-        tvCheckInTitle.setText(getIntent().getStringExtra("title"));
-        tvCheckInTime.setText(getIntent().getStringExtra("time"));
-        tvAttendanceNumber.setText(Html.fromHtml(getString(R.string.attendance_number, getIntent().getStringExtra("proportion"))));
-        tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getIntent().getStringExtra("percentage"))));
-
+        tabLayout.setupWithViewPager(viewPager);
+        setUpIndicatorWidth(tabLayout, 20, 20);
     }
 
 
-    private void initTabLayout() {
-        tabLayout.setTabTextColors(R.color.color_333333, R.color.color_999999);
+    private void setUpIndicatorWidth(TabLayout tabLayout, int marginLeft, int marginRight) {
+        Class<?> tabLayoutClass = tabLayout.getClass();
+        Field tabStrip = null;
+        try {
+            tabStrip = tabLayoutClass.getDeclaredField("mTabStrip");
+            tabStrip.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        LinearLayout layout = null;
+        try {
+            if (tabStrip != null) {
+                layout = (LinearLayout) tabStrip.get(tabLayout);
+            }
+            for (int i = 0; i < layout.getChildCount(); i++) {
+                View child = layout.getChildAt(i);
+                child.setPadding(0, 0, 0, 0);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    params.setMarginStart(ScreenUtils.dpToPxInt(CheckInDetailActivity.this, marginLeft));
+                    params.setMarginEnd(ScreenUtils.dpToPxInt(CheckInDetailActivity.this, marginRight));
+                }
+                child.setLayoutParams(params);
+                child.invalidate();
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
-                this.finish();
+                onBackPressed();
                 break;
             case R.id.title_layout_right_img:
                 break;
@@ -135,6 +182,67 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 startActivity(intent);
                 break;
             default:
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (((NoSignInFragment)list.get(0)).mNeedToRefreshParentActivity) {
+            this.setResult(RESULT_OK);
+        }
+        this.finish();
+        super.onBackPressed();
+    }
+
+    public void getCheckInDetail() {
+        GetCheckInDetailRequest getCheckInDetailRequest = new GetCheckInDetailRequest();
+        getCheckInDetailRequest.stepId = getIntent().getStringExtra("stepId");
+        getCheckInDetailRequest.startRequest(GetCheckInDetailResponse.class, new HttpCallback<GetCheckInDetailResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, GetCheckInDetailResponse ret) {
+                if (ret.getCode() == ResponseConfig.SUCCESS) {
+                    tvCheckInTitle.setText(ret.getData().getSignIn().getTitle());
+                    final String time;
+                    if (ret.getData().getSignIn().getStartTime() == null || ret.getData().getSignIn().getEndTime() == null) {
+                        time = "";
+                    } else {
+                        String translationTime = DateFormatUtil.translationBetweenTwoFormat(ret.getData().getSignIn().getStartTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO);
+                        String[] startTimes = translationTime.split(" ");
+                        String[] startTime = startTimes[1].split(":");
+                        String[] endTime = ret.getData().getSignIn().getEndTime().split(" ")[1].split(":");
+                        time = startTimes[0] + " " + startTime[0] + ":" + startTime[1] + "-" + endTime[0] + ":" + endTime[1];
+                    }
+                    tvCheckInTime.setText(time);
+                    final String proportion = getString(R.string.has_check_in_proportion, ret.getData().getSignIn().getSignInUserNum(), ret.getData().getSignIn().getTotalUserNum());
+                    tvAttendanceNumber.setText(Html.fromHtml(getString(R.string.attendance_number, proportion)));
+                    tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getPercent(ret.getData().getSignIn().getSignInUserNum(), ret.getData().getSignIn().getTotalUserNum()))));
+                }
+
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+
+            }
+        });
+    }
+
+    String getPercent(int y, int z) {
+        if (y == 0) {
+            return "0%";
+        } else {
+            String baifenbi;// 接受百分比的值
+            double baiy = y * 1.0;
+            double baiz = z * 1.0;
+            double fen = baiy / baiz;
+            // NumberFormat nf = NumberFormat.getPercentInstance(); 注释掉的也是一种方法
+            // nf.setMinimumFractionDigits( 2 ); 保留到小数点后几位
+            DecimalFormat df1 = new DecimalFormat("##%"); // ##.00%
+            // 百分比格式，后面不足2位的用0补齐
+            // baifenbi=nf.format(fen);
+            baifenbi = df1.format(fen);
+            System.out.println(baifenbi);
+            return baifenbi;
         }
     }
 }

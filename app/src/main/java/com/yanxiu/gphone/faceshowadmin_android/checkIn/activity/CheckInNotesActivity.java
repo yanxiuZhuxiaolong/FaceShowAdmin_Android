@@ -16,6 +16,7 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.adapter.CheckInNotesAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
+import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickWithIntentListener;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesResponse;
@@ -60,14 +61,19 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         checkInNotesAdapter = new CheckInNotesAdapter();
         recyclerView.setAdapter(checkInNotesAdapter);
-
+        checkInNotesAdapter.addItemClickWithIntentListener(new RecyclerViewItemClickWithIntentListener() {
+            @Override
+            public void onItemClick(View v, int position, Intent intent) {
+                startActivityForResult(intent, 2);
+            }
+        });
         getCheckInNotesData();
-//        publicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getCheckInNotesData();
-//            }
-//        });
+        publicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getCheckInNotesData();
+            }
+        });
     }
 
     private void getCheckInNotesData() {
@@ -80,6 +86,8 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
                 publicLoadLayout.hiddenLoadingView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getSignIns() != null && ret.getData().getSignIns().size() > 0) {
+                        publicLoadLayout.hiddenOtherErrorView();
+                        publicLoadLayout.hiddenNetErrorView();
                         checkInNotesAdapter.update(ret.getData().getSignIns());
                     } else {
                         publicLoadLayout.showOtherErrorView(getString(R.string.check_in_notes_is_null));
@@ -118,14 +126,14 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
                 Intent intent = new Intent(CheckInNotesActivity.this, CreateNewCheckInActivity.class);
                 startActivityForResult(intent, 1);
                 break;
-                default:
+            default:
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == 1 || requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 getCheckInNotesData();
             }

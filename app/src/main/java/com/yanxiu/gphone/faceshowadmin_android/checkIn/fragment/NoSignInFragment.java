@@ -17,6 +17,7 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.adapter.NoSignInAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
@@ -33,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +54,21 @@ public class NoSignInFragment extends FaceShowBaseFragment {
     private NoSignInAdapter mNoSignInAdapter;
     private String mSignInTime = "";
     private String id = "";
+    private List<GetClassUserResponse.DataBean.ElementsBean> data = new ArrayList<>();
+    private boolean isResume = false;
+    private UUID mGetClassUserSignInsRequestUUID;
+    public boolean mNeedToRefreshParentActivity = false;
+
+
+    private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            id = "";
+            mSignInTime = "";
+            data.clear();
+            initData();
+        }
+    };
 
     @Nullable
     @Override
@@ -72,23 +89,29 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                 toShowTimePickerView(data.get(position).getUserName(), position);
             }
         });
-
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                id = "";
-                mSignInTime = "";
-                data.clear();
-                initData();
-            }
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mOnRefreshListener.onRefresh();
         return mPublicLoadLayout;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResume) {
+            mOnRefreshListener.onRefresh();
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initData();
+        isResume = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isResume = false;
     }
 
     private String supplementalSignInTime;
@@ -110,12 +133,13 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                         v.findViewById(R.id.submit_a_supplement).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                timePickerView.returnData();
                                 supplementalSignIn(position);
                             }
                         });
                     }
                 })
-                .setType(new boolean[]{false, false, false, true, true, false})
+                .setType(new boolean[]{true, true, true, true, true, false})
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .build();
         timePickerView.show();
@@ -134,6 +158,9 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                 mPublicLoadLayout.hiddenLoadingView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     timePickerView.dismiss();
+                    mNeedToRefreshParentActivity = true;
+                    ((CheckInDetailActivity) getActivity()).getCheckInDetail();
+                    mOnRefreshListener.onRefresh();
                 } else {
                     ToastUtil.showToast(getActivity(), ret.getMessage());
                 }
@@ -147,19 +174,17 @@ public class NoSignInFragment extends FaceShowBaseFragment {
         });
     }
 
-    private List<GetClassUserResponse.DataBean.ElementsBean> data = new ArrayList<>();
-
     private void initData() {
-        mPublicLoadLayout.showLoadingView();
         GetClassUserSignInsRequest getClassUserSignInsRequest = new GetClassUserSignInsRequest();
         getClassUserSignInsRequest.status = STATUE_CODE;
         getClassUserSignInsRequest.stepId = getArguments().getString("stepId");
         getClassUserSignInsRequest.id = id;
         getClassUserSignInsRequest.signInTime = mSignInTime;
-        getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
+        mGetClassUserSignInsRequestUUID = getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
                 mPublicLoadLayout.hiddenLoadingView();
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
                         for (int i = 0; i < ret.getData().getCallbacks().size(); i++) {
@@ -170,11 +195,13 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                                 id = String.valueOf(ret.getData().getCallbacks().get(i).getCallbackValue());
                             }
                         }
+                        mPublicLoadLayout.hiddenOtherErrorView();
+                        mPublicLoadLayout.hiddenNetErrorView();
                         data.addAll(ret.getData().getElements());
                         mNoSignInAdapter.update(ret.getData().getElements());
                     } else {
                         if (data.size() == 0) {
-                            mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_no_sign_in_data));
                         } else {
                             ToastUtil.showToast(getActivity(), ret.getMessage());
                         }
@@ -192,6 +219,7 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.hiddenLoadingView();
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (data.size() == 0) {
                     mPublicLoadLayout.showNetErrorView();
                 } else {
@@ -202,7 +230,7 @@ public class NoSignInFragment extends FaceShowBaseFragment {
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         return format.format(date);
     }
 
@@ -210,5 +238,9 @@ public class NoSignInFragment extends FaceShowBaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if (mGetClassUserSignInsRequestUUID != null) {
+            RequestBase.cancelRequestWithUUID(mGetClassUserSignInsRequestUUID);
+        }
+        mNeedToRefreshParentActivity = false;
     }
 }

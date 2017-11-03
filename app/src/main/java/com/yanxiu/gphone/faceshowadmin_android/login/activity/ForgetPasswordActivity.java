@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import com.yanxiu.gphone.faceshowadmin_android.net.login.ModifyPasswordRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.ModifyPasswordResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Utils;
+
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,29 +55,43 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
     private boolean isNewPasswordNull = true;
 
     private int time = 60;
-    private Handler handler = new Handler() {
+    private MyHandler handler;
+
+    public void dealMessage() {
+        time--;
+        tvGetVerificationCode.setText(getString(R.string.time_count, time));
+        tvGetVerificationCode.setTextSize(19);
+        if (time == 0) {
+            time = 60;
+            if (Utils.isMobileNO(edtPhoneNumber.getText().toString())) {
+                isPhoneNumber = true;
+                tvGetVerificationCode.setTextColor(Color.parseColor("#0068bd"));
+            } else {
+                isPhoneNumber = false;
+                tvGetVerificationCode.setTextColor(Color.parseColor("#999999"));
+            }
+            tvGetVerificationCode.setTextSize(14);
+            tvGetVerificationCode.setText(R.string.get_verification_code);
+        } else {
+            handler.sendEmptyMessageDelayed(1, 1000);
+        }
+    }
+
+
+    static class MyHandler extends Handler {
+        WeakReference<ForgetPasswordActivity> mActivityWeakReference;
+
+        public MyHandler(ForgetPasswordActivity activityWeakReference) {
+            mActivityWeakReference = new WeakReference<>(activityWeakReference);
+        }
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            time--;
-            tvGetVerificationCode.setText(getString(R.string.time_count, time));
-            tvGetVerificationCode.setTextSize(19);
-            if (time == 0) {
-                time = 60;
-                if (Utils.isMobileNO(edtPhoneNumber.getText().toString())) {
-                    isPhoneNumber = true;
-                    tvGetVerificationCode.setTextColor(Color.parseColor("#0068bd"));
-                } else {
-                    isPhoneNumber = false;
-                    tvGetVerificationCode.setTextColor(Color.parseColor("#999999"));
-                }
-                tvGetVerificationCode.setTextSize(19);
-                tvGetVerificationCode.setText(R.string.get_verification_code);
-            } else {
-                handler.sendEmptyMessageDelayed(1, 1000);
-            }
+            mActivityWeakReference.get().dealMessage();
         }
-    };
+    }
+
 
     private TextWatcher mPhoneNumberTextWatcher = new TextWatcher() {
         @Override
@@ -158,7 +175,8 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
         ButterKnife.bind(this);
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutTitle.setVisibility(View.VISIBLE);
-        titleLayoutTitle.setText(R.string.forget_password);
+        titleLayoutTitle.setText(R.string.forget_password_title);
+        tvGetVerificationCode.setTextColor(Color.parseColor("#999999"));
         edtPhoneNumber.addTextChangedListener(mPhoneNumberTextWatcher);
         edtVerificationCode.addTextChangedListener(mVerificationCodeTextWatcher);
         edtInputNewPassword.addTextChangedListener(mNewPasswordTextWatcher);
@@ -193,7 +211,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     }
                 }
                 break;
-                default:
+            default:
         }
     }
 
@@ -208,7 +226,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             protected void onResponse(RequestBase request, ModifyPasswordResponse response) {
                 publicLoadLayout.hiddenLoadingView();
                 if (response.getCode() == 0) {
-                    ToastUtil.showToast(getApplicationContext(), "密码重置成功");
+                    ToastUtil.showToast(getApplicationContext(), getString(R.string.reset_password_success));
                     Intent intent = new Intent();
                     intent.putExtra("password", edtInputNewPassword.getText().toString());
                     intent.putExtra("phoneNumber", modifyPasswordRequest.mobile);
@@ -239,6 +257,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             protected void onResponse(RequestBase request, GetVerificationCodeResponse response) {
                 publicLoadLayout.hiddenLoadingView();
                 if (response.getCode() == 0) {
+                    handler = new MyHandler(ForgetPasswordActivity.this);
                     handler.sendEmptyMessage(1);
                     tvGetVerificationCode.setBackground(null);
                     ToastUtil.showToast(getApplicationContext(), response.getMessage());
@@ -260,10 +279,11 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
+        if (handler != null && handler.hasMessages(1)) {
+            handler.removeMessages(1);
             handler = null;
         }
+
 
     }
 }
