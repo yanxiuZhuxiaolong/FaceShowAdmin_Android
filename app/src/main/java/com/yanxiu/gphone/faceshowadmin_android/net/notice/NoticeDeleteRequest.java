@@ -11,6 +11,7 @@ public class NoticeDeleteRequest extends FaceShowBaseRequest {
     //   http://orz.yanxiu.com/pxt/platform/data.api?method=notice.delete&noticeId=1
     public String method = "notice.delete";
     public String noticeId;
+    public String clazsId;// 班级id
 
     @Override
     protected String urlPath() {

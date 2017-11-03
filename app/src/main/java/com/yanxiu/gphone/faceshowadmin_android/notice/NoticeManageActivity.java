@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
@@ -34,6 +33,7 @@ import butterknife.Unbinder;
 public class NoticeManageActivity extends FaceShowBaseActivity {
     public static final int NOTICE_DETAIL = 1001;
     public static final int NOTICE_POST = 1002;
+    private final int PAGESIZE = 20;
     @BindView(R.id.title_layout_left_img)
     ImageView titleLayoutLeftImg;
     @BindView(R.id.title_layout_title)
@@ -69,6 +69,8 @@ public class NoticeManageActivity extends FaceShowBaseActivity {
         mRootView.showLoadingView();
         NoticeRequest noticeRequest = new NoticeRequest();
         noticeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
+        noticeRequest.offset = 0;
+        noticeRequest.pageSize = PAGESIZE;
         noticeRequest.startRequest(NoticeRequestResponse.class, new HttpCallback<NoticeRequestResponse>() {
             @Override
             public void onSuccess(RequestBase request, NoticeRequestResponse ret) {
@@ -145,8 +147,9 @@ public class NoticeManageActivity extends FaceShowBaseActivity {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
+                    NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean) data.getSerializableExtra("noticeBean");
                        if (isPostSuccess) {
-                        mNoticeList.remove(mCurrentNoticePosition);
+                        mNoticeList.add(0,bean);
                         setData();
                     }
                 }
