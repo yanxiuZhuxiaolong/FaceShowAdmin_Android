@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.CreateNewCheckInActivity">
+        tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CreateNewCheckInActivity">
 
 
         <include

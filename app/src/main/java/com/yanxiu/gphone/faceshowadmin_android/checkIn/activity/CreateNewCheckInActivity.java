@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.checkIn;
+package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;

@@ -62,11 +62,11 @@
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity
-            android:name=".checkIn.CheckInNotesActivity"
+            android:name=".checkIn.activity.CheckInNotesActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity
-            android:name=".checkIn.CreateNewCheckInActivity"
+            android:name=".checkIn.activity.CreateNewCheckInActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity
@@ -74,15 +74,17 @@
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
         <activity
-            android:name=".checkIn.CheckInDetailActivity"
+            android:name=".checkIn.activity.CheckInDetailActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
-        <activity android:name=".notice.NoticeManageActivity"></activity>
-        <activity android:name=".notice.NoticeDetailActivity"></activity>
+        <activity android:name=".notice.NoticeManageActivity" />
+        <activity android:name=".notice.NoticeDetailActivity" />
         <activity
-            android:name=".checkIn.QrCodeShowActivity"
+            android:name=".checkIn.activity.QrCodeShowActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
+        <activity android:name=".checkIn.fragment.NoSignInFragment" />
+        <activity android:name=".checkIn.fragment.SignedInFragment"></activity>
     </application>
 
 </manifest>

@@ -100,6 +100,7 @@
     <string name="check_in_detail">签到详情</string>
     <string name="end_time_must_be_greater_than_start_time">结束时间必须大于开始时间</string>
     <string name="check_in_code">签到二维码</string>
+    <string name="retroactive">补签</string>
 
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_EBEFF2"
-    tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.QrCodeShowActivity">
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.QrCodeShowActivity">
 
     <include
         android:id="@+id/title"
