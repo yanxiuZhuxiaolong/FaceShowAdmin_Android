@@ -83,8 +83,7 @@
             android:name=".checkIn.activity.QrCodeShowActivity"
             android:screenOrientation="portrait"
             android:taskAffinity="com.yanxiu.gphone.faceshow" />
-        <activity android:name=".checkIn.fragment.NoSignInFragment" />
-        <activity android:name=".checkIn.fragment.SignedInFragment"></activity>
+        <activity android:name=".notice.NoticePostActivity"></activity>
     </application>
 
 </manifest>

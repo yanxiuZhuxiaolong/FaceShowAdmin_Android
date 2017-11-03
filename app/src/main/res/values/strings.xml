@@ -67,6 +67,12 @@
     <string name="main_detail_title">详情</string>
     <string name="notice_manage_title">通知管理</string>
     <string name="notice_post">发布</string>
+    <string name="notice_post_title">发布通知</string>
+    <string name="notice_submit">提交</string>
+    <string name="notice_edit_title_hint">请输入通知标题 (最多20字）</string>
+    <string name="notice_edit_content_hint">请输入通知内容</string>
+    <string name="notice_delete">删除</string>
+    <string name="notice_cancel">取消</string>
     <string name="notice_detail_title">通知详情</string>
     <string name="has_read">已阅读:</string>
 
@@ -102,6 +108,6 @@
     <string name="check_in_code">签到二维码</string>
     <string name="retroactive">补签</string>
     <string name="no_more_data">没有更多数据</string>
-
+    <string name="send_class_circle_fail">发布失败，请重试！</string>
 
 </resources>

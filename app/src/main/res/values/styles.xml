@@ -14,7 +14,6 @@
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/text_size_16</item>
     </style>
-
     <style name="HomeNavBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -23,6 +22,12 @@
         <item name="android:textColor">@color/color_0065b8</item>
         <item name="android:textSize">@dimen/home_nav_bar_textsize</item>
         <item name="android:duplicateParentState">true</item>
+    <style name="ClassCircleDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
 </resources>
