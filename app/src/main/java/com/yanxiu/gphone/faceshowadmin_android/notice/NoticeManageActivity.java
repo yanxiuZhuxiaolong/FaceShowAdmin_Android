@@ -43,7 +43,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
     TextView titleLayoutTitle;
     @BindView(R.id.title_layout_right_img)
     ImageView titleLayoutRightImg;
-    @BindView(R.id.title_layout_right_txt)
+    @BindView(R.id.title_layout_signIn)
     TextView titleLayoutRightTxt;
     @BindView(R.id.recyclerView)
     LoadMoreRecyclerView recyclerView;
@@ -160,6 +160,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightTxt.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
+        titleLayoutRightImg.setBackgroundColor(getResources().getColor(R.color.color_a1a8b2));
         titleLayoutRightTxt.setText(R.string.notice_post);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -206,13 +207,13 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         }
     }
 
-    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt, R.id.title_layout_right_img})
+    @OnClick({R.id.title_layout_left_img, R.id.title_layout_signIn, R.id.title_layout_right_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
                 finish();
                 break;
-            case R.id.title_layout_right_txt:
+            case R.id.title_layout_signIn:
                 postNotice();
                 break;
             case R.id.title_layout_right_img:

@@ -10,7 +10,7 @@
         android:id="@+id/notice_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:text="通知标题"
         android:textColor="@color/color_333333"
         android:textSize="14dp"
@@ -18,33 +18,34 @@
 
     <TextView
         android:id="@+id/num_reader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-           android:layout_alignParentRight="true"
-            android:text="13/40"
-            android:textColor="@color/color_0068bd"
-            android:textSize="12dp" />
-
-    <TextView
-        android:layout_toLeftOf="@id/num_reader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"
+        android:text="13/40"
+        android:textColor="@color/color_0068bd"
+        android:textSize="12dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@id/num_reader"
         android:text="@string/has_read"
         android:textColor="@color/color_999999"
         android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/notice_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-android:layout_below="@id/notice_name"
-            android:layout_marginTop="9dp"
-            android:text="2017.10.07 17:13"
-            android:textColor="@color/color_999999"
-            android:textSize="11dp" />
+    <TextView
+        android:id="@+id/notice_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notice_name"
+        android:layout_marginTop="5dp"
+        android:text="2017.10.07 17:13"
+        android:textColor="@color/color_999999"
+        android:textSize="11dp" />
 
 
     <TextView
@@ -52,7 +53,7 @@ android:layout_below="@id/notice_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/notice_time"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="9dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="通知内容"
@@ -63,7 +64,7 @@ android:layout_below="@id/notice_name"
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:layout_marginTop="20dp"
         android:layout_below="@id/notice_content"
+        android:layout_marginTop="18dp"
         android:background="@color/color_EBEFF2" />
 </RelativeLayout>
