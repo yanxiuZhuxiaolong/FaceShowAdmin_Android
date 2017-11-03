@@ -65,6 +65,7 @@ public class MainActivity extends FaceShowBaseActivity {
     private ImageView[] mNavIconViews = new ImageView[mNavBarViewsCount];
     private TextView[] mNavTextViews = new TextView[mNavBarViewsCount];
     private int mNormalNavTxtColor, mSelNavTxtColor;
+    private int mLastSelectTabIndex = 0;
 
 
     private FragmentManager fragmentManager;
@@ -238,11 +239,13 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void changeTabFragment(String tabName, int index) {
+        if (mLastSelectTabIndex == index)
+            return;
         checkBottomBar(index);
         fragmentManager.beginTransaction().
                 replace(R.id.fragment_content, fragmentManager.findFragmentByTag(tabName) != null ?
                         fragmentManager.findFragmentByTag(tabName) : createdNewFragment(tabName)).commit();
-
+        mLastSelectTabIndex = index;
     }
 
     private Fragment createdNewFragment(String tab) {
