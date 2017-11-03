@@ -12,7 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:layout_marginRight="@dimen/course_adapter_marginleft"
         android:gravity="center_vertical"
+        android:lines="1"
+        android:ellipsize="end"
         android:text="国培计划"
         android:textColor="@color/color_333333"
         android:textSize="16dp"
@@ -57,7 +60,7 @@
             android:layout_height="@dimen/tag_height"
             android:background="@drawable/shape_course_item"
             android:gravity="center"
-            android:text="专家"
+            android:text="讲师"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/tag_textsize" />
 
@@ -107,5 +110,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
         android:background="@color/color_EBEFF2"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal" />
 </LinearLayout>

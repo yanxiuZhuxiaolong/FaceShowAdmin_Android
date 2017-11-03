@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
+import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.recyclerView.BaseRecyclerViewAdapter;
 
 import java.text.NumberFormat;
@@ -55,16 +56,7 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
         final TodaySignInBean data = mList.get(position);
         ViewHolder holder2 = (ViewHolder) holder;
         holder2.checkin_item_title.setText(data.getTitle());
-        final String time;
-        if (data.getStartTime() == null || data.getEndTime() == null) {
-            time = "";
-        } else {
-            String[] startTimes = data.getStartTime().split(" ");
-            String[] startTime = startTimes[1].split(":");
-            String[] endTime = data.getEndTime().split(" ")[1].split(":");
-            time = startTimes[0] + " " + startTime[0] + ":" + startTime[1] + "-" + endTime[0] + ":" + endTime[1];
-        }
-        holder2.checkin_item_time.setText(time);
+        holder2.checkin_item_time.setText(StringUtils.getCourseTime(data.getStartTime(),data.getEndTime()));
         holder2.checkin_item_checkin.setText(data.getSignInUserNum() + "/" + data.getTotalUserNum());
         String percent;
         try {

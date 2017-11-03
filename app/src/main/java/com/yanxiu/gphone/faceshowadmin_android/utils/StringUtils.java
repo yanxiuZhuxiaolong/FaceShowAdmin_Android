@@ -187,6 +187,7 @@ public class StringUtils {
     }
 
     private static Pattern replaceBlankP = Pattern.compile("\\s*|\t|\r|\n");
+
     public static String replaceBlank(String str) {
         String dest = "";
         if (str != null) {
@@ -333,5 +334,26 @@ public class StringUtils {
         Date date = simpleDateFormat.parse(s);
         long ts = date.getTime();
         return ts;
+    }
+
+    /**
+     * 获取课程的开始 - 截止时间
+     * 如：2017.11.3.10:57:19 - 19:00
+     *
+     * @param getStartTime
+     * @param getEndTime
+     * @return
+     */
+    public static String getCourseTime(String getStartTime, String getEndTime) {
+        String time;
+        if (TextUtils.isEmpty(getStartTime) || TextUtils.isEmpty(getEndTime)) {
+            time = "";
+        } else {
+            String[] startTimes = getStartTime.split(" ");
+            String[] startTime = startTimes[1].split(":");
+            String[] endTime = getEndTime.split(" ")[1].split(":");
+            time = startTimes[0] + " " + startTime[0] + ":" + startTime[1] + " - " + endTime[0] + ":" + endTime[1];
+        }
+        return time;
     }
 }
