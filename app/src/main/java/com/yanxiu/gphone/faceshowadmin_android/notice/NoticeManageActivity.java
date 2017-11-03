@@ -30,7 +30,7 @@ import butterknife.Unbinder;
  * Created by lufengqing on 2017/11/1.
  */
 
-public class NoticeManageActivity extends FaceShowBaseActivity {
+public class NoticeManageActivity extends FaceShowBaseActivity implements View.OnClickListener {
     public static final int NOTICE_DETAIL = 1001;
     public static final int NOTICE_POST = 1002;
     private final int PAGESIZE = 20;
@@ -59,6 +59,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity {
         mContext = this;
         mRootView = new PublicLoadLayout(mContext);
         mRootView.setContentView(R.layout.activity_notice_manage);
+        mRootView.setRetryButtonOnclickListener(this);
         setContentView(mRootView);
         unbinder = ButterKnife.bind(this);
         initView();
@@ -91,7 +92,6 @@ public class NoticeManageActivity extends FaceShowBaseActivity {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                mRootView.hiddenLoadingView();
                 mRootView.showNetErrorView();
             }
         });
@@ -180,5 +180,14 @@ public class NoticeManageActivity extends FaceShowBaseActivity {
     public static void invoke(Context context) {
         Intent intent = new Intent(context, NoticeManageActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.retry_button:
+                requestData();
+                break;
+        }
     }
 }
