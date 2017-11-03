@@ -22,14 +22,14 @@ class NoticeManagerListAdapter extends BaseRecyclerViewAdapter {
 
     private Context mContext;
 
-    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean> mList = new ArrayList<>();
+    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean> mList = new ArrayList<>();
     private int mNoticeNum;
 
     public NoticeManagerListAdapter(Context context) {
         mContext = context;
     }
 
-    public void setData(ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean> list, int totalNoticeNum) {
+    public void setData(ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean> list, int totalNoticeNum) {
         mList = list;
         mNoticeNum = totalNoticeNum;
         notifyDataSetChanged();
@@ -50,7 +50,7 @@ class NoticeManagerListAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean data = mList.get(position);
+        final NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean data = mList.get(position);
 
        ViewHolder holder2 = (ViewHolder) holder;
         holder2.notice_name.setText(data.getTitle());

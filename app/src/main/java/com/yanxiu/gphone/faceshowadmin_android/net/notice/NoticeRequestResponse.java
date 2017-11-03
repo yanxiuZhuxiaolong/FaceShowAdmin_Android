@@ -3,7 +3,6 @@ package com.yanxiu.gphone.faceshowadmin_android.net.notice;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +13,13 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
 
 
     /**
-     * data : {"noticeInfos":{"elements":[{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":0,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":5,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false}],"pageSize":5,"pageNum":null,"offset":0,"totalElements":4,"lastPageNumber":null},"studentNum":5}
+     * data : {"noticeInfos":{"totalElements":0,"elements":[{"id":214,"title":"111","content":"11","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 14:40:21","updateTime":"2017-10-27 14:40:21","state":1,"attachUrl":"http://upload.ugc.yanxiu.com/img/c39610587bd14adf63051166765a223f.bmp?from=22&resId=28939360","readNum":3,"attachName":"584_小鸭子bmp.bmp","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":3,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false}],"callbackParam":"id","callbackValue":189,"callbacks":[{"callbackParam":"id","callbackValue":189}]},"studentNum":5}
      * currentUser :
-     * currentTime : 1509078837305
+     * currentTime : 1509507324542
      * error : null
      */
 
     private DataBean data;
-    private long currentTime;
 
     public DataBean getData() {
         return data;
@@ -31,17 +29,9 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
         this.data = data;
     }
 
-    public long getCurrentTime() {
-        return currentTime;
-    }
-
-    public void setCurrentTime(long currentTime) {
-        this.currentTime = currentTime;
-    }
-
     public static class DataBean {
         /**
-         * noticeInfos : {"elements":[{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":0,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":5,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false}],"pageSize":5,"pageNum":null,"offset":0,"totalElements":4,"lastPageNumber":null}
+         * noticeInfos : {"totalElements":0,"elements":[{"id":214,"title":"111","content":"11","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 14:40:21","updateTime":"2017-10-27 14:40:21","state":1,"attachUrl":"http://upload.ugc.yanxiu.com/img/c39610587bd14adf63051166765a223f.bmp?from=22&resId=28939360","readNum":3,"attachName":"584_小鸭子bmp.bmp","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":3,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false}],"callbackParam":"id","callbackValue":189,"callbacks":[{"callbackParam":"id","callbackValue":189}]}
          * studentNum : 5
          */
 
@@ -66,44 +56,18 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
 
         public static class NoticeInfosBean {
             /**
-             * elements : [{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":0,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":5,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":0,"viewed":false}]
-             * pageSize : 5
-             * pageNum : null
-             * offset : 0
-             * totalElements : 4
-             * lastPageNumber : null
+             * totalElements : 0
+             * elements : [{"id":214,"title":"111","content":"11","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 14:40:21","updateTime":"2017-10-27 14:40:21","state":1,"attachUrl":"http://upload.ugc.yanxiu.com/img/c39610587bd14adf63051166765a223f.bmp?from=22&resId=28939360","readNum":3,"attachName":"584_小鸭子bmp.bmp","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":213,"title":"今天下雪","content":"好大的雪","authorId":23248709,"clazzId":15,"createTime":"2017-10-27 10:00:12","updateTime":"2017-10-27 10:00:12","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"杨大班","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":191,"title":"这是一条测试数据","content":"这是一条测试数据的详情，修改一下呢","authorId":9768712,"clazzId":15,"createTime":"2017-10-24 09:15:14","updateTime":"2017-10-27 10:02:29","state":1,"attachUrl":"","readNum":7,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":3,"viewed":false},{"id":190,"title":"发个通知试试","content":"发个通知试试11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 18:25:35","updateTime":"2017-10-23 18:25:35","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false},{"id":189,"title":"111111111111","content":"11111111111111","authorId":9768712,"clazzId":15,"createTime":"2017-10-23 16:05:14","updateTime":"2017-10-23 16:05:14","state":1,"attachUrl":"","readNum":1,"attachName":"","authorName":"多隆测试","createTimeStr":null,"updateTimeStr":null,"noticeNum":null,"noticeReadNumSum":null,"noticeReadUserNum":1,"viewed":false}]
+             * callbackParam : id
+             * callbackValue : 189
+             * callbacks : [{"callbackParam":"id","callbackValue":189}]
              */
 
-            private int pageSize;
-            private int pageNum;
-            private int offset;
             private int totalElements;
-            private int lastPageNumber;
-            private ArrayList<NoticeBean> elements;
-
-            public int getPageSize() {
-                return pageSize;
-            }
-
-            public void setPageSize(int pageSize) {
-                this.pageSize = pageSize;
-            }
-
-            public int getPageNum() {
-                return pageNum;
-            }
-
-            public void setPageNum(int pageNum) {
-                this.pageNum = pageNum;
-            }
-
-            public int getOffset() {
-                return offset;
-            }
-
-            public void setOffset(int offset) {
-                this.offset = offset;
-            }
+            private String callbackParam;
+            private String callbackValue;
+            private List<ElementsBean> elements;
+            private List<CallbacksBean> callbacks;
 
             public int getTotalElements() {
                 return totalElements;
@@ -113,41 +77,57 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
                 this.totalElements = totalElements;
             }
 
-            public int getLastPageNumber() {
-                return lastPageNumber;
+            public String getCallbackParam() {
+                return callbackParam;
             }
 
-            public void setLastPageNumber(int lastPageNumber) {
-                this.lastPageNumber = lastPageNumber;
+            public void setCallbackParam(String callbackParam) {
+                this.callbackParam = callbackParam;
             }
 
-            public ArrayList<NoticeBean> getElements() {
+            public String getCallbackValue() {
+                return callbackValue;
+            }
+
+            public void setCallbackValue(String callbackValue) {
+                this.callbackValue = callbackValue;
+            }
+
+            public List<ElementsBean> getElements() {
                 return elements;
             }
 
-            public void setElements(ArrayList<NoticeBean> elements) {
+            public void setElements(List<ElementsBean> elements) {
                 this.elements = elements;
             }
 
-            public static class NoticeBean implements Serializable{
+            public List<CallbacksBean> getCallbacks() {
+                return callbacks;
+            }
+
+            public void setCallbacks(List<CallbacksBean> callbacks) {
+                this.callbacks = callbacks;
+            }
+
+            public static class ElementsBean implements Serializable{
                 /**
-                 * id : 213
-                 * title : 今天下雪
-                 * content : 好大的雪
+                 * id : 214
+                 * title : 111
+                 * content : 11
                  * authorId : 23248709
                  * clazzId : 15
-                 * createTime : 2017-10-27 10:00:12
-                 * updateTime : 2017-10-27 10:00:12
+                 * createTime : 2017-10-27 14:40:21
+                 * updateTime : 2017-10-27 14:40:21
                  * state : 1
-                 * attachUrl :
-                 * readNum : 0
-                 * attachName :
+                 * attachUrl : http://upload.ugc.yanxiu.com/img/c39610587bd14adf63051166765a223f.bmp?from=22&resId=28939360
+                 * readNum : 3
+                 * attachName : 584_小鸭子bmp.bmp
                  * authorName : 杨大班
                  * createTimeStr : null
                  * updateTimeStr : null
                  * noticeNum : null
                  * noticeReadNumSum : null
-                 * noticeReadUserNum : 0
+                 * noticeReadUserNum : 1
                  * viewed : false
                  */
 
@@ -266,7 +246,7 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
                     this.authorName = authorName;
                 }
 
-                public Object getCreateTimeStr() {
+                public String getCreateTimeStr() {
                     return createTimeStr;
                 }
 
@@ -312,6 +292,32 @@ public class NoticeRequestResponse extends FaceShowBaseResponse {
 
                 public void setViewed(boolean viewed) {
                     this.viewed = viewed;
+                }
+            }
+
+            public static class CallbacksBean {
+                /**
+                 * callbackParam : id
+                 * callbackValue : 189
+                 */
+
+                private String callbackParam;
+                private int callbackValue;
+
+                public String getCallbackParam() {
+                    return callbackParam;
+                }
+
+                public void setCallbackParam(String callbackParam) {
+                    this.callbackParam = callbackParam;
+                }
+
+                public int getCallbackValue() {
+                    return callbackValue;
+                }
+
+                public void setCallbackValue(int callbackValue) {
+                    this.callbackValue = callbackValue;
                 }
             }
         }
