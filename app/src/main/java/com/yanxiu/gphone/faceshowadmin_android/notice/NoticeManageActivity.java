@@ -3,8 +3,9 @@ package com.yanxiu.gphone.faceshowadmin_android.notice;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,10 +15,12 @@ import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
 
@@ -43,14 +46,18 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
     @BindView(R.id.title_layout_right_txt)
     TextView titleLayoutRightTxt;
     @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    LoadMoreRecyclerView recyclerView;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
     private Context mContext;
     private PublicLoadLayout mRootView;
     private Unbinder unbinder;
     private NoticeRequestResponse.DataBean mData;
     private NoticeManagerListAdapter mNoticeManagerListAdapter;
     private int mCurrentNoticePosition;
-    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean> mNoticeList;
+    private ArrayList<NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean> mNoticeList = new ArrayList<>();
+    private int mNewCount;
+    private int mNowNoticeSize;
 
 
     @Override
@@ -63,23 +70,64 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         setContentView(mRootView);
         unbinder = ButterKnife.bind(this);
         initView();
-        requestData();
+        initListener();
+        requestData(false);
     }
 
-    private void requestData() {
-        mRootView.showLoadingView();
+    private void initListener() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                mNowNoticeSize = 0;
+                mNoticeList.clear();
+                requestData(true);
+            }
+        });
+        recyclerView.setLoadMoreEnable(true);
+        recyclerView.setLoadMoreListener(new LoadMoreRecyclerView.LoadMoreListener() {
+            @Override
+            public void onLoadMore(LoadMoreRecyclerView refreshLayout) {
+                if (mNewCount >= PAGESIZE) {
+                    requestData(false);
+                } else {
+                    recyclerView.finishLoadMore();
+                    ToastUtil.showToast(NoticeManageActivity.this, "没有更多数据了");
+                }
+
+            }
+
+            @Override
+            public void onLoadmoreComplte() {
+            }
+        });
+    }
+
+    private void requestData(final boolean isRefreshIng) {
+        if (!isRefreshIng)
+            mRootView.showLoadingView();
         NoticeRequest noticeRequest = new NoticeRequest();
         noticeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        noticeRequest.offset = 0;
-        noticeRequest.pageSize = PAGESIZE;
+        noticeRequest.offset = Integer.toString(mNowNoticeSize);
+        noticeRequest.pageSize =Integer.toString(PAGESIZE);
         noticeRequest.startRequest(NoticeRequestResponse.class, new HttpCallback<NoticeRequestResponse>() {
             @Override
             public void onSuccess(RequestBase request, NoticeRequestResponse ret) {
                 mRootView.finish();
+                if (isRefreshIng)
+                    swipeRefreshLayout.setRefreshing(false);
                 if (ret != null && ret.getCode() == 0) {
                     if (ret.getData() != null) {
                         mData = ret.getData();
-                        mNoticeList = mData.getNoticeInfos().getElements();
+                        mNewCount = mData.getNoticeInfos().getElements().size();
+                        mNowNoticeSize += mNewCount;
+                        if (mNewCount >= PAGESIZE) {
+                            recyclerView.setLoadMoreEnable(true);
+                        } else {
+                            recyclerView.setLoadMoreEnable(false);
+                        }
+                        mNoticeList.addAll(mData.getNoticeInfos().getElements());
                         setData();
                     } else {
                         mRootView.showOtherErrorView();
@@ -93,17 +141,18 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             @Override
             public void onFail(RequestBase request, Error error) {
                 mRootView.showNetErrorView();
+                if (isRefreshIng)
+                    swipeRefreshLayout.setRefreshing(false);
             }
         });
 
     }
 
     private void setData() {
-        if(mData != null && mData.getNoticeInfos() != null) {
+        if (mData != null && mData.getNoticeInfos() != null) {
             mNoticeManagerListAdapter.setData(mNoticeList, mData.getStudentNum());
         }
     }
-
 
 
     private void initView() {
@@ -122,7 +171,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             public void onItemClick(View v, int position) {
                 mCurrentNoticePosition = position;
                 Intent intent = new Intent(NoticeManageActivity.this, NoticeDetailActivity.class);
-                intent.putExtra("NOTICE_DETAIL", mData.getNoticeInfos().getElements().get(position));
+                intent.putExtra("NOTICE_DETAIL", mNoticeList.get(position));
                 intent.putExtra("NOTICE_TOTAL_READ_NUM", mData.getStudentNum());
                 startActivityForResult(intent, NOTICE_DETAIL);
 //                NoticeDetailActivity.invoke(NoticeManageActivity.this, mData.getNoticeInfos().getElements().get(position),mData.getStudentNum());
@@ -148,14 +197,15 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
                 if (data != null) {
                     Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
                     NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean) data.getSerializableExtra("noticeBean");
-                       if (isPostSuccess) {
-                        mNoticeList.add(0,bean);
+                    if (isPostSuccess) {
+                        mNoticeList.add(0, bean);
                         setData();
                     }
                 }
             }
         }
     }
+
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt, R.id.title_layout_right_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -184,9 +234,11 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.retry_button:
-                requestData();
+                requestData(false);
+                break;
+            default:
                 break;
         }
     }
