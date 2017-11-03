@@ -24,6 +24,7 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +45,17 @@ public class SignedInFragment extends FaceShowBaseFragment {
     private String mSignInTime = "";
     private String id = "";
     private List<GetClassUserResponse.DataBean.ElementsBean> data = new ArrayList<>();
+    private boolean isResume = false;
+    private UUID mGetClassUserSignInsRequestUUID;
+    private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            id = "";
+            mSignInTime = "";
+            data.clear();
+            initData();
+        }
+    };
 
     @Nullable
     @Override
@@ -57,35 +69,36 @@ public class SignedInFragment extends FaceShowBaseFragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mSignedInAdapter = new SignedInAdapter();
         mRecyclerView.setAdapter(mSignedInAdapter);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                id = "";
-                mSignInTime = "";
-                data.clear();
-                initData();
-            }
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+        mOnRefreshListener.onRefresh();
         return mPublicLoadLayout;
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
-        initData();
+        isResume = true;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResume) {
+            mOnRefreshListener.onRefresh();
+        }
     }
 
     private void initData() {
-        mPublicLoadLayout.showLoadingView();
         GetClassUserSignInsRequest getClassUserSignInsRequest = new GetClassUserSignInsRequest();
         getClassUserSignInsRequest.status = STATUE_CODE;
         getClassUserSignInsRequest.stepId = getArguments().getString("stepId");
         getClassUserSignInsRequest.id = id;
         getClassUserSignInsRequest.signInTime = mSignInTime;
-        getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
+        mGetClassUserSignInsRequestUUID = getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
-                mPublicLoadLayout.hiddenLoadingView();
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
                         for (int i = 0; i < ret.getData().getCallbacks().size(); i++) {
@@ -96,6 +109,8 @@ public class SignedInFragment extends FaceShowBaseFragment {
                                 id = String.valueOf(ret.getData().getCallbacks().get(i).getCallbackValue());
                             }
                         }
+                        mPublicLoadLayout.hiddenNetErrorView();
+                        mPublicLoadLayout.hiddenOtherErrorView();
                         data.addAll(ret.getData().getElements());
                         mSignedInAdapter.update(ret.getData().getElements());
                     } else {
@@ -107,7 +122,7 @@ public class SignedInFragment extends FaceShowBaseFragment {
                     }
                 } else {
                     if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_signed_in_data));
                     } else {
                         ToastUtil.showToast(getActivity(), ret.getMessage());
                     }
@@ -116,7 +131,7 @@ public class SignedInFragment extends FaceShowBaseFragment {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                mPublicLoadLayout.hiddenLoadingView();
+                mSwipeRefreshLayout.setRefreshing(false);
                 if (data.size() == 0) {
                     mPublicLoadLayout.showNetErrorView();
                 } else {
@@ -127,8 +142,17 @@ public class SignedInFragment extends FaceShowBaseFragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        isResume = false;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if (mGetClassUserSignInsRequestUUID != null) {
+            RequestBase.cancelRequestWithUUID(mGetClassUserSignInsRequestUUID);
+        }
     }
 }

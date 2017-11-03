@@ -81,6 +81,12 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="15dp"
+            android:layout_height="1dp"
+            android:background="@color/color_white"
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time" />
+
         <RelativeLayout
             android:id="@+id/rl_check_in_start_time"
             android:layout_width="match_parent"
@@ -120,6 +126,12 @@
                 android:textColor="@color/color_999999"
                 android:textSize="14sp" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="1dp"
+            android:background="@color/color_white"
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time" />
 
         <RelativeLayout
             android:id="@+id/rl_check_in_end_time"
@@ -187,10 +199,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="10dp"
                 app:sb_checked_color="@color/color_2379D2"
                 app:sb_show_indicator="false" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="1dp"
+            android:background="@color/color_white"
+            app:layout_constraintTop_toBottomOf="@+id/rl_useful" />
 
         <RelativeLayout
             android:id="@+id/rl_use_code"
@@ -218,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="10dp"
                 app:sb_checked_color="@color/color_2379D2"
                 app:sb_show_indicator="false" />
         </RelativeLayout>
@@ -232,17 +250,27 @@
             android:hint="@string/check_in_success_hint"
             android:lineSpacingExtra="15dp"
             android:maxLength="20"
-            android:minHeight="50dp"
-            android:paddingBottom="200dp"
+            android:minHeight="100dp"
+            android:gravity="start|top"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="15dp"
             android:textColorHint="@color/color_cccccc"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rl_use_code" />
+
+        <View
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/check_in_success_toast" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

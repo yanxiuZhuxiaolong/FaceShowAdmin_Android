@@ -182,7 +182,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     }
 
     private String getDay(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd ", Locale.getDefault());
         return format.format(date);
     }
 

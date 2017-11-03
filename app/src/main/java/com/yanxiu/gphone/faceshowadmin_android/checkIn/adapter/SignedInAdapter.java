@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserResponse;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
+ * adapter fot signed in fragment
  * Created by frc on 17-11-2.
  */
 
@@ -59,7 +61,7 @@ public class SignedInAdapter extends BaseRecyclerViewAdapter {
         }
 
         void setData(GetClassUserResponse.DataBean.ElementsBean data) {
-            mTvSignInTime.setText(data.getSignInTime());
+            mTvSignInTime.setText(DateFormatUtil.translationBetweenTwoFormat(data.getSignInTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO));
             mTvStudentMobile.setText(data.getMobilePhone());
             mTvStudentName.setText(data.getUserName());
         }

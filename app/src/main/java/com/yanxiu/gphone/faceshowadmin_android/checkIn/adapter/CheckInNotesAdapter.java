@@ -11,6 +11,7 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesResponse;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -75,7 +76,8 @@ public class CheckInNotesAdapter extends BaseRecyclerViewAdapter {
             if (data.getStartTime() == null || data.getEndTime() == null) {
                 time = "";
             } else {
-                String[] startTimes = data.getStartTime().split(" ");
+                String translationTime = DateFormatUtil.translationBetweenTwoFormat(data.getStartTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO);
+                String[] startTimes = translationTime.split(" ");
                 String[] startTime = startTimes[1].split(":");
                 String[] endTime = data.getEndTime().split(" ")[1].split(":");
                 time = startTimes[0] + " " + startTime[0] + ":" + startTime[1] + "-" + endTime[0] + ":" + endTime[1];
@@ -90,8 +92,11 @@ public class CheckInNotesAdapter extends BaseRecyclerViewAdapter {
                     intent.putExtra("percentage", getPercent(data.getSignInUserNum(), data.getTotalUserNum()));
                     intent.putExtra("proportion", proportion);
                     intent.putExtra("stepId", String.valueOf(data.getStepId()));
-                    intent.putExtra("qrCodeRefreshRate",data.getQrcodeRefreshRate());
-                    itemView.getContext().startActivity(intent);
+                    intent.putExtra("qrCodeRefreshRate", data.getQrcodeRefreshRate());
+                    if (mRecyclerViewItemClickWithIntentListener != null) {
+                        mRecyclerViewItemClickWithIntentListener.onItemClick(view, getAdapterPosition(), intent);
+                    }
+
                 }
             });
         }
@@ -106,7 +111,7 @@ public class CheckInNotesAdapter extends BaseRecyclerViewAdapter {
                 double fen = baiy / baiz;
                 // NumberFormat nf = NumberFormat.getPercentInstance(); 注释掉的也是一种方法
                 // nf.setMinimumFractionDigits( 2 ); 保留到小数点后几位
-                DecimalFormat df1 = new DecimalFormat("##.00%"); // ##.00%
+                DecimalFormat df1 = new DecimalFormat("##%"); // ##.00%
                 // 百分比格式，后面不足2位的用0补齐
                 // baifenbi=nf.format(fen);
                 baifenbi = df1.format(fen);

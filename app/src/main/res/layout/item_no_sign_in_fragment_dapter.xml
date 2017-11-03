@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="51dp"
-    android:background="@color/color_EBEFF2"
     android:orientation="vertical">
 
     <RelativeLayout
