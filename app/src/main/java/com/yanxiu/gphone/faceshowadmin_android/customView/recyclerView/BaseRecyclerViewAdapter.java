@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.utils.recyclerView;
+package com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView;
 
 import android.support.v7.widget.RecyclerView;
 
