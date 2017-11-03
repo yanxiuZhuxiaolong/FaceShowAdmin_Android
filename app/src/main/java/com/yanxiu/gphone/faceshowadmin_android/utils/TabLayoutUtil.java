@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
  * Created by 戴延枫 on 2017/11/3.
  */
 
-public class TabLayoutIndicatorWidth {
+public class TabLayoutUtil {
 
     /**
      * 设置TabLayout下划线的长度
@@ -22,7 +22,7 @@ public class TabLayoutIndicatorWidth {
      * @param leftDip
      * @param rightDip
      */
-    public static void setIndicator(final TabLayout tabs, int leftDip, int rightDip) {
+    public static void setIndicatorWidth(final TabLayout tabs, final int leftDip, final int rightDip) {
         if (tabs != null) {
             tabs.post(new Runnable() {
                 @Override

@@ -5,62 +5,63 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
-            android:layout_width="375dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@drawable/main_detail_background"
-            />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+            android:background="@drawable/main_detail_background" />
 
-        <TextView
-            android:id="@+id/detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_gravity="center_horizontal"
-            android:text="项目标题"
-            android:textColor="@color/color_333333"
-            android:textSize="@dimen/text_size_16"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/detail_duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/detail_duration"
-            android:textColor="@color/color_999999"
-            android:textSize="13sp" />
+            <TextView
+                android:id="@+id/detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:text="项目标题"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/detail_descr_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="21dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/project_descr_title"
-            android:textColor="@color/color_333333"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/detail_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="@string/detail_duration"
+                android:textColor="@color/color_999999"
+                android:textSize="13dp" />
 
-        <TextView
-            android:id="@+id/detail_descr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/color_333333"
-            android:textSize="13sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/detail_descr_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="21dp"
+                android:text="@string/project_descr_title"
+                android:textColor="@color/color_333333"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detail_descr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/color_333333"
+                android:textSize="13dp" />
+
+        </LinearLayout>
     </FrameLayout>
 </ScrollView>

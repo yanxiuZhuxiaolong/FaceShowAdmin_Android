@@ -20,6 +20,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.ClassDetailFragment;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.ProjectDetailFragment;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.TabLayoutUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class MainDetailActivity extends FaceShowBaseActivity {
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
         mTabLayout.setupWithViewPager(mViewPager);
-
+        TabLayoutUtil.setIndicatorWidth(mTabLayout,40,40);
     }
 
     private void initFragments() {

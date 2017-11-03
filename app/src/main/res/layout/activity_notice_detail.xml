@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/common_title_layout" />
 
     <View
         android:layout_width="match_parent"
-        android:background="@color/color_EBEFF2"
-        android:layout_height="@dimen/commontitle_margin_left" />
+        android:layout_height="@dimen/commontitle_margin_left"
+        android:background="@color/color_EBEFF2" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="375dp"
+                android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/main_detail_background" />
 
@@ -74,8 +75,8 @@
                         android:id="@+id/read_percent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
                         android:gravity="left"
                         android:text="@string/has_check_in_proportion"
                         android:textColor="@color/color_0068bd"
@@ -94,13 +95,13 @@
 
                 <ImageView
                     android:id="@+id/notice_attachpic"
-                    android:visibility="gone"
-                    android:scaleType="center"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginTop="21dp"/>
+                    android:layout_marginTop="21dp"
+                    android:scaleType="center"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </FrameLayout>
