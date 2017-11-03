@@ -118,8 +118,6 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
 
     private void initTabLayout() {
         tabLayout.setTabTextColors(R.color.color_333333, R.color.color_999999);
-//        tabLayout.addTab(tabLayout.newTab().setText(R.string.no_sign_in));
-//        tabLayout.addTab(tabLayout.newTab().setText(R.string.signed_in));
     }
 
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code})

@@ -16,6 +16,7 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.adapter.SignedInAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserSignInsRequest;
@@ -78,7 +79,7 @@ public class SignedInFragment extends FaceShowBaseFragment {
         mPublicLoadLayout.showLoadingView();
         GetClassUserSignInsRequest getClassUserSignInsRequest = new GetClassUserSignInsRequest();
         getClassUserSignInsRequest.status = STATUE_CODE;
-        getClassUserSignInsRequest.stepId = "9";
+        getClassUserSignInsRequest.stepId = getArguments().getString("stepId");
         getClassUserSignInsRequest.id = id;
         getClassUserSignInsRequest.signInTime = mSignInTime;
         getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
