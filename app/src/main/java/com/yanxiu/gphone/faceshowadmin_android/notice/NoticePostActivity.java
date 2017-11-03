@@ -27,14 +27,18 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.UploadFileByHttp;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.UploadResResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +92,8 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     private String mImagePaths;
     private String mCropPath;
     private String mResourceIds;
+    private NoticeSaveResponse.DataBean mReturnNoticeBean;
+    private long mNoticeCreateTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -147,9 +153,6 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
-                Intent intent = new Intent();
-                intent.putExtra("isPostSuccess", isPostSuccess);
-                setResult(NOTICE_POST, intent);
                 finish();
                 break;
             case R.id.title_layout_right_txt:
@@ -161,6 +164,8 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 showDialog();
                 break;
             case R.id.notice_pic_del:
+                mType = TYPE_TEXT;
+                mResourceIds = null;
                 noticePic.setVisibility(View.GONE);
                 noticePicDel.setVisibility(View.GONE);
                 noticePicAdd.setVisibility(View.VISIBLE);
@@ -305,7 +310,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         }
     }
 
-    private void GetResId(String fileName, String md5) {
+    private void GetResId(final String fileName, final String md5) {
         HashMap<String, String> cookies = new HashMap<>();
         cookies.put("client_type", "app");
         cookies.put("passport", SpManager.getPassport());
@@ -320,6 +325,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
             @Override
             public void onSuccess(RequestBase request, GetResIdResponse ret) {
                 mResourceIds=ret.result.resid;
+                mAttachUrl ="http://upload.ugc.yanxiu.com/img/" + md5 + ".jpg?from=6&resId=" + mResourceIds;
                 submitPostRequest();
             }
 
@@ -340,15 +346,18 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         noticeSaveRequest.title = mNoticeTitle;
         noticeSaveRequest.content = mNoticeContent;
         if (mType.equals(TYPE_IMAGE)){
-            noticeSaveRequest.url = mResourceIds;
+            noticeSaveRequest.url = mAttachUrl;
         }
-        noticeSaveRequest.startRequest(FaceShowBaseResponse.class, new HttpCallback<FaceShowBaseResponse>() {
+        noticeSaveRequest.startRequest(NoticeSaveResponse.class, new HttpCallback<NoticeSaveResponse>() {
             @Override
-            public void onSuccess(RequestBase request, FaceShowBaseResponse ret) {
+            public void onSuccess(RequestBase request, NoticeSaveResponse ret) {
                 mRootView.finish();
                 if (ret != null && ret.getCode() == 0) {
                     ToastUtil.showToast(NoticePostActivity.this, "发布成功");
                     isPostSuccess = true;
+                    mReturnNoticeBean = ret.getData();
+                    mNoticeCreateTime = ret.getCurrentTime();
+                    postFinish();
                 } else {
                     ToastUtil.showToast(NoticePostActivity.this,getString(R.string.send_class_circle_fail));
                 }
@@ -360,6 +369,22 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 ToastUtil.showToast(NoticePostActivity.this, getString(R.string.send_class_circle_fail));
             }
         });
+    }
+
+    private void postFinish() {
+        NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean bean = new NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean();
+        bean.setId(mReturnNoticeBean.getId());
+        bean.setTitle(mReturnNoticeBean.getTitle());
+        bean.setContent(mReturnNoticeBean.getContent());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        bean.setCreateTime(format.format(mNoticeCreateTime));
+        bean.setNoticeReadNumSum(mReturnNoticeBean.getReadNum());
+        bean.setAttachUrl(mAttachUrl);
+        Intent intent = new Intent();
+        intent.putExtra("isPostSuccess", isPostSuccess);
+        intent.putExtra("noticeBean",bean);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public static void invoke(Context context) {

@@ -76,6 +76,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         titleLayoutTitle.setText(R.string.notice_detail_title);
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
+        titleLayoutRightImg.setBackgroundColor(getResources().getColor(R.color.color_0065b8));
         NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean noticeBean = (NoticeRequestResponse.DataBean.NoticeInfosBean.NoticeBean) getIntent().getSerializableExtra("NOTICE_DETAIL");
         int mNoticeNum = getIntent().getIntExtra("NOTICE_TOTAL_READ_NUM", 0);
         mNoticeId = noticeBean.getId();
@@ -141,6 +142,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         mRootView.showLoadingView();
         NoticeDeleteRequest noticeDeleteRequest = new NoticeDeleteRequest();
         noticeDeleteRequest.noticeId = mNoticeId;
+        noticeDeleteRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         noticeDeleteRequest.startRequest(FaceShowBaseResponse.class, new HttpCallback<FaceShowBaseResponse>() {
             @Override
             public void onSuccess(RequestBase request, FaceShowBaseResponse ret) {
@@ -150,7 +152,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
                     isDeleteSuccess = true;
                     Intent intent = new Intent();
                     intent.putExtra("isDeleteSuccess", isDeleteSuccess);
-                    setResult(NOTICE_DETAIL, intent);
+                    setResult(RESULT_OK, intent);
                     finish();
                 } else {
                     ToastUtil.showToast(NoticeDetailActivity.this, "删除失败");
