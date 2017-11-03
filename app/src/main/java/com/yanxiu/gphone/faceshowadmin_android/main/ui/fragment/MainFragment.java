@@ -270,7 +270,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 ToastUtil.showToast(getActivity(), "通讯录");
                 break;
             case 1:
-                ToastUtil.showToast(getActivity(), "通知管理");
                 NoticeManageActivity.invoke(getActivity());
                 break;
             case 2:
