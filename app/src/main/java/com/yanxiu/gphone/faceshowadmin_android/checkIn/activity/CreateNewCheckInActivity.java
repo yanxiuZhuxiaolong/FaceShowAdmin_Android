@@ -1,11 +1,14 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -72,6 +75,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
     private PublicLoadLayout publicLoadLayout;
     private Date startTime;
     private UUID requestUUID;
+    InputMethodManager imm = null;
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -102,6 +106,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         tvCheckInEndTime.addTextChangedListener(textWatcher);
         tvCheckInStartTime.addTextChangedListener(textWatcher);
         tvCheckInTime.addTextChangedListener(textWatcher);
+//        imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
     }
 
     private void initTitle() {
@@ -115,6 +120,9 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
 
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt, R.id.rl_check_in_time, R.id.rl_check_in_start_time, R.id.rl_check_in_end_time})
     public void onViewClicked(View view) {
+        if (imm == null) {
+            imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        }
         switch (view.getId()) {
             case R.id.title_layout_left_img:
                 CreateNewCheckInActivity.this.finish();
@@ -125,16 +133,21 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
                 }
                 break;
             case R.id.rl_check_in_time:
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 toSelectedData();
                 break;
             case R.id.rl_check_in_start_time:
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 toSelectedStartTime();
                 break;
             case R.id.rl_check_in_end_time:
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 toSelectedEndTime();
                 break;
             default:
         }
+
+
     }
 
     private void toSelectedData() {

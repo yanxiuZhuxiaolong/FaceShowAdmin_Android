@@ -1,7 +1,10 @@
 package com.yanxiu.gphone.faceshowadmin_android;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.os.StrictMode;
 
 import com.google.gson.Gson;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
@@ -23,10 +26,21 @@ public class FSAApplication extends Application {
         return instance;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        try {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            builder.detectFileUriExposure();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } catch (Error error) {
+            error.printStackTrace();
+        }
+
         CrashHandler.getInstance().init(this);
         initUrlServer();
     }
