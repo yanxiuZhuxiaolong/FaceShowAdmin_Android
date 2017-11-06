@@ -117,6 +117,14 @@
     <string name="no_more_data">没有更多数据</string>
     <string name="send_class_circle_fail">发布失败，请重试！</string>
 
+    <!--course-->
+    <string name="lecturer">讲师</string>
+    <string name="area">地点</string>
+    <string name="sign_in_number"><Data><![CDATA[<font color="#999999">%1$s :&#160;</font><font color="#666666">%2$d/%3$d</font>]]></Data></string>
+    <string name="wait_for">待定</string>
+    <string name="today_course">今日课程</string>
 
+    <!-- task-->
+    <string name="have_read_person_number"><Data><![CDATA[<font color="#999999">已查看人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
 
 </resources>
