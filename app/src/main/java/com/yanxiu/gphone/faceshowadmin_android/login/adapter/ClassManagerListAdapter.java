@@ -19,6 +19,8 @@ import java.util.List;
 
 public class ClassManagerListAdapter extends BaseRecyclerViewAdapter {
 
+    private ArrayList<View> views = new ArrayList<>();
+
     private List<GetClazzListResponse.DataBean.ClazsInfosBean> data = new ArrayList<>();
 
     public ClassManagerListAdapter(List<GetClazzListResponse.DataBean.ClazsInfosBean> clazsInfos) {
@@ -32,10 +34,23 @@ public class ClassManagerListAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder) holder).setData(data.get(position));
+        ViewHolder viewHolder = (ViewHolder) holder;
+        viewHolder.classmanger_item_title.setText(data.get(position).getClazsName());
+        viewHolder.classmanger_item_time.setText(data.get(position).getStartTime() + " 至 " + data.get(position).getEndTime());
+        viewHolder.classmanger_item_content.setText(data.get(position).getDescription());
+        if(!views.contains(holder.itemView)){
+            views.add(holder.itemView);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for (int i = 0; i < views.size(); i++) {
+                    if(views.get(i) == view){
+                        views.get(i).setSelected(true);
+                    } else {
+                        views.get(i).setSelected(false);
+                    }
+                }
                 if (recyclerViewItemClickListener != null) {
                     recyclerViewItemClickListener.onItemClick(view, holder.getAdapterPosition());
                 }
@@ -50,19 +65,14 @@ public class ClassManagerListAdapter extends BaseRecyclerViewAdapter {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView projectName, className;
+        TextView classmanger_item_title, classmanger_item_time, classmanger_item_content;
 
         ViewHolder(View itemView) {
             super(itemView);
-            projectName = itemView.findViewById(R.id.project_name);
-            className = itemView.findViewById(R.id.class_name);
+            classmanger_item_title = itemView.findViewById(R.id.classmanger_item_title);
+            classmanger_item_time = itemView.findViewById(R.id.classmanger_item_time);
+            classmanger_item_content = itemView.findViewById(R.id.classmanger_item_content);
         }
-
-        void setData(GetClazzListResponse.DataBean.ClazsInfosBean clazsInfosBean) {
-            projectName.setText(clazsInfosBean.getDescription());
-            className.setText(clazsInfosBean.getClazsName());
-        }
-
 
     }
 

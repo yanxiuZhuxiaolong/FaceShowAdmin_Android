@@ -81,6 +81,19 @@ public class ActivityManger {
     }
 
     /**
+     * finish掉MainActivity-- （切换班级时需要刷新首页数据时，可以调用）
+     */
+    public static void finishMainActivity() {
+        if (activityList != null && activityList.size() > 0) {
+            for (Activity activity : activityList) {
+                if (activity instanceof MainActivity) {
+                    activity.finish();
+                }
+            }
+        }
+    }
+
+    /**
      * 获取当前Activity
      *
      * @return

@@ -26,9 +26,9 @@
     <string-array name="left_drawer_item_names">
         <item>班级首页</item>
         <item>我的资料</item>
-        <item>投诉建议</item>
-        <item>设置</item>
-        <item>退出</item>
+        <!--<item>投诉建议</item>-->
+        <!--<item>设置</item>-->
+        <!--<item>退出</item>-->
     </string-array>
 
     <!--loginActivity-->
@@ -116,6 +116,9 @@
 
     <string name="no_more_data">没有更多数据</string>
     <string name="send_class_circle_fail">发布失败，请重试！</string>
+
+    <string name="change_class">更换班级</string>
+    <string name="yes">确定</string>
 
 
 

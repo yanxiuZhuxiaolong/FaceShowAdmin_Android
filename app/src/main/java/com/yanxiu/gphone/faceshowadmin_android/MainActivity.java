@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.content_frame)
     FrameLayout mContentFrameLayout;
     @BindView(R.id.left_drawer)
-    FrameLayout mLeftDrawerLayout;
+    RelativeLayout mLeftDrawerLayout;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.tab_main)
@@ -53,12 +54,16 @@ public class MainActivity extends FaceShowBaseActivity {
     FrameLayout fragmentContent;
     @BindView(R.id.left_drawer_list)
     RecyclerView mLeftDrawerList;
+    @BindView(R.id.exit)
+    TextView mExitView;
 
     private Context mContext;
     private final String TAB_MAIN = "tab_main";
     private final String TAB_TASK = "tab_task";
     private final String TAB_COURSE = "tab_course";
     private final String TAB_CLASS_CIRCLE = "tab_class_circle";
+
+    private MainFragment mMainFragment;
 
     private final int mNavBarViewsCount = 4;
     private View[] mNavBarViews = new View[mNavBarViewsCount];
@@ -134,14 +139,15 @@ public class MainActivity extends FaceShowBaseActivity {
 
     private void initFragments() {
         fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.fragment_content, new MainFragment(), TAB_MAIN).commit();
+        mMainFragment = new MainFragment();
+        fragmentManager.beginTransaction().add(R.id.fragment_content, mMainFragment, TAB_MAIN).commit();
     }
 
-    private void setLeftDrawer() {
+    public void setLeftDrawer() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mLeftDrawerList.setLayoutManager(linearLayoutManager);
-        LeftDrawerListAdapter leftDrawerListAdapter = new LeftDrawerListAdapter(mContext);
+        LeftDrawerListAdapter leftDrawerListAdapter = new LeftDrawerListAdapter(mContext,mMainFragment.getmData());
         mLeftDrawerList.setAdapter(leftDrawerListAdapter);
         leftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
@@ -200,7 +206,7 @@ public class MainActivity extends FaceShowBaseActivity {
         this.finish();
     }
 
-    @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle})
+    @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle,R.id.exit})
     public void onViewClicked(View view) {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
@@ -234,6 +240,10 @@ public class MainActivity extends FaceShowBaseActivity {
                 mNavIconViews[3].setEnabled(false);
                 changeTabFragment(TAB_CLASS_CIRCLE, 3);
                 break;
+            case R.id.exit :
+                exitApp();
+                mDrawerLayout.closeDrawer(mLeftDrawerLayout);
+                break;
             default:
         }
     }
@@ -251,7 +261,8 @@ public class MainActivity extends FaceShowBaseActivity {
     private Fragment createdNewFragment(String tab) {
         switch (tab) {
             case TAB_MAIN:
-                return new MainFragment();
+                mMainFragment = new MainFragment();
+                return mMainFragment;
             case TAB_COURSE:
                 return new CourseFragment();
             case TAB_TASK:

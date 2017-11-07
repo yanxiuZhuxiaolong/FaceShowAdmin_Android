@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:background="@color/color_1da1f2">
+    android:layout_height="225dp"
+    android:background="@drawable/leftdrawer_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp">
 
+    <ImageView
+        android:id="@+id/user_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/chekkin_record_img" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        tools:text="孙长龙" />
+
+    <TextView
+        android:id="@+id/project_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:textColor="@color/color_ffffff"
+        android:textSize="13dp"
+        tools:text="孙长龙奥术大师科技大厦可达斯柯达控件的圣诞节卡萨看得开" />
+
+    <TextView
+        android:id="@+id/class_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:textColor="@color/color_ffffff"
+        android:textSize="13dp"
+        tools:text="面授一班" />
+
+
+    <TextView
+        android:id="@+id/changeClass_button"
+        android:layout_width="80dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_change_class_button"
+        android:gravity="center"
+        android:text="@string/change_class"
+        android:textColor="@drawable/selector_change_class_text_color"
+        android:textSize="13dp"
+        android:textStyle="bold" />
 
 </LinearLayout>
