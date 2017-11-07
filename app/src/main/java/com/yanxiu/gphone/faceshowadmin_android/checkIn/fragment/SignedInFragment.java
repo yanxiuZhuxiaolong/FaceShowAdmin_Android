@@ -98,7 +98,9 @@ public class SignedInFragment extends FaceShowBaseFragment {
         mGetClassUserSignInsRequestUUID = getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
                         for (int i = 0; i < ret.getData().getCallbacks().size(); i++) {
@@ -131,7 +133,9 @@ public class SignedInFragment extends FaceShowBaseFragment {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (data.size() == 0) {
                     mPublicLoadLayout.showNetErrorView();
                 } else {

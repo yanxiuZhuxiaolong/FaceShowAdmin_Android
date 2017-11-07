@@ -184,7 +184,9 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
                 mPublicLoadLayout.hiddenLoadingView();
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
                         for (int i = 0; i < ret.getData().getCallbacks().size(); i++) {
@@ -219,7 +221,9 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.hiddenLoadingView();
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (data.size() == 0) {
                     mPublicLoadLayout.showNetErrorView();
                 } else {
