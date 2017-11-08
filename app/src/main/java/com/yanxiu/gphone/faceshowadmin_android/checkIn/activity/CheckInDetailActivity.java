@@ -124,9 +124,9 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
             @Override
             public CharSequence getPageTitle(int position) {
                 if (position == 0) {
-                    return getString(R.string.no_sign_in);
-                } else {
                     return getString(R.string.signed_in);
+                } else {
+                    return getString(R.string.no_sign_in);
                 }
             }
         });
@@ -187,7 +187,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (((NoSignInFragment)list.get(0)).mNeedToRefreshParentActivity) {
+        if (((NoSignInFragment) list.get(0)).mNeedToRefreshParentActivity) {
             this.setResult(RESULT_OK);
         }
         this.finish();

@@ -86,6 +86,27 @@
     <string name="retroactive">补签</string>
 
     <string name="manager_clazz">班级管理</string>
+
+
+    <!-- task-->
+    <string name="have_read_person_number"><Data><![CDATA[<font color="#999999">已查看人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
+    <string name="vote_person_number"><Data><![CDATA[<font color="#99d5fe">投票人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>
+    <string name="vote_person_number_title"><Data><![CDATA[<font color="#333333">投票人数:&#160;%1$d/%2$d</font>]]></Data></string>
+    <string name="submit_person_number"><Data><![CDATA[<font color="#99d5fe">提交人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>
+    <string name="submit_person_number_title"><Data><![CDATA[<font color="#333333">提交人数:&#160;%1$d/%2$d</font>]]></Data></string>
+    <string name="see_detail">查看详情</string>
+    <string name="vote_detail">投票详情</string>
+    <string name="questionnaire_detail">问卷详情</string>
+    <string name="see_reply">查看回复</string>
+    <string name="no_submit">未提交</string>
+    <string name="submitted">已提交</string>
+    <string name="no_no_submit_data">无未提交数据</string>
+    <string name="no_no_vote_data">无未投票数据</string>
+    <string name="no_submitted_data">无已提交数据</string>
+    <string name="no_voted_data">无已投票数据</string>
+    <string name="voted">已投票</string>
+    <string name="no_vote">未投票</string>
+
     <!--首页相关 start-->
     <!--首页相关 start-->
     <string name="homepage">首页</string>
@@ -124,7 +145,5 @@
     <string name="wait_for">待定</string>
     <string name="today_course">今日课程</string>
 
-    <!-- task-->
-    <string name="have_read_person_number"><Data><![CDATA[<font color="#999999">已查看人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
 
 </resources>

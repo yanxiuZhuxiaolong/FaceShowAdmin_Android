@@ -92,6 +92,19 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity
+            android:name=".task.VoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.QuestionnaireActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.SubmitDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.VoteDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

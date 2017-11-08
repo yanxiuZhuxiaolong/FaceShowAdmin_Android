@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.task;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetTasksRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetTasksResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -44,10 +46,11 @@ public class TaskFragment extends FaceShowBaseFragment {
     private PublicLoadLayout mPublicLoadLayout;
     private TaskAdapter mTaskAdapter;
     private UUID mUUID;
+    private List<GetTasksResponse.TasksBean> mTasks;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPublicLoadLayout = new PublicLoadLayout(getContext());
         mPublicLoadLayout.setContentView(R.layout.fragment_task_layout);
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
@@ -68,6 +71,27 @@ public class TaskFragment extends FaceShowBaseFragment {
         mTaskAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                GetTasksResponse.TasksBean task = mTasks.get(position);
+                final int typeVote = 3;
+                final int typeSignIn = 6;
+                final int typeQuestionnaire = 5;
+                Intent intent;
+                switch (task.getInteractType()) {
+                    case typeVote:
+                        intent = new Intent(getContext(), VoteActivity.class);
+                        intent.putExtra("stepId", String.valueOf(task.getStepId()));
+                        startActivity(intent);
+                        break;
+                    case typeSignIn:
+                        break;
+                    case typeQuestionnaire:
+
+                        intent = new Intent(getContext(), QuestionnaireActivity.class);
+                        intent.putExtra("stepId", String.valueOf(task.getStepId()));
+                        startActivity(intent);
+                        break;
+                    default:
+                }
 
             }
         });
@@ -86,6 +110,7 @@ public class TaskFragment extends FaceShowBaseFragment {
                 mPublicLoadLayout.hiddenOtherErrorView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData() != null && ret.getData().getTasks() != null && ret.getData().getTasks().size() > 0) {
+                        mTasks = ret.getData().getTasks();
                         mTaskAdapter.update(ret.getData().getTasks());
                     } else {
                         mPublicLoadLayout.showOtherErrorView(getString(R.string.data_empty));

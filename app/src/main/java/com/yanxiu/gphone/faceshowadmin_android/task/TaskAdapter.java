@@ -32,8 +32,16 @@ public class TaskAdapter extends BaseRecyclerViewAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).setData(data.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (recyclerViewItemClickListener != null) {
+                    recyclerViewItemClickListener.onItemClick(view, holder.getAdapterPosition());
+                }
+            }
+        });
     }
 
     @Override
@@ -62,7 +70,7 @@ public class TaskAdapter extends BaseRecyclerViewAdapter {
 
         void setData(GetTasksResponse.TasksBean task) {
             mTvTaskName.setText(task.getInteractName());
-            mTvHaveReadPersonNumber.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_read_person_number,task.getFinishedStudentNum(),task.getTotalStudentNum())));
+            mTvHaveReadPersonNumber.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_read_person_number, task.getFinishedStudentNum(), task.getTotalStudentNum())));
 
         }
     }
