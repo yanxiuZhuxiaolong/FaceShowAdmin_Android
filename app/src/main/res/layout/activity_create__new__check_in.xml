@@ -2,6 +2,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_edf0ee">
@@ -20,12 +21,15 @@
             layout="@layout/common_title_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            tools:layout_editor_absoluteX="0dp" />
 
 
         <EditText
             android:id="@+id/check_in_name"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/color_white"
@@ -38,18 +42,20 @@
             android:paddingTop="22dp"
             android:textColorHint="@color/color_cccccc"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            tools:layout_editor_absoluteX="8dp" />
 
 
         <RelativeLayout
             android:id="@+id/rl_check_in_time"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/check_in_name">
+            app:layout_constraintTop_toBottomOf="@+id/check_in_name"
+            tools:layout_editor_absoluteX="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,17 +91,19 @@
             android:layout_width="15dp"
             android:layout_height="1dp"
             android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time" />
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
+            tools:layout_editor_absoluteX="0dp" />
 
         <RelativeLayout
             android:id="@+id/rl_check_in_start_time"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time">
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
+            tools:layout_editor_absoluteX="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,17 +139,19 @@
             android:layout_width="15dp"
             android:layout_height="1dp"
             android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time" />
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
+            tools:layout_editor_absoluteX="0dp" />
 
         <RelativeLayout
             android:id="@+id/rl_check_in_end_time"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time">
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
+            tools:layout_editor_absoluteX="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -175,13 +185,14 @@
 
         <RelativeLayout
             android:id="@+id/rl_useful"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_end_time">
+            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_end_time"
+            tools:layout_editor_absoluteX="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -208,17 +219,19 @@
             android:layout_width="15dp"
             android:layout_height="1dp"
             android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_useful" />
+            app:layout_constraintTop_toBottomOf="@+id/rl_useful"
+            tools:layout_editor_absoluteX="0dp" />
 
         <RelativeLayout
             android:id="@+id/rl_use_code"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_useful">
+            app:layout_constraintTop_toBottomOf="@+id/rl_useful"
+            tools:layout_editor_absoluteX="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -243,7 +256,7 @@
 
         <EditText
             android:id="@+id/check_in_success_toast"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/color_white"
@@ -257,20 +270,21 @@
             android:paddingTop="15dp"
             android:textColorHint="@color/color_cccccc"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rl_use_code" />
+            app:layout_constraintTop_toBottomOf="@+id/rl_use_code"
+            tools:layout_editor_absoluteX="8dp" />
 
         <View
             android:id="@+id/bottom_view"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/check_in_success_toast" />
+            app:layout_constraintTop_toBottomOf="@+id/check_in_success_toast"
+            tools:layout_editor_absoluteX="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

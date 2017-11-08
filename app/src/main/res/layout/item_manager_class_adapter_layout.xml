@@ -2,22 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginBottom="5dp"
-    android:background="@color/color_white"
+    android:layout_height="155dp"
+    android:background="@drawable/selector_classmanager_item_bg_color"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <include layout="@layout/big_line" />
+
     <TextView
-        android:id="@+id/project_name"
+        android:id="@+id/classmanger_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="2"
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="@drawable/selector_classmanager_item_text_color1"
+        android:textSize="16dp"
+        android:textStyle="bold"
         tools:text="登录后，判断班主任管理的班级数量，如果只有一个班级，自动进入这个班级的首页；" />
 
     <TextView
-        android:id="@+id/class_name"
+        android:id="@+id/classmanger_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        tools:text="面授班级一班" />
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="@drawable/selector_classmanager_item_text_color2"
+        android:textSize="13dp"
+        tools:text="2017年11月6日 至 2017年11月6日" />
+
+    <TextView
+        android:id="@+id/classmanger_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="@drawable/selector_classmanager_item_text_color1"
+        android:textSize="14dp"
+        tools:text="面授班级一班面授班级一班面授班级一班面授班级一班面授班级一班面授班级一班面授班级一班面授班级一班面授班级一班" />
 </LinearLayout>

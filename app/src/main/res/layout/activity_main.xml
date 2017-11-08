@@ -14,18 +14,32 @@
         <include layout="@layout/main_content_view_layout" />
     </FrameLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/left_drawer"
-        android:layout_width="240dp"
+        android:layout_width="305dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/color_edf0ee"
+        android:background="@color/color_EBEFF2"
         android:choiceMode="singleChoice">
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/selector_exit_button"
+            android:gravity="center"
+            android:text="退出"
+            android:textColor="@drawable/selector_exit_text_color"
+            android:textSize="16dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/left_drawer_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_above="@id/exit" />
+
+
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
