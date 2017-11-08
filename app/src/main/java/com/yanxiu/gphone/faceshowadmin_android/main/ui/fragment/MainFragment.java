@@ -24,6 +24,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCheckInAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCourseAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean;
+import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.AdressBookActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
@@ -267,7 +268,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onTabItemClick(View v, int position) {
         switch (position) {
             case 0:
-                ToastUtil.showToast(getActivity(), "通讯录");
+//                ToastUtil.showToast(getActivity(), "通讯录");
+                AdressBookActivity.LuanchActivity(getContext());
                 break;
             case 1:
                 NoticeManageActivity.invoke(getActivity());

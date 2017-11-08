@@ -43,4 +43,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     testCompile 'junit:junit:4.12'
     compile project(':libs:network')
+    implementation files('libs/eventbus-2.4.0.jar')
 }

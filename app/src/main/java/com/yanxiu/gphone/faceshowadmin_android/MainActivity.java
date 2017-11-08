@@ -53,6 +53,8 @@ public class MainActivity extends FaceShowBaseActivity {
     FrameLayout fragmentContent;
     @BindView(R.id.left_drawer_list)
     RecyclerView mLeftDrawerList;
+    @BindView(R.id.navi_switcher)
+    View mBottomView;
 
     private Context mContext;
     private final String TAB_MAIN = "tab_main";
@@ -301,5 +303,12 @@ public class MainActivity extends FaceShowBaseActivity {
 
     public void openLeftDrawer() {
         mDrawerLayout.openDrawer(mLeftDrawerLayout);
+    }
+
+    public void setBottomVisibility(int visibility) {
+        if (mBottomView != null) {
+            mBottomView.setVisibility(visibility);
+//            findViewById(R.id.line).setVisibility(visibility);
+        }
     }
 }

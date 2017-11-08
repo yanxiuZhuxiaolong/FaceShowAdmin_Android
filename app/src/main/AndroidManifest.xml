@@ -82,6 +82,21 @@
         <activity
             android:name=".notice.NoticePostActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".classCircle.activity.SendClassCircleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.PhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.AdressBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.PersonalDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.SignRecordActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -92,6 +107,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".main.adressbook.activity.UserMessageActivity" />
+        <activity android:name=".main.adressbook.activity.AddStudentActivity" />
+        <activity android:name=".login.activity.EditNameActivity"></activity>
     </application>
 
 </manifest>

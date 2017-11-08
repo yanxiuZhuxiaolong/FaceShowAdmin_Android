@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="sssss"
+        android:id="@+id/tv_comment"
+        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="4dp"
+        android:textColor="#333333"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
