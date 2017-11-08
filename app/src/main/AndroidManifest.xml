@@ -108,9 +108,28 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".main.adressbook.activity.UserMessageActivity" />
-        <activity android:name=".main.adressbook.activity.AddStudentActivity" />
-        <activity android:name=".login.activity.EditNameActivity"></activity>
+        <activity android:name=".main.adressbook.activity.UserMessageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".main.adressbook.activity.AddStudentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".login.activity.EditNameActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".task.activity.VoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.QuestionnaireActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.SubmitDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.VoteDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".course.CourseDetailActivity"></activity>
     </application>
 
 </manifest>

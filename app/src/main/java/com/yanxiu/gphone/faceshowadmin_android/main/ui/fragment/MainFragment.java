@@ -238,6 +238,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 if (ret != null && ret.getCode() == 0) {
                     if (ret.getData() != null) {
                         mData = ret.getData();
+                        if (getActivity() instanceof MainActivity) {
+                            ((MainActivity) getActivity()).setLeftDrawer();//给抽屉刷新数据
+                        }
                         if (isAdded() && getActivity() != null) // 防止Fragment被移除
                             setData();
                     } else {
@@ -324,6 +327,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 break;
             default:
         }
+    }
+
+    public CourseArrangeBean getmData() {
+        return mData;
     }
 
     @Override

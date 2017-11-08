@@ -2,14 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_EBEFF2"
     android:orientation="vertical">
 
-    <TextView
+    <include layout="@layout/common_title_layout" />
+
+
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/tab_course"
-        android:textSize="25sp"
-        android:textColor="@color/color_1da1f2" />
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="@dimen/dimen_0dp" />
+
 </LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="34dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/vote_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="7dp"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="8dp"
+        android:lineSpacingMultiplier="1"
+        android:textColor="@color/color_666666"
+        android:textSize="16dp"
+        tools:text="A.撒大帝" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.yanxiu.gphone.faceshowadmin_android.customView.VoteProgressView
+            android:id="@+id/voteResult_progress_bg"
+            android:layout_width="260dp"
+            android:layout_height="6dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/progressbar_bg"
+            android:gravity="center_vertical" />
+
+        <com.yanxiu.gphone.faceshowadmin_android.customView.VoteProgressView
+            android:id="@+id/voteResult_progress"
+            android:layout_width="260dp"
+            android:layout_height="6dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/progressbar"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/voteResult_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/voteResult_progress_bg"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_666666"
+            android:textSize="16sp"
+            tools:text="10" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

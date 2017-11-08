@@ -2,10 +2,13 @@ package com.yanxiu.gphone.faceshowadmin_android.notice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.test.yanxiu.network.HttpCallback;
@@ -94,6 +98,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     private String mResourceIds;
     private NoticeSaveResponse.DataBean mReturnNoticeBean;
     private long mNoticeCreateTime;
+    private File portraitFile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -246,16 +251,28 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 if (!TextUtils.isEmpty(mCameraPath)){
 //                    mCropPath=FileUtil.getImageCatchPath(System.currentTimeMillis()+".jpg");
 //                    startCropImg(Uri.fromFile(new File(mCameraPath)),mCropPath);
-                    mImagePaths = mCameraPath;
-                    mType = TYPE_IMAGE;
+                    File file = new File(mCameraPath);
+                    Uri imageUri;
+                    if (Build.VERSION.SDK_INT < 24) {
+                        imageUri = Uri.fromFile(file);
+                    } else {
+                        imageUri = FileProvider.getUriForFile(NoticePostActivity.this, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", file);
+                    }
+                    startPhotoZoom(imageUri, Uri.fromFile(createCroppedImageFile()));
+//                    mImagePaths = mCameraPath;
+//                    mType = TYPE_IMAGE;
                 }
                 break;
             case REQUEST_CODE_CROP:
-                if (!TextUtils.isEmpty(mCropPath)) {
-                    if (new File(mCropPath).exists()) {
-                        mImagePaths = mCropPath;
-                        mType = TYPE_IMAGE;
-                    }
+//                if (!TextUtils.isEmpty(mCropPath)) {
+//                    if (new File(mCropPath).exists()) {
+//                        mImagePaths = mCropPath;
+//                        mType = TYPE_IMAGE;
+//                    }
+//                }
+                if (portraitFile != null) {
+                    mImagePaths = portraitFile.getAbsolutePath();
+                    mType = TYPE_IMAGE;
                 }
                 break;
         }
@@ -265,6 +282,57 @@ public class NoticePostActivity extends FaceShowBaseActivity {
             noticePicAdd.setVisibility(View.GONE);
             Glide.with(mContext).load(mImagePaths).into(noticePic);
         }
+    }
+
+    /**
+     * 裁剪图片方法实现
+     *
+     * @param uri
+     */
+    public void startPhotoZoom(Uri uri, Uri saveCroppedImageFileUri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+//        if(intent.resolveActivity(getPackageManager())==null){
+//            ToastMaster.showToast("该手机不支持裁剪");
+//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        intent.setDataAndType(uri, "image/*");
+        // crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+        intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
+//        intent.putExtra("aspectX", 1);
+//        intent.putExtra("aspectY", 1);
+        // outputX outputY 是裁剪图片宽高
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("scale", true);
+        intent.putExtra("return-data", false);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());//输出图片格式
+        intent.putExtra("noFaceDetection", true);//取消人脸识别
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, saveCroppedImageFileUri);
+        startActivityForResult(intent, REQUEST_CODE_CROP);
+    }
+
+    /**
+     * 创建保存裁剪后图片的文件
+     *
+     * @return
+     */
+    private File createCroppedImageFile() {
+        mCropPath = FileUtils.getImageCatchPath(System.currentTimeMillis() + ".jpg");
+
+//        File dir = new File(Environment.getExternalStorageDirectory() + "/yanxiu/portrait/");
+//        if (!dir.exists())
+//            dir.mkdir();
+        portraitFile = new File(mCropPath);
+        try {
+            portraitFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "裁剪文件异常", Toast.LENGTH_SHORT).show();
+        }
+        return portraitFile;
     }
 
     private void submitNotice() {

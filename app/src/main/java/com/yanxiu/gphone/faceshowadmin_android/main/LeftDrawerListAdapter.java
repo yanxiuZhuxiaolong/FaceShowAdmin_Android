@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.login.activity.ClassManageActivity;
+import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
+import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.utils.YXPictureManager;
 
 /**
  * adapter for LeftDrawerRecyclerView in MainActivity
@@ -17,15 +22,21 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyc
  */
 
 public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
+    private Context mContext;
     private final int TYPE_HEAD = 0X01;
     private final int TYPE_NORMAL = 0X02;
 
     private int[] itemIconArray = new int[]{R.drawable.ic_home_black,
-            R.drawable.ic_person_black, R.drawable.ic_person_black,
-            R.drawable.ic_settings_black, R.drawable.ic_exit_to_app_black};
+            R.drawable.ic_person_black,};
+    //            R.drawable.ic_person_black,
+//            R.drawable.ic_settings_black, R.drawable.ic_exit_to_app_black};
     private String[] itemNameArray = null;
 
-    public LeftDrawerListAdapter(Context context) {
+    private CourseArrangeBean mCourseData;
+
+    public LeftDrawerListAdapter(Context context, CourseArrangeBean courseData) {
+        mContext = context;
+        mCourseData = courseData;
         itemNameArray = context.getResources().getStringArray(R.array.left_drawer_item_names);
     }
 
@@ -43,6 +54,22 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
+            HeadViewHolder headViewHolder = (HeadViewHolder) holder;
+            YXPictureManager.getInstance().showRoundPic(mContext, UserInfo.getInstance().getInfo().getAvatar(), headViewHolder.user_icon, 6, R.drawable.discuss_user_default_icon);
+            headViewHolder.user_name.setText(UserInfo.getInstance().getInfo().getRealName());
+            try {
+                headViewHolder.project_name.setText(mCourseData.getProjectInfo().getProjectName());
+                headViewHolder.class_name.setText(mCourseData.getClazsInfo().getClazsName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            headViewHolder.changeClass_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClassManageActivity.invoke((Activity) mContext);
+                }
+            });
 
         } else {
             ((NormalViewHolder) holder).itemName.setText(itemNameArray[position - 1]);
@@ -77,8 +104,19 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
 
     private class HeadViewHolder extends RecyclerView.ViewHolder {
 
+        public ImageView user_icon;
+        public TextView user_name;
+        public TextView project_name;
+        public TextView class_name;
+        public TextView changeClass_button;
+
         HeadViewHolder(View itemView) {
             super(itemView);
+            user_icon = itemView.findViewById(R.id.user_icon);
+            user_name = itemView.findViewById(R.id.user_name);
+            project_name = itemView.findViewById(R.id.project_name);
+            class_name = itemView.findViewById(R.id.class_name);
+            changeClass_button = itemView.findViewById(R.id.changeClass_button);
         }
     }
 
