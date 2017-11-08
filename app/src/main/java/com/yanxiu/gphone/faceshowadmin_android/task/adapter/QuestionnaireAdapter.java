@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,7 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.SubmitDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +30,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
     private final int TYPE_HEAD = 0x04;
     private QusetionGroupBean data;
 
-    QuestionnaireAdapter(QusetionGroupBean questionGroup) {
+    public QuestionnaireAdapter(QusetionGroupBean questionGroup) {
         this.data = questionGroup;
     }
 
@@ -119,8 +120,8 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), SubmitDetailActivity.class);
-                    intent.putExtra("submitNum",qusetionGroupBean.getAnswerUserNum());
-                    intent.putExtra("totalNum",qusetionGroupBean.getTotalUserNum());
+                    intent.putExtra("submitNum", qusetionGroupBean.getAnswerUserNum());
+                    intent.putExtra("totalNum", qusetionGroupBean.getTotalUserNum());
                     intent.putExtra("stepId", String.valueOf(qusetionGroupBean.getStepId()));
                     view.getContext().startActivity(intent);
 

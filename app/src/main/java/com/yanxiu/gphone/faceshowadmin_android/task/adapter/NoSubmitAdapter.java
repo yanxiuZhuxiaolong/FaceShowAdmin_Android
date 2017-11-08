@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

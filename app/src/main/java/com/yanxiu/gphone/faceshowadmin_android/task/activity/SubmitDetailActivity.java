@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.task.fragment.NoSubmitFragment;
+import com.yanxiu.gphone.faceshowadmin_android.task.fragment.SubmittedFragment;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 
 import java.lang.reflect.Field;
@@ -25,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class VoteDetailActivity extends FaceShowBaseActivity {
+public class SubmitDetailActivity extends FaceShowBaseActivity {
 
     @BindView(R.id.title_layout_left_img)
     ImageView mTitleLayoutLeftImg;
@@ -47,7 +49,7 @@ public class VoteDetailActivity extends FaceShowBaseActivity {
 
     private void initTitle() {
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
-        mTitleLayoutTitle.setText(Html.fromHtml(getString(R.string.vote_person_number_title, getIntent().getIntExtra("submitNum", 0), getIntent().getIntExtra("totalNum", 0))));
+        mTitleLayoutTitle.setText(Html.fromHtml(getString(R.string.submit_person_number_title, getIntent().getIntExtra("submitNum", 0), getIntent().getIntExtra("totalNum", 0))));
         mTitleLayoutTitle.setTextSize(18);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
     }
@@ -63,12 +65,12 @@ public class VoteDetailActivity extends FaceShowBaseActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("stepId", getIntent().getStringExtra("stepId"));
-        VotedFragment votedFragment = new VotedFragment();
-        votedFragment.setArguments(bundle);
-        NoVoteFragment noVoteFragment = new NoVoteFragment();
-        noVoteFragment.setArguments(bundle);
-        list.add(votedFragment);
-        list.add(noVoteFragment);
+        SubmittedFragment submittedFragment = new SubmittedFragment();
+        submittedFragment.setArguments(bundle);
+        NoSubmitFragment noSubmitFragment = new NoSubmitFragment();
+        noSubmitFragment.setArguments(bundle);
+        list.add(submittedFragment);
+        list.add(noSubmitFragment);
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -84,9 +86,9 @@ public class VoteDetailActivity extends FaceShowBaseActivity {
             @Override
             public CharSequence getPageTitle(int position) {
                 if (position == 0) {
-                    return getString(R.string.voted);
+                    return getString(R.string.submitted);
                 } else {
-                    return getString(R.string.no_vote);
+                    return getString(R.string.no_submit);
                 }
             }
         });
@@ -114,8 +116,8 @@ public class VoteDetailActivity extends FaceShowBaseActivity {
                 child.setPadding(0, 0, 0, 0);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.setMarginStart(ScreenUtils.dpToPxInt(VoteDetailActivity.this, marginLeft));
-                    params.setMarginEnd(ScreenUtils.dpToPxInt(VoteDetailActivity.this, marginRight));
+                    params.setMarginStart(ScreenUtils.dpToPxInt(SubmitDetailActivity.this, marginLeft));
+                    params.setMarginEnd(ScreenUtils.dpToPxInt(SubmitDetailActivity.this, marginRight));
                 }
                 child.setLayoutParams(params);
                 child.invalidate();

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yanxiu.gphone.faceshowadmin_android.task.VoteActivity">
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteActivity">
 
     <include layout="@layout/common_title_layout" />
 

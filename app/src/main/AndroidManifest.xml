@@ -94,17 +94,18 @@
         </provider>
 
         <activity
-            android:name=".task.VoteActivity"
+            android:name=".task.activity.VoteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".task.QuestionnaireActivity"
+            android:name=".task.activity.QuestionnaireActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".task.SubmitDetailActivity"
+            android:name=".task.activity.SubmitDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".task.VoteDetailActivity"
+            android:name=".task.activity.VoteDetailActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".course.CourseDetailActivity"></activity>
     </application>
 
 </manifest>

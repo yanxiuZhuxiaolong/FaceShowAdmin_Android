@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +18,7 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetClazsUserQuestionRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetClazsUserQuestionResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.adapter.NoSubmitAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ import butterknife.Unbinder;
 /**
  * created by fengrongcheng
  */
-public class NoVoteFragment extends FaceShowBaseFragment {
-    public static String STATUE_CODE = "0";
+public class VotedFragment extends FaceShowBaseFragment {
+    public static String STATUE_CODE = "1";
     PublicLoadLayout mPublicLoadLayout;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -119,47 +120,47 @@ public class NoVoteFragment extends FaceShowBaseFragment {
                         mPublicLoadLayout.hiddenNetErrorView();
                         data.addAll(ret.getData().getElements());
                         mNoSubmitAdapter.update(data);
-                } else {
-                    if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_no_vote_data));
-                    } else {
-                        ToastUtil.showToast(getActivity(), ret.getMessage());
-                    }
-                }
                     } else {
                         if (data.size() == 0) {
+                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_voted_data));
+                        } else {
+                            ToastUtil.showToast(getActivity(), ret.getMessage());
+                        }
+                    }
+                } else {
+                    if (data.size() == 0) {
                         mPublicLoadLayout.showOtherErrorView(ret.getMessage());
                     } else {
                         ToastUtil.showToast(getActivity(), ret.getMessage());
-                        }
-
-
                     }
+
+
                 }
-
-
-                @Override
-                public void onFail (RequestBase request, Error error){
-                    mPublicLoadLayout.hiddenLoadingView();
-                    if (mSwipeRefreshLayout != null) {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                    if (data.size() == 0) {
-                        mPublicLoadLayout.showNetErrorView();
-                    } else {
-                        ToastUtil.showToast(getActivity(), error.getMessage());
-                    }
-                }
-            });
-        }
-
-        @Override
-        public void onDestroyView () {
-            super.onDestroyView();
-            unbinder.unbind();
-            if (mGetClassUserSignInsRequestUUID != null) {
-                RequestBase.cancelRequestWithUUID(mGetClassUserSignInsRequestUUID);
             }
-            mNeedToRefreshParentActivity = false;
-        }
+
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                mPublicLoadLayout.hiddenLoadingView();
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+                if (data.size() == 0) {
+                    mPublicLoadLayout.showNetErrorView();
+                } else {
+                    ToastUtil.showToast(getActivity(), error.getMessage());
+                }
+            }
+        });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+        if (mGetClassUserSignInsRequestUUID != null) {
+            RequestBase.cancelRequestWithUUID(mGetClassUserSignInsRequestUUID);
+        }
+        mNeedToRefreshParentActivity = false;
+    }
+}

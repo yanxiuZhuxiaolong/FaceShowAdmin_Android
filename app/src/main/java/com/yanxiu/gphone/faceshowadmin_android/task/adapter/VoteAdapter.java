@@ -1,8 +1,6 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.adapter;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,8 +12,7 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
-import com.yanxiu.gphone.faceshowadmin_android.model.VoteInfoBean;
-import com.yanxiu.gphone.faceshowadmin_android.net.task.GetVotesResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +30,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
     private final int TYPE_HEAD = 0x04;
     private QusetionGroupBean data;
 
-    VoteAdapter(QusetionGroupBean questionGroup) {
+    public VoteAdapter(QusetionGroupBean questionGroup) {
         this.data = questionGroup;
     }
 

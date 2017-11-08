@@ -29,7 +29,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
-import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
+import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,12 +14,11 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
-import com.yanxiu.gphone.faceshowadmin_android.checkIn.adapter.NoSignInAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
-import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetClazsUserQuestionRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetClazsUserQuestionResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.adapter.NoSubmitAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import butterknife.Unbinder;
 /**
  * created by fengrongcheng
  */
-public class NoSubmitFragment extends FaceShowBaseFragment {
+public class NoVoteFragment extends FaceShowBaseFragment {
     public static String STATUE_CODE = "0";
     PublicLoadLayout mPublicLoadLayout;
     @BindView(R.id.recyclerView)
@@ -123,7 +122,7 @@ public class NoSubmitFragment extends FaceShowBaseFragment {
                         mNoSubmitAdapter.update(data);
                 } else {
                     if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_no_submit_data));
+                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_no_vote_data));
                     } else {
                         ToastUtil.showToast(getActivity(), ret.getMessage());
                     }

@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +14,7 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetVotesRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetVotesResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.adapter.QuestionnaireAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
 /**
  * @author frc
  */
-public class VoteActivity extends FaceShowBaseActivity {
+public class QuestionnaireActivity extends FaceShowBaseActivity {
     PublicLoadLayout mPublicLoadLayout;
     @BindView(R.id.title_layout_left_img)
     ImageView mTitleLayoutLeftImg;
@@ -40,7 +41,7 @@ public class VoteActivity extends FaceShowBaseActivity {
         setContentView(mPublicLoadLayout);
         ButterKnife.bind(this);
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
-        mTitleLayoutTitle.setText(R.string.vote_detail);
+        mTitleLayoutTitle.setText(R.string.questionnaire_detail);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
 
 
@@ -53,11 +54,11 @@ public class VoteActivity extends FaceShowBaseActivity {
         getVotesRequest.startRequest(GetVotesResponse.class, new HttpCallback<GetVotesResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetVotesResponse ret) {
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(VoteActivity.this);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(QuestionnaireActivity.this);
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 mRecyclerView.setLayoutManager(linearLayoutManager);
-                VoteAdapter voteAdapter = new VoteAdapter(ret.getData().getQuestionGroup());
-                mRecyclerView.setAdapter(voteAdapter);
+                QuestionnaireAdapter questionnaireAdapter = new QuestionnaireAdapter(ret.getData().getQuestionGroup());
+                mRecyclerView.setAdapter(questionnaireAdapter);
 
             }
 

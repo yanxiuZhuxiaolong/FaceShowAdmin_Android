@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.course.CourseDetailActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <ImageView
+            android:id="@+id/img_left_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/holo_red_dark" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/course_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:maxLines="2"
+                    android:textColor="@color/color_333333"
+                    android:textSize="18sp"
+                    tools:text="国培计划教育信息化管理教育培训划项目的管理的模式、经验与总结计划" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/tag_width"
+                        android:layout_height="@dimen/tag_height"
+                        android:background="@drawable/shape_course_item"
+                        android:gravity="center"
+                        android:text="@string/time"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/tag_textsize" />
+
+                    <TextView
+                        android:id="@+id/course_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tag_marginleft"
+                        android:gravity="center"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_textsize"
+                        tools:text="上午 12.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/tag_width"
+                        android:layout_height="@dimen/tag_height"
+                        android:background="@drawable/shape_course_item"
+                        android:gravity="center"
+                        android:text="授课"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/tag_textsize" />
+
+                    <TextView
+                        android:id="@+id/course_teacher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tag_marginleft"
+                        android:gravity="center"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_textsize"
+                        tools:text="李老师" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/tag_width"
+                        android:layout_height="@dimen/tag_height"
+                        android:background="@drawable/shape_course_item"
+                        android:gravity="center"
+                        android:text="@string/area"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/tag_textsize" />
+
+                    <TextView
+                        android:id="@+id/course_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/tag_marginleft"
+                        android:gravity="center"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_textsize"
+                        tools:text="第六会议室" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_see_course"
+                    android:layout_width="80dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/shape_see_course_detail_bg"
+                    android:gravity="center"
+                    android:text="课程信息"
+                    android:textColor="@color/color_0068BD" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_EBEFF2" />
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/color_white"
+                    app:tabIndicatorColor="@color/color_0068BD"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabSelectedTextColor="@color/color_333333"
+                    app:tabTextColor="@color/color_999999" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

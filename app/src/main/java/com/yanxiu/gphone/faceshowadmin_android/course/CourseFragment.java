@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.course;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -64,12 +65,7 @@ public class CourseFragment extends FaceShowBaseFragment {
                 return true;
             }
         });
-        mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-                return false;
-            }
-        });
+
 
         return mPublicLoadLayout;
     }

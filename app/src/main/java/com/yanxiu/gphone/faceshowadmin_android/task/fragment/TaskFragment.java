@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.task;
+package com.yanxiu.gphone.faceshowadmin_android.task.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,9 @@ import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListe
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetTasksRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetTasksResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.adapter.TaskAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.QuestionnaireActivity;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteActivity;
 
 import java.util.List;
 import java.util.UUID;
