@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.course;
+package com.yanxiu.gphone.faceshowadmin_android.course.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;

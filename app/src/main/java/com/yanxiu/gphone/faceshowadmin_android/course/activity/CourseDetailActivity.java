@@ -1,5 +1,6 @@
-package com.yanxiu.gphone.faceshowadmin_android.course;
+package com.yanxiu.gphone.faceshowadmin_android.course.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,24 +8,23 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.NoSignInFragment;
+import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseResourceFragment;
+import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseTaskFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
-import com.yanxiu.gphone.faceshowadmin_android.task.activity.SubmitDetailActivity;
-import com.yanxiu.gphone.faceshowadmin_android.task.fragment.SubmittedFragment;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 
@@ -56,6 +56,7 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
     TextView mTvSeeCourse;
     private PublicLoadLayout mPublicLoadLayout;
     private UUID mGetCourseRequestUUID;
+    private GetCourseResponse.DataBean data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +73,15 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
 
     private void getCourse() {
         mPublicLoadLayout.showLoadingView();
-        GetCourseRequest getCourseRequest = new GetCourseRequest();
+        final GetCourseRequest getCourseRequest = new GetCourseRequest();
         getCourseRequest.courseId = getIntent().getStringExtra("courseId");
         mGetCourseRequestUUID = getCourseRequest.startRequest(GetCourseResponse.class, new HttpCallback<GetCourseResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetCourseResponse ret) {
                 mPublicLoadLayout.hiddenOtherErrorView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
-
-                    mCourseTitle.setText(ret.getData().getCourse().getCourseName());
+                    data = ret.getData();
+                    mCourseTitle.setText(Html.fromHtml(ret.getData().getCourse().getCourseName()));
                     if (ret.getData().getCourse().getLecturerInfos() != null && ret.getData().getCourse().getLecturerInfos() != null && ret.getData().getCourse().getLecturerInfos().size() > 0) {
                         mCourseTeacher.setText(ret.getData().getCourse().getLecturerInfos().get(0).getLecturerName());
                     } else {
@@ -89,6 +90,9 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                     mCourseLocation.setText(TextUtils.isEmpty(ret.getData().getCourse().getSite()) ? getString(R.string.wait_for) : ret.getData().getCourse().getSite());
                     mCourseTime.setText(StringUtils.getCourseTime(ret.getData().getCourse().getStartTime(), ret.getData().getCourse().getEndTime()));
                     CourseResourceFragment courseResourceFragment = new CourseResourceFragment();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("courseId", getCourseRequest.courseId);
+                    courseResourceFragment.setArguments(bundle1);
                     CourseTaskFragment courseTaskFragment = new CourseTaskFragment();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("data", ret.getData());
@@ -139,6 +143,9 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                 this.finish();
                 break;
             case R.id.tv_see_course:
+                Intent intent = new Intent(CourseDetailActivity.this, CourseMessageActivity.class);
+                intent.putExtra("data", data.getCourse());
+                startActivity(intent);
                 break;
             default:
         }

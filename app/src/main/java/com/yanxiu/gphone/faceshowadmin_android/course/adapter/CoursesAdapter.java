@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.course;
+package com.yanxiu.gphone.faceshowadmin_android.course.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetClassCoursesResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 
@@ -31,7 +32,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
     private GetClassCoursesResponse.DataBean data;
     private Context mContext;
 
-    CoursesAdapter(Context context, GetClassCoursesResponse.DataBean dataBean) {
+    public CoursesAdapter(Context context, GetClassCoursesResponse.DataBean dataBean) {
         mContext = context;
         data = dataBean;
     }

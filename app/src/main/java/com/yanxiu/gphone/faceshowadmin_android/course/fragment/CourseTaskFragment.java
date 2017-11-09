@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.course;
+package com.yanxiu.gphone.faceshowadmin_android.course.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
+import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CourseTaskAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
