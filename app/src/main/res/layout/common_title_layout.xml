@@ -64,7 +64,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
         android:gravity="center"
-        android:textColor="#1da1f2"
+        android:textColor="@drawable/selector_classmanager_title_right_text_color"
         android:textSize="@dimen/commontitle_singin_textsize"
         android:visibility="gone" />
 

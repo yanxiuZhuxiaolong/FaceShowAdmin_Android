@@ -83,7 +83,29 @@
             android:name=".notice.NoticePostActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".schedule.ScheduleManageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".schedule.PublishScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".schedule.UpdateScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resource.ResourceMangerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resource.PublishResourceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".classCircle.activity.SendClassCircleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.PDFViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".common.activity.PhotoActivity"
@@ -108,10 +130,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".main.adressbook.activity.UserMessageActivity"
+        <activity
+            android:name=".main.adressbook.activity.UserMessageActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".main.adressbook.activity.AddStudentActivity"
+        <activity
+            android:name=".main.adressbook.activity.AddStudentActivity"
             android:screenOrientation="portrait" />
 
         <activity android:name=".main.adressbook.activity.EditNameActivity"
