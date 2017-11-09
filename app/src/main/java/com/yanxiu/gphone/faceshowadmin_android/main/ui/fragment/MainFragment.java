@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
+import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
@@ -30,7 +31,13 @@ import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.activity.MainDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.main.MainFragmentRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleResponse;
 import com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity;
+import com.yanxiu.gphone.faceshowadmin_android.resource.ResourceMangerActivity;
+import com.yanxiu.gphone.faceshowadmin_android.schedule.PublishScheduleActivity;
+import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
+import com.yanxiu.gphone.faceshowadmin_android.schedule.bean.ScheduleBean;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.TextTypefaceUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
@@ -279,10 +286,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 CheckInNotesActivity.toThisAct(MainFragment.this.getContext(), "0");
                 break;
             case 3:
-                ToastUtil.showToast(getActivity(), "日程管理");
+                requestScheduleData();
                 break;
             case 4:
-                ToastUtil.showToast(getActivity(), "资源管理");
+                ResourceMangerActivity.invoke(getActivity());
                 break;
 
         }
@@ -329,6 +336,36 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     public CourseArrangeBean getmData() {
         return mData;
+    }
+
+    /**
+     * 获取日程信息
+     */
+    private void requestScheduleData() {
+        mRootView.showLoadingView();
+        ScheduleRequest scheduleRequest = new ScheduleRequest();
+        scheduleRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
+        scheduleRequest.startRequest(ScheduleResponse.class, new HttpCallback<ScheduleResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, ScheduleResponse ret) {
+                mRootView.finish();
+                if (ret != null && ret.getCode() == 0 && ret.getSchedule() != null) {
+                    ScheduleBean bean = ret.getSchedule();
+                    ScheduleManageActivity.invoke(getActivity(), bean);
+                } else {
+                    PublishScheduleActivity.invoke(getActivity());
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                mRootView.finish();
+                if (error != null) {
+                    ToastUtil.showToast(FSAApplication.getInstance().getApplicationContext(), error.getMessage());
+                }
+            }
+        });
+
     }
 
     @Override

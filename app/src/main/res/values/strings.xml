@@ -109,6 +109,7 @@
     <string name="notice_edit_title_hint">请输入通知标题 (最多20字）</string>
     <string name="notice_edit_content_hint">请输入通知内容</string>
     <string name="notice_delete">删除</string>
+    <string name="update">修改</string>
     <string name="notice_cancel">取消</string>
     <string name="notice_detail_title">通知详情</string>
     <string name="has_read">已阅读:</string>
@@ -119,7 +120,13 @@
 
     <string name="change_class">更换班级</string>
     <string name="yes">确定</string>
-
+    <string name="manager_schedule">日程管理</string>
+    <string name="publish_schedule">发布日程</string>
+    <string name="publish_resource">上传资源</string>
+    <string name="manager_resource">资源管理</string>
+    <string name="upload">上传</string>
+    <string name="resource_edit_title_hint">请输入资源名称 (最多20字）</string>
+    <string name="resource_edit_lianjie_hint">网页链接</string>
 
 
 </resources>

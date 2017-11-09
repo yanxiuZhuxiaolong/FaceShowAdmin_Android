@@ -44,4 +44,6 @@ public class Constants {
     //eventbus 传递hashcode
     public final static String HASHCODE = "hashCode";
     public final static String POSITON = "position";
+
+    public static final String WORD = "word", EXCEL = "excel", PPT = "ppt", PDF = "pdf", TEXT = "text";
 }

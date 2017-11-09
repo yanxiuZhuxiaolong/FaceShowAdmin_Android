@@ -136,6 +136,7 @@ public class ClassManageActivity extends FaceShowBaseActivity {
             public void onSuccess(RequestBase request, GetClazzListResponse ret) {
                 mRootView.hiddenLoadingView();
                 if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null && ret.getData().getClazsInfos().size() > 0) {
+                    SpManager.saveClassListInfo(ret.getData());
                     mData = ret.getData();
                     setRecyclerViewData();
                 } else {

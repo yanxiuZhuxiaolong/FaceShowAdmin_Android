@@ -31,4 +31,9 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="pdf_publish_load_progress">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateDrawable">@drawable/publish_loading_rotate</item>
+    </style>
+
 </resources>

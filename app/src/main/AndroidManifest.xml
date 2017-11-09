@@ -82,6 +82,27 @@
         <activity
             android:name=".notice.NoticePostActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".schedule.ScheduleManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".schedule.PublishScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".schedule.UpdateScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resource.ResourceMangerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resource.PublishResourceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.PDFViewActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
