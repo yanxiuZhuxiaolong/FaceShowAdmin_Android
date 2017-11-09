@@ -14,4 +14,15 @@
         <attr name="waves_radius_bottom_left" format="dimension" />
         <attr name="waves_radius_bottom_right" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="MaxLineTextLayout">
+        <attr name="maxLines" format="integer"/>
+        <attr name="contentTextSize" format="dimension"/>
+        <attr name="moreTextSize" format="dimension"/>
+        <attr name="contentTextColor" format="color"/>
+        <attr name="moreTextColor" format="color"/>
+        <attr name="contentSpaceLineHeight" format="dimension"/>
+        <attr name="moreTextMaginTop" format="dimension"/>
+    </declare-styleable>
+
 </resources>

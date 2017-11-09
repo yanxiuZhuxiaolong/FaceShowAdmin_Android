@@ -29,7 +29,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
-import com.yanxiu.gphone.faceshowadmin_android.task.TaskFragment;
+import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +54,8 @@ public class MainActivity extends FaceShowBaseActivity {
     FrameLayout fragmentContent;
     @BindView(R.id.left_drawer_list)
     RecyclerView mLeftDrawerList;
+    @BindView(R.id.navi_switcher)
+    View mBottomView;
     @BindView(R.id.exit)
     TextView mExitView;
 
@@ -312,5 +314,12 @@ public class MainActivity extends FaceShowBaseActivity {
 
     public void openLeftDrawer() {
         mDrawerLayout.openDrawer(mLeftDrawerLayout);
+    }
+
+    public void setBottomVisibility(int visibility) {
+        if (mBottomView != null) {
+            mBottomView.setVisibility(visibility);
+//            findViewById(R.id.line).setVisibility(visibility);
+        }
     }
 }

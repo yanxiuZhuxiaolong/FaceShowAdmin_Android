@@ -92,7 +92,7 @@ public class PublicLoadLayout extends FrameLayout {
      * 给默认的网络错误界面的重试button添加点击事件。
      * 如果是网络错误界面，必须传入该监听，否则，点击无效。
      *
-     * @param onclickListener
+     * @param onclickListener   R.id.retry_button
      */
     public void setRetryButtonOnclickListener(OnClickListener onclickListener) {
         mRetry_button.setOnClickListener(onclickListener);

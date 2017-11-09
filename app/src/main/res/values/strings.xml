@@ -86,6 +86,27 @@
     <string name="retroactive">补签</string>
 
     <string name="manager_clazz">班级管理</string>
+
+
+    <!-- task-->
+    <string name="have_read_person_number"><Data><![CDATA[<font color="#999999">已查看人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
+    <string name="vote_person_number"><Data><![CDATA[<font color="#99d5fe">投票人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>
+    <string name="vote_person_number_title"><Data><![CDATA[<font color="#333333">投票人数:&#160;%1$d/%2$d</font>]]></Data></string>
+    <string name="submit_person_number"><Data><![CDATA[<font color="#99d5fe">提交人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>
+    <string name="submit_person_number_title"><Data><![CDATA[<font color="#333333">提交人数:&#160;%1$d/%2$d</font>]]></Data></string>
+    <string name="see_detail">查看详情</string>
+    <string name="vote_detail">投票详情</string>
+    <string name="questionnaire_detail">问卷详情</string>
+    <string name="see_reply">查看回复</string>
+    <string name="no_submit">未提交</string>
+    <string name="submitted">已提交</string>
+    <string name="no_no_submit_data">无未提交数据</string>
+    <string name="no_no_vote_data">无未投票数据</string>
+    <string name="no_submitted_data">无已提交数据</string>
+    <string name="no_voted_data">无已投票数据</string>
+    <string name="voted">已投票</string>
+    <string name="no_vote">未投票</string>
+
     <!--首页相关 start-->
     <!--首页相关 start-->
     <string name="homepage">首页</string>
@@ -116,8 +137,30 @@
 
 
     <string name="no_more_data">没有更多数据</string>
-    <string name="send_class_circle_fail">发布失败，请重试！</string>
 
+    <string name="class_circle_comment_to_user">回复%1$s:(暂不支持表情)</string>
+    <string name="class_circle_comment_to_master">评论(暂不支持表情)</string>
+    <string name="send_class_circle_fail">发布失败，请重试！</string>
+    <string name="send_class_circle_hint">这一刻的想法...</string>
+    <string name="class_circle_comment_hint">评论(暂不支持表情)</string>
+    <string name="class_circle_like">点赞</string>
+    <string name="class_circle_comment">评论</string>
+    <string name="class_circle_delete">删除</string>
+    <string name="comment_to_user">%1$s对%2$s说: %3$s</string>
+    <string name="comment_to_master">%1$s: %2$s</string>
+    <string name="text_all">全文</string>
+    <string name="text_line">收起</string>
+
+    <string name="cancle">取消</string>
+    <string name="send">发表</string>
+    <string name="send_success">发布成功</string>
+    <string name="error_tip">你的输入内容中可能存在表情，请修改后再次提交!</string>
+    <!--course-->
+    <string name="lecturer">讲师</string>
+    <string name="area">地点</string>
+    <string name="sign_in_number"><Data><![CDATA[<font color="#999999">%1$s :&#160;</font><font color="#666666">%2$d/%3$d</font>]]></Data></string>
+    <string name="wait_for">待定</string>
+    <string name="today_course">今日课程</string>
     <string name="change_class">更换班级</string>
     <string name="yes">确定</string>
     <string name="manager_schedule">日程管理</string>
@@ -128,5 +171,10 @@
     <string name="resource_edit_title_hint">请输入资源名称 (最多20字）</string>
     <string name="resource_edit_lianjie_hint">网页链接</string>
 
+    <string name="course_task">课程任务</string>
+    <string name="course_resource">课程资源</string>
+    <string name="have_finish_number"><Data><![CDATA[<font color="#999999">已完成人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
+
+    <string name="add_adress">添加</string>
 
 </resources>

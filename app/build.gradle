@@ -39,10 +39,12 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.4.2'
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
+    compile 'de.halfbit:pinned-section-listview:1.0.0'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.5.1'
     compile 'com.zhy:okhttputils:2.6.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     testCompile 'junit:junit:4.12'
     compile project(':libs:network')
+    compile files('libs/eventbus-2.4.0.jar')
 }

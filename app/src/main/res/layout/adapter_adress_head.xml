@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_ffffff"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/color_EBEFF2"/>
+    
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="@dimen/dimen_0dp"
+        android:textSize="16dp"
+        android:textColor="@color/color_999999"
+        tools:text="班主任"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_EBEFF2"/>
+</LinearLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_EBEFF2"
+    android:orientation="vertical"
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.AddStudentActivity">
+
+    <include
+        android:id="@+id/il_title"
+        layout="@layout/common_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/dimen_0dp"
+        android:paddingStart="15dp">
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical"
+            android:hint="请输入姓名"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="14dp"
+            tools:text="asd" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_EBEFF2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_ffffff"
+                android:clickable="false"
+                android:enabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center_vertical"
+                android:hint="请选择性别"
+                android:singleLine="true"
+                android:textColor="@color/color_333333"
+                android:textSize="14dp"
+                tools:text="asd" />
+
+            <ImageView
+                android:id="@+id/iv_choose_sex"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:background="#ff0000" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_EBEFF2" />
+
+        <EditText
+            android:id="@+id/ed_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical"
+            android:hint="请输入手机号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="14dp"
+            tools:text="asd" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_EBEFF2" />
+
+        <EditText
+            android:id="@+id/ed_school"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical"
+            android:hint="请输入学校"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="14dp"
+            tools:text="asd" />
+
+    </LinearLayout>
+</LinearLayout>

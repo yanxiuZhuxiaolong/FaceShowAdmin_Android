@@ -85,6 +85,7 @@
         <activity
             android:name=".schedule.ScheduleManageActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".schedule.PublishScheduleActivity"
             android:screenOrientation="portrait" />
@@ -101,7 +102,22 @@
             android:name=".common.activity.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".classCircle.activity.SendClassCircleActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".common.activity.PDFViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.activity.PhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.AdressBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.PersonalDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.adressbook.activity.SignRecordActivity"
             android:screenOrientation="portrait" />
 
         <provider
@@ -113,6 +129,32 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity
+            android:name=".main.adressbook.activity.UserMessageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".main.adressbook.activity.AddStudentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".login.activity.EditNameActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".task.activity.VoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.QuestionnaireActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.SubmitDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".task.activity.VoteDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".course.CourseDetailActivity"></activity>
     </application>
 
 </manifest>

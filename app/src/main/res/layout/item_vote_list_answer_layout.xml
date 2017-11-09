@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_vote_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/color_333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="课程目录" />
+
+    <TextView
+        android:id="@+id/tv_see_reply"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_see_reply_bg"
+        android:gravity="center"
+        android:text="@string/see_reply"
+        android:textColor="@color/selector_see_reply_color"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_EBEFF2" />
+</LinearLayout>
