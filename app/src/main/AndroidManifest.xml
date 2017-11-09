@@ -114,7 +114,10 @@
         <activity android:name=".main.adressbook.activity.AddStudentActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".login.activity.EditNameActivity"
+        <activity android:name=".main.adressbook.activity.EditNameActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".main.adressbook.activity.EditSchoolActivity"
             android:screenOrientation="portrait" />
 
         <activity

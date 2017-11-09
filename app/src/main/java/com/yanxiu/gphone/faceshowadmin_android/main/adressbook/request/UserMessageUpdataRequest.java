@@ -16,8 +16,8 @@ public class UserMessageUpdataRequest extends RequestBase {
     public String sex;
 //    public String subject;
 //    public String stage;
-    public String schoolName;
-    public String url;
+    public String school;
+    public String avatar;
     public String userId=String.valueOf(UserInfo.getInstance().getInfo().getUserId());
 
     @Override

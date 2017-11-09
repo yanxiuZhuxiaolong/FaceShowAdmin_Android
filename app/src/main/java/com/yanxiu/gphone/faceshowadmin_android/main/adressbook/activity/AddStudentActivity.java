@@ -26,7 +26,11 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.AddStude
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.UUID;
-
+/**
+ * Created by Canghaixiao.
+ * Time : 2017/11/7 16:52.
+ * Function :
+ */
 public class AddStudentActivity extends FaceShowBaseActivity implements View.OnClickListener, ChooseSexDialog.OnViewClickListener, TextWatcher {
 
     private Context mContext;

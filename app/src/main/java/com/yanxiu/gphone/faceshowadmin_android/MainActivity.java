@@ -26,6 +26,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.login.activity.LoginActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.LeftDrawerListAdapter;
+import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.UserMessageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
@@ -188,7 +189,7 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void toMyDataAct() {
-
+        UserMessageActivity.LuanchActivity(mContext);
     }
 
     private void toComplaintSuggestionAct() {
