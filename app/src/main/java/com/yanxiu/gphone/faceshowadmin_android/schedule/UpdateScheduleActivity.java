@@ -49,7 +49,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 发布日程页面
+ * 修改日程页面
  */
 public class UpdateScheduleActivity extends FaceShowBaseActivity {
 
