@@ -180,5 +180,10 @@
     <string name="add_adress">添加</string>
     <string name="course_lecture">课程讲师</string>
     <string name="lecture_brief">课程简介</string>
+    <string name="course_message">课程信息</string>
+    <string name="reply_number">回复(%1$s)</string>
+    <string name="reply">回复</string>
+    <string name="no_reply_record">没有回复记录</string>
+    <string name="no_more_reply_record">没有更多回复记录</string>
 
 </resources>

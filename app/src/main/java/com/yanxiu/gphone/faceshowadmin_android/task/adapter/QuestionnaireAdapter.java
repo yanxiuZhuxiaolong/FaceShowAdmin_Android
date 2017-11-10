@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
@@ -29,9 +30,11 @@ import static com.yanxiu.gphone.faceshowadmin_android.model.VoteBean.TYPE_TEXT;
 public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdapter.BaseViewHolder> {
     private final int TYPE_HEAD = 0x04;
     private QusetionGroupBean data;
+    private String stepId;
 
     public QuestionnaireAdapter(QusetionGroupBean questionGroup) {
         this.data = questionGroup;
+        this.stepId = String.valueOf(questionGroup.getStepId());
     }
 
     @Override
@@ -167,7 +170,10 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
             mTvSeeReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    // TODO: 17-11-10
+//                    Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
+//                    intent.putExtra("stepId", stepId);
+//                    itemView.getContext().startActivity(intent);
                 }
             });
         }

@@ -201,7 +201,7 @@ public class GetCourseResponse extends FaceShowBaseResponse {
             this.lecturerInfos = lecturerInfos;
         }
 
-        public static class LecturerInfosBean {
+        public static class LecturerInfosBean implements Serializable{
             /**
              * lecturerName : jack
              * lecturerBriefing : XXXXXX
@@ -256,7 +256,7 @@ public class GetCourseResponse extends FaceShowBaseResponse {
          * percent : 0
          */
 
-        private int stepId;
+        private int stepId ;
         private int projectId;
         private int clazsId;
         private int courseId;

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
@@ -29,9 +30,11 @@ import static com.yanxiu.gphone.faceshowadmin_android.model.VoteBean.TYPE_TEXT;
 public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder> {
     private final int TYPE_HEAD = 0x04;
     private QusetionGroupBean data;
+    private String stepId;
 
     public VoteAdapter(QusetionGroupBean questionGroup) {
         this.data = questionGroup;
+        this.stepId = String.valueOf(questionGroup.getStepId());
     }
 
     @Override
@@ -39,7 +42,6 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
         View view;
         switch (viewType) {
             case TYPE_HEAD:
-
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vote_list_head_layout, parent, false);
                 return new HeadViewHolder(view);
             case TYPE_SINGLE:
@@ -162,12 +164,16 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
 
         @Override
         public void setData(Object obj) {
-            QusetionBean qusetionBean = (QusetionBean) obj;
+            final QusetionBean qusetionBean = (QusetionBean) obj;
             mTvVoteTitle.setText(getAdapterPosition() + "、" + qusetionBean.getTitle());
             mTvSeeReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    // TODO: 17-11-10
+                    Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
+                    intent.putExtra("questionId", qusetionBean.getId());
+                    intent.putExtra("title",qusetionBean.getTitle());
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }

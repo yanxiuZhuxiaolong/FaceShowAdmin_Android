@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.course.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,10 +12,17 @@ import android.view.ViewGroup;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CourseTaskAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResourcesResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.QuestionnaireActivity;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteActivity;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +41,7 @@ public class CourseTaskFragment extends FaceShowBaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mPublicLoadLayout = new PublicLoadLayout(getContext());
         mPublicLoadLayout.setErrorLayoutFullScreen();
@@ -53,7 +61,30 @@ public class CourseTaskFragment extends FaceShowBaseFragment {
                 courseTaskAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
                     @Override
                     public void onItemClick(View v, int position) {
-
+                        GetCourseResponse.InteractStepsBean interactStep = data.getInteractSteps().get(position);
+                        Intent intent = null;
+                        switch (interactStep.getInteractType()) {
+                            case 6:
+                                intent = new Intent(getContext(), CheckInDetailActivity.class);
+                                break;
+                            case 5:
+                                intent = new Intent(getContext(), QuestionnaireActivity.class);
+                                break;
+                            case 4:
+                                intent = new Intent(getContext(), ReplyDetailActivity.class);
+                                break;
+                            case 3:
+                                intent = new Intent(getContext(), VoteActivity.class);
+                            default:
+                        }
+                        if (intent == null) {
+                            ToastUtil.showToast(getContext(), "未知类型");
+                            return;
+                        }
+                        String stepId = "0";
+                        stepId = String.valueOf(interactStep.getStepId());
+                        intent.putExtra("stepId", stepId);
+                        getActivity().startActivity(intent);
                     }
                 });
             } else {

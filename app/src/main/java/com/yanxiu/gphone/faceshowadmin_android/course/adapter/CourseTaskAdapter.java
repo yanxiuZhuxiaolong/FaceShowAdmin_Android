@@ -36,8 +36,16 @@ public class CourseTaskAdapter extends BaseRecyclerViewAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).setData(data.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (recyclerViewItemClickListener != null) {
+                    recyclerViewItemClickListener.onItemClick(view, holder.getAdapterPosition());
+                }
+            }
+        });
 
     }
 

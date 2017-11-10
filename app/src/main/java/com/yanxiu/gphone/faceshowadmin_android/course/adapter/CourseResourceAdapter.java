@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @author  frc on 17-11-9.
+ * @author frc on 17-11-9.
  */
 
 public class CourseResourceAdapter extends BaseRecyclerViewAdapter {
@@ -31,13 +31,13 @@ public class CourseResourceAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new CourseTaskAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_course_task_adapter_layout, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_course_task_adapter_layout, parent, false));
 
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((CourseResourceAdapter.ViewHolder) holder).setData(data.get(position));
+        ((ViewHolder) holder).setData(data.get(position));
     }
 
     @Override

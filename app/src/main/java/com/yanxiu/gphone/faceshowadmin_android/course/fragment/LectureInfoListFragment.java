@@ -33,6 +33,7 @@ public class LectureInfoListFragment extends FaceShowBaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPublicLoadLayout = new PublicLoadLayout(getContext());
+        mPublicLoadLayout.setErrorLayoutFullScreen();
         mPublicLoadLayout.setContentView(R.layout.fragment_lecture_info_list_layout);
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
 

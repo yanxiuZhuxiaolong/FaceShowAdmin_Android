@@ -34,6 +34,7 @@ public class CourseBriefIntroductionFragment extends FaceShowBaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPublicLoadLayout = new PublicLoadLayout(getContext());
         mPublicLoadLayout.setContentView(R.layout.fragment_brief_introduction_layout);
+        mPublicLoadLayout.setErrorLayoutFullScreen();
         GetCourseResponse.CourseBean course = getArguments() != null ? (GetCourseResponse.CourseBean) getArguments().get("data") : null;
         if (course != null && !TextUtils.isEmpty(course.getBriefing())) {
             mTvContent.setText(Html.fromHtml(course.getBriefing()));

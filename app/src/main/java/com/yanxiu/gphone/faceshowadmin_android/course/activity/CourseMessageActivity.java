@@ -20,10 +20,12 @@ import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author frc
@@ -38,13 +40,16 @@ public class CourseMessageActivity extends FaceShowBaseActivity {
     TabLayout mTabLayout;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
-    private List<Fragment> mFragmentList;
+    private List<Fragment> mFragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_message);
         ButterKnife.bind(this);
+        mTitleLayoutTitle.setText(R.string.course_message);
+        mTitleLayoutTitle.setVisibility(View.VISIBLE);
+        mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
 
         GetCourseResponse.CourseBean course = (GetCourseResponse.CourseBean) getIntent().getSerializableExtra("data");
         Bundle bundle = new Bundle();
@@ -115,4 +120,8 @@ public class CourseMessageActivity extends FaceShowBaseActivity {
         }
     }
 
+    @OnClick(R.id.title_layout_left_img)
+    public void onViewClicked() {
+        CourseMessageActivity.this.finish();
+    }
 }
