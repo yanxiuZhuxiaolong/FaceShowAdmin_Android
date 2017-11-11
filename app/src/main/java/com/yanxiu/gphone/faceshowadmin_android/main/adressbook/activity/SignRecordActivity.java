@@ -14,7 +14,6 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.adapter.SignRecordAdapter;

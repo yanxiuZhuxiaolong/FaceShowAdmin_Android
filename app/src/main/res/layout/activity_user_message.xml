@@ -53,7 +53,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="#ff0000" />
+                    android:src="@drawable/selector_enter_bg" />
 
             </RelativeLayout>
 
@@ -94,7 +94,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:background="#ff0000" />
+                    android:src="@drawable/selector_enter_bg" />
 
             </LinearLayout>
 
@@ -166,7 +166,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:background="#ff0000" />
+                    android:src="@drawable/selector_enter_bg" />
 
             </LinearLayout>
 
@@ -269,7 +269,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:background="#ff0000" />
+                    android:src="@drawable/selector_enter_bg" />
 
             </LinearLayout>
 
