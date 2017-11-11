@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.SubmitDetailActivity;
 
 import butterknife.BindView;
@@ -165,15 +165,15 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
 
         @Override
         public void setData(Object obj) {
-            QusetionBean qusetionBean = (QusetionBean) obj;
+            final QusetionBean qusetionBean = (QusetionBean) obj;
             mTvVoteTitle.setText(getAdapterPosition() + "、" + qusetionBean.getTitle());
             mTvSeeReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO: 17-11-10
-//                    Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
-//                    intent.putExtra("stepId", stepId);
-//                    itemView.getContext().startActivity(intent);
+                    Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
+                    intent.putExtra("title",qusetionBean.getTitle());
+                    intent.putExtra("questionId", String.valueOf(qusetionBean.getId()));
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }

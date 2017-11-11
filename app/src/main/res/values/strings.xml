@@ -185,5 +185,6 @@
     <string name="reply">回复</string>
     <string name="no_reply_record">没有回复记录</string>
     <string name="no_more_reply_record">没有更多回复记录</string>
+    <string name="no_reply_now">暂无回复</string>
 
 </resources>

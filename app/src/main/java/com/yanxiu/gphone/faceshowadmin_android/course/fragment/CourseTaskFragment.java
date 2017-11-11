@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
-import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
-import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseCommentActivity;
 import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CourseTaskAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
-import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResourcesResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.QuestionnaireActivity;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteActivity;
@@ -71,7 +69,7 @@ public class CourseTaskFragment extends FaceShowBaseFragment {
                                 intent = new Intent(getContext(), QuestionnaireActivity.class);
                                 break;
                             case 4:
-                                intent = new Intent(getContext(), ReplyDetailActivity.class);
+                                intent = new Intent(getContext(), CourseCommentActivity.class);
                                 break;
                             case 3:
                                 intent = new Intent(getContext(), VoteActivity.class);
@@ -81,10 +79,10 @@ public class CourseTaskFragment extends FaceShowBaseFragment {
                             ToastUtil.showToast(getContext(), "未知类型");
                             return;
                         }
-                        String stepId = "0";
-                        stepId = String.valueOf(interactStep.getStepId());
-                        intent.putExtra("stepId", stepId);
-                        getActivity().startActivity(intent);
+                        intent.putExtra("stepId", String.valueOf(interactStep.getStepId()));
+                        if (getActivity() != null) {
+                            getActivity().startActivity(intent);
+                        }
                     }
                 });
             } else {

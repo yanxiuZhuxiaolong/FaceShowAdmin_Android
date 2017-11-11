@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.course.activity.ReplyDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
@@ -169,10 +169,9 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
             mTvSeeReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO: 17-11-10
                     Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
                     intent.putExtra("questionId", qusetionBean.getId());
-                    intent.putExtra("title",qusetionBean.getTitle());
+                    intent.putExtra("title", qusetionBean.getTitle());
                     itemView.getContext().startActivity(intent);
                 }
             });

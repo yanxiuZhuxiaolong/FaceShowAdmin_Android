@@ -155,7 +155,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".course.activity.CourseDetailActivity" />
         <activity android:name=".course.activity.CourseMessageActivity" />
-        <activity android:name=".course.activity.ReplyDetailActivity"></activity>
+        <activity android:name=".task.activity.ReplyDetailActivity"></activity>
     </application>
 
 </manifest>
