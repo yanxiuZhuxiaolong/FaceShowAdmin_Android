@@ -99,6 +99,12 @@ public class TaskFragment extends FaceShowBaseFragment {
             }
         });
         getTasks();
+        mPublicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTasks();
+            }
+        });
         return mPublicLoadLayout;
     }
 
