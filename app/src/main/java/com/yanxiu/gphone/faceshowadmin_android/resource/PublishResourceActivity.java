@@ -56,7 +56,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 发布日程页面
+ * 发布资源页面
  */
 public class PublishResourceActivity extends FaceShowBaseActivity {
 

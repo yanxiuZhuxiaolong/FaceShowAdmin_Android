@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yanxiu.gphone.faceshowadmin_android.course.CourseDetailActivity">
+    tools:context="com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity">
 
 
     <RelativeLayout

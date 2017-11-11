@@ -85,7 +85,6 @@
         <activity
             android:name=".schedule.ScheduleManageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".schedule.PublishScheduleActivity"
             android:screenOrientation="portrait" />
@@ -133,17 +132,15 @@
         <activity
             android:name=".main.adressbook.activity.UserMessageActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".main.adressbook.activity.AddStudentActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".main.adressbook.activity.EditNameActivity"
+        <activity
+            android:name=".main.adressbook.activity.EditNameActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".main.adressbook.activity.EditSchoolActivity"
+        <activity
+            android:name=".main.adressbook.activity.EditSchoolActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".task.activity.VoteActivity"
             android:screenOrientation="portrait" />
@@ -156,7 +153,9 @@
         <activity
             android:name=".task.activity.VoteDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".course.CourseDetailActivity"></activity>
+        <activity android:name=".course.activity.CourseDetailActivity" />
+        <activity android:name=".course.activity.CourseMessageActivity" />
+        <activity android:name=".task.activity.ReplyDetailActivity"></activity>
     </application>
 
 </manifest>

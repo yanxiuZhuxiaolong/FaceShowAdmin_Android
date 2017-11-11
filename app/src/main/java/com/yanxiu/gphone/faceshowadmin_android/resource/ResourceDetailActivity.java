@@ -34,7 +34,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 日程管理页面
+ * 资源详情页面
  */
 public class ResourceDetailActivity extends FaceShowBaseActivity {
 
