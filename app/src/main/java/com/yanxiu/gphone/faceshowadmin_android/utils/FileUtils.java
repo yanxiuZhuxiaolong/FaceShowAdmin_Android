@@ -835,4 +835,26 @@ public class FileUtils {
 
         throw new RuntimeException("no device Id");
     }
+
+    public static String getExternalStorageAbsolutePath(String urlStr) {
+        int position = urlStr.lastIndexOf(Constants.CHARACTER_SLASH);
+        if (position > 0) {
+            urlStr = urlStr.substring(position + 1);
+        }
+        String dir = getLoadExternalDir();
+        File file = new File(dir);
+        if (!file.exists())
+            file.mkdirs();
+        return dir + urlStr;
+    }
+
+    private static String getLoadExternalDir() {
+        String path = Environment.getExternalStorageDirectory()
+                .getAbsolutePath();
+        StringBuffer mBuffer = new StringBuffer();
+        mBuffer.append(path);
+        mBuffer.append(Constants.DIR_APK);
+        return mBuffer.toString();
+    }
+
 }

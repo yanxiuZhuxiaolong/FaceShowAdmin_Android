@@ -163,7 +163,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightTxt.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_notice_post));
+        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_send_notice));
         titleLayoutRightTxt.setText(R.string.notice_post);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -216,10 +216,9 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             case R.id.title_layout_left_img:
                 finish();
                 break;
+            case R.id.title_layout_right_img:
             case R.id.title_layout_signIn:
                 postNotice();
-                break;
-            case R.id.title_layout_right_img:
                 break;
         }
     }

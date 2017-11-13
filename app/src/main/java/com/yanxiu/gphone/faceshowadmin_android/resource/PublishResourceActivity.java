@@ -36,7 +36,6 @@ import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourcePublishReque
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourcePublishResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishResponse;
-import com.yanxiu.gphone.faceshowadmin_android.notice.ClassCircleDialog;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;

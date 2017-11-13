@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
+
+        <com.yanxiu.gphone.faceshowadmin_android.customView.UpdataRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="124dp"
+                android:background="@drawable/updata_bottom"
+                android:orientation="vertical"
+                android:paddingTop="131dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="3dp"
+                    android:text="@string/version_updata"
+                    android:textColor="@color/color_336600"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:id="@+id/tv_updata_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp">
+
+                    <com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout
+                        android:id="@+id/wave_no"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        app:waves_animend_alpha="102"
+                        app:waves_radius="@dimen/wavesRadius">
+
+                        <TextView
+                            android:id="@+id/update_layout_cel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_updata_no_bg"
+                            android:gravity="center"
+                            android:text="@string/updata_after"
+                            android:textColor="@drawable/selector_answercard_no_text_color"
+                            android:textSize="20dp" />
+                    </com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout>
+
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="0dp" />
+
+                    <com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout
+                        android:id="@+id/wave_yes"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        app:waves_animend_alpha="102"
+                        app:waves_radius="@dimen/wavesRadius">
+
+                        <TextView
+                            android:id="@+id/update_layout_sure"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_common_button_bg_normal"
+                            android:gravity="center"
+                            android:text="@string/updata_now"
+                            android:textColor="@drawable/selector_answercard_no_text_color"
+                            android:textSize="20dp" />
+                    </com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="255dp"
+                android:contentDescription="@null"
+                android:src="@drawable/updata_top" />
+        </com.yanxiu.gphone.faceshowadmin_android.customView.UpdataRelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -4,6 +4,7 @@
     android:layout_height="70dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingStart="15dp"
+    android:background="@color/color_ffffff"
     android:paddingEnd="0dp">
 
     <LinearLayout
