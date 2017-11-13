@@ -109,7 +109,7 @@
             android:id="@+id/notice_pic_del"
             android:visibility="gone"
             android:scaleType="center"
-            android:background="@color/color_1da1f2"
+            android:src="@drawable/selector_"
             android:layout_alignParentRight="true"
             android:layout_width="20dp"
             android:layout_height="20dp"
