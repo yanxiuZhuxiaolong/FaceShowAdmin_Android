@@ -143,7 +143,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     }
 
     private void setTexCountTips(String s) {
-        if (s.trim().length() < 1 && noticeEditTitle.getText().toString().length() < 1) {
+        if (s.trim().length() < 1 || noticeEditTitle.getText().toString().length() < 1) {
             titleLayoutRightTxt.setEnabled(false);
             titleLayoutRightTxt.setTextColor(getResources().getColor(R.color.color_999999));
             editWordNum.setTextColor(getResources().getColor(R.color.color_999999));
@@ -259,9 +259,9 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                     } else {
                         imageUri = FileProvider.getUriForFile(NoticePostActivity.this, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", file);
                     }
-                    startPhotoZoom(imageUri, Uri.fromFile(createCroppedImageFile()));
-//                    mImagePaths = mCameraPath;
-//                    mType = TYPE_IMAGE;
+//                    startPhotoZoom(imageUri, Uri.fromFile(createCroppedImageFile()));
+                    mImagePaths = mCameraPath;
+                    mType = TYPE_IMAGE;
                 }
                 break;
             case REQUEST_CODE_CROP:
