@@ -18,6 +18,7 @@
 
     <!--tab name-->
     <string name="tab_main">首页</string>
+    <string name="yanxiubao">研修宝</string>
     <string name="tab_course">课程</string>
     <string name="tab_task">任务</string>
     <string name="tab_class_circle">班级圈</string>

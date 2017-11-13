@@ -185,7 +185,11 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void toClassHomePage() {
-
+        mNavIconViews[0].setEnabled(false);
+        mNavIconViews[1].setEnabled(true);
+        mNavIconViews[2].setEnabled(true);
+        mNavIconViews[3].setEnabled(true);
+        changeTabFragment(TAB_MAIN, 0);
     }
 
     private void toMyDataAct() {
