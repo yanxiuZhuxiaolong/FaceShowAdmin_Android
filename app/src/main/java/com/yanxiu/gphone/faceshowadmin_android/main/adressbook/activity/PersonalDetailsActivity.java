@@ -48,6 +48,10 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
     private TextView mSchoolView;
     private TextView mRateView;
     private ImageView mSginRecordView;
+    private View mIsTeacher1View;
+    private View mIsTeacher2View;
+    private View mIsTeacher3View;
+    private View mIsTeacher4View;
 
     private boolean isTeacher=false;
     private String mUserId;
@@ -55,12 +59,6 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
 
     private UUID mSignRequest;
     private UUID mDetailsRequest;
-
-    private LinearLayout mIsTeacher1View;
-
-    public static void LuanchActivity(Context context, String userId) {
-        PersonalDetailsActivity.LuanchActivity(context, userId,true);
-    }
 
     public static void LuanchActivity(Context context, String userId,boolean isTeacher){
         Intent intent = new Intent(context, PersonalDetailsActivity.class);
@@ -112,6 +110,9 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         mSginRecordView = findViewById(R.id.iv_sign_record);
 
         mIsTeacher1View=findViewById(R.id.ll_is_teacher_false_1);
+        mIsTeacher2View=findViewById(R.id.ll_is_teacher_false_2);
+        mIsTeacher3View=findViewById(R.id.ll_is_teacher_false_3);
+        mIsTeacher4View=findViewById(R.id.ll_is_teacher_false_4);
     }
 
     private void listener() {
@@ -125,7 +126,15 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         startPersonalDetailsRequest();
 
         if (isTeacher){
-
+            mIsTeacher1View.setVisibility(View.GONE);
+            mIsTeacher2View.setVisibility(View.GONE);
+            mIsTeacher3View.setVisibility(View.GONE);
+            mIsTeacher4View.setVisibility(View.GONE);
+        }else {
+            mIsTeacher1View.setVisibility(View.VISIBLE);
+            mIsTeacher2View.setVisibility(View.VISIBLE);
+            mIsTeacher3View.setVisibility(View.VISIBLE);
+            mIsTeacher4View.setVisibility(View.VISIBLE);
         }
     }
 
