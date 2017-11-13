@@ -82,11 +82,11 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
                                     if (!TextUtils.isEmpty(data.getUrl())) {
                                         WebViewActivity.loadThisAct(getContext(), data.getUrl(), data.getResName());
                                     } else {
-//                                        if (data != null && data.getType() != null) {
-//                                            requestDetailData(data);
-//                                        } else {
+                                        if (data != null && data.getType() != null) {
+                                            requestDetailData(data);
+                                        } else {
                                         ToastUtil.showToast(getContext(), "数据异常");
-//                                        }
+                                        }
                                     }
                                 }
                             });
