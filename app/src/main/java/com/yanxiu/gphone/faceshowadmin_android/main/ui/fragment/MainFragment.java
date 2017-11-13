@@ -100,9 +100,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     private void initView() {
         mTitle_layout_left_img = mRootView.findViewById(R.id.title_layout_left_img);
+        mTitle_layout_left_img.setVisibility(View.VISIBLE);
+        mTitle_layout_left_img.setImageResource(R.drawable.selector_main_leftdrawer);
         mTitle_layout_title = mRootView.findViewById(R.id.title_layout_title);
         mTitle_layout_title.setText(getString(R.string.tab_main));
-        mTitle_layout_left_img.setVisibility(View.VISIBLE);
         mProject_layput = mRootView.findViewById(R.id.project_layput);
         mProject_tv = mRootView.findViewById(R.id.project_tv);
         mClass_tv = mRootView.findViewById(R.id.class_tv);
