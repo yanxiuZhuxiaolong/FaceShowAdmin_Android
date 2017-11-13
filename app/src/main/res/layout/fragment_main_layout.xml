@@ -43,7 +43,7 @@
             android:textColor="@color/color_ffffff"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="项目名称项目名称项目名称项目名称项目名称" />
+            tools:text="项目名称项目名称项目名称项目名称" />
 
         <LinearLayout
             android:layout_width="wrap_content"
