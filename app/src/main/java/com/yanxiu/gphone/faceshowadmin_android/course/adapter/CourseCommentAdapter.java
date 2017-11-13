@@ -40,6 +40,7 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
     private static final int TYPE_DEFAULT = 0x0001;
     private static final int ANIM_OPEN = 0x0002;
     private static final int ANIM_CLOSE = 0x0003;
+    public static final int REFRESH_LIKE_DATA = 0x0005;
     private static final int ANIM_DURATION = 200;
     private static final int ANIM_POSITION_DEFAULT = -1;
     private static final int REFRESH_ANIM_VIEW = 0x0004;
@@ -57,14 +58,6 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
         this.records = records;
         this.description = description;
         this.totalNum = s;
-    }
-
-
-    public void deleteData(int position) {
-        if (position > -1 && position < getItemCount()) {
-            records.remove(position - 1);
-            this.notifyDataSetChanged();
-        }
     }
 
 
@@ -87,6 +80,10 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
             if ((int) payloads.get(0) == REFRESH_ANIM_VIEW) {
                 ((NormalViewHolder) holder).mLlAnim.setVisibility(View.INVISIBLE);
                 ((NormalViewHolder) holder).mLlAnim.setEnabled(false);
+            } else if ((int) payloads.get(0) == REFRESH_LIKE_DATA) {
+                ((NormalViewHolder) holder).mTvThumb.setVisibility(View.GONE);
+                ((NormalViewHolder) holder).mLlAnim.setBackgroundResource(R.drawable.shape_class_circle_aime_normal_1);
+                ((NormalViewHolder) holder).mZanNumber.setText(((NormalViewHolder) holder).itemView.getContext().getString(R.string.zan_number, records.get(position - 1).getLikeNum()));
             }
         }
     }
@@ -125,15 +122,25 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
 
                 ((NormalViewHolder) holder).setData(records.get(position - 1));
 
+                if (records.get(position - 1).getUserLiked() == 1) {
+                    ((NormalViewHolder) holder).mTvThumb.setVisibility(View.GONE);
+                    ((NormalViewHolder) holder).mLlAnim.setBackgroundResource(R.drawable.shape_class_circle_aime_normal_1);
+                } else {
+                    ((NormalViewHolder) holder).mTvThumb.setVisibility(View.VISIBLE);
+                    ((NormalViewHolder) holder).mLlAnim.setBackgroundResource(R.drawable.shape_class_circle_aime_normal_2);
+                }
+
+
                 ((NormalViewHolder) holder).mTvDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ToastUtil.showToast(((NormalViewHolder) holder).itemView.getContext(), "delete");
                         if (animPosition != ANIM_POSITION_DEFAULT) {
                             notifyItemChanged(animPosition, REFRESH_ANIM_VIEW);
                             animPosition = ANIM_POSITION_DEFAULT;
                         }
-                        deleteReply((NormalViewHolder) holder, String.valueOf(records.get(position).getId()));
+                        if (mDeleteCommentClickListener != null) {
+                            mDeleteCommentClickListener.delete(view, holder.getAdapterPosition());
+                        }
                     }
                 });
 
@@ -144,7 +151,10 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
                             notifyItemChanged(animPosition, REFRESH_ANIM_VIEW);
                             animPosition = ANIM_POSITION_DEFAULT;
                         }
-                        tumb((NormalViewHolder) holder, String.valueOf(records.get(position - 1).getId()));
+                        if (mThumbClickListener != null) {
+                            mThumbClickListener.thumb(view, position);
+
+                        }
                     }
                 });
 
@@ -170,58 +180,12 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
         return records.size() + 1;
     }
 
-    public void update(List<GetCourseCommentRecordsResponse.ElementsBean> records, String description, String totalNum) {
+    public void update(List<GetCourseCommentRecordsResponse.ElementsBean> records, String
+            description, String totalNum) {
         this.records = records;
         this.description = description;
         this.totalNum = totalNum;
         notifyDataSetChanged();
-    }
-
-    private void deleteReply(final NormalViewHolder holder, String id) {
-        DeleteUserCommentRequest deleteUserCommentRequest = new DeleteUserCommentRequest();
-        deleteUserCommentRequest.commentRecordId = id;
-        deleteUserCommentRequest.startRequest(DeleteUserCommentResponse.class, new HttpCallback<DeleteUserCommentResponse>() {
-            @Override
-            public void onSuccess(RequestBase request, DeleteUserCommentResponse ret) {
-                if (ret.getCode() == ResponseConfig.SUCCESS) {
-//                    deleteItem(holder.getAdapterPosition());
-                } else {
-                    ToastUtil.showToast(holder.itemView.getContext(), ret.getMessage());
-                }
-            }
-
-            @Override
-            public void onFail(RequestBase request, Error error) {
-                ToastUtil.showToast(holder.itemView.getContext(), error.getMessage());
-
-            }
-        });
-    }
-
-    private void modifyTumbNumber(int itemPosition) {
-
-    }
-
-    private void tumb(final NormalViewHolder holder, String id) {
-        LikeCommentRecordRequest likeCommentRecordRequest = new LikeCommentRecordRequest();
-        likeCommentRecordRequest.commentRecordId = id;
-        likeCommentRecordRequest.startRequest(LikeCommentRecordResponse.class, new HttpCallback<LikeCommentRecordResponse>() {
-            @Override
-            public void onSuccess(RequestBase request, LikeCommentRecordResponse ret) {
-                if (ResponseConfig.SUCCESS == ret.getCode()) {
-//                    modifyTumbNumber(itemPosition);
-                    holder.mZanNumber.setText(holder.itemView.getContext().getString(R.string.zan_number, ret.getData().getUserNum()));
-                } else {
-                    ToastUtil.showToast(holder.itemView.getContext(), ret.getMessage());
-                }
-            }
-
-            @Override
-            public void onFail(RequestBase request, Error error) {
-                ToastUtil.showToast(holder
-                        .itemView.getContext(), error.getMessage());
-            }
-        });
     }
 
 
@@ -340,6 +304,41 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
                 }
             }
         }).start();
+    }
+
+    public void deleteItem(int position) {
+        if (position > -1 && position < records.size()) {
+            records.remove(position - 1);
+            this.notifyDataSetChanged();
+        }
+    }
+
+    public void modifyThumbNumber(int position, int userNum) {
+        records.get(position - 1).setLikeNum(userNum);
+        notifyItemChanged(position, REFRESH_LIKE_DATA);
+
+    }
+
+
+    public interface ThumbClickListener {
+        void thumb(View view, int position);
+    }
+
+    public interface DeleteCommentClickListener {
+        void delete(View view, int position);
+    }
+
+
+    private DeleteCommentClickListener mDeleteCommentClickListener;
+    private ThumbClickListener mThumbClickListener;
+
+    public void addDeleteCommentClickListener(DeleteCommentClickListener
+                                                      deleteCommentClickListener) {
+        this.mDeleteCommentClickListener = deleteCommentClickListener;
+    }
+
+    public void addThumbClickListener(ThumbClickListener thumbClickListener) {
+        this.mThumbClickListener = thumbClickListener;
     }
 
 }

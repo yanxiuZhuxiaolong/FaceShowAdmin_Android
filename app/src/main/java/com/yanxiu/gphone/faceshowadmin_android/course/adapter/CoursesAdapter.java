@@ -111,7 +111,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
         if (coursesListBean.getLecturerInfos() != null && coursesListBean.getLecturerInfos() != null && coursesListBean.getLecturerInfos().size() > 0) {
             childViewHolder.mCourseTeacher.setText(coursesListBean.getLecturerInfos().get(0).getLecturerName());
         } else {
-            childViewHolder.mCourseTeacher.setText("无");
+            childViewHolder.mCourseTeacher.setText("暂无");
         }
         childViewHolder.mCourseLocation.setText(TextUtils.isEmpty(coursesListBean.getSite()) ? convertView.getContext().getString(R.string.wait_for) : coursesListBean.getSite());
         childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(coursesListBean.getStartTime(), coursesListBean.getEndTime()));

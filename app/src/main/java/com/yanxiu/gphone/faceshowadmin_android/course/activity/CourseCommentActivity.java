@@ -16,10 +16,14 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CourseCommentAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseCommentRecordsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseCommentRecordsResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -53,6 +57,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     private String id = "";
     private List<GetCourseCommentRecordsResponse.ElementsBean> mRecords = new ArrayList<>();
     private boolean mRefresh = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
         setContentView(mPublicLoadLayout);
         ButterKnife.bind(this);
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
-        mTitleLayoutTitle.setText(R.string.reply);
+        mTitleLayoutTitle.setText(R.string.course_comment);
 
         mStepId = getIntent().getStringExtra("stepId");
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,14 +106,16 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                             mRecyclerView.setLayoutManager(linearLayoutManager);
                             mCourseCommentAdapter = new CourseCommentAdapter(mRecords, mDescription, String.valueOf(ret.getData().getTotalElements()));
                             mRecyclerView.setAdapter(mCourseCommentAdapter);
+                            mCourseCommentAdapter.addDeleteCommentClickListener(mDeleteCommentClickListener);
+                            mCourseCommentAdapter.addThumbClickListener(mThumbClickListener);
                         } else {
                             mCourseCommentAdapter.update(mRecords, mDescription, String.valueOf(ret.getData().getTotalElements()));
                         }
                     } else {
                         if (TextUtils.isEmpty(id)) {
-                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_reply_record));
+                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_comment_record));
                         } else {
-                            ToastUtil.showToast(getApplicationContext(), R.string.no_more_reply_record);
+                            ToastUtil.showToast(getApplicationContext(), R.string.no_more_comment_record);
                         }
                     }
 
@@ -137,6 +144,67 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
             }
         });
     }
+
+    private CourseCommentAdapter.DeleteCommentClickListener mDeleteCommentClickListener = new CourseCommentAdapter.DeleteCommentClickListener() {
+        @Override
+        public void delete(View view, int position) {
+            deleteComment(position);
+        }
+    };
+
+    private CourseCommentAdapter.ThumbClickListener mThumbClickListener = new CourseCommentAdapter.ThumbClickListener() {
+        @Override
+        public void thumb(View view, int position) {
+            thumbComment(position);
+        }
+    };
+
+    private void deleteComment(final int position) {
+        DeleteUserCommentRequest deleteUserCommentRequest = new DeleteUserCommentRequest();
+        deleteUserCommentRequest.commentRecordId = String.valueOf(mRecords.get(position - 1).getId());
+        deleteUserCommentRequest.startRequest(DeleteUserCommentResponse.class, new HttpCallback<DeleteUserCommentResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, DeleteUserCommentResponse ret) {
+                if (ret.getCode() == ResponseConfig.SUCCESS) {
+                    if (mRecords.size() <= 1) {
+                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_reply_record));
+                    } else {
+                        mCourseCommentAdapter.deleteItem(position);
+
+                    }
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                ToastUtil.showToast(getApplicationContext(), error.getMessage());
+
+            }
+        });
+    }
+
+    private void thumbComment(final int position) {
+        LikeCommentRecordRequest likeCommentRecordRequest = new LikeCommentRecordRequest();
+        likeCommentRecordRequest.commentRecordId = String.valueOf(mRecords.get(position - 1).getId());
+        likeCommentRecordRequest.startRequest(LikeCommentRecordResponse.class, new HttpCallback<LikeCommentRecordResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, LikeCommentRecordResponse ret) {
+                if (ResponseConfig.SUCCESS == ret.getCode()) {
+                    mCourseCommentAdapter.modifyThumbNumber(position, ret.getData().getUserNum());
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                ToastUtil.showToast(getApplicationContext(), error.getMessage());
+            }
+        });
+    }
+
 
     private void getCommentTitle() {
         mPublicLoadLayout.showLoadingView();
@@ -168,6 +236,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
 
     @OnClick(R.id.title_layout_left_img)
     public void onViewClicked() {
+        this.finish();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
