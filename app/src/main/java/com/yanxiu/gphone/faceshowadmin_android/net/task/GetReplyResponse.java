@@ -51,7 +51,16 @@ public class GetReplyResponse extends FaceShowBaseResponse {
         private String answer;
         private int questionId;
         private String userName;
-        private String avatar;
+
+        private String createTime;
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
 
         public int getId() {
             return id;
@@ -93,12 +102,5 @@ public class GetReplyResponse extends FaceShowBaseResponse {
             this.userName = userName;
         }
 
-        public String getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
     }
 }

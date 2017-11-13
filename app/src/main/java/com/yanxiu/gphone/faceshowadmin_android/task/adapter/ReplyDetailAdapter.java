@@ -109,7 +109,6 @@ public class ReplyDetailAdapter extends RecyclerView.Adapter {
     static class NormalViewHolder extends RecyclerView.ViewHolder {
 
         View itemView;
-
         @BindView(R.id.reply_person_name)
         TextView mReplyPersonName;
         @BindView(R.id.tv_reply_content)
@@ -126,7 +125,7 @@ public class ReplyDetailAdapter extends RecyclerView.Adapter {
         void setData(GetReplyResponse.DataBean element) {
             mReplyPersonName.setText(element.getUserName());
             mTvReplyContent.setText(element.getAnswer());
-            mTvReplyTime.setText(DateFormatUtil.getReplyTime("2017-11-11 11:11:11"));
+            mTvReplyTime.setText(DateFormatUtil.getReplyTime(element.getCreateTime()));
         }
     }
 }

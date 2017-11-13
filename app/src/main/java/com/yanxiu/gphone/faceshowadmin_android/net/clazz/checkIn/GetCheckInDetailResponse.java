@@ -9,6 +9,13 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 public class GetCheckInDetailResponse extends FaceShowBaseResponse {
 
 
+    /**
+     * data : {"interactType":6,"signIn":{"id":384,"title":"ios签到11","startTime":"2017-09-25 03:00:00","endTime":"2017-09-25 21:00:00","antiCheat":1,"qrcodeRefreshRate":10,"successPrompt":"成功不了","openStatus":7,"bizId":44,"bizSource":"course","createTime":"2017-09-26 14:06:58","stepId":null,"stepFinished":null,"stepFinishedTime":null,"totalUserNum":9,"signInUserNum":2,"opentStatusName":"已结束","percent":0.222,"userSignIn":null}}
+     * currentUser :
+     * currentTime : 1510542634775
+     * error : null
+     */
+
     private DataBean data;
     private long currentTime;
 
@@ -29,6 +36,10 @@ public class GetCheckInDetailResponse extends FaceShowBaseResponse {
     }
 
     public static class DataBean {
+        /**
+         * interactType : 6
+         * signIn : {"id":384,"title":"ios签到11","startTime":"2017-09-25 03:00:00","endTime":"2017-09-25 21:00:00","antiCheat":1,"qrcodeRefreshRate":10,"successPrompt":"成功不了","openStatus":7,"bizId":44,"bizSource":"course","createTime":"2017-09-26 14:06:58","stepId":null,"stepFinished":null,"stepFinishedTime":null,"totalUserNum":9,"signInUserNum":2,"opentStatusName":"已结束","percent":0.222,"userSignIn":null}
+         */
 
         private int interactType;
         private SignInBean signIn;
@@ -50,6 +61,27 @@ public class GetCheckInDetailResponse extends FaceShowBaseResponse {
         }
 
         public static class SignInBean {
+            /**
+             * id : 384
+             * title : ios签到11
+             * startTime : 2017-09-25 03:00:00
+             * endTime : 2017-09-25 21:00:00
+             * antiCheat : 1
+             * qrcodeRefreshRate : 10
+             * successPrompt : 成功不了
+             * openStatus : 7
+             * bizId : 44
+             * bizSource : course
+             * createTime : 2017-09-26 14:06:58
+             * stepId : null
+             * stepFinished : null
+             * stepFinishedTime : null
+             * totalUserNum : 9
+             * signInUserNum : 2
+             * opentStatusName : 已结束
+             * percent : 0.222
+             * userSignIn : null
+             */
 
             private int id;
             private String title;
@@ -68,7 +100,7 @@ public class GetCheckInDetailResponse extends FaceShowBaseResponse {
             private int totalUserNum;
             private int signInUserNum;
             private String opentStatusName;
-            private int percent;
+            private double percent;
             private Object userSignIn;
 
             public int getId() {
@@ -207,11 +239,11 @@ public class GetCheckInDetailResponse extends FaceShowBaseResponse {
                 this.opentStatusName = opentStatusName;
             }
 
-            public int getPercent() {
+            public double getPercent() {
                 return percent;
             }
 
-            public void setPercent(int percent) {
+            public void setPercent(double percent) {
                 this.percent = percent;
             }
 

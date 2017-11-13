@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetai
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -89,11 +91,14 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     }
 
     private void initHead() {
-        tvCheckInTitle.setText(getIntent().getStringExtra("title"));
-        tvCheckInTime.setText(getIntent().getStringExtra("time"));
-        tvAttendanceNumber.setText(Html.fromHtml(getString(R.string.attendance_number, getIntent().getStringExtra("proportion"))));
-        tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getIntent().getStringExtra("percentage"))));
-
+        if (TextUtils.isEmpty(getIntent().getStringExtra("title"))) {
+            getCheckInDetail();
+        } else {
+            tvCheckInTitle.setText(getIntent().getStringExtra("title"));
+            tvCheckInTime.setText(getIntent().getStringExtra("time"));
+            tvAttendanceNumber.setText(Html.fromHtml(getString(R.string.attendance_number, getIntent().getStringExtra("proportion"))));
+            tvCheckInPercentage.setText(Html.fromHtml(getString(R.string.check_in_percentage_new, getIntent().getStringExtra("percentage"))));
+        }
     }
 
     private List<Fragment> list = new ArrayList<>();
@@ -124,9 +129,9 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
             @Override
             public CharSequence getPageTitle(int position) {
                 if (position == 0) {
-                    return getString(R.string.signed_in);
-                } else {
                     return getString(R.string.no_sign_in);
+                } else {
+                    return getString(R.string.signed_in);
                 }
             }
         });
@@ -200,7 +205,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
         getCheckInDetailRequest.startRequest(GetCheckInDetailResponse.class, new HttpCallback<GetCheckInDetailResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetCheckInDetailResponse ret) {
-                if (ret.getCode() == ResponseConfig.SUCCESS) {
+                if (ret.getCode() == ResponseConfig.SUCCESS && ret.getData() != null && ret.getData().getSignIn() != null) {
                     tvCheckInTitle.setText(ret.getData().getSignIn().getTitle());
                     final String time;
                     if (ret.getData().getSignIn().getStartTime() == null || ret.getData().getSignIn().getEndTime() == null) {
@@ -222,7 +227,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-
+                ToastUtil.showToast(getApplicationContext(), error.getMessage());
             }
         });
     }

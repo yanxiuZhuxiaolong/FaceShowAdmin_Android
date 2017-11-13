@@ -185,9 +185,12 @@
     <string name="reply_number">回复(%1$s)</string>
     <string name="reply">回复</string>
     <string name="no_reply_record">没有回复记录</string>
+    <string name="no_comment_record">没有讨论记录</string>
     <string name="no_more_reply_record">没有更多回复记录</string>
+    <string name="no_more_comment_record">没有更多讨论记录</string>
     <string name="no_reply_now">暂无回复</string>
     <string name="zan_number">%1$d个点赞</string>
+    <string name="course_comment">课程讨论</string>
 
     <string name="version_updata">新版本更新</string>
     <string name="updata_after">以后再说</string>

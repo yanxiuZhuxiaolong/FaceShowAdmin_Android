@@ -294,6 +294,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             case 4:
                 ResourceMangerActivity.invoke(getActivity());
                 break;
+            default:
 
         }
     }
