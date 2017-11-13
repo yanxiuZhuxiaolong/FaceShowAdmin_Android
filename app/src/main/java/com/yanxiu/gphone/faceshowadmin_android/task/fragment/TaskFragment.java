@@ -15,6 +15,7 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
@@ -50,6 +51,9 @@ public class TaskFragment extends FaceShowBaseFragment {
     private TaskAdapter mTaskAdapter;
     private UUID mUUID;
     private List<GetTasksResponse.TasksBean> mTasks;
+    final int typeVote = 3;
+    final int typeSignIn = 6;
+    final int typeQuestionnaire = 5;
 
     @Nullable
     @Override
@@ -71,13 +75,11 @@ public class TaskFragment extends FaceShowBaseFragment {
                 getTasks();
             }
         });
+
         mTaskAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 GetTasksResponse.TasksBean task = mTasks.get(position);
-                final int typeVote = 3;
-                final int typeSignIn = 6;
-                final int typeQuestionnaire = 5;
                 Intent intent;
                 switch (task.getInteractType()) {
                     case typeVote:
@@ -86,6 +88,10 @@ public class TaskFragment extends FaceShowBaseFragment {
                         startActivity(intent);
                         break;
                     case typeSignIn:
+                        // TODO: 17-11-11  neew CheckInDetail
+                        intent = new Intent(getContext(), CheckInDetailActivity.class);
+                        intent.putExtra("stepId", String.valueOf(task.getStepId()));
+                        startActivity(intent);
                         break;
                     case typeQuestionnaire:
 
@@ -99,6 +105,12 @@ public class TaskFragment extends FaceShowBaseFragment {
             }
         });
         getTasks();
+        mPublicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTasks();
+            }
+        });
         return mPublicLoadLayout;
     }
 

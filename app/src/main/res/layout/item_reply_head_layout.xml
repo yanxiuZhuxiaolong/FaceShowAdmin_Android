@@ -20,6 +20,7 @@
         android:textSize="18sp"
         tools:text="你们有哪些问题是可以选择和老师一起讨论的，请提出来。。。。。" />
 
+
     <TextView
         android:id="@+id/tv_reply_number"
         android:layout_width="match_parent"
@@ -31,8 +32,9 @@
         android:text="@string/reply_number"
         android:textColor="@color/color_666666"
         android:textSize="14sp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_dae1e3"/>
+        android:background="@color/color_dae1e3" />
 </LinearLayout>

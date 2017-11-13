@@ -18,6 +18,7 @@
 
     <!--tab name-->
     <string name="tab_main">首页</string>
+    <string name="yanxiubao">研修宝</string>
     <string name="tab_course">课程</string>
     <string name="tab_task">任务</string>
     <string name="tab_class_circle">班级圈</string>
@@ -186,6 +187,7 @@
     <string name="no_reply_record">没有回复记录</string>
     <string name="no_more_reply_record">没有更多回复记录</string>
     <string name="no_reply_now">暂无回复</string>
+    <string name="zan_number">%1$d个点赞</string>
 
     <string name="version_updata">新版本更新</string>
     <string name="updata_after">以后再说</string>

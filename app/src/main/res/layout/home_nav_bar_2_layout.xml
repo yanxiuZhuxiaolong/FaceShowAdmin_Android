@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-
-              android:layout_weight="1"
-
-              android:duplicateParentState="true"
-              android:gravity="center"
-              android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/home_bottom_bar_paddingbottom"
-    android:layout_marginTop="@dimen/home_bottom_bar_paddingtop">
+    android:layout_marginTop="@dimen/home_bottom_bar_paddingtop"
+    android:layout_weight="1"
+    android:duplicateParentState="true"
+    android:gravity="center"
+    android:orientation="vertical">
     <!--android:layout_margin="@dimen/home_nav_bar_margin"-->
     <!--android:background="@drawable/home_nav_bar_selecter"-->
 
@@ -17,8 +15,8 @@
         android:id="@+id/nav_icon"
         android:layout_width="@dimen/nav_icon_width"
         android:layout_height="@dimen/nav_icon_width"
-        android:src="@drawable/selector_friend_circle"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/selector_course" />
 
     <TextView
         android:id="@+id/nav_txt"
@@ -27,5 +25,5 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/home_nav_bar_marginleft"
         android:gravity="center_vertical"
-        android:text="@string/course"/>
+        android:text="@string/course" />
 </LinearLayout>
