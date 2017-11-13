@@ -1,6 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.main.adressbook.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,8 +78,10 @@ public class SignRecordAdapter extends RecyclerView.Adapter<SignRecordAdapter.Si
         String type;
         if (signIns.stepFinished==0){
             type="补签";
+            holder.mTypeView.setTextColor(ContextCompat.getColor(mContext,R.color.color_0068BD));
         }else {
             type="已签到";
+            holder.mTypeView.setTextColor(ContextCompat.getColor(mContext,R.color.color_999999));
         }
         holder.mTypeView.setText(type);
         holder.mTypeView.setOnClickListener(new View.OnClickListener() {

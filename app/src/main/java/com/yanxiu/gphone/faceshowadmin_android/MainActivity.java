@@ -31,6 +31,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
+import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,7 +118,7 @@ public class MainActivity extends FaceShowBaseActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         setMainContentView();
         setLeftDrawer();
-
+        UpdateUtil.Initialize(this, false);
     }
 
     private void initBottomBar() {
