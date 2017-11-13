@@ -137,6 +137,9 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
                         List<AdressBookPeople> list=new ArrayList<>();
                         AdressBookPeople bookPeople1=new AdressBookPeople(1,"班主任");
                         list.add(bookPeople1);
+                        for (AdressBookPeople people:ret.data.masters){
+                            people.isTeacher=true;
+                        }
                         list.addAll(ret.data.masters);
                         AdressBookPeople bookPeople2=new AdressBookPeople(2,"学员");
                         list.add(bookPeople2);

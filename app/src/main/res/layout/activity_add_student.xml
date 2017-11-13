@@ -27,11 +27,10 @@
             android:layout_marginTop="5dp"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
-            android:hint="请输入姓名"
+            android:hint="姓名"
             android:singleLine="true"
             android:textColor="@color/color_333333"
-            android:textSize="14dp"
-            tools:text="asd" />
+            android:textSize="14dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -55,11 +54,10 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
-                android:hint="请选择性别"
+                android:hint="性别"
                 android:singleLine="true"
                 android:textColor="@color/color_333333"
-                android:textSize="14dp"
-                tools:text="asd" />
+                android:textSize="14dp"/>
 
             <ImageView
                 android:id="@+id/iv_choose_sex"
@@ -81,13 +79,12 @@
             android:layout_marginTop="5dp"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
-            android:hint="请输入手机号"
+            android:hint="联系电话"
             android:inputType="number"
             android:maxLength="11"
             android:singleLine="true"
             android:textColor="@color/color_333333"
-            android:textSize="14dp"
-            tools:text="asd" />
+            android:textSize="14dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -101,11 +98,10 @@
             android:layout_marginTop="5dp"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
-            android:hint="请输入学校"
+            android:hint="学校"
             android:singleLine="true"
             android:textColor="@color/color_333333"
-            android:textSize="14dp"
-            tools:text="asd" />
+            android:textSize="14dp"/>
 
     </LinearLayout>
 </LinearLayout>

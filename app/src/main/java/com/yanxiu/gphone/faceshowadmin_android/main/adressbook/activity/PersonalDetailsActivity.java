@@ -3,8 +3,10 @@ package com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +33,7 @@ import java.util.UUID;
 public class PersonalDetailsActivity extends FaceShowBaseActivity implements View.OnClickListener {
 
     private static final String KEY_USERID = "key_userid";
+    private static final String KEY_ISTEACHER="key_isteacher";
 
     private Context mContext;
     private PublicLoadLayout rootView;
@@ -46,15 +49,23 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
     private TextView mRateView;
     private ImageView mSginRecordView;
 
+    private boolean isTeacher=false;
     private String mUserId;
     private String mUserName;
 
     private UUID mSignRequest;
     private UUID mDetailsRequest;
 
+    private LinearLayout mIsTeacher1View;
+
     public static void LuanchActivity(Context context, String userId) {
+        PersonalDetailsActivity.LuanchActivity(context, userId,true);
+    }
+
+    public static void LuanchActivity(Context context, String userId,boolean isTeacher){
         Intent intent = new Intent(context, PersonalDetailsActivity.class);
         intent.putExtra(KEY_USERID, userId);
+        intent.putExtra(KEY_ISTEACHER,isTeacher);
         context.startActivity(intent);
     }
 
@@ -66,6 +77,7 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         rootView.setContentView(R.layout.activity_personaldetails);
         setContentView(rootView);
         mUserId = getIntent().getStringExtra(KEY_USERID);
+        isTeacher=getIntent().getBooleanExtra(KEY_ISTEACHER,false);
         initView();
         listener();
         initData();
@@ -98,6 +110,8 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         mSchoolView = findViewById(R.id.tv_school);
         mRateView = findViewById(R.id.tv_rate);
         mSginRecordView = findViewById(R.id.iv_sign_record);
+
+        mIsTeacher1View=findViewById(R.id.ll_is_teacher_false_1);
     }
 
     private void listener() {
@@ -109,6 +123,10 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
     private void initData() {
         mTitleView.setText("资料详情");
         startPersonalDetailsRequest();
+
+        if (isTeacher){
+
+        }
     }
 
     @Override
@@ -186,9 +204,21 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         mMobileView.setText(message.mobilePhone);
         mNameView.setText(message.realName);
         mUserName=message.realName;
-        mSchoolView.setText(message.school);
-        mStageView.setText(message.stageName);
-        mSubjectView.setText(message.subjectName);
+        if (!TextUtils.isEmpty(message.school)) {
+            mSchoolView.setText(message.school);
+        }else {
+            mSchoolView.setText("暂无");
+        }
+        if (!TextUtils.isEmpty(message.stageName)) {
+            mStageView.setText(message.stageName);
+        }else {
+            mStageView.setText("暂无");
+        }
+        if (!TextUtils.isEmpty(message.subjectName)) {
+            mSubjectView.setText(message.subjectName);
+        }else {
+            mSubjectView.setText("暂无");
+        }
         String sex;
         switch (message.sex) {
             case 0:

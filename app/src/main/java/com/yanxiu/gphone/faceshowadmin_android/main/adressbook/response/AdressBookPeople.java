@@ -14,6 +14,10 @@ public class AdressBookPeople implements Serializable {
      * */
     public int type;
     public String text;
+    /**
+     * 这个人是否是教师
+     * */
+    public boolean isTeacher=false;
 
     public String avatar;
     public int id;
