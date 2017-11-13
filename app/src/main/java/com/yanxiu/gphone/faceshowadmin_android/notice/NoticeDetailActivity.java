@@ -77,7 +77,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         titleLayoutTitle.setText(R.string.notice_detail_title);
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_notice_detil_more));
+       titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_notice_detil_more));
         NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean noticeBean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) getIntent().getSerializableExtra("NOTICE_DETAIL");
         int mNoticeNum = getIntent().getIntExtra("NOTICE_TOTAL_READ_NUM", 0);
         mNoticeId = noticeBean.getId();
