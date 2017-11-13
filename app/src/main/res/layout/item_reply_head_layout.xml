@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_discuss_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:gravity="start|center"
+        android:lineSpacingExtra="2dp"
+        android:paddingBottom="25dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:paddingTop="25dp"
+        android:textColor="@color/color_333333"
+        android:textSize="18sp"
+        tools:text="你们有哪些问题是可以选择和老师一起讨论的，请提出来。。。。。" />
+
+    <TextView
+        android:id="@+id/tv_reply_number"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_EBEFF2"
+        android:gravity="start|center_vertical"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:text="@string/reply_number"
+        android:textColor="@color/color_666666"
+        android:textSize="14sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_dae1e3"/>
+</LinearLayout>

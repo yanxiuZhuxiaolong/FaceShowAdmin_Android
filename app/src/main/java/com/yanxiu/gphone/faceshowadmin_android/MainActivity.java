@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
-import com.yanxiu.gphone.faceshowadmin_android.course.CourseFragment;
+import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;

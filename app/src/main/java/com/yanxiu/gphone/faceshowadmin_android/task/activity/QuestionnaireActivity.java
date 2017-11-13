@@ -12,9 +12,12 @@ import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetVotesRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.task.GetVotesResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.adapter.QuestionnaireAdapter;
+
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +34,7 @@ public class QuestionnaireActivity extends FaceShowBaseActivity {
     TextView mTitleLayoutTitle;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
+    private UUID mGetVotesRequestUUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,28 +46,35 @@ public class QuestionnaireActivity extends FaceShowBaseActivity {
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
         mTitleLayoutTitle.setText(R.string.questionnaire_detail);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
-
-
         getVotes();
     }
 
     private void getVotes() {
         GetVotesRequest getVotesRequest = new GetVotesRequest();
         getVotesRequest.stepId = getIntent().getStringExtra("stepId");
-        getVotesRequest.startRequest(GetVotesResponse.class, new HttpCallback<GetVotesResponse>() {
+        mGetVotesRequestUUID = getVotesRequest.startRequest(GetVotesResponse.class, new HttpCallback<GetVotesResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetVotesResponse ret) {
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(QuestionnaireActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                mRecyclerView.setLayoutManager(linearLayoutManager);
-                QuestionnaireAdapter questionnaireAdapter = new QuestionnaireAdapter(ret.getData().getQuestionGroup());
-                mRecyclerView.setAdapter(questionnaireAdapter);
-
+                mPublicLoadLayout.hiddenOtherErrorView();
+                if (ResponseConfig.SUCCESS == ret.getCode()) {
+                    if (ret.getData().getQuestionGroup() != null) {
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(QuestionnaireActivity.this);
+                        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                        mRecyclerView.setLayoutManager(linearLayoutManager);
+                        QuestionnaireAdapter questionnaireAdapter = new QuestionnaireAdapter(ret.getData().getQuestionGroup());
+                        mRecyclerView.setAdapter(questionnaireAdapter);
+                    } else {
+                        mPublicLoadLayout.showOtherErrorView(getString(R.string.data_empty));
+                    }
+                } else {
+                    mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                }
             }
 
             @Override
             public void onFail(RequestBase request, Error error) {
-
+                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.showOtherErrorView(error.getMessage());
             }
         });
     }
@@ -77,6 +87,14 @@ public class QuestionnaireActivity extends FaceShowBaseActivity {
                 break;
 
             default:
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mGetVotesRequestUUID != null) {
+            RequestBase.cancelRequestWithUUID(mGetVotesRequestUUID);
         }
     }
 }

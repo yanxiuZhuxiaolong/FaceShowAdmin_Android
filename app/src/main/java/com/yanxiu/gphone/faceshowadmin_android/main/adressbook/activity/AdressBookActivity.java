@@ -104,6 +104,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         mTitleView.setText("通讯录");
         mFunctionTextView.setText(R.string.add_adress);
         mFunctionTextView.setTextColor(ContextCompat.getColor(mContext,R.color.color_0068BD));
+        mFunctionImgView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_adress_person_bg));
 
         startAdressRequest(String.valueOf(mOffset));
         mRefreshLayout.post(new Runnable() {

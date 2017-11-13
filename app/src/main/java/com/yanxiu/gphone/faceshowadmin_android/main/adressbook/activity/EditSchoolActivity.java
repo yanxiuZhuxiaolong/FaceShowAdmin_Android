@@ -21,7 +21,6 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.util.UserMessageU
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
-import static com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.UserMessageActivity.RESULT_NAME;
 import static com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.UserMessageActivity.RESULT_SCHOOL;
 
 /**

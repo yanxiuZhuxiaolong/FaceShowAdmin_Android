@@ -174,7 +174,17 @@
     <string name="course_task">课程任务</string>
     <string name="course_resource">课程资源</string>
     <string name="have_finish_number"><Data><![CDATA[<font color="#999999">已完成人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
-
+    <string name="have_read_number"><Data><![CDATA[<font color="#999999">已完查看数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
+    <string name="no_lecture">无授课讲师信息</string>
+    <string name="no_brief">暂无简介</string>
     <string name="add_adress">添加</string>
+    <string name="course_lecture">课程讲师</string>
+    <string name="lecture_brief">课程简介</string>
+    <string name="course_message">课程信息</string>
+    <string name="reply_number">回复(%1$s)</string>
+    <string name="reply">回复</string>
+    <string name="no_reply_record">没有回复记录</string>
+    <string name="no_more_reply_record">没有更多回复记录</string>
+    <string name="no_reply_now">暂无回复</string>
 
 </resources>

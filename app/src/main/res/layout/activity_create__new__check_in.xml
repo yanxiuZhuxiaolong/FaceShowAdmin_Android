@@ -1,290 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_edf0ee">
+    android:background="@color/color_edf0ee"
+    android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CreateNewCheckInActivity">
+        android:layout_marginTop="5dp">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:context="com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CreateNewCheckInActivity">
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/common_title_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="0dp"
-            android:layout_width="0dp"
-            tools:layout_editor_absoluteX="0dp" />
-
-
-        <EditText
-            android:id="@+id/check_in_name"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/color_white"
-            android:hint="@string/create_new_check_in_name_hint"
-            android:lineSpacingExtra="15dp"
-            android:maxLength="20"
-            android:paddingBottom="22dp"
-            android:paddingEnd="15dp"
-            android:paddingStart="15dp"
-            android:paddingTop="22dp"
-            android:textColorHint="@color/color_cccccc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            tools:layout_editor_absoluteX="8dp" />
-
-
-        <RelativeLayout
-            android:id="@+id/rl_check_in_time"
-            android:layout_width="368dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/color_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/check_in_name"
-            tools:layout_editor_absoluteX="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/check_in_name"
+                android:layout_width="368dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/check_in_time"
-                android:textColor="@color/color_333333"
-                android:textSize="14sp" />
+                android:background="@color/color_white"
+                android:hint="@string/create_new_check_in_name_hint"
+                android:lineSpacingExtra="15dp"
+                android:maxLength="20"
+                android:paddingBottom="22dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="22dp"
+                android:textColorHint="@color/color_cccccc"
+                tools:layout_editor_absoluteX="8dp" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="5dp"
-                android:background="@android:color/holo_red_dark"
-                android:contentDescription="@null" />
 
-            <TextView
-                android:id="@+id/tv_check_in_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:textColor="@color/color_999999"
-                android:textSize="14sp" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_check_in_time"
+                android:layout_width="368dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/check_in_name"
+                tools:layout_editor_absoluteX="8dp">
 
-        <View
-            android:layout_width="15dp"
-            android:layout_height="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
-            tools:layout_editor_absoluteX="0dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/check_in_time"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14sp" />
 
-        <RelativeLayout
-            android:id="@+id/rl_check_in_start_time"
-            android:layout_width="368dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
-            tools:layout_editor_absoluteX="8dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@android:color/holo_red_dark"
+                    android:contentDescription="@null" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/start_time"
-                android:textColor="@color/color_333333"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tv_check_in_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="50dp"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="5dp"
-                android:background="@android:color/holo_red_dark"
-                android:contentDescription="@null" />
+            <View
+                android:layout_width="15dp"
+                android:layout_height="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
+                tools:layout_editor_absoluteX="0dp" />
 
-            <TextView
-                android:id="@+id/tv_check_in_start_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:textColor="@color/color_999999"
-                android:textSize="14sp" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_check_in_start_time"
+                android:layout_width="368dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_check_in_time"
+                tools:layout_editor_absoluteX="8dp">
 
-        <View
-            android:layout_width="15dp"
-            android:layout_height="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
-            tools:layout_editor_absoluteX="0dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/start_time"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14sp" />
 
-        <RelativeLayout
-            android:id="@+id/rl_check_in_end_time"
-            android:layout_width="368dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
-            tools:layout_editor_absoluteX="8dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@android:color/holo_red_dark"
+                    android:contentDescription="@null" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/end_time"
-                android:textColor="@color/color_333333"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tv_check_in_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="50dp"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="5dp"
-                android:background="@android:color/holo_red_dark"
-                android:contentDescription="@null" />
+            <View
+                android:layout_width="15dp"
+                android:layout_height="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
+                tools:layout_editor_absoluteX="0dp" />
 
-            <TextView
-                android:id="@+id/tv_check_in_end_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:textColor="@color/color_999999"
-                android:textSize="14sp" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_check_in_end_time"
+                android:layout_width="368dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_check_in_start_time"
+                tools:layout_editor_absoluteX="8dp">
 
-        <RelativeLayout
-            android:id="@+id/rl_useful"
-            android:layout_width="368dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/color_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_check_in_end_time"
-            tools:layout_editor_absoluteX="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/end_time"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/only_useful_in_check_in_time"
-                android:textColor="@color/color_333333"
-                android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@android:color/holo_red_dark"
+                    android:contentDescription="@null" />
 
-            <com.suke.widget.SwitchButton
-                android:id="@+id/switch_btn_useful"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                app:sb_checked_color="@color/color_2379D2"
-                app:sb_show_indicator="false" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_check_in_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="50dp"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+            </RelativeLayout>
 
-        <View
-            android:layout_width="15dp"
-            android:layout_height="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@+id/rl_useful"
-            tools:layout_editor_absoluteX="0dp" />
+            <RelativeLayout
+                android:id="@+id/rl_useful"
+                android:layout_width="368dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_check_in_end_time"
+                tools:layout_editor_absoluteX="8dp">
 
-        <RelativeLayout
-            android:id="@+id/rl_use_code"
-            android:layout_width="368dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/color_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_useful"
-            tools:layout_editor_absoluteX="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/only_useful_in_check_in_time"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:text="@string/use_code"
-                android:textColor="@color/color_333333"
-                android:textSize="14sp" />
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switch_btn_useful"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    app:sb_checked_color="@color/color_2379D2"
+                    app:sb_show_indicator="false" />
+            </RelativeLayout>
 
-            <com.suke.widget.SwitchButton
-                android:id="@+id/switch_btn_use_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                app:sb_checked_color="@color/color_2379D2"
-                app:sb_show_indicator="false" />
-        </RelativeLayout>
+            <View
+                android:layout_width="15dp"
+                android:layout_height="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintTop_toBottomOf="@+id/rl_useful"
+                tools:layout_editor_absoluteX="0dp" />
 
-        <EditText
-            android:id="@+id/check_in_success_toast"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/color_white"
-            android:hint="@string/check_in_success_hint"
-            android:lineSpacingExtra="15dp"
-            android:maxLength="20"
-            android:minHeight="100dp"
-            android:gravity="start|top"
-            android:paddingEnd="15dp"
-            android:paddingStart="15dp"
-            android:paddingTop="15dp"
-            android:textColorHint="@color/color_cccccc"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_use_code"
-            tools:layout_editor_absoluteX="8dp" />
+            <RelativeLayout
+                android:id="@+id/rl_use_code"
+                android:layout_width="368dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_useful"
+                tools:layout_editor_absoluteX="8dp">
 
-        <View
-            android:id="@+id/bottom_view"
-            android:layout_width="368dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/check_in_success_toast"
-            tools:layout_editor_absoluteX="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/use_code"
+                    android:textColor="@color/color_333333"
+                    android:textSize="14sp" />
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switch_btn_use_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    app:sb_checked_color="@color/color_2379D2"
+                    app:sb_show_indicator="false" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/check_in_success_toast"
+                android:layout_width="368dp"
+                android:layout_height="102dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/color_white"
+                android:gravity="start|top"
+                android:hint="@string/check_in_success_hint"
+                android:lineSpacingExtra="15dp"
+                android:maxLength="20"
+                android:minHeight="100dp"
+                android:paddingEnd="15dp"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_use_code" />
+
+            <View
+                android:id="@+id/bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/check_in_success_toast"
+                tools:layout_editor_absoluteX="8dp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
