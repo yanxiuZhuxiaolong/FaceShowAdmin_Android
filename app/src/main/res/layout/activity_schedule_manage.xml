@@ -32,11 +32,23 @@
             tools:text="标题" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/schedule_img"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="345dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/schedule_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>
