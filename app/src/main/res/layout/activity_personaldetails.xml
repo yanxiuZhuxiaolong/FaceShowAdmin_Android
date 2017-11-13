@@ -188,12 +188,13 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/ll_is_teacher_false_1"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/color_EBEFF2"/>
 
             <LinearLayout
-                android:id="@+id/ll_is_teacher_false_1"
+                android:id="@+id/ll_is_teacher_false_2"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="15dp"
@@ -216,12 +217,14 @@
                     tools:text="54%"/>
             </LinearLayout>
             <View
+                android:id="@+id/ll_is_teacher_false_3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="15dp"
                 android:background="@color/color_EBEFF2"/>
 
             <LinearLayout
+                android:id="@+id/ll_is_teacher_false_4"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="15dp"

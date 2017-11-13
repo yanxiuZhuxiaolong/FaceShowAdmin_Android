@@ -187,7 +187,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         if (people.userId== UserInfo.getInstance().getInfo().getUserId()){
             UserMessageActivity.LuanchActivity(mContext);
         }else {
-            PersonalDetailsActivity.LuanchActivity(mContext, String.valueOf(people.userId));
+            PersonalDetailsActivity.LuanchActivity(mContext, String.valueOf(people.userId),people.isTeacher);
         }
     }
 

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.yanxiu.gphone.faceshowadmin_android.model.BaseBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -24,6 +25,45 @@ public class CourseBean extends BaseBean {
     private String briefing;
     private String attachments;
     private String courseStatus;
+    private List<mLecturerInfos> lecturerInfos;
+
+    public class mLecturerInfos{
+        private String lecturerAvatar;
+        private String lecturerBriefing;
+        private String lecturerName;
+
+        public String getLecturerAvatar() {
+            return lecturerAvatar;
+        }
+
+        public void setLecturerAvatar(String lecturerAvatar) {
+            this.lecturerAvatar = lecturerAvatar;
+        }
+
+        public String getLecturerBriefing() {
+            return lecturerBriefing;
+        }
+
+        public void setLecturerBriefing(String lecturerBriefing) {
+            this.lecturerBriefing = lecturerBriefing;
+        }
+
+        public String getLecturerName() {
+            return lecturerName;
+        }
+
+        public void setLecturerName(String lecturerName) {
+            this.lecturerName = lecturerName;
+        }
+    }
+
+    public List<mLecturerInfos> getLecturerInfos() {
+        return lecturerInfos;
+    }
+
+    public void setLecturerInfos(List<mLecturerInfos> lecturerInfos) {
+        this.lecturerInfos = lecturerInfos;
+    }
 
     public String getId() {
         return id;
