@@ -38,6 +38,11 @@ public class LectureInfoAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).setData(data.get(position));
+        if (position == getItemCount() - 1) {
+            ((ViewHolder) holder).line.setVisibility(View.GONE);
+        } else {
+            ((ViewHolder) holder).line.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -53,6 +58,8 @@ public class LectureInfoAdapter extends BaseRecyclerViewAdapter {
         TextView mTvName;
         @BindView(R.id.rv_lecture_brief)
         TextView mRvLectureBrief;
+        @BindView(R.id.line)
+        View line;
 
         ViewHolder(View itemView) {
             super(itemView);
