@@ -94,7 +94,7 @@ public class PublishResourceActivity extends FaceShowBaseActivity {
         titleLayoutTitle.setText(R.string.publish_resource);
         title_layout_right_txt.setText(R.string.notice_submit);
         title_layout_right_txt.setEnabled(false);
-        title_layout_left_img.setImageResource(R.color.color_96bde4);
+//        title_layout_left_img.setImageResource(R.color.color_96bde4);
         titleLayoutTitle.setVisibility(View.VISIBLE);
         title_layout_right_txt.setVisibility(View.VISIBLE);
         title_layout_left_img.setVisibility(View.VISIBLE);

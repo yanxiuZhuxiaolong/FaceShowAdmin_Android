@@ -3,6 +3,7 @@ package com.yanxiu.gphone.faceshowadmin_android.resource.bean;
 import com.yanxiu.gphone.faceshowadmin_android.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 戴延枫 on 2017/11/8.
@@ -11,58 +12,85 @@ import java.util.ArrayList;
 
 public class ResourceDataBean extends BaseBean {
 
-    private ArrayList<ResourceBean> elements = new ArrayList();
-    private int pageSize;
-    private int pageNum;
-    private int offset;
-    private int totalElements;
-    private int lastPageNumber;
+    private Resources resources;
 
-    public int getPageSize() {
-        return pageSize;
+    public Resources getResources() {
+        return resources;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setResources(Resources resources) {
+        this.resources = resources;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public class Resources{
+
+        private String callbackParam;
+        private String callbackValue;
+        private List<Callbacks> callbacks;
+
+        public class Callbacks{
+            private String callbackParam;
+            private String callbackValue;
+
+            public String getCallbackParam() {
+                return callbackParam;
+            }
+
+            public void setCallbackParam(String callbackParam) {
+                this.callbackParam = callbackParam;
+            }
+
+            public String getCallbackValue() {
+                return callbackValue;
+            }
+
+            public void setCallbackValue(String callbackValue) {
+                this.callbackValue = callbackValue;
+            }
+        }
+
+        public String getCallbackParam() {
+            return callbackParam;
+        }
+
+        public void setCallbackParam(String callbackParam) {
+            this.callbackParam = callbackParam;
+        }
+
+        public String getCallbackValue() {
+            return callbackValue;
+        }
+
+        public void setCallbackValue(String callbackValue) {
+            this.callbackValue = callbackValue;
+        }
+
+        public List<Callbacks> getCallbacks() {
+            return callbacks;
+        }
+
+        public void setCallbacks(List<Callbacks> callbacks) {
+            this.callbacks = callbacks;
+        }
+
+        private ArrayList<ResourceBean> elements = new ArrayList();
+        private int totalElements;
+
+        public int getTotalElements() {
+            return totalElements;
+        }
+
+        public void setTotalElements(int totalElements) {
+            this.totalElements = totalElements;
+        }
+
+        public ArrayList<ResourceBean> getElements() {
+            return elements;
+        }
+
+        public void setElements(ArrayList<ResourceBean> elements) {
+            this.elements = elements;
+        }
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
-    public int getTotalElements() {
-        return totalElements;
-    }
-
-    public void setTotalElements(int totalElements) {
-        this.totalElements = totalElements;
-    }
-
-    public int getLastPageNumber() {
-        return lastPageNumber;
-    }
-
-    public void setLastPageNumber(int lastPageNumber) {
-        this.lastPageNumber = lastPageNumber;
-    }
-
-    public ArrayList<ResourceBean> getElements() {
-        return elements;
-    }
-
-    public void setElements(ArrayList<ResourceBean> elements) {
-        this.elements = elements;
-    }
 }

@@ -63,19 +63,58 @@ public class ResourceMangerAdapter extends BaseRecyclerViewAdapter {
         ResourceBean data = mList.get(position);
         ResourceItemViewHolder holder2 = (ResourceItemViewHolder) holder;
         holder2.resource_item_title.setText(data.getResName());
-        holder2.resource_item_num.setText(data.getDownNum() + "/" + data.getViewNum());
+        holder2.resource_item_num.setText(data.getViewClazsStudentNum() + "/" + data.getTotalClazsStudentNum());
         holder2.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerViewItemClickListener.onItemClick(view,position);
+                recyclerViewItemClickListener.onItemClick(view, position);
             }
         });
-        switch (data.getType()) {
-            case "0":
-//                holder2.resource_item_img.setImageResource(R.drawable.course_discuss_laud_clicked);
+        switch (data.getSuffix()) {
+            case "word":
+            case "doc":
+            case "docx":
+                holder2.resource_item_img.setImageResource(R.drawable.word);
+                break;
+            case "xls":
+            case "xlsx":
+            case "excel":
+                holder2.resource_item_img.setImageResource(R.drawable.excel);
+                break;
+            case "ppt":
+            case "pptx":
+                holder2.resource_item_img.setImageResource(R.drawable.ppt);
+                break;
+            case "pdf":
+                holder2.resource_item_img.setImageResource(R.drawable.pdf);
+                break;
+            case "text":
+            case "txt":
+                holder2.resource_item_img.setImageResource(R.drawable.txt);
+                break;
+            case "video":
+            case "mp4":
+            case "m3u8":
+                holder2.resource_item_img.setImageResource(R.drawable.mp4);
+                break;
+            case "audio":
+            case "mp3":
+                holder2.resource_item_img.setImageResource(R.drawable.mp3);
+                break;
+            case "image":
+            case "jpg":
+            case "jpeg":
+            case "gif":
+            case "png":
+                holder2.resource_item_img.setImageResource(R.drawable.jpg);
+                break;
+            default:
+                holder2.resource_item_img.setImageResource(R.drawable.weizhi);
                 break;
         }
-
+        if ("1".equals(data.getType())) {
+            holder2.resource_item_img.setImageResource(R.drawable.html);
+        }
     }
 
     @Override

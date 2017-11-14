@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -72,8 +73,8 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
     LoadMoreRecyclerView mRecyclerView;
     private ResourceMangerAdapter mAdapter;
 
-    private int mTotalCount = 0;//数据的总量
-    private int mNowTotalCount = 0;//当前以获取的数量
+//    private int mTotalCount = 0;//数据的总量
+//    private int mNowTotalCount = 0;//当前以获取的数量
 
     private ResourceDataBean mData;
 
@@ -94,8 +95,8 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         titleLayoutTitle.setText(R.string.manager_resource);
         title_layout_signIn.setText(R.string.upload);
         title_layout_signIn.setTextColor(getResources().getColor(R.color.color_0065b8));
-        title_layout_left_img.setImageResource(R.color.color_1da1f2);
-        title_layout_right_img.setImageResource(R.color.color_1da1f2);
+//        title_layout_left_img.setImageResource(R.color.color_1da1f2);
+        title_layout_right_img.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_resource_updata_bg));
         title_layout_left_img.setVisibility(View.VISIBLE);
         title_layout_right_img.setVisibility(View.VISIBLE);
         title_layout_signIn.setVisibility(View.VISIBLE);
@@ -118,12 +119,12 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         mRecyclerView.setLoadMoreListener(new LoadMoreRecyclerView.LoadMoreListener() {
             @Override
             public void onLoadMore(LoadMoreRecyclerView refreshLayout) {
-                if (mNowTotalCount < mTotalCount) {
-                    requestLoarMore();
-                } else {
-                    mRecyclerView.finishLoadMore();
-                    ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
-                }
+//                if (mNowTotalCount < mTotalCount) {
+                requestLoarMore();
+//                } else {
+//                    mRecyclerView.finishLoadMore();
+//                    ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
+//                }
 
             }
 
@@ -170,14 +171,15 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                     mSwipeRefreshLayout.setRefreshing(false);
                 if (ret != null && ret.getCode() == 0) {
                     mData = ret.getData();
-                    mTotalCount = ret.getData().getTotalElements();
-                    mNowTotalCount = ret.getData().getElements().size();
-                    if (mNowTotalCount >= mTotalCount) {
-                        mRecyclerView.setLoadMoreEnable(false);
-                    } else {
-                        mRecyclerView.setLoadMoreEnable(true);
-                    }
-                    mAdapter.setData(mData.getElements());
+//                    mTotalCount = ret.getData().getResources().getTotalElements();
+//                    mNowTotalCount = ret.getData().getResources().getElements().size();
+//                    if (mNowTotalCount >= mTotalCount) {
+//                        mRecyclerView.setLoadMoreEnable(false);
+//                    } else {
+//                        mRecyclerView.setLoadMoreEnable(true);
+//                    }
+                    mRecyclerView.setLoadMoreEnable(true);
+                    mAdapter.setData(mData.getResources().getElements());
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     mRootView.showOtherErrorView();
@@ -200,19 +202,28 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         mRootView.showLoadingView();
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        resourceRequest.offset = mData.getOffset() + "";
+        resourceRequest.id = mData.getResources().getCallbackValue();
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
             @Override
             public void onSuccess(RequestBase request, ResourceResponse ret) {
                 mRootView.finish();
                 mRecyclerView.finishLoadMore();
                 if (ret == null || ret.getCode() == 0) {
-                    if (mNowTotalCount < mTotalCount) {
-                        mAdapter.addData(ret.getData().getElements());
-                        mNowTotalCount += ret.getData().getElements().size();
-                    } else {
+                    if (ret.getData().getResources().getElements() == null || ret.getData().getResources().getElements().size() == 0) {
                         ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
+                        mRecyclerView.setLoadMoreEnable(false);
+                    } else {
+                        mData.getResources().getElements().addAll(ret.getData().getResources().getElements());
+                        mAdapter.addData(ret.getData().getResources().getElements());
+//                        mNowTotalCount += ret.getData().getResources().getElements().size();
+                        mRecyclerView.setLoadMoreEnable(true);
                     }
+//                    if (mNowTotalCount < mTotalCount) {
+//                        mAdapter.addData(ret.getData().getResources().getElements());
+//                        mNowTotalCount += ret.getData().getResources().getElements().size();
+//                    } else {
+//                        ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
+//                    }
 //                    mRecyclerView.setAdapter(mAdapter);
                 } else {
                     mRootView.showOtherErrorView();
@@ -243,14 +254,31 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                 mRootView.finish();
                 if (ret != null && ret.getCode() == 0) {
                     AttachmentInfosBean attachmentInfosBean = ret.getData().getAi();
-                    if (attachmentInfosBean.getResType().equals(Constants.EXCEL) || attachmentInfosBean.getResType().equals(Constants.PDF)
-                            || attachmentInfosBean.getResType().equals(Constants.PPT) || attachmentInfosBean.getResType().equals(Constants.TEXT)
-                            || attachmentInfosBean.getResType().equals(Constants.WORD)) {
-
-                        PDFViewActivity.invoke(ResourceMangerActivity.this, attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
-                    } else {
-                        ToastUtil.showToast(ResourceMangerActivity.this, ret.getError().getMessage());
+                    switch (attachmentInfosBean.getResType()) {
+                        case "word":
+                        case "doc":
+                        case "docx":
+                        case "xls":
+                        case "xlsx":
+                        case "excel":
+                        case "ppt":
+                        case "pptx":
+                        case "pdf":
+                        case "text":
+                        case "txt":
+                            PDFViewActivity.invoke(ResourceMangerActivity.this, attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
+                            break;
+                        default:
+                            ToastUtil.showToast(ResourceMangerActivity.this, ret.getError().getMessage());
+                            break;
                     }
+//                    if (attachmentInfosBean.getResType().equals(Constants.EXCEL) || attachmentInfosBean.getResType().equals(Constants.PDF)
+//                            || attachmentInfosBean.getResType().equals(Constants.PPT) || attachmentInfosBean.getResType().equals(Constants.TEXT)
+//                            || attachmentInfosBean.getResType().equals(Constants.WORD)) {
+//                        PDFViewActivity.invoke(ResourceMangerActivity.this, attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
+//                    } else {
+//                        ToastUtil.showToast(ResourceMangerActivity.this, ret.getError().getMessage());
+//                    }
                 }
 
             }
@@ -276,7 +304,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     @Override
     public void onItemClick(View v, int position) {
-        ResourceBean data = mData.getElements().get(position);
+        ResourceBean data = mData.getResources().getElements().get(position);
         if (TextUtils.equals(data.getType(), "1") && !TextUtils.isEmpty(data.getUrl())) {
             WebViewActivity.loadThisAct(this, data.getUrl(), data.getResName());
         } else if (TextUtils.equals(data.getType(), "0")) {

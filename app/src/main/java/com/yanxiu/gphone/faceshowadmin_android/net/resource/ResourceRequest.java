@@ -7,10 +7,10 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseRequest;
  */
 
 public class ResourceRequest extends FaceShowBaseRequest {
-    //    http://orz.yanxiu.com/pxt/platform/data.api?method=resource.list&clazzId=1&offset&pageSize=10&keyword=
-    public String method = "resource.list";
+    //    http://orz.yanxiu.com/pxt/platform/data.api?method=app.manage.resource.clazsResources&clazzId=1&offset&pageSize=10&keyword=
+    public String method="app.manage.resource.clazsResources";
     public String clazsId;
-    public String offset = "0";
+    public String id = "0";
     public String pageSize = "30";
     public String keyword;
 

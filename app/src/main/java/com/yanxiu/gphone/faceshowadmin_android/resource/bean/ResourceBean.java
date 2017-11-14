@@ -23,6 +23,24 @@ public class ResourceBean extends BaseBean {
     private String url;
     private String clazzId;
     private String createTimeStr;
+    private String totalClazsStudentNum;
+    private String viewClazsStudentNum;
+
+    public String getTotalClazsStudentNum() {
+        return totalClazsStudentNum;
+    }
+
+    public void setTotalClazsStudentNum(String totalClazsStudentNum) {
+        this.totalClazsStudentNum = totalClazsStudentNum;
+    }
+
+    public String getViewClazsStudentNum() {
+        return viewClazsStudentNum;
+    }
+
+    public void setViewClazsStudentNum(String viewClazsStudentNum) {
+        this.viewClazsStudentNum = viewClazsStudentNum;
+    }
 
     public String getId() {
         return id;
