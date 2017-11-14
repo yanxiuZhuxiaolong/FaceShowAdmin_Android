@@ -29,7 +29,7 @@
             android:layout_marginTop="49dp"
             android:text="课 l 程 l 详 l 情"
             android:textColor="@color/color_white"
-            android:textSize="21dp"
+            android:textSize="21sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
