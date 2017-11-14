@@ -157,6 +157,7 @@ public class ScheduleManageActivity extends FaceShowBaseActivity {
             (pop.findViewById(R.id.notice_delete)).setOnClickListener(popupWindowClickListener);
             (pop.findViewById(R.id.notice_cancel)).setOnClickListener(popupWindowClickListener);
             mPopupWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mPopupWindow.setAnimationStyle(R.style.pop_anim);
             mPopupWindow.setFocusable(true);
             mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
         }
