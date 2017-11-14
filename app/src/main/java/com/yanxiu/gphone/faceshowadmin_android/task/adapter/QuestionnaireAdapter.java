@@ -65,11 +65,20 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
                 break;
             case TYPE_SINGLE:
             case TYPE_MULTI:
+                if (position == getItemCount() - 1) {
+                    ((QuestionnaireAdapter.ProgressViewHolder) holder).line.setVisibility(View.INVISIBLE);
+                } else {
+                    ((QuestionnaireAdapter.ProgressViewHolder) holder).line.setVisibility(View.VISIBLE);
+                }
                 holder.setData(data.getQuestions().get(position - 1));
                 break;
             case TYPE_TEXT:
+                if (position == getItemCount() - 1) {
+                    ((QuestionnaireAdapter.ReplyViewHolder) holder).line.setVisibility(View.INVISIBLE);
+                } else {
+                    ((QuestionnaireAdapter.ReplyViewHolder) holder).line.setVisibility(View.VISIBLE);
+                }
                 holder.setData(data.getQuestions().get(position - 1));
-
                 break;
             default:
         }
@@ -138,7 +147,8 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         TextView mVoteResultTitle;
         @BindView(R.id.voteResult_Layout)
         VoteResultLayout mVoteResultLayout;
-
+        @BindView(R.id.vote_result_layout_line)
+        View line;
         ProgressViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
@@ -157,7 +167,8 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         TextView mTvVoteTitle;
         @BindView(R.id.tv_see_reply)
         TextView mTvSeeReply;
-
+        @BindView(R.id.line)
+        View line;
         ReplyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

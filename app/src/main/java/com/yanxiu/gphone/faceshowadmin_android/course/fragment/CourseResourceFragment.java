@@ -58,6 +58,8 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
         return mPublicLoadLayout;
     }
 
+    GetCourseResourcesResponse.DataBean mDataBean;
+
     private void getCourseResources() {
         String courseId = (getArguments() != null ? (String) getArguments().get("courseId") : null);
         if (courseId != null) {
@@ -70,26 +72,13 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
                     mPublicLoadLayout.hiddenOtherErrorView();
                     if (ResponseConfig.SUCCESS == ret.getCode()) {
                         if (ret.getData() != null && ret.getData().getResources() != null && ret.getData().getResources().getElements() != null && ret.getData().getResources().getElements().size() > 0) {
+                            mDataBean = ret.getData();
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                             mRecyclerView.setLayoutManager(linearLayoutManager);
                             CourseResourceAdapter courseResourceAdapter = new CourseResourceAdapter(ret.getData().getResources().getElements());
                             mRecyclerView.setAdapter(courseResourceAdapter);
-                            courseResourceAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
-                                @Override
-                                public void onItemClick(View v, int position) {
-                                    GetCourseResourcesResponse.ElementsBean data = ret.getData().getResources().getElements().get(position);
-                                    if (!TextUtils.isEmpty(data.getUrl())) {
-                                        WebViewActivity.loadThisAct(getContext(), data.getUrl(), data.getResName());
-                                    } else {
-                                        if (data != null && data.getType() != null) {
-                                            requestDetailData(data);
-                                        } else {
-                                        ToastUtil.showToast(getContext(), "数据异常");
-                                        }
-                                    }
-                                }
-                            });
+                            courseResourceAdapter.addItemClickListener(mRecyclerViewItemClickListener);
                         } else {
                             mPublicLoadLayout.showOtherErrorView("暂无课程资源");
                         }
@@ -116,10 +105,25 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
 
     }
 
+    private RecyclerViewItemClickListener mRecyclerViewItemClickListener = new RecyclerViewItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            GetCourseResourcesResponse.ElementsBean data = mDataBean.getResources().getElements().get(position);
+            if (TextUtils.equals(data.getType(), "1") && !TextUtils.isEmpty(data.getUrl())) {
+                WebViewActivity.loadThisAct(getContext(), data.getUrl(), data.getResName());
+            } else {
+                if (data.getType() != null) {
+                    requestDetailData(data);
+                } else {
+                    ToastUtil.showToast(getContext(), "数据异常");
+                }
+            }
+        }
+    };
+
     /**
      * 获取资源详情数据
      */
-
     private void requestDetailData(GetCourseResourcesResponse.ElementsBean bean) {
         mPublicLoadLayout.showLoadingView();
         ResourceDetailRequest resourceRequest = new ResourceDetailRequest();
@@ -130,13 +134,23 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
                 mPublicLoadLayout.finish();
                 if (ret != null && ret.getCode() == 0) {
                     AttachmentInfosBean attachmentInfosBean = ret.getData().getAi();
-                    if (attachmentInfosBean.getResType().equals(Constants.EXCEL) || attachmentInfosBean.getResType().equals(Constants.PDF)
-                            || attachmentInfosBean.getResType().equals(Constants.PPT) || attachmentInfosBean.getResType().equals(Constants.TEXT)
-                            || attachmentInfosBean.getResType().equals(Constants.WORD)) {
-
-                        PDFViewActivity.invoke(getActivity(), attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
-                    } else {
-                        ToastUtil.showToast(getContext(), ret.getError().getMessage());
+                    switch (attachmentInfosBean.getResType()) {
+                        case "word":
+                        case "doc":
+                        case "docx":
+                        case "xls":
+                        case "xlsx":
+                        case "excel":
+                        case "ppt":
+                        case "pptx":
+                        case "pdf":
+                        case "text":
+                        case "txt":
+                            PDFViewActivity.invoke(getActivity(), attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
+                            break;
+                        default:
+                            ToastUtil.showToast(getContext(), ret.getError().getMessage());
+                            break;
                     }
                 }
 

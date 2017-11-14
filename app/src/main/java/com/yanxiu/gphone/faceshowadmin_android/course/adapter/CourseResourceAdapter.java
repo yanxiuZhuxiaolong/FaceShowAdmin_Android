@@ -69,6 +69,51 @@ public class CourseResourceAdapter extends BaseRecyclerViewAdapter {
         void setData(GetCourseResourcesResponse.ElementsBean element) {
             mTvTaskName.setText(element.getResName());
             mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_read_person_number, element.getViewClazsStudentNum(), element.getTotalClazsStudentNum())));
+            switch (element.getSuffix()) {
+                case "word":
+                case "doc":
+                case "docx":
+                    mImgTaskIcon.setImageResource(R.drawable.word);
+                    break;
+                case "xls":
+                case "xlsx":
+                case "excel":
+                    mImgTaskIcon.setImageResource(R.drawable.excel);
+                    break;
+                case "ppt":
+                case "pptx":
+                    mImgTaskIcon.setImageResource(R.drawable.ppt);
+                    break;
+                case "pdf":
+                    mImgTaskIcon.setImageResource(R.drawable.pdf);
+                    break;
+                case "text":
+                case "txt":
+                    mImgTaskIcon.setImageResource(R.drawable.txt);
+                    break;
+                case "video":
+                case "mp4":
+                case "m3u8":
+                    mImgTaskIcon.setImageResource(R.drawable.mp4);
+                    break;
+                case "audio":
+                case "mp3":
+                    mImgTaskIcon.setImageResource(R.drawable.mp3);
+                    break;
+                case "image":
+                case "jpg":
+                case "jpeg":
+                case "gif":
+                case "png":
+                    mImgTaskIcon.setImageResource(R.drawable.jpg);
+                    break;
+                default:
+                    mImgTaskIcon.setImageResource(R.drawable.weizhi);
+                    break;
+            }
+            if ("1".equals(element.getType())) {
+                mImgTaskIcon.setImageResource(R.drawable.html);
+            }
         }
     }
 }

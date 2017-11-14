@@ -18,12 +18,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment.typeQuestionnaire;
+import static com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment.typeSignIn;
+import static com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment.typeVote;
+
 /**
- * Created by frc on 17-11-6.
+ * @author frc  on 17-11-6.
  */
 
 public class TaskAdapter extends BaseRecyclerViewAdapter {
-    List<GetTasksResponse.TasksBean> data = new ArrayList<>();
+    private List<GetTasksResponse.TasksBean> data = new ArrayList<>();
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,7 +75,20 @@ public class TaskAdapter extends BaseRecyclerViewAdapter {
         void setData(GetTasksResponse.TasksBean task) {
             mTvTaskName.setText(task.getInteractName());
             mTvHaveReadPersonNumber.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_read_person_number, task.getFinishedStudentNum(), task.getTotalStudentNum())));
-
+            switch (task.getInteractType()) {
+                case typeVote:
+                    mImgTaskIcon.setImageResource(R.drawable.icon_vote);
+                    break;
+                case typeSignIn:
+                    mImgTaskIcon.setImageResource(R.drawable.ic_show_password_pressed);
+                    // TODO: 17-11-14
+                    break;
+                case typeQuestionnaire:
+                    mImgTaskIcon.setImageResource(R.drawable.icon_questionnaire);
+                    break;
+                default:
+            }
         }
+
     }
 }

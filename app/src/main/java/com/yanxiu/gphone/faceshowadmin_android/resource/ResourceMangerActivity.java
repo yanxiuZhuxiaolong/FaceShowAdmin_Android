@@ -2,29 +2,21 @@ package com.yanxiu.gphone.faceshowadmin_android.resource;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
-import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.common.activity.PDFViewActivity;
 import com.yanxiu.gphone.faceshowadmin_android.common.activity.WebViewActivity;
-import com.yanxiu.gphone.faceshowadmin_android.common.bean.PdfBean;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
@@ -34,18 +26,10 @@ import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourceDetailReques
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourceDetailResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourceRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourceResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleDeleteRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleDeleteResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleResponse;
 import com.yanxiu.gphone.faceshowadmin_android.resource.adapter.ResourceMangerAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.resource.bean.ResourceBean;
 import com.yanxiu.gphone.faceshowadmin_android.resource.bean.ResourceDataBean;
-import com.yanxiu.gphone.faceshowadmin_android.schedule.PublishScheduleActivity;
-import com.yanxiu.gphone.faceshowadmin_android.schedule.UpdateScheduleActivity;
-import com.yanxiu.gphone.faceshowadmin_android.schedule.bean.ScheduleBean;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.YXPictureManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +41,6 @@ import butterknife.OnClick;
 public class ResourceMangerActivity extends FaceShowBaseActivity implements RecyclerViewItemClickListener {
 
     private PublicLoadLayout mRootView;
-
     @BindView(R.id.title_layout_left_img)
     ImageView title_layout_left_img;
     @BindView(R.id.title_layout_title)
@@ -72,9 +55,6 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
     @BindView(R.id.resource_recyclerView)
     LoadMoreRecyclerView mRecyclerView;
     private ResourceMangerAdapter mAdapter;
-
-//    private int mTotalCount = 0;//数据的总量
-//    private int mNowTotalCount = 0;//当前以获取的数量
 
     private ResourceDataBean mData;
 
@@ -95,7 +75,6 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         titleLayoutTitle.setText(R.string.manager_resource);
         title_layout_signIn.setText(R.string.upload);
         title_layout_signIn.setTextColor(getResources().getColor(R.color.color_0065b8));
-//        title_layout_left_img.setImageResource(R.color.color_1da1f2);
         title_layout_right_img.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_resource_updata_bg));
         title_layout_left_img.setVisibility(View.VISIBLE);
         title_layout_right_img.setVisibility(View.VISIBLE);
@@ -119,13 +98,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         mRecyclerView.setLoadMoreListener(new LoadMoreRecyclerView.LoadMoreListener() {
             @Override
             public void onLoadMore(LoadMoreRecyclerView refreshLayout) {
-//                if (mNowTotalCount < mTotalCount) {
                 requestLoarMore();
-//                } else {
-//                    mRecyclerView.finishLoadMore();
-//                    ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
-//                }
-
             }
 
             @Override
@@ -159,25 +132,20 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
      * 获取数据
      */
     private void requestData(final boolean isRefreshIng) {
-        if (!isRefreshIng)
+        if (!isRefreshIng) {
             mRootView.showLoadingView();
+        }
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
             @Override
             public void onSuccess(RequestBase request, ResourceResponse ret) {
                 mRootView.finish();
-                if (isRefreshIng)
+                if (isRefreshIng) {
                     mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (ret != null && ret.getCode() == 0) {
                     mData = ret.getData();
-//                    mTotalCount = ret.getData().getResources().getTotalElements();
-//                    mNowTotalCount = ret.getData().getResources().getElements().size();
-//                    if (mNowTotalCount >= mTotalCount) {
-//                        mRecyclerView.setLoadMoreEnable(false);
-//                    } else {
-//                        mRecyclerView.setLoadMoreEnable(true);
-//                    }
                     mRecyclerView.setLoadMoreEnable(true);
                     mAdapter.setData(mData.getResources().getElements());
                     mRecyclerView.setAdapter(mAdapter);
@@ -190,8 +158,9 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
             public void onFail(RequestBase request, Error error) {
                 mRootView.hiddenLoadingView();
                 mRootView.showNetErrorView();
-                if (isRefreshIng)
+                if (isRefreshIng) {
                     mSwipeRefreshLayout.setRefreshing(false);
+                }
 
             }
         });
@@ -215,16 +184,8 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                     } else {
                         mData.getResources().getElements().addAll(ret.getData().getResources().getElements());
                         mAdapter.addData(ret.getData().getResources().getElements());
-//                        mNowTotalCount += ret.getData().getResources().getElements().size();
                         mRecyclerView.setLoadMoreEnable(true);
                     }
-//                    if (mNowTotalCount < mTotalCount) {
-//                        mAdapter.addData(ret.getData().getResources().getElements());
-//                        mNowTotalCount += ret.getData().getResources().getElements().size();
-//                    } else {
-//                        ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
-//                    }
-//                    mRecyclerView.setAdapter(mAdapter);
                 } else {
                     mRootView.showOtherErrorView();
                 }
@@ -272,15 +233,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                             ToastUtil.showToast(ResourceMangerActivity.this, ret.getError().getMessage());
                             break;
                     }
-//                    if (attachmentInfosBean.getResType().equals(Constants.EXCEL) || attachmentInfosBean.getResType().equals(Constants.PDF)
-//                            || attachmentInfosBean.getResType().equals(Constants.PPT) || attachmentInfosBean.getResType().equals(Constants.TEXT)
-//                            || attachmentInfosBean.getResType().equals(Constants.WORD)) {
-//                        PDFViewActivity.invoke(ResourceMangerActivity.this, attachmentInfosBean.getResName(), attachmentInfosBean.getPreviewUrl());
-//                    } else {
-//                        ToastUtil.showToast(ResourceMangerActivity.this, ret.getError().getMessage());
-//                    }
                 }
-
             }
 
             @Override
@@ -321,7 +274,8 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == PublishResourceActivity.RESULT_PUBLISH)
+        if (resultCode == PublishResourceActivity.RESULT_PUBLISH) {
             requestData(false);
+        }
     }
 }

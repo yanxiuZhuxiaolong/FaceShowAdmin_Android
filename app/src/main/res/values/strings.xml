@@ -206,5 +206,8 @@
     <string name="app_update_cancle">取消</string>
     <string name="app_update_inoge">忽略</string>
     <string name="app_update_exit">退出</string>
+    <string name="no_task">尚未发布任务</string>
+    <string name="no_course">尚未发布课程</string>
+    <string name="no_check_in">尚未设置签到</string>
 
 </resources>

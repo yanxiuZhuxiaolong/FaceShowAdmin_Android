@@ -279,14 +279,13 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onTabItemClick(View v, int position) {
         switch (position) {
             case 0:
-//                ToastUtil.showToast(getActivity(), "通讯录");
                 AdressBookActivity.LuanchActivity(getContext());
                 break;
             case 1:
                 NoticeManageActivity.invoke(getActivity());
                 break;
             case 2:
-                CheckInNotesActivity.toThisAct(MainFragment.this.getContext(), "0");
+                CheckInNotesActivity.toThisAct(getActivity());
                 break;
             case 3:
                 requestScheduleData();

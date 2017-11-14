@@ -17,16 +17,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/public_net_error">
+            android:src="@drawable/public_no_wrong_data" />
 
-        </ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="@string/net_data_error"
+            android:text="@string/net_error"
             android:textColor="@color/color_999999"
             android:textSize="13dp" />
 
@@ -36,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             app:waves_animend_alpha="102"
             app:waves_radius="@dimen/wavesRadius">
 
@@ -49,7 +48,7 @@
                 android:gravity="center"
                 android:text="@string/retry"
                 android:textColor="@drawable/selector_refresh_text_color"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
         </com.yanxiu.gphone.faceshowadmin_android.customView.WavesLayout>
     </LinearLayout>
 </RelativeLayout>
