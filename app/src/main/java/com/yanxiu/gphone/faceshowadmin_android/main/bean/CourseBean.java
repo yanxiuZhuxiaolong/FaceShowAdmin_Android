@@ -27,7 +27,7 @@ public class CourseBean extends BaseBean {
     private String courseStatus;
     private List<mLecturerInfos> lecturerInfos;
 
-    public class mLecturerInfos{
+    public class mLecturerInfos extends BaseBean{
         private String lecturerAvatar;
         private String lecturerBriefing;
         private String lecturerName;
