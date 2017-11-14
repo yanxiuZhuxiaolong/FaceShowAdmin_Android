@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
@@ -38,7 +39,7 @@ public class AddStudentActivity extends FaceShowBaseActivity implements View.OnC
     private TextView mFunctionView;
     private EditText mNameView;
     private EditText mSexView;
-    private ImageView mChooseSexView;
+    private LinearLayout mChooseSexView;
     private EditText mMobileView;
     private EditText mSchoolView;
 

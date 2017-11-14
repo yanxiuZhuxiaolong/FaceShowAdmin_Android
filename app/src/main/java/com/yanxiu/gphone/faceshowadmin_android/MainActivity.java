@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
+import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
 import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
@@ -36,6 +37,7 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.content_frame)
@@ -100,6 +102,7 @@ public class MainActivity extends FaceShowBaseActivity {
 
         }
     };
+    private LeftDrawerListAdapter mLeftDrawerListAdapter;
 
     public static void invoke(Activity activity, GetClazzListResponse.DataBean.ClazsInfosBean clazsInfosBean) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -119,6 +122,13 @@ public class MainActivity extends FaceShowBaseActivity {
         setMainContentView();
         setLeftDrawer();
         UpdateUtil.Initialize(this, false);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initBottomBar() {
@@ -147,13 +157,19 @@ public class MainActivity extends FaceShowBaseActivity {
         fragmentManager.beginTransaction().add(R.id.fragment_content, mMainFragment, TAB_MAIN).commit();
     }
 
+    public void onEventMainThread(UserMessageChangedBean bean){
+        if (bean!=null){
+            mLeftDrawerListAdapter.notifyDataSetChanged();
+        }
+    }
+
     public void setLeftDrawer() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mLeftDrawerList.setLayoutManager(linearLayoutManager);
-        LeftDrawerListAdapter leftDrawerListAdapter = new LeftDrawerListAdapter(mContext,mMainFragment.getmData());
-        mLeftDrawerList.setAdapter(leftDrawerListAdapter);
-        leftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
+        mLeftDrawerListAdapter = new LeftDrawerListAdapter(mContext,mMainFragment.getmData());
+        mLeftDrawerList.setAdapter(mLeftDrawerListAdapter);
+        mLeftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 LeftDrawerListItemToOtherAct(position);

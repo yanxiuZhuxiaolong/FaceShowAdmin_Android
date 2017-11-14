@@ -64,6 +64,7 @@
                 android:background="@color/color_EBEFF2" />
 
             <LinearLayout
+                android:id="@+id/ll_name_click"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginEnd="5dp"
@@ -136,6 +137,7 @@
                 android:background="@color/color_EBEFF2" />
 
             <LinearLayout
+                android:id="@+id/ll_sex_click"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginEnd="5dp"
@@ -239,6 +241,7 @@
                 android:background="@color/color_EBEFF2" />
 
             <LinearLayout
+                android:id="@+id/ll_school_click"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginEnd="5dp"

@@ -71,6 +71,10 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
     private TextView mSubjectView;
     private TextView mSchoolView;
 
+    private View mNameClickView;
+    private View mSexClickView;
+    private View mSchoolClickView;
+
     private ClassCircleDialog mClassCircleDialog;
     private ChooseSexDialog mSexDialog;
     private UserMessageUpdateManager mUpdateManager;
@@ -123,19 +127,23 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
         mStageView = findViewById(R.id.tv_stage);
         mSubjectView = findViewById(R.id.tv_subject);
         mSchoolView = findViewById(R.id.tv_school);
+
+        mNameClickView=findViewById(R.id.ll_name_click);
+        mSexClickView=findViewById(R.id.ll_sex_click);
+        mSchoolClickView=findViewById(R.id.ll_school_click);
     }
 
     private void listener() {
         mBackView.setOnClickListener(this);
         rootView.setRetryButtonOnclickListener(this);
         mHeadImgView.setOnClickListener(this);
-        mNameView.setOnClickListener(this);
         mMobileView.setOnClickListener(this);
-        mSexView.setOnClickListener(this);
         mStageView.setOnClickListener(this);
         mSubjectView.setOnClickListener(this);
-        mSchoolView.setOnClickListener(this);
         mSexDialog.setClickListener(this);
+        mNameClickView.setOnClickListener(this);
+        mSchoolClickView.setOnClickListener(this);
+        mSexClickView.setOnClickListener(this);
     }
 
     private void initData() {
@@ -155,16 +163,16 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
             case R.id.iv_head_img:
                 showDialog();
                 break;
-            case R.id.tv_name:
+            case R.id.ll_name_click:
                 EditNameActivity.LuanchActivity(mContext,REQUEST_NAME,mDetailsData.realName);
                 break;
-            case R.id.tv_sex:
+            case R.id.ll_sex_click:
                 if (mSexDialog == null) {
                     mSexDialog = new ChooseSexDialog(mContext);
                 }
                 mSexDialog.show();
                 break;
-            case R.id.tv_school:
+            case R.id.ll_school_click:
                 EditSchoolActivity.LuanchActivity(mContext,REQUEST_SCHOOL,mDetailsData.school);
                 break;
 
@@ -395,7 +403,7 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
                 case REQUEST_CODE_CROP:
                     if (!TextUtils.isEmpty(mCropPath)) {
                         if (new File(mCropPath).exists()) {
-                            mUpdateManager.updataUrl(mCropPath,this);
+                            mUpdateManager.updataHeadimg(mCropPath,this);
                         }
                     }
                     break;

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.classCircle.response.HeadimgUploadBean;
+import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.UpLoadRequest;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.UserMessageUpdataRequest;
@@ -15,6 +16,8 @@ import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
 
 import java.util.Map;
 import java.util.UUID;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.
@@ -93,7 +96,7 @@ public class UserMessageUpdateManager {
         startUpdataUserMessage(mRealName, sex, mSchoolName, mUrl, UPDATA_SEX, callback);
     }
 
-    public void updataUrl(String localPath, onRequestCallback callback) {
+    public void updataHeadimg(String localPath, onRequestCallback callback) {
         uploadHeadimg(localPath, callback);
     }
 
@@ -202,6 +205,7 @@ public class UserMessageUpdateManager {
                     callback.onHttpFinish();
                     callback.onSuccess(ret, message, updataType);
                 }
+                EventBus.getDefault().post(new UserMessageChangedBean());
             }
 
             @Override

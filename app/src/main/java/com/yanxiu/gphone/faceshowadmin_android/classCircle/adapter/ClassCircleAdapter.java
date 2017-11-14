@@ -51,11 +51,11 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void likeClick(int position, ClassCircleResponse.Data.Moments response);
     }
 
-    public interface onDeleteClickListener{
+    public interface onDeleteClickListener {
         void deleteClick(int position, ClassCircleResponse.Data.Moments response);
     }
 
-    public interface onContentLinesChangedlistener{
+    public interface onContentLinesChangedlistener {
         void onContentLinesChanged(int position, boolean isShowAll);
     }
 
@@ -65,9 +65,9 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int ANIM_CLOSE = 0x0003;
     private static final int ANIM_DURATION = 200;
     private static final int ANIM_POSITION_DEFAULT = -1;
-    private static final int REFRESH_ANIM_VIEW=0x0004;
-    public static final int REFRESH_LIKE_DATA=0x0005;
-    public static final int REFRESH_COMMENT_DATA=0x0006;
+    private static final int REFRESH_ANIM_VIEW = 0x0004;
+    public static final int REFRESH_LIKE_DATA = 0x0005;
+    public static final int REFRESH_COMMENT_DATA = 0x0006;
 
     private Context mContext;
     private List<ClassCircleResponse.Data.Moments> mData = new ArrayList<>();
@@ -98,8 +98,8 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.notifyDataSetChanged();
     }
 
-    public void deleteData(int position){
-        if (position>-1&&position<mData.size()){
+    public void deleteData(int position) {
+        if (position > -1 && position < mData.size()) {
             mData.remove(position);
             this.notifyDataSetChanged();
         }
@@ -133,12 +133,12 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mLikeClickListener = likeClickListener;
     }
 
-    public void setDeleteClickListener(onDeleteClickListener deleteClickListener){
-        this.mDeleteClickListener=deleteClickListener;
+    public void setDeleteClickListener(onDeleteClickListener deleteClickListener) {
+        this.mDeleteClickListener = deleteClickListener;
     }
 
-    public void setContentLinesChangedlistener(onContentLinesChangedlistener contentLinesChangedlistener){
-        this.mContentLinesChangedlistener=contentLinesChangedlistener;
+    public void setContentLinesChangedlistener(onContentLinesChangedlistener contentLinesChangedlistener) {
+        this.mContentLinesChangedlistener = contentLinesChangedlistener;
     }
 
     @Override
@@ -163,30 +163,30 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List<Object> payloads) {
-        if (payloads.isEmpty()){
+        if (payloads.isEmpty()) {
             onBindViewHolder(holder, position);
-        }else {
+        } else {
             final ClassCircleViewHolder classCircleViewHolder = (ClassCircleViewHolder) holder;
             final ClassCircleResponse.Data.Moments moments = mData.get(position - 1);
-            int refresh= (int) payloads.get(0);
-            switch (refresh){
+            int refresh = (int) payloads.get(0);
+            switch (refresh) {
                 case REFRESH_ANIM_VIEW:
                     classCircleViewHolder.mAnimLayout.setVisibility(View.INVISIBLE);
                     classCircleViewHolder.mAnimLayout.setEnabled(false);
                     break;
                 case REFRESH_COMMENT_DATA:
-                    setViewVisibly(classCircleViewHolder,moments);
+                    setViewVisibly(classCircleViewHolder, moments);
                     classCircleViewHolder.mCircleCommentLayout.setData(moments.comments);
                     break;
                 case REFRESH_LIKE_DATA:
-                    setViewVisibly(classCircleViewHolder,moments);
+                    setViewVisibly(classCircleViewHolder, moments);
                     classCircleViewHolder.mCircleThumbView.setData(moments.likes);
                     break;
             }
         }
     }
 
-    private void setViewVisibly(ClassCircleViewHolder classCircleViewHolder,ClassCircleResponse.Data.Moments moments){
+    private void setViewVisibly(ClassCircleViewHolder classCircleViewHolder, ClassCircleResponse.Data.Moments moments) {
         boolean isLikeHasData = moments.likes != null && moments.likes.size() > 0;
         boolean isCommentHasData = moments.comments != null && moments.comments.size() > 0;
         if (isCommentHasData && isLikeHasData) {
@@ -208,7 +208,7 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    private class ClassCircleImageTager extends BitmapImageViewTarget{
+    private class ClassCircleImageTager extends BitmapImageViewTarget {
 
         ClassCircleImageTager(ImageView view) {
             super(view);
@@ -244,7 +244,6 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 headimg = moments.publisher.avatar;
             }
             Glide.with(mContext).load(headimg).asBitmap().placeholder(R.drawable.classcircle_headimg_small).centerCrop().into(new CornersImageTarget(mContext, classCircleViewHolder.mHeadImgView, 10));
-            classCircleViewHolder.mContentImageView.setEnabled(false);
             if (moments.album != null && moments.album.size() > 0) {
                 classCircleViewHolder.mContentImageView.setVisibility(View.VISIBLE);
                 if (moments.album.get(0).attachment != null) {
@@ -252,16 +251,16 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     if (classCircleViewHolder.mContentImgUrl == null || !classCircleViewHolder.mContentImgUrl.equals(imgPath)) {
                         Glide.with(mContext).load(imgPath).asBitmap().error(R.drawable.net_error_picture).into(new ClassCircleImageTager(classCircleViewHolder.mContentImageView));
                         classCircleViewHolder.mContentImgUrl = imgPath;
-
-                        classCircleViewHolder.mContentImageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ArrayList<String> list = new ArrayList<>();
-                                list.add(moments.album.get(0).attachment.downloadUrl);
-                                PhotoActivity.LaunchActivity(mContext, list, 0, mContext.hashCode(), PhotoActivity.DELETE_CANNOT);
-                            }
-                        });
                     }
+                    classCircleViewHolder.mContentImageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ArrayList<String> list = new ArrayList<>();
+                            list.add(moments.album.get(0).attachment.downloadUrl);
+                            PhotoActivity.LaunchActivity(mContext, list, 0, mContext.hashCode(), PhotoActivity.DELETE_CANNOT);
+                        }
+                    });
+
                 }
             } else {
                 classCircleViewHolder.mContentImageView.setVisibility(View.GONE);
@@ -272,9 +271,9 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             classCircleViewHolder.mContentView.setData(moments.content, moments.isShowAll, new MaxLineTextLayout.onLinesChangedListener() {
                 @Override
                 public void onLinesChanged(boolean isShowAll) {
-                    moments.isShowAll=isShowAll;
-                    if (mContentLinesChangedlistener!=null){
-                        mContentLinesChangedlistener.onContentLinesChanged(classCircleViewHolder.getAdapterPosition(),isShowAll);
+                    moments.isShowAll = isShowAll;
+                    if (mContentLinesChangedlistener != null) {
+                        mContentLinesChangedlistener.onContentLinesChanged(classCircleViewHolder.getAdapterPosition(), isShowAll);
                     }
                 }
             });
@@ -284,7 +283,7 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             classCircleViewHolder.mCircleThumbView.setData(moments.likes);
             classCircleViewHolder.mCircleCommentLayout.setData(moments.comments);
 
-            setViewVisibly(classCircleViewHolder,moments);
+            setViewVisibly(classCircleViewHolder, moments);
 
             classCircleViewHolder.mCircleCommentLayout.setItemClickListener(new ClassCircleCommentLayout.onItemClickListener() {
                 @Override
@@ -307,7 +306,7 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (animPosition != ANIM_POSITION_DEFAULT) {
-                        notifyItemChanged(animPosition,REFRESH_ANIM_VIEW);
+                        notifyItemChanged(animPosition, REFRESH_ANIM_VIEW);
                         animPosition = ANIM_POSITION_DEFAULT;
                     }
                     if (mCommentClickListener != null) {
@@ -434,7 +433,7 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             animType = ANIM_CLOSE;
             animPosition = ANIM_POSITION_DEFAULT;
         } else {
-            notifyItemChanged(animPosition,REFRESH_ANIM_VIEW);
+            notifyItemChanged(animPosition, REFRESH_ANIM_VIEW);
             scaleStart = 0f;
             scaleEnd = 1f;
             translationStart = width / 2;
