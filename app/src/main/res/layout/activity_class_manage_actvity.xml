@@ -18,7 +18,7 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/commontitle_margin_left"
-            android:background="@color/color_EBEFF2" />
+            android:background="@drawable/selector_back" />
 
         <TextView
             android:id="@+id/title_layout_title"
