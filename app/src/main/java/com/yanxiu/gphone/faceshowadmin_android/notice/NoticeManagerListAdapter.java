@@ -52,10 +52,9 @@ class NoticeManagerListAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean data = mList.get(position);
 
-       ViewHolder holder2 = (ViewHolder) holder;
+        ViewHolder holder2 = (ViewHolder) holder;
         holder2.notice_name.setText(data.getTitle());
-//        int hasReadNum = data.getNoticeReadNumSum();
-        holder2.num_reader.setText(data.getNoticeReadNumSum() + "/" + mNoticeNum);
+        holder2.num_reader.setText(data.getNoticeReadUserNum() + "/" + mNoticeNum);
         holder2.notice_content.setText(data.getContent());
         holder2.notice_time.setText(StringUtils.getCourseTime(data.getCreateTime()));
         holder2.notice_manage_layout.setOnClickListener(new View.OnClickListener() {

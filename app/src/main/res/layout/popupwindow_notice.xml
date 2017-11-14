@@ -25,7 +25,8 @@ android:layout_height="match_parent">
         android:layout_height="50dp"
         android:gravity="center"
         android:text="@string/notice_delete"
-        android:textColor="@color/color_333333"
+        android:textColor="@drawable/selector_button_text"
+        android:background="@drawable/selector_button_bg"
         android:textSize="16dp" />
 
 
@@ -41,7 +42,8 @@ android:layout_height="match_parent">
         android:layout_height="50dp"
         android:gravity="center"
         android:text="@string/notice_cancel"
-        android:textColor="@color/color_333333"
+        android:textColor="@drawable/selector_button_text"
+        android:background="@drawable/selector_button_bg"
         android:textSize="16dp" />
 
 </LinearLayout>

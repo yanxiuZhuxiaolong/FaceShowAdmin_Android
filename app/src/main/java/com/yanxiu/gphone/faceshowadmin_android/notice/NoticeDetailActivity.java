@@ -111,6 +111,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
             (pop.findViewById(R.id.notice_delete)).setOnClickListener(popupWindowClickListener);
             (pop.findViewById(R.id.notice_cancel)).setOnClickListener(popupWindowClickListener);
             mPopupWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mPopupWindow.setAnimationStyle(R.style.pop_anim);
             mPopupWindow.setFocusable(true);
             mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
         }
@@ -126,6 +127,9 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
     View.OnClickListener popupWindowClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            TextView view = (TextView)v;
+//            view.setTextColor(getResources().getColor(R.color.color_white));
+//            view.setBackgroundColor(getResources().getColor(R.color.color_0068bd));
             switch (v.getId()) {
                 case R.id.notice_delete:
                     requestDeleteNotice();

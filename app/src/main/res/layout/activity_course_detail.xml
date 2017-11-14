@@ -11,15 +11,26 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@android:color/holo_blue_dark">
+        android:background="@drawable/bg_course_detail">
 
         <ImageView
             android:id="@+id/img_left_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@android:color/holo_red_dark" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/selector_back" />
+
+        <TextView
+            android:id="@+id/course_detaile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="49dp"
+            android:text="课 l 程 l 详 l 情"
+            android:textColor="@color/color_white"
+            android:textSize="21sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <ScrollView

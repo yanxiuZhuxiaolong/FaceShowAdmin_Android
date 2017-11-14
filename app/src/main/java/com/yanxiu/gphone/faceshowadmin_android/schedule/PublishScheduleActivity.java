@@ -178,8 +178,8 @@ public class PublishScheduleActivity extends FaceShowBaseActivity {
                     } else {
                         imageUri = FileProvider.getUriForFile(PublishScheduleActivity.this, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", file);
                     }
-                    startPhotoZoom(imageUri, Uri.fromFile(createCroppedImageFile()));
-//                    mImagePaths = mCameraPath;
+//                    startPhotoZoom(imageUri, Uri.fromFile(createCroppedImageFile()));
+                    mImagePaths = mCameraPath;
 //                    mType = TYPE_IMAGE;
                 }
                 break;
