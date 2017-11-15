@@ -87,7 +87,7 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                     if (ret.getData().getCourse().getLecturerInfos() != null && ret.getData().getCourse().getLecturerInfos() != null && ret.getData().getCourse().getLecturerInfos().size() > 0) {
                         mCourseTeacher.setText(ret.getData().getCourse().getLecturerInfos().get(0).getLecturerName());
                     } else {
-                        mCourseTeacher.setText("无");
+                        mCourseTeacher.setText("暂无");
                     }
                     mCourseLocation.setText(TextUtils.isEmpty(ret.getData().getCourse().getSite()) ? getString(R.string.wait_for) : ret.getData().getCourse().getSite());
                     mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(ret.getData().getCourse().getStartTime()), DateFormatUtil.translationDateFormat(ret.getData().getCourse().getEndTime())));
