@@ -70,7 +70,8 @@ public class SignedInFragment extends FaceShowBaseFragment {
         mSignedInAdapter = new SignedInAdapter();
         mRecyclerView.setAdapter(mSignedInAdapter);
         mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
-        mOnRefreshListener.onRefresh();
+        mPublicLoadLayout.showLoadingView();
+        initData();
         return mPublicLoadLayout;
     }
 
@@ -98,6 +99,7 @@ public class SignedInFragment extends FaceShowBaseFragment {
         mGetClassUserSignInsRequestUUID = getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
+                mPublicLoadLayout.finish();
                 if (mSwipeRefreshLayout != null) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
@@ -117,14 +119,14 @@ public class SignedInFragment extends FaceShowBaseFragment {
                         mSignedInAdapter.update(ret.getData().getElements());
                     } else {
                         if (data.size() == 0) {
-                            mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_signed_in_data));
                         } else {
                             ToastUtil.showToast(getActivity(), ret.getMessage());
                         }
                     }
                 } else {
                     if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_signed_in_data));
+                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
                     } else {
                         ToastUtil.showToast(getActivity(), ret.getMessage());
                     }

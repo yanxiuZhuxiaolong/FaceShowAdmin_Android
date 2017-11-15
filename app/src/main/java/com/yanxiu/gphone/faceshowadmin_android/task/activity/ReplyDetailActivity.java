@@ -78,7 +78,7 @@ public class ReplyDetailActivity extends FaceShowBaseActivity {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
                 if (ResponseConfig.SUCCESS == ret.getCode()) {
-                    if (ret.getData() != null && ret.getData() != null && ret.getData().size() > 0) {
+                    if (ret.getData() != null && ret.getData() != null) {
                         if (mReplyDetailAdapter != null) {
                             mReplyDetailAdapter.update(ret.getData(), getIntent().getStringExtra("title"), String.valueOf(ret.getData().size()));
                         } else {
@@ -88,8 +88,6 @@ public class ReplyDetailActivity extends FaceShowBaseActivity {
                             mReplyDetailAdapter = new ReplyDetailAdapter(ret.getData(), getIntent().getStringExtra("title"), String.valueOf(ret.getData().size()));
                             mRecyclerView.setAdapter(mReplyDetailAdapter);
                         }
-                    } else {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_reply_now));
                     }
                 } else {
                     mPublicLoadLayout.showOtherErrorView(ret.getMessage());

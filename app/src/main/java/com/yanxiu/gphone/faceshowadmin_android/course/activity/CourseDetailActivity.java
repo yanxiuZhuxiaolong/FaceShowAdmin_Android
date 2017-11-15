@@ -25,11 +25,13 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,7 +90,7 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                         mCourseTeacher.setText("无");
                     }
                     mCourseLocation.setText(TextUtils.isEmpty(ret.getData().getCourse().getSite()) ? getString(R.string.wait_for) : ret.getData().getCourse().getSite());
-                    mCourseTime.setText(StringUtils.getCourseTime(ret.getData().getCourse().getStartTime(), ret.getData().getCourse().getEndTime()));
+                    mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(ret.getData().getCourse().getStartTime()), DateFormatUtil.translationDateFormat(ret.getData().getCourse().getEndTime())));
                     CourseResourceFragment courseResourceFragment = new CourseResourceFragment();
                     Bundle bundle1 = new Bundle();
                     bundle1.putString("courseId", getCourseRequest.courseId);

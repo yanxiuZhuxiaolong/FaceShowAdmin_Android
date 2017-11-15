@@ -90,7 +90,8 @@ public class NoSignInFragment extends FaceShowBaseFragment {
             }
         });
         mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
-        mOnRefreshListener.onRefresh();
+        mPublicLoadLayout.showLoadingView();
+        initData();
         return mPublicLoadLayout;
     }
 
@@ -183,7 +184,7 @@ public class NoSignInFragment extends FaceShowBaseFragment {
         mGetClassUserSignInsRequestUUID = getClassUserSignInsRequest.startRequest(GetClassUserResponse.class, new HttpCallback<GetClassUserResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassUserResponse ret) {
-                mPublicLoadLayout.hiddenLoadingView();
+                mPublicLoadLayout.finish();
                 if (mSwipeRefreshLayout != null) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
@@ -197,8 +198,6 @@ public class NoSignInFragment extends FaceShowBaseFragment {
                                 id = String.valueOf(ret.getData().getCallbacks().get(i).getCallbackValue());
                             }
                         }
-                        mPublicLoadLayout.hiddenOtherErrorView();
-                        mPublicLoadLayout.hiddenNetErrorView();
                         data.addAll(ret.getData().getElements());
                         mNoSignInAdapter.update(ret.getData().getElements());
                     } else {

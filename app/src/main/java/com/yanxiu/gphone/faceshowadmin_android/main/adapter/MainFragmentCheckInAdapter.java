@@ -13,9 +13,11 @@ import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailAct
 import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 
+import java.sql.Date;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -58,7 +60,7 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
         final TodaySignInBean data = mList.get(position);
         final ViewHolder holder2 = (ViewHolder) holder;
         holder2.checkin_item_title.setText(data.getTitle());
-        holder2.checkin_item_time.setText(StringUtils.getCourseTime(data.getStartTime(),data.getEndTime()));
+        holder2.checkin_item_time.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(data.getStartTime()), DateFormatUtil.translationDateFormat(data.getEndTime())));
         holder2.checkin_item_checkin.setText(data.getSignInUserNum() + "/" + data.getTotalUserNum());
         String percent;
         try {
@@ -86,7 +88,7 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(holder2.itemView.getContext(), CheckInDetailActivity.class);
-                intent.putExtra("stepId", String.valueOf(data.getId()));
+                intent.putExtra("stepId", String.valueOf(data.getStepId()));
                 holder2.itemView.getContext().startActivity(intent);
             }
         });

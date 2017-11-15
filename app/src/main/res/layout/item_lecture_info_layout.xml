@@ -17,7 +17,6 @@
             android:id="@+id/img_head"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/holo_red_dark"
             android:contentDescription="@null" />
 
         <TextView

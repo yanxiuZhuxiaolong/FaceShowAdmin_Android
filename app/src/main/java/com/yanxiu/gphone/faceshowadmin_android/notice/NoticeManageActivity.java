@@ -2,6 +2,7 @@ package com.yanxiu.gphone.faceshowadmin_android.notice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -165,6 +166,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         titleLayoutRightImg.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_send_notice));
         titleLayoutRightTxt.setText(R.string.notice_post);
+        titleLayoutRightTxt.setTextColor(Color.parseColor("#0068BD"));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);

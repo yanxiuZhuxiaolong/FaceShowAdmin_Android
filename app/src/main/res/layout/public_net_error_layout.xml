@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/public_no_wrong_data" />
+            android:src="@drawable/public_net_error" />
 
 
         <TextView

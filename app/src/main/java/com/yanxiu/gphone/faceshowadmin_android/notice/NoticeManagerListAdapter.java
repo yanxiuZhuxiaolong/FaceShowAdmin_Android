@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 
@@ -56,7 +57,7 @@ class NoticeManagerListAdapter extends BaseRecyclerViewAdapter {
         holder2.notice_name.setText(data.getTitle());
         holder2.num_reader.setText(data.getNoticeReadUserNum() + "/" + mNoticeNum);
         holder2.notice_content.setText(data.getContent());
-        holder2.notice_time.setText(StringUtils.getCourseTime(data.getCreateTime()));
+        holder2.notice_time.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(data.getCreateTime())));
         holder2.notice_manage_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -84,7 +84,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
         GetCourseCommentRecordsRequest getCourseCommentRecordsRequest = new GetCourseCommentRecordsRequest();
         getCourseCommentRecordsRequest.stepId = mStepId;
         getCourseCommentRecordsRequest.id = id;
-        getCourseCommentRecordsRequest.limit = "20";
+        getCourseCommentRecordsRequest.limit = "10000";
         getCourseCommentRecordsRequest.order = "desc";
         mGetCourseCommentRecordsRequestUUID = getCourseCommentRecordsRequest.startRequest(GetCourseCommentRecordsResponse.class, new HttpCallback<GetCourseCommentRecordsResponse>() {
             @Override
@@ -94,7 +94,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
                 if (ResponseConfig.SUCCESS == ret.getCode()) {
-                    if (ret.getData().getElements() != null && ret.getData().getElements().size() > 0) {
+                    if (ret.getData().getElements() != null) {
                         if (mRefresh) {
                             mRecords.clear();
                         }
@@ -110,12 +110,6 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                             mCourseCommentAdapter.addThumbClickListener(mThumbClickListener);
                         } else {
                             mCourseCommentAdapter.update(mRecords, mDescription, String.valueOf(ret.getData().getTotalElements()));
-                        }
-                    } else {
-                        if (TextUtils.isEmpty(id)) {
-                            mPublicLoadLayout.showOtherErrorView(getString(R.string.no_comment_record));
-                        } else {
-                            ToastUtil.showToast(getApplicationContext(), R.string.no_more_comment_record);
                         }
                     }
 
@@ -137,7 +131,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
                 if (TextUtils.isEmpty(id)) {
-                    mPublicLoadLayout.showOtherErrorView(error.getMessage());
+                    mPublicLoadLayout.showNetErrorView();
                 } else {
                     ToastUtil.showToast(getApplicationContext(), error.getMessage());
                 }
