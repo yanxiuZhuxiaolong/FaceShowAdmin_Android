@@ -25,6 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeDeleteRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -82,7 +83,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         int mNoticeNum = getIntent().getIntExtra("NOTICE_TOTAL_READ_NUM", 0);
         mNoticeId = noticeBean.getId();
         detailTitle.setText(noticeBean.getTitle());
-        noticeCreateTime.setText(noticeBean.getCreateTime());
+        noticeCreateTime.setText(DateFormatUtil.translationBetweenTwoFormat(noticeBean.getCreateTime(),DateFormatUtil.FORMAT_ONE,DateFormatUtil.FORMAT_TWO));
         readPercent.setText(noticeBean.getNoticeReadNumSum() + "/" + mNoticeNum);
         noticeDescr.setText(noticeBean.getContent());
         String attachUrl = noticeBean.getAttachUrl();
