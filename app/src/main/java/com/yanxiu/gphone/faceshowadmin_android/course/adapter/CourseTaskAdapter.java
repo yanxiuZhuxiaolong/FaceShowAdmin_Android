@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.course.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -9,8 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseCommentActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.QuestionnaireActivity;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,19 +74,30 @@ public class CourseTaskAdapter extends BaseRecyclerViewAdapter {
 
         void setData(GetCourseResponse.InteractStepsBean interactStep) {
             mTvTaskName.setText(interactStep.getInteractName());
-            int discussType = 4;
-            if (interactStep.getInteractType() == discussType) {
-                int openType = 1;
-                //     int closeType = 0;
-                if (openType == interactStep.getStepStatus()) {
-                    mTvTaskStatue.setText("已开启");
-                } else {
-                    mTvTaskStatue.setText("未开启");
-                }
-
-            } else {
-                mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
+            switch (interactStep.getInteractType()) {
+                case 6:
+                    mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
+                    break;
+                case 5:
+                    mImgTaskIcon.setImageResource(R.drawable.icon_questionnaire);
+                    mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
+                    break;
+                case 4:
+                    int openType = 1;
+                    if (openType == interactStep.getStepStatus()) {
+                        mTvTaskStatue.setText("已开启");
+                    } else {
+                        mTvTaskStatue.setText("未开启");
+                    }
+                    mImgTaskIcon.setImageResource(R.drawable.ic_comment);
+                    break;
+                case 3:
+                    mImgTaskIcon.setImageResource(R.drawable.icon_vote);
+                    mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
+                default:
+                    mImgTaskIcon.setImageResource(R.drawable.ic_do_not_know);
             }
+
         }
     }
 }

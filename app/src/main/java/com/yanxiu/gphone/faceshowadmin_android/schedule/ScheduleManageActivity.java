@@ -74,8 +74,6 @@ public class ScheduleManageActivity extends FaceShowBaseActivity {
 
     private void initView() {
         titleLayoutTitle.setText(R.string.manager_schedule);
-        title_layout_left_img.setImageResource(R.color.color_1da1f2);
-        title_layout_right_img.setImageResource(R.color.color_1da1f2);
         title_layout_left_img.setVisibility(View.VISIBLE);
         title_layout_right_img.setVisibility(View.VISIBLE);
     }
