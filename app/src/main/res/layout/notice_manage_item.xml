@@ -2,6 +2,7 @@
     android:id="@+id/notice_manage_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/color_white"
     android:orientation="vertical">
 
     <RelativeLayout
