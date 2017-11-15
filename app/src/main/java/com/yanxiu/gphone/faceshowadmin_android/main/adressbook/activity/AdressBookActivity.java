@@ -119,7 +119,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
 //        rootView.showLoadingView();
         rootView.hiddenNetErrorView();
         AdressBookRequest bookRequest=new AdressBookRequest();
-        bookRequest.offset=offset;
+        bookRequest.offset=String.valueOf(Integer.parseInt(offset)*10);
         mBookRequest=bookRequest.startRequest(AdressBookResponse.class, new HttpCallback<AdressBookResponse>() {
             @Override
             public void onSuccess(RequestBase request, AdressBookResponse ret) {

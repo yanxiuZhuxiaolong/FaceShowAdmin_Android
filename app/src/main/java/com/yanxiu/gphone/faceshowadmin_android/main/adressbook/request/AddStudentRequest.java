@@ -15,7 +15,7 @@ public class AddStudentRequest extends RequestBase {
     public String clazsId=String.valueOf(SpManager.getCurrentClassInfo().getId());
     public String token= SpManager.getToken();
     public String realName;
-    public String schoolName;
+    public String school;
     public String sex;
     public String mobilePhone;
 

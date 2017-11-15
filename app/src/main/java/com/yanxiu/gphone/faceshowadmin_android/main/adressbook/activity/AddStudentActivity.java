@@ -139,7 +139,7 @@ public class AddStudentActivity extends FaceShowBaseActivity implements View.OnC
         AddStudentRequest addStudentRequest=new AddStudentRequest();
         addStudentRequest.mobilePhone=mobile;
         addStudentRequest.realName=realName;
-        addStudentRequest.schoolName=schoolName;
+        addStudentRequest.school=schoolName;
         addStudentRequest.sex=sex;
         mAddStudentRequest=addStudentRequest.startRequest(AddStudentResponse.class, new HttpCallback<AddStudentResponse>() {
             @Override
