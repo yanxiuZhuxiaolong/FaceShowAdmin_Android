@@ -28,7 +28,7 @@ public class Constants {
     public static String version = String.valueOf(SystemUtil.getVersionCode());
     public static String versionName = SystemUtil.getVersionName();
 
-    public static final String PRODUCTLINE = "4";
+    public static final String PRODUCTLINE = "5";
     /**
      * default it is 0,when the loginactivity checks for updata,it is 1,at this time the mainactivity does't to check for updata
      */

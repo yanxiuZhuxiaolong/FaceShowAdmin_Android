@@ -48,4 +48,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':libs:network')
     compile files('libs/eventbus-2.4.0.jar')
+    implementation files('libs/SaaS_AppAnalytics_Android_SDK_V4.0.12.jar')
 }
