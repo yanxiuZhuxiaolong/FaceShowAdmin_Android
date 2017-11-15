@@ -14,6 +14,7 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyc
 import com.yanxiu.gphone.faceshowadmin_android.login.activity.ClassManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.YXPictureManager;
 
 /**
@@ -69,6 +70,7 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
             headViewHolder.changeClass_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    EventUpdata.onChangeClass(mContext);
                     ClassManageActivity.invoke((Activity) mContext);
                 }
             });

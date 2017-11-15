@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.google.gson.Gson;
+import com.tendcloud.tenddata.TCAgent;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
 import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.EnvConfigBean;
 import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlBean;
@@ -40,6 +41,10 @@ public class FSAApplication extends Application {
         } catch (Error error) {
             error.printStackTrace();
         }
+
+//        TCAgent.LOG_ON=true;
+//        TCAgent.init(this,"您的 App ID", "渠道 ID");
+//        TCAgent.setReportUncaughtExceptions(true);
 
         CrashHandler.getInstance().init(this);
         initUrlServer();
