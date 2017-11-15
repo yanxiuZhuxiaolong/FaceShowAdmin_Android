@@ -106,7 +106,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         tvCheckInEndTime.addTextChangedListener(textWatcher);
         tvCheckInStartTime.addTextChangedListener(textWatcher);
         tvCheckInTime.addTextChangedListener(textWatcher);
-//        imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
     }
 
     private void initTitle() {
@@ -133,15 +133,15 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
                 }
                 break;
             case R.id.rl_check_in_time:
-//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 toSelectedData();
                 break;
             case R.id.rl_check_in_start_time:
-//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 toSelectedStartTime();
                 break;
             case R.id.rl_check_in_end_time:
-//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 toSelectedEndTime();
                 break;
             default:
