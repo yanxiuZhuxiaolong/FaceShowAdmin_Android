@@ -172,7 +172,7 @@ public class LoginActivity extends FaceShowBaseActivity {
             case R.id.tv_forget_password:
                 startActivityForResult(new Intent(LoginActivity.this, ForgetPasswordActivity.class), TO_FORGET_PASSWORD_REQUEST_CODE);
                 break;
-                default:
+            default:
         }
     }
 
@@ -228,7 +228,9 @@ public class LoginActivity extends FaceShowBaseActivity {
                     SpManager.saveUserInfo(userInfoStr);
                     UserInfo.getInstance().setInfo(ret.getData());
                     SpManager.saveClassListInfo(data);
-                    if (data.getClazsInfos().size() == 1) {
+                    if (data.getClazsInfos().size() == 0) {
+                        MainActivity.invoke(activity,null);
+                    } else if (data.getClazsInfos().size() == 1) {
                         SpManager.saveCurrentClassInfo(data.getClazsInfos().get(0));
                         MainActivity.invoke(activity, data.getClazsInfos().get(0));
                     } else {
@@ -258,7 +260,7 @@ public class LoginActivity extends FaceShowBaseActivity {
         getClazzListRequest.startRequest(GetClazzListResponse.class, new HttpCallback<GetClazzListResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClazzListResponse ret) {
-                if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null && ret.getData().getClazsInfos().size() > 0) {
+                if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null) {
                     getUserInfo(activity, ret.getData());
                 } else {
                     if (ret != null && ret.getError() != null) {
