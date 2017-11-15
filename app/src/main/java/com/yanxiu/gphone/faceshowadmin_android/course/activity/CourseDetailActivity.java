@@ -90,7 +90,7 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                         mCourseTeacher.setText("无");
                     }
                     mCourseLocation.setText(TextUtils.isEmpty(ret.getData().getCourse().getSite()) ? getString(R.string.wait_for) : ret.getData().getCourse().getSite());
-                    mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.getReplyTime(ret.getData().getCourse().getStartTime()), DateFormatUtil.getReplyTime(ret.getData().getCourse().getEndTime())));
+                    mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(ret.getData().getCourse().getStartTime()), DateFormatUtil.translationDateFormat(ret.getData().getCourse().getEndTime())));
                     CourseResourceFragment courseResourceFragment = new CourseResourceFragment();
                     Bundle bundle1 = new Bundle();
                     bundle1.putString("courseId", getCourseRequest.courseId);

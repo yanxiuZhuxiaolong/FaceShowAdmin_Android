@@ -115,7 +115,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
             childViewHolder.mCourseTeacher.setText("暂无");
         }
         childViewHolder.mCourseLocation.setText(TextUtils.isEmpty(coursesListBean.getSite()) ? convertView.getContext().getString(R.string.wait_for) : coursesListBean.getSite());
-        childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.getReplyTime(coursesListBean.getStartTime()), DateFormatUtil.getReplyTime(coursesListBean.getEndTime())));
+        childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(coursesListBean.getStartTime()), DateFormatUtil.translationDateFormat(coursesListBean.getEndTime())));
         List<GetClassCoursesResponse.StepsBean> steps = new ArrayList<>();
         for (int i = 0; i < coursesListBean.getSteps().size(); i++) {
             int signInType = 6;

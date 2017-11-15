@@ -60,9 +60,17 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
         final ViewHolder holder2 = (ViewHolder) holder;
         holder2.course_name.setText(data.getCourseName());
         holder2.course_location.setText(TextUtils.isEmpty(data.getSite()) ? "待定" : data.getSite());
-        String teacher = data.getLecturerInfos().get(0).getLecturerName();
+        String teacher = "暂无";
+        for (int i = 0; i < data.getLecturerInfos().size(); i++) {
+            if (i == 0) {
+                teacher = data.getLecturerInfos().get(i).getLecturerName();
+            } else {
+                teacher = teacher + "," + data.getLecturerInfos().get(i).getLecturerName();
+            }
+
+        }
         holder2.course_teacher.setText(teacher);
-        holder2.course_time.setText(StringUtils.getCourseTime(DateFormatUtil.getReplyTime(data.getStartTime()), DateFormatUtil.getReplyTime(data.getEndTime())));
+        holder2.course_time.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(data.getStartTime()), DateFormatUtil.translationDateFormat(data.getEndTime())));
         holder2.course_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

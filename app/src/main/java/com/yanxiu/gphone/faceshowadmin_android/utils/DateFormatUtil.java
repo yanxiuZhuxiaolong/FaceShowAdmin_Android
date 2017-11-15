@@ -12,6 +12,8 @@ import java.util.Locale;
 public class DateFormatUtil {
     public final static String FORMAT_ONE = "yyyy-MM-dd HH:mm:ss";
     public final static String FORMAT_TWO = "yyyy.MM.dd HH:mm";
+    public final static String FORMAT_THREE = "yyyy.MM.dd HH:mm:ss";
+
 
     public static String translationBetweenTwoFormat(String dateStr, String formatStr1, String formatStr2) {
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(formatStr1, Locale.getDefault());
@@ -22,6 +24,10 @@ public class DateFormatUtil {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    public static String translationDateFormat(String date) {
+        return translationBetweenTwoFormat(date, FORMAT_ONE, FORMAT_THREE);
     }
 
     /**
