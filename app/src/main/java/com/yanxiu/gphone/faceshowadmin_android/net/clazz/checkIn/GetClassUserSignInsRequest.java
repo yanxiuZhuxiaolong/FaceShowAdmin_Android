@@ -12,7 +12,7 @@ public class GetClassUserSignInsRequest extends FaceShowBaseRequest {
     public String status;// 1- signed in   0-no sign in
     public String signInTime;
     public String id;
-    public String pageSize;
+    public String pageSize="10000";
 
     @Override
     protected String urlPath() {

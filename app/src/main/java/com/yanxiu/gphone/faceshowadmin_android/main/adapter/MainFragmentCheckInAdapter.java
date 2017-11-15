@@ -1,6 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.TodaySignInBean;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
@@ -53,7 +56,7 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final TodaySignInBean data = mList.get(position);
-        ViewHolder holder2 = (ViewHolder) holder;
+        final ViewHolder holder2 = (ViewHolder) holder;
         holder2.checkin_item_title.setText(data.getTitle());
         holder2.checkin_item_time.setText(StringUtils.getCourseTime(data.getStartTime(),data.getEndTime()));
         holder2.checkin_item_checkin.setText(data.getSignInUserNum() + "/" + data.getTotalUserNum());
@@ -79,7 +82,14 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
             holder2.checkin_item_line.setVisibility(View.GONE);
         }
 
-
+        holder2.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder2.itemView.getContext(), CheckInDetailActivity.class);
+                intent.putExtra("stepId", String.valueOf(data.getId()));
+                holder2.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

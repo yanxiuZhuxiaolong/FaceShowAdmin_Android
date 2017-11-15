@@ -39,7 +39,7 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
         mClearDrawable = getCompoundDrawables()[2];
         if (mClearDrawable == null) {
             mClearDrawable = getResources().getDrawable(
-                    R.drawable.ic_edt_delete);
+                    R.drawable.selector_edt_delete);
         }
 
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(),

@@ -41,9 +41,8 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
     PublicLoadLayout publicLoadLayout;
     private CheckInNotesAdapter checkInNotesAdapter;
 
-    public static void toThisAct(Context context, String checkInId) {
+    public static void toThisAct(Context context) {
         Intent intent = new Intent(context, CheckInNotesActivity.class);
-        intent.putExtra("checkInId", checkInId);
         context.startActivity(intent);
     }
 
@@ -83,16 +82,13 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
         getCheckInNotesRequest.startRequest(GetCheckInNotesResponse.class, new HttpCallback<GetCheckInNotesResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetCheckInNotesResponse ret) {
-                publicLoadLayout.hiddenLoadingView();
+                publicLoadLayout.finish();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getSignIns() != null && ret.getData().getSignIns().size() > 0) {
-                        publicLoadLayout.hiddenOtherErrorView();
-                        publicLoadLayout.hiddenNetErrorView();
                         checkInNotesAdapter.update(ret.getData().getSignIns());
                     } else {
-                        publicLoadLayout.showOtherErrorView(getString(R.string.check_in_notes_is_null));
+                        publicLoadLayout.showOtherErrorView(getString(R.string.no_check_in));
                     }
-
                 } else {
                     publicLoadLayout.showOtherErrorView(getString(R.string.data_error));
                 }
@@ -100,7 +96,7 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                publicLoadLayout.hiddenLoadingView();
+                publicLoadLayout.finish();
                 publicLoadLayout.showNetErrorView();
             }
         });

@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.VoteResultLayout;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
+import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteDetailActivity;
 
 import butterknife.BindView;
@@ -30,11 +30,9 @@ import static com.yanxiu.gphone.faceshowadmin_android.model.VoteBean.TYPE_TEXT;
 public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder> {
     private final int TYPE_HEAD = 0x04;
     private QusetionGroupBean data;
-    private String stepId;
 
     public VoteAdapter(QusetionGroupBean questionGroup) {
         this.data = questionGroup;
-        this.stepId = String.valueOf(questionGroup.getStepId());
     }
 
     @Override
@@ -65,11 +63,20 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
                 break;
             case TYPE_SINGLE:
             case TYPE_MULTI:
+                if (position == getItemCount() - 1) {
+                    ((ProgressViewHolder) holder).line.setVisibility(View.INVISIBLE);
+                } else {
+                    ((ProgressViewHolder) holder).line.setVisibility(View.VISIBLE);
+                }
                 holder.setData(data.getQuestions().get(position - 1));
                 break;
             case TYPE_TEXT:
+                if (position == getItemCount() - 1) {
+                    ((ReplyViewHolder) holder).line.setVisibility(View.INVISIBLE);
+                } else {
+                    ((ReplyViewHolder) holder).line.setVisibility(View.VISIBLE);
+                }
                 holder.setData(data.getQuestions().get(position - 1));
-
                 break;
             default:
         }
@@ -137,6 +144,8 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
         TextView mVoteResultTitle;
         @BindView(R.id.voteResult_Layout)
         VoteResultLayout mVoteResultLayout;
+        @BindView(R.id.vote_result_layout_line)
+        View line;
 
         ProgressViewHolder(View view) {
             super(view);
@@ -156,6 +165,8 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
         TextView mTvVoteTitle;
         @BindView(R.id.tv_see_reply)
         TextView mTvSeeReply;
+        @BindView(R.id.line)
+        View line;
 
         ReplyViewHolder(View view) {
             super(view);

@@ -1,6 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
@@ -54,12 +56,12 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final CourseBean data = mList.get(position);
 
-        ViewHolder holder2 = (ViewHolder) holder;
+        final ViewHolder holder2 = (ViewHolder) holder;
         holder2.course_name.setText(data.getCourseName());
         holder2.course_location.setText(TextUtils.isEmpty(data.getSite()) ? "待定" : data.getSite());
-        String teacher=data.getLecturerInfos().get(0).getLecturerName();
+        String teacher = data.getLecturerInfos().get(0).getLecturerName();
         holder2.course_teacher.setText(teacher);
-        holder2.course_time.setText(StringUtils.getCourseTime(data.getStartTime(),data.getEndTime()));
+        holder2.course_time.setText(StringUtils.getCourseTime(data.getStartTime(), data.getEndTime()));
         holder2.course_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +75,14 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
         } else {
             holder2.checkin_item_line.setVisibility(View.GONE);
         }
-
+        holder2.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder2.itemView.getContext(), CourseDetailActivity.class);
+                intent.putExtra("courseId", String.valueOf(data.getId()));
+                holder2.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
