@@ -13,6 +13,7 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 
@@ -61,7 +62,7 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
         holder2.course_location.setText(TextUtils.isEmpty(data.getSite()) ? "待定" : data.getSite());
         String teacher = data.getLecturerInfos().get(0).getLecturerName();
         holder2.course_teacher.setText(teacher);
-        holder2.course_time.setText(StringUtils.getCourseTime(data.getStartTime(), data.getEndTime()));
+        holder2.course_time.setText(StringUtils.getCourseTime(DateFormatUtil.getReplyTime(data.getStartTime()), DateFormatUtil.getReplyTime(data.getEndTime())));
         holder2.course_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

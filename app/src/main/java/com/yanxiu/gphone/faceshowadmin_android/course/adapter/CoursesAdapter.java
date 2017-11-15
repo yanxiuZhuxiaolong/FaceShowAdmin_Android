@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetClassCoursesResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -114,7 +115,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
             childViewHolder.mCourseTeacher.setText("暂无");
         }
         childViewHolder.mCourseLocation.setText(TextUtils.isEmpty(coursesListBean.getSite()) ? convertView.getContext().getString(R.string.wait_for) : coursesListBean.getSite());
-        childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(coursesListBean.getStartTime(), coursesListBean.getEndTime()));
+        childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.getReplyTime(coursesListBean.getStartTime()), DateFormatUtil.getReplyTime(coursesListBean.getEndTime())));
         List<GetClassCoursesResponse.StepsBean> steps = new ArrayList<>();
         for (int i = 0; i < coursesListBean.getSteps().size(); i++) {
             int signInType = 6;
