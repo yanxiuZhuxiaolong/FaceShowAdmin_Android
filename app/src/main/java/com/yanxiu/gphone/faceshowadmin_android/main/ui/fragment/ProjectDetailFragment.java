@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +55,7 @@ public class ProjectDetailFragment extends  FaceShowBaseFragment{
             mDescription = bundle.getString("description");
         }
         detail_title.setText(mProjectName);
-        detail_duration.setText(getResources().getString(R.string.detail_duration, mStartTime.split(" ")[0], mEndTime.split(" ")[0]));
+        detail_duration.setText(getResources().getString(R.string.detail_duration, DateFormatUtil.translationDateFormat(mStartTime).split(" ")[0], DateFormatUtil.translationDateFormat(mEndTime).split(" ")[0]));
         detail_descr.setText(mDescription);
     }
 }
