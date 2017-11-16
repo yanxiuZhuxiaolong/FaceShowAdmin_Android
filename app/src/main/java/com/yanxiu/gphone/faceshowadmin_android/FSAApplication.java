@@ -42,9 +42,9 @@ public class FSAApplication extends Application {
             error.printStackTrace();
         }
 
-//        TCAgent.LOG_ON=true;
-//        TCAgent.init(this,"您的 App ID", "渠道 ID");
-//        TCAgent.setReportUncaughtExceptions(true);
+        TCAgent.LOG_ON=true;
+        TCAgent.init(this,"您的 App ID", "渠道 ID");
+        TCAgent.setReportUncaughtExceptions(true);
 
         CrashHandler.getInstance().init(this);
         initUrlServer();

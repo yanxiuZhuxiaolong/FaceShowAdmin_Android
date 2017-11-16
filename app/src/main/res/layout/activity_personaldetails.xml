@@ -206,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_333333"
                     android:textSize="14dp"
-                    android:text="实验率"/>
+                    android:text="签到率"/>
                 <TextView
                     android:id="@+id/tv_rate"
                     android:layout_width="match_parent"

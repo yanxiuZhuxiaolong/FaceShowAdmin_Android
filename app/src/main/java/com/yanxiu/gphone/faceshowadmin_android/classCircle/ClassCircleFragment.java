@@ -45,6 +45,7 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.SizeChangeCallbackView;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ClassCircleTimeUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Logger;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
@@ -387,6 +388,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.title_layout_right_img:
+                EventUpdata.onSendClassCircle(getContext());
                 showDialog();
                 break;
             case R.id.retry_button:
@@ -491,6 +493,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
 
     @Override
     public void deleteClick(int position, ClassCircleResponse.Data.Moments response) {
+        EventUpdata.onDeleteClassCircle(getContext());
         startDeleteRequest(position, response);
     }
 

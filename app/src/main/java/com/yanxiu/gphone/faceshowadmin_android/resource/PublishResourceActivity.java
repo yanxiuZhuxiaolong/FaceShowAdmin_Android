@@ -38,6 +38,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishReque
 import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishResponse;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
@@ -149,6 +150,7 @@ public class PublishResourceActivity extends FaceShowBaseActivity {
                 finish();
                 break;
             case R.id.title_layout_right_txt:
+                EventUpdata.onSendRecourse(this);
                 GetResId();
                 break;
         }

@@ -20,6 +20,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.PersonalD
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.PersonalDetailsResponse;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.PersonalDetailsSignResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.CornersImageTarget;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.DecimalFormat;
@@ -148,6 +149,7 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
                 startPersonalDetailsRequest();
                 break;
             case R.id.iv_sign_record:
+                EventUpdata.onSeeStudentCheckKinRecord(mContext);
                 SignRecordActivity.LuanchActivity(mContext,mUserId,mUserName);
                 break;
         }
@@ -247,7 +249,7 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
         mRateView.setText(getPercent(data.userSigninNum,data.totalSigninNum));
     }
 
-    String getPercent(int y, int z) {
+    private String getPercent(int y, int z) {
         if (y == 0) {
             return "0%";
         } else {

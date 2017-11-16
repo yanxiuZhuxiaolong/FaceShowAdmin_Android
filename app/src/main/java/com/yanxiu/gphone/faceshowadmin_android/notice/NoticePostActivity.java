@@ -36,6 +36,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.UploadResResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
@@ -167,6 +168,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 submitNotice();
                 break;
             case R.id.notice_pic_add:
+                EventUpdata.onSendNotifyAddPicture(mContext);
                 showDialog();
                 break;
             case R.id.notice_pic_del:

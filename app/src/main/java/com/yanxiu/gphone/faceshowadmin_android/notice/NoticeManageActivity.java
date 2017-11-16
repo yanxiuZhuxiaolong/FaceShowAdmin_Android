@@ -22,6 +22,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -220,6 +221,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
                 break;
             case R.id.title_layout_right_img:
             case R.id.title_layout_signIn:
+                EventUpdata.onSendNotify(mContext);
                 postNotice();
                 break;
         }

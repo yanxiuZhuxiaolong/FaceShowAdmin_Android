@@ -29,6 +29,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourceResponse;
 import com.yanxiu.gphone.faceshowadmin_android.resource.adapter.ResourceMangerAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.resource.bean.ResourceBean;
 import com.yanxiu.gphone.faceshowadmin_android.resource.bean.ResourceDataBean;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -116,6 +117,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         switch (view.getId()) {
             case R.id.title_layout_right_img:
             case R.id.title_layout_signIn:
+                EventUpdata.onEnterSendRecourseClass(this);
                 PublishResourceActivity.invoke(ResourceMangerActivity.this);
                 break;
             case R.id.retry_button:

@@ -26,6 +26,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeDeleteRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -133,6 +134,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
 //            view.setBackgroundColor(getResources().getColor(R.color.color_0068bd));
             switch (v.getId()) {
                 case R.id.notice_delete:
+                    EventUpdata.onDeleteNotify(mContext);
                     requestDeleteNotice();
                     dismissPopupWindow();
                     break;
