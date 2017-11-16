@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+
 
 /**
  * 查看投票的进度条，不通用
@@ -49,7 +51,7 @@ public class VoteProgressView extends View {
         if (isInEditMode()) {
             return;
         }
-        mScreenWidth = 260;
+        mScreenWidth = ScreenUtils.dpToPxInt(getContext(),260);
     }
 
     /***
