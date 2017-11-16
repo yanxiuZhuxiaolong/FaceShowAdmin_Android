@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseCommentRecordsResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.CornersImageTarget;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
@@ -40,7 +44,7 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
     private static final int TYPE_DEFAULT = 0x0001;
     private static final int ANIM_OPEN = 0x0002;
     private static final int ANIM_CLOSE = 0x0003;
-    public static final int REFRESH_LIKE_DATA = 0x0005;
+    private static final int REFRESH_LIKE_DATA = 0x0005;
     private static final int ANIM_DURATION = 200;
     private static final int ANIM_POSITION_DEFAULT = -1;
     private static final int REFRESH_ANIM_VIEW = 0x0004;
@@ -230,6 +234,8 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
         LinearLayout mLlAnim;
         @BindView(R.id.line)
         View line;
+        @BindView(R.id.img_user_head)
+        ImageView mHeadImgView;
 
         NormalViewHolder(View itemView) {
             super(itemView);
@@ -238,6 +244,7 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
         }
 
         void setData(GetCourseCommentRecordsResponse.ElementsBean element) {
+            Glide.with(itemView.getContext()).load(element.getAvatar()).asBitmap().placeholder(R.drawable.classcircle_headimg).centerCrop().into(new CornersImageTarget(itemView.getContext(), mHeadImgView, 10));
             mReplyPersonName.setText(element.getUserName());
             mTvReplyContent.setText(element.getContent());
             mTvReplyTime.setText(DateFormatUtil.getReplyTime(element.getCreateTime()));
@@ -309,6 +316,7 @@ public class CourseCommentAdapter extends RecyclerView.Adapter {
     public void deleteItem(int position) {
         if (position > -1 && position < records.size()) {
             records.remove(position - 1);
+            totalNum = String.valueOf(Integer.valueOf(totalNum) - 1);
             this.notifyDataSetChanged();
         }
     }

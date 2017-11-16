@@ -1,12 +1,18 @@
 package com.yanxiu.gphone.faceshowadmin_android.course.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
@@ -15,9 +21,11 @@ import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CourseCommentAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.DeleteUserCommentResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.course.DiscussSaveRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseCommentRecordsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseCommentRecordsResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyRequest;
@@ -46,10 +54,14 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     TextView mTitleLayoutTitle;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
-    CourseCommentAdapter mCourseCommentAdapter;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.ed_comment)
+    EditText mEdComment;
+    @BindView(R.id.ll_edit)
+    RelativeLayout mLlEdit;
+
+    private CourseCommentAdapter mCourseCommentAdapter;
     private UUID mGetCourseReplyRequestUUID;
     private UUID mGetCourseCommentRecordsRequestUUID;
     private String mStepId;
@@ -57,6 +69,62 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     private String id = "";
     private List<GetCourseCommentRecordsResponse.ElementsBean> mRecords = new ArrayList<>();
     private boolean mRefresh = false;
+
+
+    private TextView.OnEditorActionListener mOnEditorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                String comment = mEdComment.getText().toString();
+                if (!TextUtils.isEmpty(comment)) {
+                    submitData(comment);
+                }
+                return true;
+            }
+            return false;
+        }
+    };
+
+    /**
+     * 提交讨论数据
+     */
+    private void submitData(String content) {
+        mPublicLoadLayout.showLoadingView();
+        DiscussSaveRequest discussSaveRequest = new DiscussSaveRequest();
+        discussSaveRequest.content = content;
+        discussSaveRequest.stepId = mStepId;
+        discussSaveRequest.startRequest(FaceShowBaseResponse.class, new HttpCallback<FaceShowBaseResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, FaceShowBaseResponse ret) {
+                mPublicLoadLayout.finish();
+                hiddenInputMethod();
+                if (ret != null && ret.getCode() == 0) {
+                    ToastUtil.showToast(CourseCommentActivity.this, "提交成功");
+                } else {
+                    ToastUtil.showToast(CourseCommentActivity.this, getString(R.string.error_tip));
+                }
+                mPublicLoadLayout.showLoadingView();
+                id = "";
+                mRecords.clear();
+                getCommentRecords();
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                mPublicLoadLayout.finish();
+                ToastUtil.showToast(CourseCommentActivity.this, error.getMessage());
+                hiddenInputMethod();
+            }
+        });
+
+    }
+
+    private void hiddenInputMethod() {
+        mEdComment.setText("");
+        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +135,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
         ButterKnife.bind(this);
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
         mTitleLayoutTitle.setText(R.string.course_comment);
-
+        mEdComment.setOnEditorActionListener(mOnEditorActionListener);
         mStepId = getIntent().getStringExtra("stepId");
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -89,7 +157,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
         mGetCourseCommentRecordsRequestUUID = getCourseCommentRecordsRequest.startRequest(GetCourseCommentRecordsResponse.class, new HttpCallback<GetCourseCommentRecordsResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetCourseCommentRecordsResponse ret) {
-                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.finish();
                 if (mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
@@ -126,7 +194,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mRefresh = false;
-                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.finish();
                 if (mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(false);
                 }

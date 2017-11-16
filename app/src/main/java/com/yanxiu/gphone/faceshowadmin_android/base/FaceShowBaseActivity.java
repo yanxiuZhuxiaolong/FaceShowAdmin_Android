@@ -35,6 +35,7 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityManger.addActicity(this);
+
     }
 
 

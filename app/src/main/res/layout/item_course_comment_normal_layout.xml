@@ -18,7 +18,6 @@
             android:layout_height="40dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:background="@android:color/holo_red_dark"
             android:contentDescription="@string/check_in_notes_is_null" />
 
         <LinearLayout
