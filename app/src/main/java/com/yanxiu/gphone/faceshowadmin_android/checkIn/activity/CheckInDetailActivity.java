@@ -1,45 +1,41 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.TimePickerView;
-import com.bigkoo.pickerview.listener.CustomListener;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.NoSignInFragment;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.fragment.SignedInFragment;
+import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.DeleteCheckInRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.DeleteCheckInResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -73,11 +69,16 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.title_layout_right_txt)
+    TextView mTitleLayoutRightTxt;
+    private PublicLoadLayout mPublicLoadLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_in_detail);
+        mPublicLoadLayout = new PublicLoadLayout(this);
+        mPublicLoadLayout.setContentView(R.layout.activity_check_in_detail);
+        setContentView(mPublicLoadLayout);
         ButterKnife.bind(this);
         initTitle();
         initHead();
@@ -88,6 +89,9 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     private void initTitle() {
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutTitle.setText(R.string.check_in_detail);
+        mTitleLayoutRightTxt.setVisibility(View.VISIBLE);
+        mTitleLayoutRightTxt.setText("删除");
+
     }
 
     private void initHead() {
@@ -172,7 +176,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     }
 
 
-    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code})
+    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code, R.id.title_layout_right_txt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
@@ -186,8 +190,36 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 intent.putExtra("qrCodeRefreshRate", getIntent().getIntExtra("qrCodeRefreshRate", 0));
                 startActivity(intent);
                 break;
+            case R.id.title_layout_right_txt:
+                toDeleteThisSignIn();
+                EventUpdata.onDeleteSignIn(this);
+                break;
             default:
         }
+    }
+
+    private void toDeleteThisSignIn() {
+        mPublicLoadLayout.showLoadingView();
+        DeleteCheckInRequest deleteCheckInRequest = new DeleteCheckInRequest();
+        deleteCheckInRequest.stepId = getIntent().getStringExtra("stepId");
+        deleteCheckInRequest.startRequest(DeleteCheckInResponse.class, new HttpCallback<DeleteCheckInResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, DeleteCheckInResponse ret) {
+                mPublicLoadLayout.finish();
+                if (ResponseConfig.SUCCESS == ret.getCode()) {
+                    setResult(RESULT_OK);
+                    CheckInDetailActivity.this.finish();
+                } else {
+                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                mPublicLoadLayout.finish();
+                ToastUtil.showToast(getApplicationContext(), error.getMessage());
+            }
+        });
     }
 
     @Override
@@ -250,4 +282,5 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
             return baifenbi;
         }
     }
+
 }

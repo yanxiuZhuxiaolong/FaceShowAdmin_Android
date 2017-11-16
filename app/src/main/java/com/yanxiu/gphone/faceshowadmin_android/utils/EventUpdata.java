@@ -232,4 +232,11 @@ public class EventUpdata {
     public static void onQuestionnairesDetail(Context context) {
         TCAgent.onEvent(context, "查看问卷人数详情");
     }
+
+    /**
+     * 删除签到
+     */
+    public static void onDeleteSignIn(Context context) {
+        TCAgent.onEvent(context, "删除签到");
+    }
 }

@@ -7,4 +7,11 @@ import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseRequest;
  */
 
 public class DeleteCheckInRequest extends FaceShowBaseRequest {
+    private String method = "interact.deleteStep";
+    public String stepId;
+
+    @Override
+    protected String urlPath() {
+        return null;
+    }
 }
