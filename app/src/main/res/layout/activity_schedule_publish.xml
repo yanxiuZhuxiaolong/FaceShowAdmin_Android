@@ -48,8 +48,8 @@
             android:layout_height="90dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:background="@color/color_1da1f2"
-            android:scaleType="center" />
+            android:src="@drawable/selector_add_pic"
+            android:scaleType="centerInside" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:background="@color/color_1da1f2"
+                    android:background="@drawable/selector_delete_pic"
                     android:visibility="gone" />
             </RelativeLayout>
 

@@ -44,6 +44,7 @@ import com.yanxiu.gphone.faceshowadmin_android.classCircle.response.RefreshClass
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.SizeChangeCallbackView;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
+import com.yanxiu.gphone.faceshowadmin_android.login.activity.ClassManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ClassCircleTimeUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
@@ -55,12 +56,15 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCall
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -81,6 +85,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
     private SizeChangeCallbackView mAdjustPanView;
     private ImageView mFunctionView;
     private TextView mTitleView;
+    private ImageView mBackView;
     private View mTopView;
     private int mMomentPosition = -1;
     private int mCommentPosition = -1;
@@ -141,8 +146,10 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
 
     private void initView(View rootView) {
         mTopView = rootView.findViewById(R.id.il_title);
-        ImageView mBackView = (ImageView) rootView.findViewById(R.id.title_layout_left_img);
-        mBackView.setVisibility(View.INVISIBLE);
+        mBackView = (ImageView) rootView.findViewById(R.id.title_layout_left_img);
+        mBackView.setVisibility(View.VISIBLE);
+        mBackView.setImageResource(R.drawable.selector_main_leftdrawer);
+
         mTitleView = (TextView) rootView.findViewById(R.id.title_layout_title);
         mFunctionView = (ImageView) rootView.findViewById(R.id.title_layout_right_img);
         mFunctionView.setVisibility(View.VISIBLE);
@@ -159,6 +166,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
     }
 
     private void listener() {
+        mBackView.setOnClickListener(ClassCircleFragment.this);
         mClassCircleRecycleView.setLoadMoreListener(ClassCircleFragment.this);
         mClassCircleAdapter.setCommentClickListener(ClassCircleFragment.this);
         mClassCircleAdapter.setDeleteClickListener(ClassCircleFragment.this);
@@ -355,8 +363,8 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
             public void onSuccess(RequestBase request, ClassCircleDeleteResponse ret) {
                 rootView.hiddenLoadingView();
                 mCircleDeleteRequest = null;
-                if (ret != null && ret.getCode()==0) {
-                    mClassCircleAdapter.deleteData(position-1);
+                if (ret != null && ret.getCode() == 0) {
+                    mClassCircleAdapter.deleteData(position - 1);
                 }
             }
 
@@ -390,6 +398,9 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
             case R.id.title_layout_right_img:
                 EventUpdata.onSendClassCircle(getContext());
                 showDialog();
+                break;
+            case R.id.title_layout_left_img:
+                ((MainActivity) getActivity()).openLeftDrawer();
                 break;
             case R.id.retry_button:
                 mRefreshView.setRefreshing(true);
@@ -662,4 +673,8 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
         SendClassCircleActivity.LuanchActivity(getContext(), SendClassCircleActivity.TYPE_IMAGE, strings);
     }
 
+    @OnClick(R.id.title_layout_left_img)
+    public void onViewClicked() {
+        ((MainActivity) getActivity()).openLeftDrawer();
+    }
 }

@@ -12,13 +12,17 @@ import android.widget.ImageView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
+import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Utils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
 
@@ -144,11 +148,43 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     break;
                 case GO_MAIN:
                     //获取用户基本信息
-                    getUserInfo(activity);
+                    if (SpManager.getClassListInfo() == null || SpManager.getClassListInfo().getClazsInfos().size() ==0) {
+                        requestClassList(activity);
+                    } else {
+                        getUserInfo(activity);
+                    }
                     break;
-                    default:
+                default:
             }
         }
+    }
+
+    /**
+     * 请求项目班级信息，如果code!=0，那么，不能进入首页，并且弹出toast提示
+     */
+    private static void requestClassList(final Activity activity) {
+        GetClazzListRequest getClazzListRequest = new GetClazzListRequest();
+        getClazzListRequest.token = SpManager.getToken();
+        getClazzListRequest.startRequest(GetClazzListResponse.class, new HttpCallback<GetClazzListResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, GetClazzListResponse ret) {
+                if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null) {
+                    getUserInfo(activity, ret.getData());
+                } else {
+                    if (ret != null && ret.getError() != null) {
+                        MainActivity.invoke(activity,null);
+                    }
+                }
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                if (error != null) {
+                    MainActivity.invoke(activity,null);
+                }
+            }
+        });
+
     }
 
     private static void getUserInfo(final Activity activity) {
@@ -162,7 +198,6 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     UserInfo.getInstance().setInfo(SpManager.getUserInfo());
                 }
                 if (isAnimationEnd) {
-                    // TODO: 17-10-30
                     isToClassInfoOrMainAct(activity);
                     activity.finish();
                 }
@@ -173,7 +208,6 @@ public class WelcomeActivity extends FaceShowBaseActivity {
             public void onFail(RequestBase request, Error error) {
                 UserInfo.getInstance().setInfo(SpManager.getUserInfo());
                 if (isAnimationEnd) {
-                    // TODO: 17-10-30
                     isToClassInfoOrMainAct(activity);
                     activity.finish();
                 }
@@ -183,6 +217,41 @@ public class WelcomeActivity extends FaceShowBaseActivity {
         });
     }
 
+
+        private static void getUserInfo(final Activity activity, final GetClazzListResponse.DataBean data) {
+        GetUserInfoRequest getUserInfoRequest = new GetUserInfoRequest();
+        getUserInfoRequest.token = SpManager.getToken();
+        getUserInfoRequest.startRequest(GetUserInfoResponse.class, new HttpCallback<GetUserInfoResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, GetUserInfoResponse ret) {
+                if (ret.getCode() == 0) {
+                    UserInfo.getInstance().setInfo(ret.getData());
+                    SpManager.saveClassListInfo(data);
+                    if (data.getClazsInfos().size() == 0) {
+                        MainActivity.invoke(activity,null);
+                    } else if (data.getClazsInfos().size() == 1) {
+                        SpManager.saveCurrentClassInfo(data.getClazsInfos().get(0));
+                        MainActivity.invoke(activity, data.getClazsInfos().get(0));
+                    } else {
+                        ClassManageActivity.toThisAct(activity, data);
+                    }
+                } else {
+                    UserInfo.getInstance().setInfo(SpManager.getUserInfo());
+                }
+                isGetUserInfoEnd = true;
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                UserInfo.getInstance().setInfo(SpManager.getUserInfo());
+                if (isAnimationEnd) {
+                    isToClassInfoOrMainAct(activity);
+                    activity.finish();
+                }
+                isGetUserInfoEnd = true;
+            }
+        });
+    }
     private static void isToClassInfoOrMainAct(Activity activity) {
         if (SpManager.getCurrentClassInfo() == null) {
             ClassManageActivity.toThisAct(activity, SpManager.getClassListInfo());

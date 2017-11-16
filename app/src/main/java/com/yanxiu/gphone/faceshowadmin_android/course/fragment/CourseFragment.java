@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
+import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.adapter.CoursesAdapter;
@@ -24,6 +26,7 @@ import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -38,6 +41,8 @@ public class CourseFragment extends FaceShowBaseFragment {
     @BindView(R.id.expandableListView)
     ExpandableListView mExpandableListView;
     Unbinder unbinder;
+    @BindView(R.id.title_layout_left_img)
+    ImageView mTitleLayoutLeftImg;
     private UUID mUUID;
     private CoursesAdapter mCoursesAdapter;
 
@@ -47,6 +52,8 @@ public class CourseFragment extends FaceShowBaseFragment {
         mPublicLoadLayout = new PublicLoadLayout(getContext());
         mPublicLoadLayout.setContentView(R.layout.fragment_course_layout);
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
+        mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
+        mTitleLayoutLeftImg.setImageResource(R.drawable.selector_main_leftdrawer);
         mTitleLayoutTitle.setText(R.string.course);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
         mPublicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
@@ -115,5 +122,10 @@ public class CourseFragment extends FaceShowBaseFragment {
         if (mUUID != null) {
             RequestBase.cancelRequestWithUUID(mUUID);
         }
+    }
+
+    @OnClick(R.id.title_layout_left_img)
+    public void onViewClicked() {
+        ((MainActivity) getActivity()).openLeftDrawer();
     }
 }

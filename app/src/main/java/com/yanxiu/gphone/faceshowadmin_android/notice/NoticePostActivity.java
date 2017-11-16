@@ -61,12 +61,12 @@ import static com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivit
  */
 
 public class NoticePostActivity extends FaceShowBaseActivity {
-    private static final int REQUEST_CODE_ALBUM=0x000;
-    private static final int REQUEST_CODE_CAMERA=0x001;
-    private static final int REQUEST_CODE_CROP=0x002;
+    private static final int REQUEST_CODE_ALBUM = 0x000;
+    private static final int REQUEST_CODE_CAMERA = 0x001;
+    private static final int REQUEST_CODE_CROP = 0x002;
 
-    public static final String TYPE_TEXT="text";
-    public static final String TYPE_IMAGE="image";
+    public static final String TYPE_TEXT = "text";
+    public static final String TYPE_IMAGE = "image";
     private String mType = TYPE_TEXT;
     @BindView(R.id.title_layout_left_img)
     ImageView titleLayoutLeftImg;
@@ -181,8 +181,8 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         }
     }
 
-    private void showDialog(){
-        if (mClassCircleDialog==null) {
+    private void showDialog() {
+        if (mClassCircleDialog == null) {
             mClassCircleDialog = new ClassCircleDialog(this);
             mClassCircleDialog.setClickListener(new ClassCircleDialog.OnViewClickListener() {
                 @Override
@@ -198,7 +198,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
                         @Override
                         public void onPermissionsDenied(@Nullable List<String> deniedPermissions) {
-                            ToastUtil.showToast(NoticePostActivity.this,R.string.no_storage_permissions);
+                            ToastUtil.showToast(NoticePostActivity.this, R.string.no_storage_permissions);
                         }
                     });
                 }
@@ -208,7 +208,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                     FaceShowBaseActivity.requestCameraPermission(new OnPermissionCallback() {
                         @Override
                         public void onPermissionsGranted(@Nullable List<String> deniedPermissions) {
-                            mCameraPath = FileUtils.getImageCatchPath(System.currentTimeMillis()+".jpg");
+                            mCameraPath = FileUtils.getImageCatchPath(System.currentTimeMillis() + ".jpg");
                             Intent intent = new Intent();
                             intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
                             intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -227,7 +227,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
                         @Override
                         public void onPermissionsDenied(@Nullable List<String> deniedPermissions) {
-                            ToastUtil.showToast(NoticePostActivity.this,R.string.no_camera_permissions);
+                            ToastUtil.showToast(NoticePostActivity.this, R.string.no_camera_permissions);
                         }
                     });
                 }
@@ -239,19 +239,19 @@ public class NoticePostActivity extends FaceShowBaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_ALBUM:
-                if (data!=null) {
+                if (data != null) {
                     Uri uri = data.getData();
 //                    mCropPath=FileUtil.getImageCatchPath(System.currentTimeMillis()+".jpg");
 //                    startCropImg(uri,mCropPath);
-                    String path=FileUtils.getRealFilePath(this,uri);
+                    String path = FileUtils.getRealFilePath(this, uri);
                     mImagePaths = path;
                     mType = TYPE_IMAGE;
                 }
                 break;
             case REQUEST_CODE_CAMERA:
-                if (!TextUtils.isEmpty(mCameraPath)){
+                if (!TextUtils.isEmpty(mCameraPath)) {
 //                    mCropPath=FileUtil.getImageCatchPath(System.currentTimeMillis()+".jpg");
 //                    startCropImg(Uri.fromFile(new File(mCameraPath)),mCropPath);
                     File file = new File(mCameraPath);
@@ -279,7 +279,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 }
                 break;
         }
-        if(mImagePaths != null) {
+        if (mImagePaths != null) {
             noticePic.setVisibility(View.VISIBLE);
             noticePicDel.setVisibility(View.VISIBLE);
             noticePicAdd.setVisibility(View.GONE);
@@ -340,18 +340,18 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
     private void submitNotice() {
         mRootView.showLoadingView();
-        if (mType.equals(TYPE_IMAGE)){
+        if (mType.equals(TYPE_IMAGE)) {
             uploadImg();
-        }else {
+        } else {
             mResourceIds = null;
             submitPostRequest();
         }
     }
 
-    private void uploadImg(){
-        File file=new File(mImagePaths);
+    private void uploadImg() {
+        File file = new File(mImagePaths);
         final Map<String, String> map = new HashMap<>();
-        map.put("userId", UserInfo.getInstance().getInfo().getUserId()+"");
+        map.put("userId", UserInfo.getInstance().getInfo().getUserId() + "");
         map.put("name", file.getName());
         map.put("lastModifiedDate", String.valueOf(System.currentTimeMillis()));
         map.put("size", String.valueOf(FileUtils.getFileSize(file.getPath())));
@@ -372,7 +372,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
                 @Override
                 public void onFail(String errorMessage) {
-                    ToastUtil.showToast(mContext,getString(R.string.send_class_circle_fail));
+                    ToastUtil.showToast(mContext, getString(R.string.send_class_circle_fail));
                     mRootView.hiddenLoadingView();
                 }
             });
@@ -390,20 +390,20 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         getResIdRequest.md5 = md5;
         getResIdRequest.cookies = cookies;
         GetResIdRequest.Reserve reserve = new GetResIdRequest.Reserve();
-        reserve.title=fileName;
+        reserve.title = fileName;
         getResIdRequest.reserve = RequestBase.getGson().toJson(reserve);
         getResIdRequest.startRequest(GetResIdResponse.class, new HttpCallback<GetResIdResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetResIdResponse ret) {
-                mResourceIds=ret.result.resid;
-                mAttachUrl ="http://upload.ugc.yanxiu.com/img/" + md5 + ".jpg?from=6&resId=" + mResourceIds;
+                mResourceIds = ret.result.resid;
+                mAttachUrl = "http://upload.ugc.yanxiu.com/img/" + md5 + ".jpg?from=6&resId=" + mResourceIds;
                 submitPostRequest();
             }
 
             @Override
             public void onFail(RequestBase request, Error error) {
                 mRootView.hiddenLoadingView();
-                ToastUtil.showToast(mContext,error.getMessage());
+                ToastUtil.showToast(mContext, error.getMessage());
             }
         });
 
@@ -416,7 +416,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         noticeSaveRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         noticeSaveRequest.title = mNoticeTitle;
         noticeSaveRequest.content = mNoticeContent;
-        if (mType.equals(TYPE_IMAGE)){
+        if (mType.equals(TYPE_IMAGE)) {
             noticeSaveRequest.url = mAttachUrl;
         }
         noticeSaveRequest.startRequest(NoticeSaveResponse.class, new HttpCallback<NoticeSaveResponse>() {
@@ -430,14 +430,14 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                     mNoticeCreateTime = ret.getCurrentTime();
                     postFinish();
                 } else {
-                    ToastUtil.showToast(NoticePostActivity.this,getString(R.string.send_class_circle_fail));
+                    ToastUtil.showToast(NoticePostActivity.this, ret.getMessage());
                 }
             }
 
             @Override
             public void onFail(RequestBase request, Error error) {
                 mRootView.hiddenLoadingView();
-                ToastUtil.showToast(NoticePostActivity.this, getString(R.string.send_class_circle_fail));
+                ToastUtil.showToast(NoticePostActivity.this, error.getMessage());
             }
         });
     }
@@ -453,7 +453,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         bean.setAttachUrl(mAttachUrl);
         Intent intent = new Intent();
         intent.putExtra("isPostSuccess", isPostSuccess);
-        intent.putExtra("noticeBean",bean);
+        intent.putExtra("noticeBean", bean);
         setResult(RESULT_OK, intent);
         finish();
     }

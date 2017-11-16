@@ -61,8 +61,14 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
                 headViewHolder.user_name.setText(UserInfo.getInstance().getInfo().getRealName());
             }
             try {
-                headViewHolder.project_name.setText(mCourseData.getProjectInfo().getProjectName());
-                headViewHolder.class_name.setText(mCourseData.getClazsInfo().getClazsName());
+                if (mCourseData != null) {
+                    headViewHolder.project_name.setText(mCourseData.getProjectInfo().getProjectName());
+                    headViewHolder.class_name.setText(mCourseData.getClazsInfo().getClazsName());
+                } else {
+                    headViewHolder.project_name.setText("暂未设置项目");
+                    headViewHolder.class_name.setText("暂未设置班级");
+                    headViewHolder.changeClass_button.setVisibility(View.GONE);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -86,10 +92,7 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
                     }
                 }
             });
-
-
         }
-
     }
 
     @Override

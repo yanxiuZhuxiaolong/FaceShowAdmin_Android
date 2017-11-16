@@ -9,10 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
+import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
@@ -31,6 +33,7 @@ import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -44,6 +47,8 @@ public class TaskFragment extends FaceShowBaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     Unbinder unbinder;
+    @BindView(R.id.title_layout_left_img)
+    ImageView mTitleLayoutLeftImg;
     private PublicLoadLayout mPublicLoadLayout;
     private TaskAdapter mTaskAdapter;
     private UUID mUUID;
@@ -106,6 +111,8 @@ public class TaskFragment extends FaceShowBaseFragment {
     }
 
     private void initTitle() {
+        mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
+        mTitleLayoutLeftImg.setImageResource(R.drawable.selector_main_leftdrawer);
         mTitleLayoutTitle.setText(R.string.task);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
     }
@@ -151,4 +158,8 @@ public class TaskFragment extends FaceShowBaseFragment {
         }
     }
 
+    @OnClick(R.id.title_layout_left_img)
+    public void onViewClicked() {
+        ((MainActivity) getActivity()).openLeftDrawer();
+    }
 }

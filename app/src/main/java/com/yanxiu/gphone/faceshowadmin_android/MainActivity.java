@@ -64,12 +64,13 @@ public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.exit)
     TextView mExitView;
 
+
     private Context mContext;
     private final String TAB_MAIN = "tab_main";
     private final String TAB_TASK = "tab_task";
     private final String TAB_COURSE = "tab_course";
     private final String TAB_CLASS_CIRCLE = "tab_class_circle";
-
+    private PublicLoadLayout mPublicLoadLayou;
     private MainFragment mMainFragment;
 
     private final int mNavBarViewsCount = 4;
@@ -114,14 +115,14 @@ public class MainActivity extends FaceShowBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PublicLoadLayout publicLoadLayout = new PublicLoadLayout(this);
-        publicLoadLayout.setContentView(R.layout.activity_main);
-        setContentView(publicLoadLayout);
+        mPublicLoadLayou = new PublicLoadLayout(this);
+        mPublicLoadLayou.setContentView(R.layout.activity_main);
+        setContentView(mPublicLoadLayou);
         ButterKnife.bind(this);
         mContext = this;
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         setMainContentView();
-        setLeftDrawer();
+
         UpdateUtil.Initialize(this, false);
         EventBus.getDefault().register(this);
     }
@@ -148,8 +149,27 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void setMainContentView() {
-        initBottomBar();
-        initFragments();
+
+        RelativeLayout rlNoClass = mPublicLoadLayou.findViewById(R.id.rl_no_class);
+        if (SpManager.getCurrentClassInfo() == null) {
+            rlNoClass.setVisibility(View.VISIBLE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mLeftDrawerList.setLayoutManager(linearLayoutManager);
+            mLeftDrawerListAdapter = new LeftDrawerListAdapter(mContext, null);
+            mLeftDrawerList.setAdapter(mLeftDrawerListAdapter);
+            mLeftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View v, int position) {
+                    LeftDrawerListItemToOtherAct(position);
+                }
+            });
+        } else {
+            rlNoClass.setVisibility(View.GONE);
+            initBottomBar();
+            initFragments();
+            setLeftDrawer();
+        }
     }
 
     private void initFragments() {
@@ -158,8 +178,8 @@ public class MainActivity extends FaceShowBaseActivity {
         fragmentManager.beginTransaction().add(R.id.fragment_content, mMainFragment, TAB_MAIN).commit();
     }
 
-    public void onEventMainThread(UserMessageChangedBean bean){
-        if (bean!=null){
+    public void onEventMainThread(UserMessageChangedBean bean) {
+        if (bean != null) {
             mLeftDrawerListAdapter.notifyDataSetChanged();
         }
     }
@@ -168,7 +188,7 @@ public class MainActivity extends FaceShowBaseActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mLeftDrawerList.setLayoutManager(linearLayoutManager);
-        mLeftDrawerListAdapter = new LeftDrawerListAdapter(mContext,mMainFragment.getmData());
+        mLeftDrawerListAdapter = new LeftDrawerListAdapter(mContext, mMainFragment.getmData());
         mLeftDrawerList.setAdapter(mLeftDrawerListAdapter);
         mLeftDrawerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
@@ -176,7 +196,6 @@ public class MainActivity extends FaceShowBaseActivity {
                 LeftDrawerListItemToOtherAct(position);
             }
         });
-
 
     }
 
@@ -204,11 +223,15 @@ public class MainActivity extends FaceShowBaseActivity {
 
     private void toClassHomePage() {
         EventUpdata.onMainClass(mContext);
-        mNavIconViews[0].setEnabled(false);
-        mNavIconViews[1].setEnabled(true);
-        mNavIconViews[2].setEnabled(true);
-        mNavIconViews[3].setEnabled(true);
-        changeTabFragment(TAB_MAIN, 0);
+        if (SpManager.getCurrentClassInfo()!=null) {
+            mNavIconViews[0].setEnabled(false);
+            mNavIconViews[1].setEnabled(true);
+            mNavIconViews[2].setEnabled(true);
+            mNavIconViews[3].setEnabled(true);
+            changeTabFragment(TAB_MAIN, 0);
+        }else {
+            mDrawerLayout.closeDrawer(mLeftDrawerLayout);
+        }
     }
 
     private void toMyDataAct() {
@@ -233,7 +256,7 @@ public class MainActivity extends FaceShowBaseActivity {
         this.finish();
     }
 
-    @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle,R.id.exit})
+    @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle, R.id.exit})
     public void onViewClicked(View view) {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
@@ -267,7 +290,7 @@ public class MainActivity extends FaceShowBaseActivity {
                 mNavIconViews[3].setEnabled(false);
                 changeTabFragment(TAB_CLASS_CIRCLE, 3);
                 break;
-            case R.id.exit :
+            case R.id.exit:
                 exitApp();
                 mDrawerLayout.closeDrawer(mLeftDrawerLayout);
                 break;
