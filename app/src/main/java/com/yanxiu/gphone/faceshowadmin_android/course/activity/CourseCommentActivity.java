@@ -130,7 +130,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPublicLoadLayout = new PublicLoadLayout(this);
-        mPublicLoadLayout.setContentView(R.layout.activity_relpy_detail);
+        mPublicLoadLayout.setContentView(R.layout.activity_course_comment_detail);
         setContentView(mPublicLoadLayout);
         ButterKnife.bind(this);
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);

@@ -68,8 +68,7 @@ public class ReplyDetailActivity extends FaceShowBaseActivity {
     private void getReplys() {
         mPublicLoadLayout.showLoadingView();
         GetReplyRequest getReplyRequest = new GetReplyRequest();
-        getReplyRequest.questionId = "687";
-//        getReplyRequest.questionId = getIntent().getStringExtra("questionId");
+        getReplyRequest.questionId = getIntent().getStringExtra("questionId");
         mGetReplyRequestUUID = getReplyRequest.startRequest(GetReplyResponse.class, new HttpCallback<GetReplyResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetReplyResponse ret) {
