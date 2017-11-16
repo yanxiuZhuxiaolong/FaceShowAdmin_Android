@@ -82,8 +82,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             handler.sendEmptyMessageDelayed(1, 1000);
         }
     }
-
-
     static class MyHandler extends Handler {
         WeakReference<ForgetPasswordActivity> mActivityWeakReference;
 
@@ -97,8 +95,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             mActivityWeakReference.get().dealMessage();
         }
     }
-
-
     private TextWatcher mPhoneNumberTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -150,7 +146,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             isNewPasswordNull = s.length() > 20 || s.length() < 6;
             changSureBtnColor();
         }
-
         @Override
         public void afterTextChanged(Editable s) {
 
@@ -221,11 +216,11 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
 
                 if (isPasswordShow) {
                     edtInputNewPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_show_password));
+                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_show_password_two));
                     isPasswordShow = false;
                 } else {
                     edtInputNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_hide_password));
+                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_hide_password_two));
                     isPasswordShow = true;
                 }
                 break;
