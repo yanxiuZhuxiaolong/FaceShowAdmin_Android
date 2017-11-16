@@ -240,7 +240,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
                     CreateNewCheckInActivity.this.finish();
                     ToastUtil.showToast(getApplicationContext(), ret.getMessage());
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }
 
             }

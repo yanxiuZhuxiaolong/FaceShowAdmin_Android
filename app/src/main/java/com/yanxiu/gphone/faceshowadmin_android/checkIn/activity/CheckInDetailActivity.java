@@ -210,7 +210,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                     setResult(RESULT_OK);
                     CheckInDetailActivity.this.finish();
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }
             }
 

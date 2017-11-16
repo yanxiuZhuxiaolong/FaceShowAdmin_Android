@@ -134,7 +134,7 @@ public class TaskFragment extends FaceShowBaseFragment {
                         mPublicLoadLayout.showOtherErrorView(getString(R.string.no_task));
                     }
                 } else {
-                    mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                    mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
 
                 }
             }

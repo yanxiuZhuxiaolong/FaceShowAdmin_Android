@@ -76,6 +76,7 @@ public class CourseTaskAdapter extends BaseRecyclerViewAdapter {
             mTvTaskName.setText(interactStep.getInteractName());
             switch (interactStep.getInteractType()) {
                 case 6:
+                    mImgTaskIcon.setImageResource(R.drawable.ic_sign_in);
                     mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
                     break;
                 case 5:
@@ -94,6 +95,7 @@ public class CourseTaskAdapter extends BaseRecyclerViewAdapter {
                 case 3:
                     mImgTaskIcon.setImageResource(R.drawable.icon_vote);
                     mTvTaskStatue.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_finish_number, interactStep.getFinishedStudentNum(), interactStep.getTotalStudentNum())));
+                    break;
                 default:
                     mImgTaskIcon.setImageResource(R.drawable.ic_do_not_know);
             }

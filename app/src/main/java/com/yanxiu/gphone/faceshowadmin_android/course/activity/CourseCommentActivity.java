@@ -98,10 +98,10 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
             public void onSuccess(RequestBase request, FaceShowBaseResponse ret) {
                 mPublicLoadLayout.finish();
                 hiddenInputMethod();
-                if (ret != null && ret.getCode() == 0) {
-                    ToastUtil.showToast(CourseCommentActivity.this, "提交成功");
+                if (ret.getCode() == 0) {
+                    ToastUtil.showToast(CourseCommentActivity.this,ret.getMessage());
                 } else {
-                    ToastUtil.showToast(CourseCommentActivity.this, getString(R.string.error_tip));
+                    ToastUtil.showToast(CourseCommentActivity.this, ret.getError().getMessage());
                 }
                 mPublicLoadLayout.showLoadingView();
                 id = "";
@@ -183,9 +183,9 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
 
                 } else {
                     if (TextUtils.isEmpty(id)) {
-                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                     } else {
-                        ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                        ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                     }
                 }
                 mRefresh = false;
@@ -235,7 +235,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
 
                     }
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }
             }
 

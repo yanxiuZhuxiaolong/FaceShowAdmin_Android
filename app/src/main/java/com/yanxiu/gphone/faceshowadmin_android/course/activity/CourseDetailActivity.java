@@ -80,7 +80,7 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
         mGetCourseRequestUUID = getCourseRequest.startRequest(GetCourseResponse.class, new HttpCallback<GetCourseResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetCourseResponse ret) {
-                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.finish();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     data = ret.getData();
                     mCourseTitle.setText(Html.fromHtml(ret.getData().getCourse().getCourseName()));
@@ -125,13 +125,14 @@ public class CourseDetailActivity extends FaceShowBaseActivity {
                     mTabLayout.setupWithViewPager(mViewPager);
                     setUpIndicatorWidth(mTabLayout, 20, 20);
                 } else {
-                    mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                    mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                 }
 
             }
 
             @Override
             public void onFail(RequestBase request, Error error) {
+                mPublicLoadLayout.finish();
                 mPublicLoadLayout.hiddenOtherErrorView();
             }
         });

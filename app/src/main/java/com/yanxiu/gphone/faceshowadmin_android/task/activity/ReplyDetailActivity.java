@@ -90,7 +90,7 @@ public class ReplyDetailActivity extends FaceShowBaseActivity {
                         }
                     }
                 } else {
-                    mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                    mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                 }
             }
 

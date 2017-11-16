@@ -92,8 +92,8 @@
             android:layout_above="@id/bottom_of_head"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="7dp"
-            android:background="@android:color/holo_red_dark"
-            android:contentDescription="@null" />
+            android:contentDescription="@null"
+            android:src="@drawable/ic_qr_code" />
     </RelativeLayout>
 
     <View
@@ -104,12 +104,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        app:tabSelectedTextColor="@color/color_333333"
-        app:tabTextColor="@color/color_999999"
         android:layout_height="40dp"
         android:background="@color/color_white"
         app:tabIndicatorColor="@color/color_0068BD"
-        app:tabIndicatorHeight="2dp" />
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/color_333333"
+        app:tabTextColor="@color/color_999999" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

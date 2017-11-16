@@ -69,7 +69,7 @@ public class VoteActivity extends FaceShowBaseActivity {
                         mPublicLoadLayout.showOtherErrorView(getString(R.string.data_empty));
                     }
                 } else {
-                    mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                    mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                 }
             }
 

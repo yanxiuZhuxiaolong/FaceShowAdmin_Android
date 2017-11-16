@@ -251,7 +251,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     ForgetPasswordActivity.this.setResult(RESULT_OK, intent);
                     ForgetPasswordActivity.this.finish();
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), response.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), response.getError().getMessage());
                 }
 
             }
@@ -280,7 +280,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     tvGetVerificationCode.setBackground(null);
                     ToastUtil.showToast(getApplicationContext(), response.getMessage());
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), response.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), response.getError().getMessage());
                 }
 
             }

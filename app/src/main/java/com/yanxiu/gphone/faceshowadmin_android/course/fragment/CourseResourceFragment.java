@@ -69,7 +69,7 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
             mGetCourseResourcesRequestUUID = getCourseResourcesRequest.startRequest(GetCourseResourcesResponse.class, new HttpCallback<GetCourseResourcesResponse>() {
                 @Override
                 public void onSuccess(RequestBase request, final GetCourseResourcesResponse ret) {
-                    mPublicLoadLayout.hiddenOtherErrorView();
+                    mPublicLoadLayout.finish();
                     if (ResponseConfig.SUCCESS == ret.getCode()) {
                         if (ret.getData() != null && ret.getData().getResources() != null && ret.getData().getResources().getElements() != null && ret.getData().getResources().getElements().size() > 0) {
                             mDataBean = ret.getData();
@@ -86,13 +86,13 @@ public class CourseResourceFragment extends FaceShowBaseFragment {
                     } else
 
                     {
-                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                     }
                 }
 
                 @Override
                 public void onFail(RequestBase request, Error error) {
-                    mPublicLoadLayout.hiddenOtherErrorView();
+                    mPublicLoadLayout.finish();
                     mPublicLoadLayout.showOtherErrorView(error.getMessage());
                 }
             });
