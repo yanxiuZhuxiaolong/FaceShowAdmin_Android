@@ -109,7 +109,6 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
 
 
     private void initTabLayout() {
-
         Bundle bundle = new Bundle();
         bundle.putString("stepId", getIntent().getStringExtra("stepId"));
         SignedInFragment signedInFragment = new SignedInFragment();
@@ -188,7 +187,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
                 intent.putExtra("stepId", getIntent().getStringExtra("stepId"));
                 intent.putExtra("qrCodeRefreshRate", getIntent().getIntExtra("qrCodeRefreshRate", 0));
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.title_layout_right_txt:
                 toDeleteThisSignIn();
@@ -262,6 +261,20 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 ToastUtil.showToast(getApplicationContext(), error.getMessage());
             }
         });
+    }
+
+    private int REQUEST_CODE = 0x100;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                getCheckInDetail();
+                ((NoSignInFragment) list.get(0)).toRefresh();
+                ((SignedInFragment) list.get(1)).toRefresh();
+            }
+        }
     }
 
     String getPercent(int y, int z) {

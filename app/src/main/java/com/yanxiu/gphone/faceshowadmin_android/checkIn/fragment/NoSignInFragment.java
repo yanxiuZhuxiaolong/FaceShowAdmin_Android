@@ -70,6 +70,14 @@ public class NoSignInFragment extends FaceShowBaseFragment {
         }
     };
 
+    public void toRefresh() {
+        id = "";
+        mSignInTime = "";
+        data.clear();
+        mPublicLoadLayout.showLoadingView();
+        initData();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

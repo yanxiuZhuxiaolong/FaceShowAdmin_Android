@@ -95,6 +95,12 @@ public class QrCodeShowActivity extends FaceShowBaseActivity {
 
     @OnClick(R.id.title_layout_left_img)
     public void onViewClicked() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
         this.finish();
     }
 
