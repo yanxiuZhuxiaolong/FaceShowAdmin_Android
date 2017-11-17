@@ -265,6 +265,7 @@ public class LoginActivity extends FaceShowBaseActivity {
                 if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null) {
                     getUserInfo(activity, ret.getData());
                 } else {
+                    rootView.finish();
                     if (ret != null && ret.getError() != null) {
                         ToastUtil.showToast(FSAApplication.getInstance().getApplicationContext(), ret.getError().getMessage());
                     }
@@ -273,7 +274,7 @@ public class LoginActivity extends FaceShowBaseActivity {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                rootView.hiddenLoadingView();
+                rootView.finish();
                 if (error != null) {
                     ToastUtil.showToast(FSAApplication.getInstance().getApplicationContext(), error.getMessage());
                 }
