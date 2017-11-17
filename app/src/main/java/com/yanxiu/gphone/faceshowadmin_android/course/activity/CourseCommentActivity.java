@@ -99,7 +99,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                 mPublicLoadLayout.finish();
                 hiddenInputMethod();
                 if (ret.getCode() == 0) {
-                    ToastUtil.showToast(CourseCommentActivity.this,ret.getMessage());
+                    ToastUtil.showToast(CourseCommentActivity.this, ret.getMessage());
                 } else {
                     ToastUtil.showToast(CourseCommentActivity.this, ret.getError().getMessage());
                 }
@@ -228,12 +228,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
             @Override
             public void onSuccess(RequestBase request, DeleteUserCommentResponse ret) {
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
-                    if (mRecords.size() <= 1) {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_reply_record));
-                    } else {
-                        mCourseCommentAdapter.deleteItem(position);
-
-                    }
+                    mCourseCommentAdapter.deleteItem(position);
                 } else {
                     ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }
