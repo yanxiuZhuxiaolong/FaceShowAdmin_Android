@@ -122,7 +122,6 @@ public class MainActivity extends FaceShowBaseActivity {
         mContext = this;
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         setMainContentView();
-
         UpdateUtil.Initialize(this, false);
         EventBus.getDefault().register(this);
     }
