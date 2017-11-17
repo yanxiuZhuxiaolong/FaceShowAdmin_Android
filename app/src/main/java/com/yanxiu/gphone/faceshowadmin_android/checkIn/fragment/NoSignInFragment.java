@@ -26,6 +26,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserRes
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserSignInsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
@@ -78,6 +79,14 @@ public class NoSignInFragment extends FaceShowBaseFragment {
         initData();
     }
 
+    private RecyclerViewItemClickListener mRecyclerViewItemClickListener = new RecyclerViewItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            EventUpdate.onSignInDetailRetroactive(getContext());
+            toShowTimePickerView(data.get(position).getUserName(), position);
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,12 +100,7 @@ public class NoSignInFragment extends FaceShowBaseFragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mNoSignInAdapter = new NoSignInAdapter();
         mRecyclerView.setAdapter(mNoSignInAdapter);
-        mNoSignInAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                toShowTimePickerView(data.get(position).getUserName(), position);
-            }
-        });
+        mNoSignInAdapter.addItemClickListener(mRecyclerViewItemClickListener);
         mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
         mPublicLoadLayout.showLoadingView();
         initData();

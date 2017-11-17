@@ -28,7 +28,6 @@ import com.yanxiu.gphone.faceshowadmin_android.classCircle.dialog.ClassCircleDia
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
-import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.UploadFileByHttp;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdResponse;
@@ -36,9 +35,8 @@ import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeSaveResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.UploadResResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
-import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
 
@@ -53,8 +51,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-
-import static com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity.NOTICE_POST;
 
 /**
  * Created by lufengqing on 2017/11/2.
@@ -168,7 +164,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 submitNotice();
                 break;
             case R.id.notice_pic_add:
-                EventUpdata.onSendNotifyAddPicture(mContext);
+                EventUpdate.onSendNotifyAddPicture(mContext);
                 showDialog();
                 break;
             case R.id.notice_pic_del:

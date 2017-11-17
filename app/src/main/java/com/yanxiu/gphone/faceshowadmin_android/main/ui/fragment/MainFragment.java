@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
@@ -39,12 +41,13 @@ import com.yanxiu.gphone.faceshowadmin_android.resource.ResourceMangerActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.PublishScheduleActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.bean.ScheduleBean;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
-import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.TextTypefaceUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * main tab
@@ -280,28 +283,30 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onTabItemClick(View v, int position) {
         switch (position) {
             case 0:
-                EventUpdata.onEnterAdressBook(getContext());
+                EventUpdate.onEnterAdressBook(getContext());
                 AdressBookActivity.LuanchActivity(getContext());
                 break;
             case 1:
-                EventUpdata.onEnterNotify(getContext());
+                EventUpdate.onEnterNotify(getContext());
                 NoticeManageActivity.invoke(getActivity());
                 break;
             case 2:
-                EventUpdata.onEnterCheckKinRecord(getContext());
+                EventUpdate.onEnterCheckKinRecord(getContext());
                 CheckInNotesActivity.toThisAct(getActivity());
                 break;
             case 3:
                 requestScheduleData();
                 break;
             case 4:
-                EventUpdata.onEnterResource(getContext());
+                EventUpdate.onEnterResource(getContext());
                 ResourceMangerActivity.invoke(getActivity());
                 break;
             default:
 
         }
     }
+
+    private static final int REQUEST_CODE_TO_SIGN_IN = 0x100;
 
     /**
      * 签到item点击
@@ -311,8 +316,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
      */
     @Override
     public void onCheckInItemClick(View v, int position) {
-        ToastUtil.showToast(getActivity(), "签到item点击 position = " + position);
-
+        Intent intent = new Intent(getContext(), CheckInDetailActivity.class);
+        intent.putExtra("stepId", String.valueOf(mData.getTodaySignIns().get(position).getStepId()));
+        startActivityForResult(intent, REQUEST_CODE_TO_SIGN_IN);
     }
 
     /**
@@ -330,11 +336,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.project_layput:
-                EventUpdata.onSeeClassDetail(getContext());
+                EventUpdate.onSeeClassDetail(getContext());
                 MainDetailActivity.invoke(getActivity(), mData);
                 break;
             case R.id.title_layout_left_img:
-                EventUpdata.onShowDrawerLeft(getContext());
+                EventUpdate.onShowDrawerLeft(getContext());
                 ((MainActivity) getActivity()).openLeftDrawer();
                 break;
             case R.id.retry_button:
@@ -361,7 +367,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 mRootView.finish();
                 if (ret != null && ret.getCode() == 0 && ret.getSchedule() != null) {
                     ScheduleBean bean = ret.getSchedule();
-                    EventUpdata.onEnterSchedule(getContext());
+                    EventUpdate.onEnterSchedule(getContext());
                     ScheduleManageActivity.invoke(getActivity(), bean);
                 } else {
                     PublishScheduleActivity.invoke(getActivity());
@@ -384,5 +390,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         if (mCourseArrangeRequest != null)
             mCourseArrangeRequest.cancelRequest();
         super.onDestroy();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE_TO_SIGN_IN==requestCode){
+                if (resultCode==RESULT_OK){
+                    requestData();
+                }
+        }
     }
 }

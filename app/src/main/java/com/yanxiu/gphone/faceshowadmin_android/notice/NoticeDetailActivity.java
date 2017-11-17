@@ -23,18 +23,15 @@ import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeDeleteRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.notice.NoticeRequestResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-
-import static com.yanxiu.gphone.faceshowadmin_android.notice.NoticeManageActivity.NOTICE_DETAIL;
 
 /**
  * Created by lufengqing on 2017/11/1.
@@ -134,7 +131,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
 //            view.setBackgroundColor(getResources().getColor(R.color.color_0068bd));
             switch (v.getId()) {
                 case R.id.notice_delete:
-                    EventUpdata.onDeleteNotify(mContext);
+                    EventUpdate.onDeleteNotify(mContext);
                     requestDeleteNotice();
                     dismissPopupWindow();
                     break;

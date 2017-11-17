@@ -13,6 +13,8 @@ public class DateFormatUtil {
     public final static String FORMAT_ONE = "yyyy-MM-dd HH:mm:ss";
     public final static String FORMAT_TWO = "yyyy.MM.dd HH:mm";
     public final static String FORMAT_THREE = "yyyy.MM.dd HH:mm:ss";
+    public final static String FORMAT_FOUR = "yyyy-MM-dd";
+    public final static String FORMAT_FIVE = "yyyy.MM.dd";
 
 
     public static String translationBetweenTwoFormat(String dateStr, String formatStr1, String formatStr2) {

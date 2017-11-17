@@ -17,6 +17,7 @@ import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseBriefIntroductionFragment;
 import com.yanxiu.gphone.faceshowadmin_android.course.fragment.LectureInfoListFragment;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 
 import java.lang.reflect.Field;
@@ -82,6 +83,24 @@ public class CourseMessageActivity extends FaceShowBaseActivity {
                     default:
                         return null;
                 }
+            }
+        });
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 1) {
+                    EventUpdate.onSeeCourseProfile(CourseMessageActivity.this);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
         mTabLayout.setupWithViewPager(mViewPager);

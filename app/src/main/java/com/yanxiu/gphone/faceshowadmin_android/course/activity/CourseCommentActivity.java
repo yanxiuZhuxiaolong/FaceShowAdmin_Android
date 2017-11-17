@@ -32,6 +32,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -99,7 +100,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
                 mPublicLoadLayout.finish();
                 hiddenInputMethod();
                 if (ret.getCode() == 0) {
-                    ToastUtil.showToast(CourseCommentActivity.this,ret.getMessage());
+                    ToastUtil.showToast(CourseCommentActivity.this, ret.getMessage());
                 } else {
                     ToastUtil.showToast(CourseCommentActivity.this, ret.getError().getMessage());
                 }
@@ -208,8 +209,10 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     }
 
     private CourseCommentAdapter.DeleteCommentClickListener mDeleteCommentClickListener = new CourseCommentAdapter.DeleteCommentClickListener() {
+
         @Override
         public void delete(View view, int position) {
+            EventUpdate.onDeleteDiscuss(CourseCommentActivity.this);
             deleteComment(position);
         }
     };
@@ -228,12 +231,7 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
             @Override
             public void onSuccess(RequestBase request, DeleteUserCommentResponse ret) {
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
-                    if (mRecords.size() <= 1) {
-                        mPublicLoadLayout.showOtherErrorView(getString(R.string.no_reply_record));
-                    } else {
-                        mCourseCommentAdapter.deleteItem(position);
-
-                    }
+                    mCourseCommentAdapter.deleteItem(position);
                 } else {
                     ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }

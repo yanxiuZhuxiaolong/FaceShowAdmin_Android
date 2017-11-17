@@ -92,7 +92,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
         if (data.getCourses().get(i).isIsToday()) {
             groupViewHolder.mCourseData.setText(R.string.today_course);
         } else {
-            groupViewHolder.mCourseData.setText(data.getCourses().get(i).getDate());
+            groupViewHolder.mCourseData.setText(DateFormatUtil.translationBetweenTwoFormat(data.getCourses().get(i).getDate(),DateFormatUtil.FORMAT_FOUR,DateFormatUtil.FORMAT_FIVE));
         }
         return convertView;
     }
@@ -136,7 +136,6 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
                 mContext.startActivity(intent);
             }
         });
-        // TODO: 17-11-6   need test when data enough
         if (isLastChild) {
             childViewHolder.mItemView.setVisibility(View.GONE);
         } else {

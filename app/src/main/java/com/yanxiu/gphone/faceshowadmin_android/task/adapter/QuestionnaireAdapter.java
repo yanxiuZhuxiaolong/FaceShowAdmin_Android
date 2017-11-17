@@ -14,6 +14,7 @@ import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.SubmitDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,6 +132,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
             mTvSeeDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    EventUpdate.onQuestionnairesDetail(view.getContext());
                     Intent intent = new Intent(view.getContext(), SubmitDetailActivity.class);
                     intent.putExtra("submitNum", qusetionGroupBean.getAnswerUserNum());
                     intent.putExtra("totalNum", qusetionGroupBean.getTotalUserNum());
@@ -149,6 +151,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         VoteResultLayout mVoteResultLayout;
         @BindView(R.id.vote_result_layout_line)
         View line;
+
         ProgressViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
@@ -169,6 +172,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         TextView mTvSeeReply;
         @BindView(R.id.line)
         View line;
+
         ReplyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
@@ -182,7 +186,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(), ReplyDetailActivity.class);
-                    intent.putExtra("title",qusetionBean.getTitle());
+                    intent.putExtra("title", qusetionBean.getTitle());
                     intent.putExtra("questionId", String.valueOf(qusetionBean.getId()));
                     itemView.getContext().startActivity(intent);
                 }

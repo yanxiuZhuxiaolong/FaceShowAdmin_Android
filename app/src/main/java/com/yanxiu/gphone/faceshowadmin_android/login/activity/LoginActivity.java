@@ -30,7 +30,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.GetUserInfoResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.SignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.login.SignInResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Utils;
 
@@ -171,7 +171,7 @@ public class LoginActivity extends FaceShowBaseActivity {
 
                 break;
             case R.id.tv_forget_password:
-                EventUpdata.onForgetPassWord(mContext);
+                EventUpdate.onForgetPassWord(mContext);
                 startActivityForResult(new Intent(LoginActivity.this, ForgetPasswordActivity.class), TO_FORGET_PASSWORD_REQUEST_CODE);
                 break;
             default:

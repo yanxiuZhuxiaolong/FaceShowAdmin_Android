@@ -44,9 +44,8 @@ import com.yanxiu.gphone.faceshowadmin_android.classCircle.response.RefreshClass
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.SizeChangeCallbackView;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
-import com.yanxiu.gphone.faceshowadmin_android.login.activity.ClassManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ClassCircleTimeUtils;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Logger;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
@@ -61,10 +60,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -396,7 +392,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.title_layout_right_img:
-                EventUpdata.onSendClassCircle(getContext());
+                EventUpdate.onSendClassCircle(getContext());
                 showDialog();
                 break;
             case R.id.title_layout_left_img:
@@ -504,7 +500,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
 
     @Override
     public void deleteClick(int position, ClassCircleResponse.Data.Moments response) {
-        EventUpdata.onDeleteClassCircle(getContext());
+        EventUpdate.onDeleteClassCircle(getContext());
         startDeleteRequest(position, response);
     }
 

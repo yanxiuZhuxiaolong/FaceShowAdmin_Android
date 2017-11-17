@@ -32,7 +32,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
 import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
 
 import butterknife.BindView;
@@ -222,7 +222,7 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void toClassHomePage() {
-        EventUpdata.onMainClass(mContext);
+        EventUpdate.onMainClass(mContext);
         if (SpManager.getCurrentClassInfo()!=null) {
             mNavIconViews[0].setEnabled(false);
             mNavIconViews[1].setEnabled(true);
@@ -247,7 +247,7 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void exitApp() {
-        EventUpdata.onLogOut(mContext);
+        EventUpdate.onLogOut(mContext);
         LoginActivity.toThisAct(this);
         UserInfo.getInstance().setInfo(null);
         SpManager.saveToken("");
