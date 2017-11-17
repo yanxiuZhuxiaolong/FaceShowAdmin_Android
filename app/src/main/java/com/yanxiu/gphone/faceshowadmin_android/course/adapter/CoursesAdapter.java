@@ -150,6 +150,11 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    public void update(GetClassCoursesResponse.DataBean data) {
+        this.data =data;
+        notifyDataSetChanged();
+    }
+
     static class ChildViewHolder {
         @BindView(R.id.course_name)
         TextView mCourseName;

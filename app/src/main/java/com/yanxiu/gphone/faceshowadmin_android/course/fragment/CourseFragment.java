@@ -3,6 +3,7 @@ package com.yanxiu.gphone.faceshowadmin_android.course.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class CourseFragment extends FaceShowBaseFragment {
     Unbinder unbinder;
     @BindView(R.id.title_layout_left_img)
     ImageView mTitleLayoutLeftImg;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     private UUID mUUID;
     private CoursesAdapter mCoursesAdapter;
 
@@ -63,6 +66,7 @@ public class CourseFragment extends FaceShowBaseFragment {
             }
 
         });
+        mPublicLoadLayout.showLoadingView();
         getCourseListData();
         mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -70,19 +74,26 @@ public class CourseFragment extends FaceShowBaseFragment {
                 return true;
             }
         });
-
-
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getCourseListData();
+            }
+        });
         return mPublicLoadLayout;
     }
 
     private void getCourseListData() {
-        mPublicLoadLayout.showLoadingView();
+
         GetClassCoursesRequest getClassCoursesRequest = new GetClassCoursesRequest();
         getClassCoursesRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         mUUID = getClassCoursesRequest.startRequest(GetClassCoursesResponse.class, new HttpCallback<GetClassCoursesResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassCoursesResponse ret) {
                 mPublicLoadLayout.finish();
+                if (mSwipeRefreshLayout.isRefreshing()){
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getCourses() != null && ret.getData().getCourses().size() > 0) {
                         if (mCoursesAdapter == null) {
@@ -94,7 +105,7 @@ public class CourseFragment extends FaceShowBaseFragment {
                                 mExpandableListView.expandGroup(i);
                             }
                         } else {
-                            mExpandableListView.notify();
+                            mCoursesAdapter.update(ret.getData());
                         }
                     } else {
                         mPublicLoadLayout.showOtherErrorView(getString(R.string.no_course));
@@ -108,6 +119,9 @@ public class CourseFragment extends FaceShowBaseFragment {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.finish();
+                if (mSwipeRefreshLayout.isRefreshing()){
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 mPublicLoadLayout.showNetErrorView();
             }
         });
