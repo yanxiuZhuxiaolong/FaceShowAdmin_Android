@@ -162,7 +162,7 @@ public class EventUpdata {
     /**
      * 课程详情页面
      */
-    public static void onSeeClassProfile(Context context) {
+    public static void onSeeCourseProfile(Context context) {
         TCAgent.onEvent(context, "查看课程简介");
     }
 

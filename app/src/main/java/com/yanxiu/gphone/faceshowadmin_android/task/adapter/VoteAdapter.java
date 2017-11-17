@@ -14,6 +14,7 @@ import com.yanxiu.gphone.faceshowadmin_android.model.QusetionBean;
 import com.yanxiu.gphone.faceshowadmin_android.model.QusetionGroupBean;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.ReplyDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.task.activity.VoteDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -129,6 +130,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.BaseViewHolder
             mTvSeeDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    EventUpdata.onSeeVoteDetail(view.getContext());
                     Intent intent = new Intent(view.getContext(), VoteDetailActivity.class);
                     intent.putExtra("submitNum", qusetionGroupBean.getAnswerUserNum());
                     intent.putExtra("totalNum", qusetionGroupBean.getTotalUserNum());

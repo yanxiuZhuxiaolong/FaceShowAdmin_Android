@@ -32,6 +32,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseReplyResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.LikeCommentRecordResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -208,8 +209,10 @@ public class CourseCommentActivity extends FaceShowBaseActivity {
     }
 
     private CourseCommentAdapter.DeleteCommentClickListener mDeleteCommentClickListener = new CourseCommentAdapter.DeleteCommentClickListener() {
+
         @Override
         public void delete(View view, int position) {
+            EventUpdata.onDeleteDiscuss(CourseCommentActivity.this);
             deleteComment(position);
         }
     };

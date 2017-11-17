@@ -51,8 +51,6 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     ImageView titleLayoutLeftImg;
     @BindView(R.id.title_layout_title)
     TextView titleLayoutTitle;
-    @BindView(R.id.title_layout_right_img)
-    ImageView titleLayoutRightImg;
     @BindView(R.id.tv_check_in_title)
     TextView tvCheckInTitle;
     @BindView(R.id.tv_check_in_time)
@@ -175,19 +173,15 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     }
 
 
-    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img, R.id.img_code, R.id.title_layout_right_txt})
+    @OnClick({R.id.title_layout_left_img, R.id.img_code, R.id.title_layout_right_txt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
                 onBackPressed();
                 break;
-            case R.id.title_layout_right_img:
-                break;
             case R.id.img_code:
-                Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
-                intent.putExtra("stepId", getIntent().getStringExtra("stepId"));
-                intent.putExtra("qrCodeRefreshRate", getIntent().getIntExtra("qrCodeRefreshRate", 0));
-                startActivityForResult(intent, REQUEST_CODE);
+                EventUpdata.onSeeSignInQrCode(CheckInDetailActivity.this);
+                toShowQRCode();
                 break;
             case R.id.title_layout_right_txt:
                 toDeleteThisSignIn();
@@ -195,6 +189,13 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 break;
             default:
         }
+    }
+
+    private void toShowQRCode() {
+        Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
+        intent.putExtra("stepId", getIntent().getStringExtra("stepId"));
+        intent.putExtra("qrCodeRefreshRate", getIntent().getIntExtra("qrCodeRefreshRate", 0));
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     private void toDeleteThisSignIn() {
