@@ -6,9 +6,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -23,6 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.net.updata.DownLoadRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.updata.InitializeReponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.updata.InitializeRequest;
+import com.yanxiu.gphone.faceshowadmin_android.notice.NoticePostActivity;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.Logger;
 import com.yanxiu.gphone.faceshowadmin_android.utils.SystemUtil;
@@ -256,7 +259,14 @@ public class UpdateUtil {
 //        SpManager.setFristStartUp(true);
         String type = "application/vnd.android.package-archive";
         File file = new File(filePath);
-        intent.setDataAndType(Uri.fromFile(file), type);
+        Uri uri;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            uri=Uri.fromFile(file);
+        }else {
+            uri = FileProvider.getUriForFile(context, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", file);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        intent.setDataAndType(uri, type);
         context.startActivity(intent);
     }
 
