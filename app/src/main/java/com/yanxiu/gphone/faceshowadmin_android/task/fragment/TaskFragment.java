@@ -36,6 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * task tab
  * Created by frc on 17-10-26.
@@ -56,7 +58,7 @@ public class TaskFragment extends FaceShowBaseFragment {
     public static final int typeVote = 3;
     public static final int typeSignIn = 6;
     public static final int typeQuestionnaire = 5;
-
+    private static final int REQUEST_CODE_TO_SIGN_IN = 0x200;
     private RecyclerViewItemClickListener mRecyclerViewItemClickListener = new RecyclerViewItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
@@ -71,7 +73,7 @@ public class TaskFragment extends FaceShowBaseFragment {
                 case typeSignIn:
                     intent = new Intent(getContext(), CheckInDetailActivity.class);
                     intent.putExtra("stepId", String.valueOf(task.getStepId()));
-                    startActivity(intent);
+                    startActivityForResult(intent,REQUEST_CODE_TO_SIGN_IN);
                     break;
                 case typeQuestionnaire:
                     intent = new Intent(getContext(), QuestionnaireActivity.class);
@@ -161,5 +163,15 @@ public class TaskFragment extends FaceShowBaseFragment {
     @OnClick(R.id.title_layout_left_img)
     public void onViewClicked() {
         ((MainActivity) getActivity()).openLeftDrawer();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE_TO_SIGN_IN==requestCode){
+            if (RESULT_OK==resultCode){
+                getTasks();
+            }
+        }
     }
 }
