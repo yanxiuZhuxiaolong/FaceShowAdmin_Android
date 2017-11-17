@@ -8,10 +8,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.tendcloud.tenddata.TCAgent;
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.utils.ActivityNameUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
 import com.yanxiu.gphone.faceshowadmin_android.utils.permission.PermissionUtil;
 
@@ -31,16 +34,29 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
     private static OnPermissionCallback mPermissionCallback;
     private boolean isActive = true;
 
+    private String mFaceShowLocalName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFaceShowLocalName=ActivityNameUtils.getActivityName(this.getLocalClassName());
         ActivityManger.addActicity(this);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!TextUtils.isEmpty(mFaceShowLocalName)) {
+            TCAgent.onPageEnd(this, mFaceShowLocalName);
+        }
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (!TextUtils.isEmpty(mFaceShowLocalName)) {
+            TCAgent.onPageStart(this, mFaceShowLocalName);
+        }
         Log.i(Constants.TAG, this.getClass().getName());
         if (!isActive) {
             isActive = true;

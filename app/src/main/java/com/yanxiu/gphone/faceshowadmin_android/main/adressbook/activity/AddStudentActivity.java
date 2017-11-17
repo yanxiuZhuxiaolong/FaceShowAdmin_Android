@@ -154,7 +154,7 @@ public class AddStudentActivity extends FaceShowBaseActivity implements View.OnC
                 }else {
                     try {
                         assert ret != null;
-                        ToastUtil.showToast(mContext,ret.getMessage());
+                        ToastUtil.showToast(mContext,ret.getError().getMessage());
                     }catch (Exception e){
                         e.printStackTrace();
                     }

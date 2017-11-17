@@ -148,9 +148,14 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                 }
                 if (ret != null && ret.getCode() == 0) {
                     mData = ret.getData();
-                    mRecyclerView.setLoadMoreEnable(true);
-                    mAdapter.setData(mData.getResources().getElements());
-                    mRecyclerView.setAdapter(mAdapter);
+                    if (mData.getResources().getElements().size()>0) {
+                        mRecyclerView.setLoadMoreEnable(true);
+                        mAdapter.setData(mData.getResources().getElements());
+                        mRecyclerView.setAdapter(mAdapter);
+                    }else {
+                        mRecyclerView.setLoadMoreEnable(false);
+                        ToastUtil.showToast(ResourceMangerActivity.this,"尚未上传资源");
+                    }
                 } else {
                     mRootView.showOtherErrorView();
                 }
