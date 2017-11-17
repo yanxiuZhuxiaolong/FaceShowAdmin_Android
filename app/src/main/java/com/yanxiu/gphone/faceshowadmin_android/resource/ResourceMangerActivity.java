@@ -59,7 +59,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     private ResourceDataBean mData;
 
-    private int offset=0;
+    private String offset=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +138,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         if (!isRefreshIng) {
             mRootView.showLoadingView();
         }
-        offset=0;
-
+        offset=null;
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
@@ -155,6 +154,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                         mRecyclerView.setLoadMoreEnable(true);
                         mAdapter.setData(mData.getResources().getElements());
                         mRecyclerView.setAdapter(mAdapter);
+                        offset=mData.getResources().getCallbacks().get(0).getCallbackValue();
                     }else {
                         mRecyclerView.setLoadMoreEnable(false);
                         ToastUtil.showToast(ResourceMangerActivity.this,"尚未上传资源");
@@ -179,10 +179,9 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     private void requestLoarMore() {
         mRootView.showLoadingView();
-        offset++;
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        resourceRequest.id = String.valueOf(offset*10);
+        resourceRequest.id = offset;
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
             @Override
             public void onSuccess(RequestBase request, ResourceResponse ret) {
@@ -193,6 +192,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
                         ToastUtil.showToast(ResourceMangerActivity.this, "没有更多数据了");
                         mRecyclerView.setLoadMoreEnable(false);
                     } else {
+                        offset=ret.getData().getResources().getCallbacks().get(0).getCallbackValue();
                         mData.getResources().getElements().addAll(ret.getData().getResources().getElements());
                         mAdapter.addData(ret.getData().getResources().getElements());
                         mRecyclerView.setLoadMoreEnable(true);
