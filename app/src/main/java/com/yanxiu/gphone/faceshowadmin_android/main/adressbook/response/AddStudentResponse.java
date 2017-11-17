@@ -11,8 +11,6 @@ public class AddStudentResponse extends FaceShowBaseResponse {
 
     public AddStudentData data;
 
-    public ErrorMessage error;
-
     public class AddStudentData{
         public int id;
         public String mobilePhone;
@@ -25,12 +23,6 @@ public class AddStudentResponse extends FaceShowBaseResponse {
         public int ucnterId;
         public int userId;
         public int userStatus;
-    }
-
-    public class ErrorMessage{
-        public String code;
-        public String message;
-        public String title;
     }
 
 }
