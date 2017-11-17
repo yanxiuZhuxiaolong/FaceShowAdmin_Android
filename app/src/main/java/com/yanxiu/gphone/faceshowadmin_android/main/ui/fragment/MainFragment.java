@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
 import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
+import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
@@ -45,6 +47,8 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.TextTypefaceUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * main tab
@@ -303,6 +307,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         }
     }
 
+    private static final int REQUEST_CODE_TO_SIGN_IN = 0x100;
+
     /**
      * 签到item点击
      *
@@ -311,8 +317,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
      */
     @Override
     public void onCheckInItemClick(View v, int position) {
-        ToastUtil.showToast(getActivity(), "签到item点击 position = " + position);
-
+        Intent intent = new Intent(getContext(), CheckInDetailActivity.class);
+        intent.putExtra("stepId", String.valueOf(mData.getTodaySignIns().get(position).getStepId()));
+        startActivityForResult(intent, REQUEST_CODE_TO_SIGN_IN);
     }
 
     /**
@@ -384,5 +391,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         if (mCourseArrangeRequest != null)
             mCourseArrangeRequest.cancelRequest();
         super.onDestroy();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE_TO_SIGN_IN==requestCode){
+                if (resultCode==RESULT_OK){
+                    requestData();
+                }
+        }
     }
 }

@@ -84,14 +84,6 @@ public class MainFragmentCheckInAdapter extends BaseRecyclerViewAdapter {
             holder2.checkin_item_line.setVisibility(View.GONE);
         }
 
-        holder2.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(holder2.itemView.getContext(), CheckInDetailActivity.class);
-                intent.putExtra("stepId", String.valueOf(data.getStepId()));
-                holder2.itemView.getContext().startActivity(intent);
-            }
-        });
     }
 
     @Override
