@@ -20,7 +20,7 @@ import com.yanxiu.gphone.faceshowadmin_android.interf.RecyclerViewItemClickWithI
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInNotesResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,7 +120,7 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
                 CheckInNotesActivity.this.finish();
                 break;
             case R.id.title_layout_right_img:
-                EventUpdata.onSendCheckKin(this);
+                EventUpdate.onSendCheckKin(this);
                 Intent intent = new Intent(CheckInNotesActivity.this, CreateNewCheckInActivity.class);
                 startActivityForResult(intent, 1);
                 break;

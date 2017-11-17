@@ -10,7 +10,7 @@ import com.tendcloud.tenddata.TCAgent;
  * <p>
  * Function :打点，点击事件记录
  */
-public class EventUpdata {
+public class EventUpdate {
 
     /**
      * 登录

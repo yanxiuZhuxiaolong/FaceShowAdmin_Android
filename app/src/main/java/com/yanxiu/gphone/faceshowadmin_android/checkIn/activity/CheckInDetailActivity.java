@@ -29,7 +29,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.DeleteCheckInRe
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetCheckInDetailResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
@@ -180,12 +180,12 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 onBackPressed();
                 break;
             case R.id.img_code:
-                EventUpdata.onSeeSignInQrCode(CheckInDetailActivity.this);
+                EventUpdate.onSeeSignInQrCode(CheckInDetailActivity.this);
                 toShowQRCode();
                 break;
             case R.id.title_layout_right_txt:
                 toDeleteThisSignIn();
-                EventUpdata.onDeleteSignIn(this);
+                EventUpdate.onDeleteSignIn(this);
                 break;
             default:
         }

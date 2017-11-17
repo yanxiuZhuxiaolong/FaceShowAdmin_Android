@@ -2,13 +2,7 @@ package com.yanxiu.gphone.faceshowadmin_android.resource;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,40 +10,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
-import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
-import com.yanxiu.gphone.faceshowadmin_android.net.base.UploadFileByHttp;
-import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.notice.GetResIdResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.notice.UploadResResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.CreateResourceRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.CreateResourceResponse;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourcePublishRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.resource.ResourcePublishResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.schedule.SchedulePublishResponse;
-import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
-import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
-import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.permission.OnPermissionCallback;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -150,7 +126,7 @@ public class PublishResourceActivity extends FaceShowBaseActivity {
                 finish();
                 break;
             case R.id.title_layout_right_txt:
-                EventUpdata.onSendRecourse(this);
+                EventUpdate.onSendRecourse(this);
                 GetResId();
                 break;
         }

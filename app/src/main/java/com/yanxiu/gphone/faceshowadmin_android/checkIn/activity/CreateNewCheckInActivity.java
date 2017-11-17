@@ -25,7 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.CreateNewCheckInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.CreateNewCheckInResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
@@ -131,10 +131,10 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
             case R.id.title_layout_right_txt:
                 if (canCommit()) {
                     if (switchBtnUseful.isChecked()){
-                        EventUpdata.onCreateNewSignIn1(CreateNewCheckInActivity.this);
+                        EventUpdate.onCreateNewSignIn1(CreateNewCheckInActivity.this);
                     }
                     if (switchBtnUseCode.isChecked()){
-                        EventUpdata.onCreateNewSignIn2(CreateNewCheckInActivity.this);
+                        EventUpdate.onCreateNewSignIn2(CreateNewCheckInActivity.this);
                     }
                     toCommit();
                 }

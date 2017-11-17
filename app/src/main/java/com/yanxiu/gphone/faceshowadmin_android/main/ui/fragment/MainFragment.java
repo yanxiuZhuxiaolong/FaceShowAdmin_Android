@@ -41,8 +41,7 @@ import com.yanxiu.gphone.faceshowadmin_android.resource.ResourceMangerActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.PublishScheduleActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.ScheduleManageActivity;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.bean.ScheduleBean;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
-import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.TextTypefaceUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
@@ -284,22 +283,22 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onTabItemClick(View v, int position) {
         switch (position) {
             case 0:
-                EventUpdata.onEnterAdressBook(getContext());
+                EventUpdate.onEnterAdressBook(getContext());
                 AdressBookActivity.LuanchActivity(getContext());
                 break;
             case 1:
-                EventUpdata.onEnterNotify(getContext());
+                EventUpdate.onEnterNotify(getContext());
                 NoticeManageActivity.invoke(getActivity());
                 break;
             case 2:
-                EventUpdata.onEnterCheckKinRecord(getContext());
+                EventUpdate.onEnterCheckKinRecord(getContext());
                 CheckInNotesActivity.toThisAct(getActivity());
                 break;
             case 3:
                 requestScheduleData();
                 break;
             case 4:
-                EventUpdata.onEnterResource(getContext());
+                EventUpdate.onEnterResource(getContext());
                 ResourceMangerActivity.invoke(getActivity());
                 break;
             default:
@@ -337,11 +336,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.project_layput:
-                EventUpdata.onSeeClassDetail(getContext());
+                EventUpdate.onSeeClassDetail(getContext());
                 MainDetailActivity.invoke(getActivity(), mData);
                 break;
             case R.id.title_layout_left_img:
-                EventUpdata.onShowDrawerLeft(getContext());
+                EventUpdate.onShowDrawerLeft(getContext());
                 ((MainActivity) getActivity()).openLeftDrawer();
                 break;
             case R.id.retry_button:
@@ -368,7 +367,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 mRootView.finish();
                 if (ret != null && ret.getCode() == 0 && ret.getSchedule() != null) {
                     ScheduleBean bean = ret.getSchedule();
-                    EventUpdata.onEnterSchedule(getContext());
+                    EventUpdate.onEnterSchedule(getContext());
                     ScheduleManageActivity.invoke(getActivity(), bean);
                 } else {
                     PublishScheduleActivity.invoke(getActivity());

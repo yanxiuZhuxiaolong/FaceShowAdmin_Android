@@ -21,7 +21,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.AdressBoo
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.AdressBookPeople;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.AdressBookResponse;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -197,7 +197,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         switch (view.getId()){
             case R.id.title_layout_right_img:
             case R.id.title_layout_signIn:
-                EventUpdata.onAddStudent(mContext);
+                EventUpdate.onAddStudent(mContext);
                 AddStudentActivity.LuanchActivity(mContext);
                 break;
             case R.id.title_layout_left_img:

@@ -25,7 +25,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleDeleteRespon
 import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.schedule.ScheduleResponse;
 import com.yanxiu.gphone.faceshowadmin_android.schedule.bean.ScheduleBean;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.YXPictureManager;
 
@@ -180,7 +180,7 @@ public class ScheduleManageActivity extends FaceShowBaseActivity {
                     dismissPopupWindow();
                     break;
                 case R.id.notice_delete:
-                    EventUpdata.onDeleteCalendar(ScheduleManageActivity.this);
+                    EventUpdate.onDeleteCalendar(ScheduleManageActivity.this);
                     requestDeleteSchedule();
                     dismissPopupWindow();
                     break;

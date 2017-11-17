@@ -26,7 +26,7 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserRes
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.GetClassUserSignInsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
@@ -82,7 +82,7 @@ public class NoSignInFragment extends FaceShowBaseFragment {
     private RecyclerViewItemClickListener mRecyclerViewItemClickListener = new RecyclerViewItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
-            EventUpdata.onSignInDetailRetroactive(getContext());
+            EventUpdate.onSignInDetailRetroactive(getContext());
             toShowTimePickerView(data.get(position).getUserName(), position);
         }
     };

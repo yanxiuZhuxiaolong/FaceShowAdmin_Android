@@ -22,7 +22,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.SignReco
 import com.yanxiu.gphone.faceshowadmin_android.net.base.ResponseConfig;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSignInResponse;
-import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdata;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
@@ -218,7 +218,7 @@ public class SignRecordActivity extends FaceShowBaseActivity implements View.OnC
                         v.findViewById(R.id.submit_a_supplement).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                EventUpdata.onStudentRetroactive(mContext);
+                                EventUpdate.onStudentRetroactive(mContext);
                                 mTimePickerView.returnData();
                                 supplementalSignIn(position, stepId);
                             }
