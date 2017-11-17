@@ -59,6 +59,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     private ResourceDataBean mData;
 
+    private int offset=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +138,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         if (!isRefreshIng) {
             mRootView.showLoadingView();
         }
+        offset=0;
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
@@ -178,7 +180,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         mRootView.showLoadingView();
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        resourceRequest.id = mData.getResources().getCallbackValue();
+        resourceRequest.id = String.valueOf(offset*10);
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
             @Override
             public void onSuccess(RequestBase request, ResourceResponse ret) {
