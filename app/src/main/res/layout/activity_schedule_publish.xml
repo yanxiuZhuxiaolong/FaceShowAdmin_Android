@@ -24,7 +24,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="start"
-        android:hint="@string/notice_edit_title_hint"
+        android:hint="@string/schedule_edit_title_hint"
         android:maxLength="20"
         android:textColorHint="@color/color_cccccc"
         android:textSize="@dimen/text_size_16"
