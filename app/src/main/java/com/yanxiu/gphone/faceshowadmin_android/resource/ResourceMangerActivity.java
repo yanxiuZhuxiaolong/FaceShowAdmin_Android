@@ -139,6 +139,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
             mRootView.showLoadingView();
         }
         offset=0;
+
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         resourceRequest.startRequest(ResourceResponse.class, new HttpCallback<ResourceResponse>() {
