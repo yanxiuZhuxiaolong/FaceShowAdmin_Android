@@ -82,7 +82,7 @@ public class CourseFragment extends FaceShowBaseFragment {
         mUUID = getClassCoursesRequest.startRequest(GetClassCoursesResponse.class, new HttpCallback<GetClassCoursesResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetClassCoursesResponse ret) {
-                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.finish();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData().getCourses() != null && ret.getData().getCourses().size() > 0) {
                         if (mCoursesAdapter == null) {
@@ -107,7 +107,7 @@ public class CourseFragment extends FaceShowBaseFragment {
 
             @Override
             public void onFail(RequestBase request, Error error) {
-                mPublicLoadLayout.hiddenOtherErrorView();
+                mPublicLoadLayout.finish();
                 mPublicLoadLayout.showNetErrorView();
             }
         });

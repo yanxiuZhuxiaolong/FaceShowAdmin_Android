@@ -124,14 +124,14 @@ public class VotedFragment extends FaceShowBaseFragment {
                         if (data.size() == 0) {
                             mPublicLoadLayout.showOtherErrorView(getString(R.string.no_voted_data));
                         } else {
-                            ToastUtil.showToast(getActivity(), ret.getMessage());
+                            ToastUtil.showToast(getActivity(), ret.getError().getMessage());
                         }
                     }
                 } else {
                     if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                     } else {
-                        ToastUtil.showToast(getActivity(), ret.getMessage());
+                        ToastUtil.showToast(getActivity(), ret.getError().getMessage());
                     }
 
 

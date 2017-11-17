@@ -5,10 +5,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,14 +48,17 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
     @BindView(R.id.edt_verification_code)
     ClearEditText edtVerificationCode;
     @BindView(R.id.edt_input_new_password)
-    ClearEditText edtInputNewPassword;
+    EditText edtInputNewPassword;
     @BindView(R.id.forget_password_sure)
     TextView forgetPasswordSure;
     PublicLoadLayout publicLoadLayout;
+    @BindView(R.id.img_show_password)
+    ImageView mImgShowPassword;
 
     private boolean isPhoneNumber = false;
     private boolean isVerificationCodeNull = true;
     private boolean isNewPasswordNull = true;
+    private boolean isPasswordShow = false;
 
     private int time = 60;
     private MyHandler handler;
@@ -75,8 +82,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             handler.sendEmptyMessageDelayed(1, 1000);
         }
     }
-
-
     static class MyHandler extends Handler {
         WeakReference<ForgetPasswordActivity> mActivityWeakReference;
 
@@ -90,8 +95,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             mActivityWeakReference.get().dealMessage();
         }
     }
-
-
     private TextWatcher mPhoneNumberTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -143,7 +146,6 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
             isNewPasswordNull = s.length() > 20 || s.length() < 6;
             changSureBtnColor();
         }
-
         @Override
         public void afterTextChanged(Editable s) {
 
@@ -184,7 +186,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
     }
 
 
-    @OnClick({R.id.title_layout_left_img, R.id.tv_get_verification_code, R.id.forget_password_sure})
+    @OnClick({R.id.title_layout_left_img, R.id.tv_get_verification_code, R.id.forget_password_sure, R.id.img_show_password})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
@@ -210,6 +212,18 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     }
                 }
                 break;
+            case R.id.img_show_password:
+
+                if (isPasswordShow) {
+                    edtInputNewPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_show_password_two));
+                    isPasswordShow = false;
+                } else {
+                    edtInputNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mImgShowPassword.setImageDrawable(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.selector_hide_password_two));
+                    isPasswordShow = true;
+                }
+                break;
             default:
         }
     }
@@ -232,7 +246,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     ForgetPasswordActivity.this.setResult(RESULT_OK, intent);
                     ForgetPasswordActivity.this.finish();
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), response.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), response.getError().getMessage());
                 }
 
             }
@@ -261,7 +275,7 @@ public class ForgetPasswordActivity extends FaceShowBaseActivity {
                     tvGetVerificationCode.setBackground(null);
                     ToastUtil.showToast(getApplicationContext(), response.getMessage());
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), response.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), response.getError().getMessage());
                 }
 
             }

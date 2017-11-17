@@ -19,6 +19,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adapter.MainDetailPagerAdapt
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.ClassDetailFragment;
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.ProjectDetailFragment;
+import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ScreenUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.TabLayoutUtil;
 
@@ -89,8 +90,8 @@ public class MainDetailActivity extends FaceShowBaseActivity {
         mClassDetailFragment = new ClassDetailFragment();
         bundle = new Bundle();
         bundle.putString("className", courseArrangeBean.getClazsInfo().getClazsName());
-        bundle.putString("startTime", courseArrangeBean.getClazsInfo().getStartTime().split(" ")[0]);
-        bundle.putString("endTime", courseArrangeBean.getClazsInfo().getEndTime().split(" ")[0]);
+        bundle.putString("startTime", DateFormatUtil.translationDateFormat(courseArrangeBean.getClazsInfo().getStartTime()).split(" ")[0]);
+        bundle.putString("endTime", DateFormatUtil.translationDateFormat(courseArrangeBean.getClazsInfo().getEndTime()).split(" ")[0]);
         bundle.putString("description", courseArrangeBean.getClazsInfo().getDescription());
         bundle.putString("studensNum", courseArrangeBean.getClazsStatisticView().getStudensNum());
         bundle.putString("masterNum", courseArrangeBean.getClazsStatisticView().getMasterNum());

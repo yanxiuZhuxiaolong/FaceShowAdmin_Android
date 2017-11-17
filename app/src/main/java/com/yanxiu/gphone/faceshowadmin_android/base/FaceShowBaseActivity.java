@@ -41,6 +41,7 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
         super.onCreate(savedInstanceState);
         mFaceShowLocalName=ActivityNameUtils.getActivityName(this.getLocalClassName());
         ActivityManger.addActicity(this);
+
     }
 
     @Override

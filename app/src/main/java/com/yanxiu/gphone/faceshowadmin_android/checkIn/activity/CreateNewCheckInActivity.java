@@ -150,11 +150,16 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
 
     }
 
+    private String mPostDay;
+    private String mPostStartTime;
+    private String mPostEndTime;
+
     private void toSelectedData() {
         TimePickerView timePickerView = new TimePickerView.Builder(CreateNewCheckInActivity.this, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 tvCheckInTime.setText(getDay(date));
+                mPostDay = getDay1(date);
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false})
@@ -168,6 +173,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
             @Override
             public void onTimeSelect(Date date, View v) {
                 startTime = date;
+                mPostStartTime = getTime1(date);
                 tvCheckInStartTime.setText(getTime(date));
             }
         })
@@ -183,6 +189,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
             public void onTimeSelect(Date date, View v) {
                 if (date.compareTo(startTime) > 0) {
                     tvCheckInEndTime.setText(getTime(date));
+                    mPostEndTime = getTime1(date);
                 } else {
                     ToastUtil.showToast(getApplicationContext(), getString(R.string.end_time_must_be_greater_than_start_time));
                 }
@@ -199,8 +206,18 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         return format.format(date);
     }
 
+    private String getDay1(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault());
+        return format.format(date);
+    }
+
     private String getTime(Date date) {//可根据需要自行截取数据显示
         SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return format.format(date);
+    }
+
+    private String getTime1(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         return format.format(date);
     }
 
@@ -208,8 +225,8 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
         publicLoadLayout.showLoadingView();
         CreateNewCheckInRequest createNewCheckInRequest = new CreateNewCheckInRequest();
         createNewCheckInRequest.title = checkInName.getText().toString();
-        createNewCheckInRequest.startTime = tvCheckInTime.getText().toString() + " " + tvCheckInStartTime.getText().toString();
-        createNewCheckInRequest.endTime = tvCheckInTime.getText().toString() + " " + tvCheckInEndTime.getText().toString();
+        createNewCheckInRequest.startTime = mPostDay + " " + mPostStartTime;
+        createNewCheckInRequest.endTime = mPostDay + " " + mPostEndTime;
         createNewCheckInRequest.successPrompt = checkInSuccessToast.getText().toString();
         createNewCheckInRequest.antiCheat = switchBtnUseful.isChecked() ? "1" : "0";
         createNewCheckInRequest.qrcodeRefreshRate = switchBtnUseCode.isChecked() ? "1" : "0";
@@ -223,7 +240,7 @@ public class CreateNewCheckInActivity extends FaceShowBaseActivity {
                     CreateNewCheckInActivity.this.finish();
                     ToastUtil.showToast(getApplicationContext(), ret.getMessage());
                 } else {
-                    ToastUtil.showToast(getApplicationContext(), ret.getMessage());
+                    ToastUtil.showToast(getApplicationContext(), ret.getError().getMessage());
                 }
 
             }

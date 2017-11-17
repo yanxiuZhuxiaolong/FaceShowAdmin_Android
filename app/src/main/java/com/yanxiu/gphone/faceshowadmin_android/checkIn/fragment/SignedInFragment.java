@@ -75,6 +75,13 @@ public class SignedInFragment extends FaceShowBaseFragment {
         return mPublicLoadLayout;
     }
 
+    public void toRefresh() {
+        id = "";
+        mSignInTime = "";
+        data.clear();
+        mPublicLoadLayout.showLoadingView();
+        initData();
+    }
 
     @Override
     public void onResume() {

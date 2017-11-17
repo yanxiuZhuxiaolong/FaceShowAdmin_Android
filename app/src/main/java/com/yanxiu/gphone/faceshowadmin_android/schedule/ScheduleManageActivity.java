@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,7 @@ public class ScheduleManageActivity extends FaceShowBaseActivity {
         titleLayoutTitle.setText(R.string.manager_schedule);
         title_layout_left_img.setVisibility(View.VISIBLE);
         title_layout_right_img.setVisibility(View.VISIBLE);
+        title_layout_right_img.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_notice_detil_more));
     }
 
     private void setData() {

@@ -129,9 +129,9 @@ public class NoSubmitFragment extends FaceShowBaseFragment {
                 }
                     } else {
                         if (data.size() == 0) {
-                        mPublicLoadLayout.showOtherErrorView(ret.getMessage());
+                        mPublicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                     } else {
-                        ToastUtil.showToast(getActivity(), ret.getMessage());
+                        ToastUtil.showToast(getActivity(), ret.getError().getMessage());
                         }
 
 

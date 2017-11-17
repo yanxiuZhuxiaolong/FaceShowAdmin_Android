@@ -80,8 +80,7 @@ public class TaskAdapter extends BaseRecyclerViewAdapter {
                     mImgTaskIcon.setImageResource(R.drawable.icon_vote);
                     break;
                 case typeSignIn:
-                    mImgTaskIcon.setImageResource(R.drawable.ic_show_password_pressed);
-                    // TODO: 17-11-14
+                    mImgTaskIcon.setImageResource(R.drawable.ic_sign_in);
                     break;
                 case typeQuestionnaire:
                     mImgTaskIcon.setImageResource(R.drawable.icon_questionnaire);

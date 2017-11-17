@@ -71,7 +71,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    android:background="@android:color/holo_red_dark"
+                    android:src="@drawable/selector_enter_bg"
                     android:contentDescription="@null" />
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    android:background="@android:color/holo_red_dark"
+                    android:src="@drawable/selector_enter_bg"
                     android:contentDescription="@null" />
 
                 <TextView
@@ -167,7 +167,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="15dp"
-                    android:background="@android:color/holo_red_dark"
+                    android:src="@drawable/selector_enter_bg"
                     android:contentDescription="@null" />
 
                 <TextView

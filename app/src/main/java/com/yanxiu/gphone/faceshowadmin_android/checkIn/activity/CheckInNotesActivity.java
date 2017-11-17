@@ -91,7 +91,7 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
                         publicLoadLayout.showOtherErrorView(getString(R.string.no_check_in));
                     }
                 } else {
-                    publicLoadLayout.showOtherErrorView(getString(R.string.data_error));
+                    publicLoadLayout.showOtherErrorView(ret.getError().getMessage());
                 }
             }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FaceShowAdmin_Android</string>
+    <string name="app_name">研修宝(管理端)</string>
     <string name="app_exit_tip">再按一次退出客户端</string>
     <!--permissions toast-->
     <string name="rationale_camera">此应用程序需要访问您的相机，以便您可以拍照.</string>
@@ -209,5 +209,6 @@
     <string name="no_task">尚未发布任务</string>
     <string name="no_course">尚未发布课程</string>
     <string name="no_check_in">尚未设置签到</string>
+    <string name="comment">评论(暂不支持表情)</string>
 
 </resources>
