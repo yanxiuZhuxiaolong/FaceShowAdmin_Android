@@ -179,6 +179,7 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     private void requestLoarMore() {
         mRootView.showLoadingView();
+        offset++;
         ResourceRequest resourceRequest = new ResourceRequest();
         resourceRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         resourceRequest.id = String.valueOf(offset*10);
