@@ -46,6 +46,18 @@
         android:id="@+id/il_title"
         layout="@layout/common_title_layout" />
 
+    <!-- 修改layout_marginTop数值时需要注意用户头像背景（PS SBPM） -->
+    <TextView
+        android:id="@+id/tv_data_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/il_title"
+        android:layout_marginTop="156dp"
+        android:text="暂无内容"
+        android:gravity="center"
+        android:textColor="@color/color_999999"
+        android:textSize="13dp"/>
+
     <com.yanxiu.gphone.faceshowadmin_android.customView.SizeChangeCallbackView
         android:id="@+id/sc_adjustpan"
         android:layout_width="match_parent"

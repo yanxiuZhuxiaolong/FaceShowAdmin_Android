@@ -10,7 +10,7 @@ public class ResourceRequest extends FaceShowBaseRequest {
     //    http://orz.yanxiu.com/pxt/platform/data.api?method=app.manage.resource.clazsResources&clazzId=1&offset&pageSize=10&keyword=
     public String method="app.manage.resource.clazsResources";
     public String clazsId;
-    public String id = "0";
+    public String id;
     public String pageSize = "30";
     public String keyword;
 

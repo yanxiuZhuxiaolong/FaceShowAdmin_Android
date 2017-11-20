@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,7 +47,7 @@ public class AddStudentActivity extends FaceShowBaseActivity implements View.OnC
     private boolean isNameReady=false;
     private boolean isSexReady=false;
     private boolean isMobileReady=false;
-    private boolean isSchoolReady=false;
+    private boolean isSchoolReady=true;
 
     private UUID mAddStudentRequest;
 
@@ -223,11 +222,11 @@ public class AddStudentActivity extends FaceShowBaseActivity implements View.OnC
             isMobileReady=false;
         }
 
-        if (school.length()>0){
-            isSchoolReady=true;
-        }else {
-            isSchoolReady=false;
-        }
+//        if (school.length()>0){
+//            isSchoolReady=true;
+//        }else {
+//            isSchoolReady=false;
+//        }
         setButtonCanClick();
     }
 }

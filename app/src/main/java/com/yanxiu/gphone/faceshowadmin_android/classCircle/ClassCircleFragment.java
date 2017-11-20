@@ -83,6 +83,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
     private TextView mTitleView;
     private ImageView mBackView;
     private View mTopView;
+    private View mDataEmptyView;
     private int mMomentPosition = -1;
     private int mCommentPosition = -1;
     private int mVisibility = View.INVISIBLE;
@@ -159,6 +160,7 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
         mClassCircleRecycleView.setAdapter(mClassCircleAdapter);
 
         mRefreshView = (SwipeRefreshLayout) rootView.findViewById(R.id.srl_refresh);
+        mDataEmptyView=rootView.findViewById(R.id.tv_data_empty);
     }
 
     private void listener() {
@@ -215,6 +217,11 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
                         mClassCircleAdapter.setData(ret.data.moments);
                     } else {
                         mClassCircleAdapter.addData(ret.data.moments);
+                    }
+                    if (ret.data.moments==null||ret.data.moments.size()==0){
+                        mDataEmptyView.setVisibility(View.VISIBLE);
+                    }else {
+                        mDataEmptyView.setVisibility(View.GONE);
                     }
                     mClassCircleRecycleView.setLoadMoreEnable(ret.data.hasNextPage);
                 } else {

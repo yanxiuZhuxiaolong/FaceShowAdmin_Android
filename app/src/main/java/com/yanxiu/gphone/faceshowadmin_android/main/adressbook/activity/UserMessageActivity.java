@@ -360,19 +360,13 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
             switch (requestCode){
                 case REQUEST_NAME:
                     if (data!=null) {
-                        String name = data.getStringExtra(RESULT_NAME);
-                        mDetailsData.realName = name;
-                        UserInfo.getInstance().getInfo().setRealName(name);
-                        SpManager.saveUserInfo(UserInfo.getInstance().getInfo());
+                        mDetailsData.realName = data.getStringExtra(RESULT_NAME);
                         setUserMessage(mDetailsData);
                     }
                     break;
                 case REQUEST_SCHOOL:
                     if (data!=null) {
-                        String school = data.getStringExtra(RESULT_SCHOOL);
-                        mDetailsData.school = school;
-                        UserInfo.getInstance().getInfo().setSchool(school);
-                        SpManager.saveUserInfo(UserInfo.getInstance().getInfo());
+                        mDetailsData.school = data.getStringExtra(RESULT_SCHOOL);
                         setUserMessage(mDetailsData);
                     }
                     break;

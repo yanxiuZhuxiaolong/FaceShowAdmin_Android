@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
+import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.util.UserMessageUpdateManager;
+import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
@@ -127,6 +129,8 @@ public class EditSchoolActivity extends FaceShowBaseActivity implements View.OnC
         if (response!=null) {
             if (response.getCode() == 0) {
                 ToastUtil.showToast(mContext,"保存成功");
+                UserInfo.getInstance().getInfo().setSchool(mSchool);
+                SpManager.saveUserInfo(UserInfo.getInstance().getInfo());
                 Intent intent=new Intent();
                 intent.putExtra(RESULT_SCHOOL,mSchool);
                 setResult(RESULT_OK,intent);

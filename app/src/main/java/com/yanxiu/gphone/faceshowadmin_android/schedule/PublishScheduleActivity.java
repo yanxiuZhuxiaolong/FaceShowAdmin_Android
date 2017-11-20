@@ -144,7 +144,7 @@ public class PublishScheduleActivity extends FaceShowBaseActivity {
             case R.id.schedule_pic_del:
 //                mResourceIds = null;
                 mImagePaths = null;
-                schedulePic.setVisibility(View.GONE);
+                schedulePic.setVisibility(View.INVISIBLE);
                 schedulePicDel.setVisibility(View.GONE);
                 schedulePicAdd.setVisibility(View.VISIBLE);
                 canPublish();
