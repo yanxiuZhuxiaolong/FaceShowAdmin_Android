@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.net.course.GetCourseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.CornersImageTarget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,7 @@ public class LectureInfoAdapter extends BaseRecyclerViewAdapter {
         void setData(GetCourseResponse.CourseBean.LecturerInfosBean lecturerInfosBean) {
             mTvName.setText(lecturerInfosBean.getLecturerName());
             mRvLectureBrief.setText(Html.fromHtml(lecturerInfosBean.getLecturerBriefing()));
-            Glide.with(itemView.getContext()).load(lecturerInfosBean.getLecturerAvatar()).into(mImgHead);
+            Glide.with(itemView.getContext()).load(lecturerInfosBean.getLecturerAvatar()).asBitmap().placeholder(R.drawable.classcircle_headimg).centerCrop().into(new CornersImageTarget(itemView.getContext(), mImgHead, 10));
         }
     }
 }

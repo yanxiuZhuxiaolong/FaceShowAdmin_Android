@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseDetailActivity;
+import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
 import com.yanxiu.gphone.faceshowadmin_android.utils.DateFormatUtil;
-import com.yanxiu.gphone.faceshowadmin_android.utils.StringUtils;
-import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.BaseRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -70,7 +69,7 @@ public class MainFragmentCourseAdapter extends BaseRecyclerViewAdapter {
 
         }
         holder2.course_teacher.setText(teacher);
-        holder2.course_time.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(data.getStartTime()), DateFormatUtil.translationDateFormat(data.getEndTime())));
+        holder2.course_time.setText(DateFormatUtil.getCourseTime(data.getStartTime(), data.getEndTime()));
         holder2.course_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
