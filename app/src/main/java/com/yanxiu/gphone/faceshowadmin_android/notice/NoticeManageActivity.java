@@ -175,12 +175,13 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         mNoticeManagerListAdapter.addItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                mCurrentNoticePosition = position;
-                Intent intent = new Intent(NoticeManageActivity.this, NoticeDetailActivity.class);
-                intent.putExtra("NOTICE_DETAIL", mNoticeList.get(position));
-                intent.putExtra("NOTICE_TOTAL_READ_NUM", mData.getStudentNum());
-                startActivityForResult(intent, NOTICE_DETAIL);
-//                NoticeDetailActivity.invoke(NoticeManageActivity.this, mData.getNoticeInfos().getElements().get(position),mData.getStudentNum());
+                if (!swipeRefreshLayout.isRefreshing()) {
+                    mCurrentNoticePosition = position;
+                    Intent intent = new Intent(NoticeManageActivity.this, NoticeDetailActivity.class);
+                    intent.putExtra("NOTICE_DETAIL", mNoticeList.get(position));
+                    intent.putExtra("NOTICE_TOTAL_READ_NUM", mData.getStudentNum());
+                    startActivityForResult(intent, NOTICE_DETAIL);
+                }
             }
         });
     }
