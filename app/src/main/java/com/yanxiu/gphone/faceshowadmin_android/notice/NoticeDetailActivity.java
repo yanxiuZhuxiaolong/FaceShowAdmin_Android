@@ -76,16 +76,16 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         titleLayoutTitle.setText(R.string.notice_detail_title);
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
-       titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_notice_detil_more));
+        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.selector_notice_detil_more));
         NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean noticeBean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) getIntent().getSerializableExtra("NOTICE_DETAIL");
         int mNoticeNum = getIntent().getIntExtra("NOTICE_TOTAL_READ_NUM", 0);
         mNoticeId = noticeBean.getId();
         detailTitle.setText(noticeBean.getTitle());
-        noticeCreateTime.setText(DateFormatUtil.translationBetweenTwoFormat(noticeBean.getCreateTime(),DateFormatUtil.FORMAT_ONE,DateFormatUtil.FORMAT_TWO));
-        readPercent.setText(noticeBean.getNoticeReadNumSum() + "/" + mNoticeNum);
+        noticeCreateTime.setText(DateFormatUtil.translationBetweenTwoFormat(noticeBean.getCreateTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO));
+        readPercent.setText(noticeBean.getNoticeReadUserNum() + "/" + mNoticeNum);
         noticeDescr.setText(noticeBean.getContent());
         String attachUrl = noticeBean.getAttachUrl();
-        if(attachUrl != null) {
+        if (attachUrl != null) {
             Glide.with(this).load(attachUrl).fitCenter().into(noticeAttachpic);
             noticeAttachpic.setVisibility(View.VISIBLE);
         }
@@ -126,7 +126,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
     View.OnClickListener popupWindowClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            TextView view = (TextView)v;
+            TextView view = (TextView) v;
 //            view.setTextColor(getResources().getColor(R.color.color_white));
 //            view.setBackgroundColor(getResources().getColor(R.color.color_0068bd));
             switch (v.getId()) {

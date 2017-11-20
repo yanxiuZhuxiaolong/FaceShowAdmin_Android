@@ -200,14 +200,15 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             }
         } else if (requestCode == NOTICE_POST) {
             if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
-                    NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) data.getSerializableExtra("noticeBean");
-                    if (isPostSuccess) {
-                        mNoticeList.add(0, bean);
-                        setData();
-                    }
-                }
+                requestData(false);
+//                if (data != null) {
+//                    Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
+//                    NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) data.getSerializableExtra("noticeBean");
+//                    if (isPostSuccess) {
+//                        mNoticeList.add(0, bean);
+//                        setData();
+//                    }
+//                }
             }
         }
     }
