@@ -1,9 +1,15 @@
 package com.yanxiu.gphone.faceshowadmin_android.net.base;
 
+import android.util.Log;
+
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
+import java.util.Map;
+
+import okhttp3.HttpUrl;
 
 
 /**
@@ -67,5 +73,44 @@ public abstract class FaceShowBaseRequest extends RequestBase {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    @Override
+    protected String fullUrl() throws NullPointerException, IllegalAccessException, IllegalArgumentException {
+            String server = urlServer();
+            String path = urlPath();
+
+            if (server == null) {
+                throw new NullPointerException();
+            }
+
+            server = omitSlash(server);
+            path = omitSlash(path);
+
+            if (!urlServer().substring(0, 4).equals("http")) {
+                server = "http://" + urlServer();
+            }
+
+            String fullUrl = server;
+            if (path != null) {
+                fullUrl = fullUrl + "/" + path;
+            }
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(fullUrl).newBuilder();
+
+            Map<String, Object> params = urlParams();
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                try {
+                    Object value = entry.getValue();
+                    if (!(value instanceof String)) {
+                        value = gson.toJson(entry.getValue());
+                    }
+                    urlBuilder.addQueryParameter(entry.getKey(), (String) value);
+                } catch (Exception e) {
+                }
+
+            }
+            fullUrl = urlBuilder.build().toString();
+            return fullUrl;
     }
 }

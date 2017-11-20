@@ -439,7 +439,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         NoticeSaveRequest noticeSaveRequest = new NoticeSaveRequest();
         noticeSaveRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         noticeSaveRequest.title = mNoticeTitle;
-        noticeSaveRequest.content = mNoticeContent;
+        noticeSaveRequest.content = mNoticeContent.replace("/n", "//n");
         if (mType.equals(TYPE_IMAGE)) {
             noticeSaveRequest.url = mAttachUrl;
         }

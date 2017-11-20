@@ -70,6 +70,15 @@ public class GetClazzListResponse extends FaceShowBaseResponse {
             private Object manager;
             private Object master;
             private String clazsStatusName;
+            private String projectName;
+
+            public String getProjectName() {
+                return projectName;
+            }
+
+            public void setProjectName(String projectName) {
+                this.projectName = projectName;
+            }
 
             public int getId() {
                 return id;

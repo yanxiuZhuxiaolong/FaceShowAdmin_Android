@@ -36,18 +36,18 @@ public class ClassManagerListAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.classmanger_item_title.setText(data.get(position).getClazsName());
-        String start=data.get(position).getStartTime().split(" ")[0];
-        String end=data.get(position).getEndTime().split(" ")[0];
+        String start = data.get(position).getStartTime().split(" ")[0];
+        String end = data.get(position).getEndTime().split(" ")[0];
         viewHolder.classmanger_item_time.setText(start + " 至 " + end);
-        viewHolder.classmanger_item_content.setText(data.get(position).getDescription());
-        if(!views.contains(holder.itemView)){
+        viewHolder.classmanger_item_content.setText(data.get(position).getProjectName());
+        if (!views.contains(holder.itemView)) {
             views.add(holder.itemView);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < views.size(); i++) {
-                    if(views.get(i) == view){
+                    if (views.get(i) == view) {
                         views.get(i).setSelected(true);
                     } else {
                         views.get(i).setSelected(false);
