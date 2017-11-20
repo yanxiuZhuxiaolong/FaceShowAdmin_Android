@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
-
+        flavorDimensions "1.0"
     }
     buildTypes {
         release {

@@ -92,7 +92,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
         if (data.getCourses().get(i).isIsToday()) {
             groupViewHolder.mCourseData.setText(R.string.today_course);
         } else {
-            groupViewHolder.mCourseData.setText(DateFormatUtil.translationBetweenTwoFormat(data.getCourses().get(i).getDate(),DateFormatUtil.FORMAT_FOUR,DateFormatUtil.FORMAT_FIVE));
+            groupViewHolder.mCourseData.setText(DateFormatUtil.translationBetweenTwoFormat(data.getCourses().get(i).getDate(), DateFormatUtil.FORMAT_FOUR, DateFormatUtil.FORMAT_FIVE));
         }
         return convertView;
     }
@@ -115,7 +115,7 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
             childViewHolder.mCourseTeacher.setText("暂无");
         }
         childViewHolder.mCourseLocation.setText(TextUtils.isEmpty(coursesListBean.getSite()) ? convertView.getContext().getString(R.string.wait_for) : coursesListBean.getSite());
-        childViewHolder.mCourseTime.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(coursesListBean.getStartTime()), DateFormatUtil.translationDateFormat(coursesListBean.getEndTime())));
+        childViewHolder.mCourseTime.setText(DateFormatUtil.getCourseTime(coursesListBean.getStartTime(),coursesListBean.getEndTime()));
         List<GetClassCoursesResponse.StepsBean> steps = new ArrayList<>();
         for (int i = 0; i < coursesListBean.getSteps().size(); i++) {
             int signInType = 6;
@@ -148,6 +148,11 @@ public class CoursesAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+    public void update(GetClassCoursesResponse.DataBean data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     static class ChildViewHolder {

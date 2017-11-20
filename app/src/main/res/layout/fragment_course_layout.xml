@@ -8,12 +8,17 @@
     <include layout="@layout/common_title_layout" />
 
 
-
-    <ExpandableListView
-        android:id="@+id/expandableListView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="@dimen/dimen_0dp" />
+        android:layout_height="wrap_content">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="@dimen/dimen_0dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

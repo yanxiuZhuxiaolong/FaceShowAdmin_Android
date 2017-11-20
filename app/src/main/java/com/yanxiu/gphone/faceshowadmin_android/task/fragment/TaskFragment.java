@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * task tab
  * Created by frc on 17-10-26.
@@ -49,6 +52,8 @@ public class TaskFragment extends FaceShowBaseFragment {
     Unbinder unbinder;
     @BindView(R.id.title_layout_left_img)
     ImageView mTitleLayoutLeftImg;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     private PublicLoadLayout mPublicLoadLayout;
     private TaskAdapter mTaskAdapter;
     private UUID mUUID;
@@ -56,7 +61,7 @@ public class TaskFragment extends FaceShowBaseFragment {
     public static final int typeVote = 3;
     public static final int typeSignIn = 6;
     public static final int typeQuestionnaire = 5;
-
+    private static final int REQUEST_CODE_TO_SIGN_IN = 0x200;
     private RecyclerViewItemClickListener mRecyclerViewItemClickListener = new RecyclerViewItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
@@ -71,7 +76,7 @@ public class TaskFragment extends FaceShowBaseFragment {
                 case typeSignIn:
                     intent = new Intent(getContext(), CheckInDetailActivity.class);
                     intent.putExtra("stepId", String.valueOf(task.getStepId()));
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE_TO_SIGN_IN);
                     break;
                 case typeQuestionnaire:
                     intent = new Intent(getContext(), QuestionnaireActivity.class);
@@ -97,7 +102,14 @@ public class TaskFragment extends FaceShowBaseFragment {
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
         initTitle();
         initRecyclerView();
+        mPublicLoadLayout.showLoadingView();
         getTasks();
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getTasks();
+            }
+        });
         return mPublicLoadLayout;
     }
 
@@ -119,13 +131,16 @@ public class TaskFragment extends FaceShowBaseFragment {
 
 
     private void getTasks() {
-        mPublicLoadLayout.showLoadingView();
+
         GetTasksRequest getTasksRequest = new GetTasksRequest();
         getTasksRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
         mUUID = getTasksRequest.startRequest(GetTasksResponse.class, new HttpCallback<GetTasksResponse>() {
             @Override
             public void onSuccess(RequestBase request, GetTasksResponse ret) {
                 mPublicLoadLayout.finish();
+                if (mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     if (ret.getData() != null && ret.getData().getTasks() != null && ret.getData().getTasks().size() > 0) {
                         mTasks = ret.getData().getTasks();
@@ -142,6 +157,9 @@ public class TaskFragment extends FaceShowBaseFragment {
             @Override
             public void onFail(RequestBase request, Error error) {
                 mPublicLoadLayout.finish();
+                if (mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 mPublicLoadLayout.showNetErrorView();
             }
         });
@@ -161,5 +179,16 @@ public class TaskFragment extends FaceShowBaseFragment {
     @OnClick(R.id.title_layout_left_img)
     public void onViewClicked() {
         ((MainActivity) getActivity()).openLeftDrawer();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE_TO_SIGN_IN == requestCode) {
+            if (RESULT_OK == resultCode) {
+                mPublicLoadLayout.showLoadingView();
+                getTasks();
+            }
+        }
     }
 }

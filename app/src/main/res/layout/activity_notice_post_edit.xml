@@ -58,6 +58,7 @@
                     android:background="@color/color_white"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
+                    android:inputType="textMultiLine"
                     android:gravity="start"
                     android:hint="@string/notice_edit_content_hint"
                     android:paddingBottom="15dp"

@@ -59,10 +59,14 @@ public class WelcomeActivity extends FaceShowBaseActivity {
         public void onAnimationEnd(Animator animator) {
             isAnimationEnd = true;
             if (isGetUserInfoEnd) {
-                if (SpManager.getCurrentClassInfo() == null) {
-                    ClassManageActivity.toThisAct(WelcomeActivity.this, SpManager.getClassListInfo());
+                if (SpManager.getClassListInfo().getClazsInfos().size() == 0) {
+                    MainActivity.invoke(WelcomeActivity.this, null);
                 } else {
-                    MainActivity.invoke(WelcomeActivity.this, SpManager.getCurrentClassInfo());
+                    if (SpManager.getCurrentClassInfo() == null) {
+                        ClassManageActivity.toThisAct(WelcomeActivity.this, SpManager.getClassListInfo());
+                    } else {
+                        MainActivity.invoke(WelcomeActivity.this, SpManager.getCurrentClassInfo());
+                    }
                 }
                 WelcomeActivity.this.finish();
             }
@@ -148,7 +152,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     break;
                 case GO_MAIN:
                     //获取用户基本信息
-                    if (SpManager.getClassListInfo() == null || SpManager.getClassListInfo().getClazsInfos().size() ==0) {
+                    if (SpManager.getClassListInfo() == null || SpManager.getClassListInfo().getClazsInfos().size() == 0) {
                         requestClassList(activity);
                     } else {
                         getUserInfo(activity);
@@ -172,7 +176,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     getUserInfo(activity, ret.getData());
                 } else {
                     if (ret != null && ret.getError() != null) {
-                        MainActivity.invoke(activity,null);
+                        MainActivity.invoke(activity, null);
                     }
                 }
             }
@@ -180,7 +184,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
             @Override
             public void onFail(RequestBase request, Error error) {
                 if (error != null) {
-                    MainActivity.invoke(activity,null);
+                    MainActivity.invoke(activity, null);
                 }
             }
         });
@@ -218,7 +222,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
     }
 
 
-        private static void getUserInfo(final Activity activity, final GetClazzListResponse.DataBean data) {
+    private static void getUserInfo(final Activity activity, final GetClazzListResponse.DataBean data) {
         GetUserInfoRequest getUserInfoRequest = new GetUserInfoRequest();
         getUserInfoRequest.token = SpManager.getToken();
         getUserInfoRequest.startRequest(GetUserInfoResponse.class, new HttpCallback<GetUserInfoResponse>() {
@@ -228,12 +232,15 @@ public class WelcomeActivity extends FaceShowBaseActivity {
                     UserInfo.getInstance().setInfo(ret.getData());
                     SpManager.saveClassListInfo(data);
                     if (data.getClazsInfos().size() == 0) {
-                        MainActivity.invoke(activity,null);
-                    } else if (data.getClazsInfos().size() == 1) {
-                        SpManager.saveCurrentClassInfo(data.getClazsInfos().get(0));
-                        MainActivity.invoke(activity, data.getClazsInfos().get(0));
+                        if (isAnimationEnd) {
+                            MainActivity.invoke(activity, null);
+                            activity.finish();
+                        }
                     } else {
-                        ClassManageActivity.toThisAct(activity, data);
+                        if (isAnimationEnd) {
+                            isToClassInfoOrMainAct(activity);
+                            activity.finish();
+                        }
                     }
                 } else {
                     UserInfo.getInstance().setInfo(SpManager.getUserInfo());
@@ -252,6 +259,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
             }
         });
     }
+
     private static void isToClassInfoOrMainAct(Activity activity) {
         if (SpManager.getCurrentClassInfo() == null) {
             ClassManageActivity.toThisAct(activity, SpManager.getClassListInfo());

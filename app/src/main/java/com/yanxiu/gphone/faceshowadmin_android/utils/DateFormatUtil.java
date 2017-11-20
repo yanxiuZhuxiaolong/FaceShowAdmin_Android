@@ -1,5 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.utils;
 
+import android.text.TextUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -79,5 +81,19 @@ public class DateFormatUtil {
         Date date = simpleDateFormat.parse(s);
         long ts = date.getTime();
         return ts;
+    }
+
+
+    /**
+     * 获取课程的开始 - 截止时间
+     * 如：2017.11.3.10:57:19 - 19:00
+     *
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public static String getCourseTime(String startTime, String endTime) {
+        return DateFormatUtil.translationBetweenTwoFormat(startTime, DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO) + " - "
+                + DateFormatUtil.translationBetweenTwoFormat(endTime, DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO);
     }
 }

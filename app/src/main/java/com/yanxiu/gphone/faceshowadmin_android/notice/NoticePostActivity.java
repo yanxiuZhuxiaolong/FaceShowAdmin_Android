@@ -13,7 +13,10 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -128,7 +131,6 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
@@ -136,7 +138,16 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 setTexCountTips(s.toString());
             }
         });
+        noticeEditContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND
+                        || (event != null && KeyEvent.ACTION_DOWN == event.getAction())) {
 
+                }
+                return false;
+            }
+        });
     }
 
     private void setTexCountTips(String s) {
@@ -159,6 +170,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
                 finish();
                 break;
             case R.id.title_layout_right_txt:
+
                 mNoticeContent = noticeEditContent.getText().toString();
                 mNoticeTitle = noticeEditTitle.getText().toString();
                 submitNotice();
