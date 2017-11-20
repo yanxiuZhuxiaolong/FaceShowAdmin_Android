@@ -113,4 +113,23 @@ public abstract class FaceShowBaseRequest extends RequestBase {
             fullUrl = urlBuilder.build().toString();
             return fullUrl;
     }
+
+    private String omitSlash(String org) {
+        if (org == null) {
+            return null;
+        }
+
+        String ret = org;
+        // 掐头
+        String t = ret.substring(0, 1);
+
+        if ("/".equals(ret.substring(0, 1))) {
+            ret = ret.substring(1, ret.length());
+        }
+        // 去尾
+        if ("/".equals(ret.substring(ret.length() - 1, ret.length()))) {
+            ret = ret.substring(0, ret.length() - 1);
+        }
+        return ret;
+    }
 }

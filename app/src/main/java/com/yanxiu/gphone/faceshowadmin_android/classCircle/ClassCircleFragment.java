@@ -190,6 +190,10 @@ public class ClassCircleFragment extends Fragment implements LoadMoreRecyclerVie
                 mRefreshView.setRefreshing(true);
             }
         });
+
+        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) mFunctionView.getLayoutParams();
+        params.width= (int) ScreenUtils.dpToPx(getContext(),30);
+        mFunctionView.setLayoutParams(params);
     }
 
     public void onEventMainThread(RefreshClassCircle refreshClassCircle) {
