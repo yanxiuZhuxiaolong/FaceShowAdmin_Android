@@ -12,16 +12,6 @@
         android:gravity="center_vertical"
         android:paddingRight="15dp">
 
-        <TextView
-            android:id="@+id/checkin_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:textColor="@color/color_333333"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            tools:text="2017年10月30日签到" />
 
         <TextView
             android:id="@+id/checkin_item_time"
@@ -40,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:gravity="center"
             android:textColor="@color/color_0068bd"
             android:textSize="12dp"
@@ -48,14 +37,28 @@
             tools:text="14/50" />
 
         <TextView
+            android:id="@+id/tv_have_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/checkin_item_checkin"
+            android:layout_toStartOf="@+id/checkin_item_checkin"
             android:gravity="center"
             android:text="已签到: "
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/checkin_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/tv_have_sign_in"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/color_333333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:text="2017年10月30日签到" />
 
         <TextView
             android:id="@+id/checkin_item_peecent"

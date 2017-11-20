@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="@string/net_error"
+            android:text="无网络数据"
             android:textColor="@color/color_999999"
             android:textSize="13dp" />
 

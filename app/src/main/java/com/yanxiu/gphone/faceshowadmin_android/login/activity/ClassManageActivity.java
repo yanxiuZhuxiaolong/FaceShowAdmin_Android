@@ -2,7 +2,6 @@ package com.yanxiu.gphone.faceshowadmin_android.login.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +34,8 @@ import butterknife.OnClick;
  */
 public class ClassManageActivity extends FaceShowBaseActivity {
 
+    @BindView(R.id.tv_back)
+    TextView mTvBack;
     private PublicLoadLayout mRootView;
     private static final String FROM = "from";
     private static final String FROM_LEFTDRAWER = "from_LeftDrawer";//首页抽屉点击进来
@@ -72,8 +73,12 @@ public class ClassManageActivity extends FaceShowBaseActivity {
 
         mFromType = getIntent().getStringExtra(FROM);
         if (FROM_LEFTDRAWER.equals(mFromType)) {
+            mTvBack.setVisibility(View.GONE);
+            title_layout_left_img.setVisibility(View.VISIBLE);
             requestClassList();
         } else {
+            mTvBack.setVisibility(View.VISIBLE);
+            title_layout_left_img.setVisibility(View.GONE);
             mData = (GetClazzListResponse.DataBean) getIntent().getSerializableExtra("classInfos");
             setRecyclerViewData();
         }
@@ -102,7 +107,7 @@ public class ClassManageActivity extends FaceShowBaseActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
-    @OnClick({R.id.title_layout_right_txt, R.id.retry_button, R.id.title_layout_left_img})
+    @OnClick({R.id.title_layout_right_txt, R.id.retry_button, R.id.title_layout_left_img,R.id.tv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_right_txt:
@@ -118,6 +123,7 @@ public class ClassManageActivity extends FaceShowBaseActivity {
                 requestClassList();
                 break;
             case R.id.title_layout_left_img:
+            case R.id.tv_back:
                 finish();
                 break;
             default:
@@ -164,4 +170,7 @@ public class ClassManageActivity extends FaceShowBaseActivity {
         activity.startActivity(intent);
     }
 
+    @OnClick(R.id.tv_back)
+    public void onViewClicked() {
+    }
 }

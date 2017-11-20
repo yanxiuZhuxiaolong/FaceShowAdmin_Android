@@ -21,6 +21,16 @@
             android:background="@drawable/selector_back" />
 
         <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="退出"
+            android:textColor="@color/color_0068bd" />
+
+        <TextView
             android:id="@+id/title_layout_title"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/top_layout_height"
@@ -51,5 +61,5 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_white"/>
+        android:background="@color/color_white" />
 </LinearLayout>

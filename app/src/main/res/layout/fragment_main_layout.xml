@@ -67,27 +67,24 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="14dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center">
+            android:layout_marginTop="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="班级学员："
-                android:textColor="@color/color_ffffff"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+            <View
+                android:id="@+id/line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/color_96bde4" />
 
             <TextView
                 android:id="@+id/student_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/line"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
@@ -96,16 +93,27 @@
                 android:textStyle="bold"
                 tools:text="128人" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/color_96bde4" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:layout_toLeftOf="@id/student_count"
+                android:layout_toStartOf="@id/student_count"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="班级学员："
+                android:textColor="@color/color_ffffff"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/line"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
@@ -118,6 +126,7 @@
                 android:id="@+id/teacher_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/name"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
@@ -126,16 +135,16 @@
                 android:textStyle="bold"
                 tools:text="3人" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tab_recyclerView"
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/maintab_recyclerView_marginleft"
+        android:layout_height="100dp"
         android:clipToPadding="false"
-        android:layout_height="100dp" />
+        android:paddingLeft="@dimen/maintab_recyclerView_marginleft" />
 
     <include layout="@layout/big_line" />
 
