@@ -2,6 +2,7 @@ package com.yanxiu.gphone.faceshowadmin_android.notice;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ class NoticeManagerListAdapter extends BaseRecyclerViewAdapter {
         ViewHolder holder2 = (ViewHolder) holder;
         holder2.notice_name.setText(data.getTitle());
         holder2.num_reader.setText(data.getNoticeReadUserNum() + "/" + mNoticeNum);
-        holder2.notice_content.setText(data.getContent());
+        holder2.notice_content.setText(Html.fromHtml(data.getContent()));
         holder2.notice_time.setText(StringUtils.getCourseTime(DateFormatUtil.translationDateFormat(data.getCreateTime())));
         holder2.notice_manage_layout.setOnClickListener(new View.OnClickListener() {
             @Override

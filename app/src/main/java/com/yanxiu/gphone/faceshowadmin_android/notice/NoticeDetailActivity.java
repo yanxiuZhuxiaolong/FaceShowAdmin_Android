@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,7 +84,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         detailTitle.setText(noticeBean.getTitle());
         noticeCreateTime.setText(DateFormatUtil.translationBetweenTwoFormat(noticeBean.getCreateTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO));
         readPercent.setText(noticeBean.getNoticeReadUserNum() + "/" + mNoticeNum);
-        noticeDescr.setText(noticeBean.getContent());
+        noticeDescr.setText(Html.fromHtml(noticeBean.getContent()));
         String attachUrl = noticeBean.getAttachUrl();
         if (attachUrl != null) {
             Glide.with(this).load(attachUrl).fitCenter().into(noticeAttachpic);

@@ -200,6 +200,8 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             }
         } else if (requestCode == NOTICE_POST) {
             if (resultCode == RESULT_OK) {
+                mRequestId = null;
+                mNoticeList.clear();
                 requestData(false);
             }
         }
