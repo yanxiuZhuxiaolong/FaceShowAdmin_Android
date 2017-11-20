@@ -28,6 +28,7 @@
             android:layout_marginStart="15dp"
             android:contentDescription="@null"
             android:background="@null"
+            android:textCursorDrawable="@drawable/shape_fs_cursor"
             android:inputType="text"
             android:layout_weight="1"/>
 

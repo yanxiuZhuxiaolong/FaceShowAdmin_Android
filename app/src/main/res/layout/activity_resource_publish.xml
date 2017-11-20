@@ -22,10 +22,12 @@
         android:layout_marginTop="22dp"
         android:background="@color/color_white"
         android:focusable="true"
+        android:singleLine="true"
         android:focusableInTouchMode="true"
         android:gravity="start"
         android:hint="@string/resource_edit_title_hint"
         android:maxLength="20"
+        android:textColor="@color/color_333333"
         android:textColorHint="@color/color_cccccc"
         android:textSize="@dimen/text_size_16"
         android:textStyle="bold" />
@@ -47,6 +49,7 @@
         android:background="@color/color_white"
         android:gravity="left"
         android:hint="@string/resource_edit_lianjie_hint"
+        android:textColor="@color/color_333333"
         android:textColorHint="@color/color_cccccc"
         android:textSize="16dp"
         android:textStyle="bold" />

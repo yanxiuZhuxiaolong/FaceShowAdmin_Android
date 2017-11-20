@@ -28,6 +28,7 @@
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
             android:hint="姓名"
+            android:textCursorDrawable="@drawable/shape_fs_cursor"
             android:singleLine="true"
             android:textColor="@color/color_333333"
             android:textSize="14dp"/>
@@ -84,6 +85,7 @@
             android:gravity="center_vertical"
             android:hint="联系电话"
             android:inputType="number"
+            android:textCursorDrawable="@drawable/shape_fs_cursor"
             android:maxLength="11"
             android:singleLine="true"
             android:textColor="@color/color_333333"
@@ -101,6 +103,7 @@
             android:layout_marginTop="5dp"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
+            android:textCursorDrawable="@drawable/shape_fs_cursor"
             android:hint="学校"
             android:singleLine="true"
             android:textColor="@color/color_333333"

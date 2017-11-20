@@ -38,7 +38,7 @@
 
     <ImageView
         android:id="@+id/title_layout_right_img"
-        android:layout_width="@dimen/commontitle_title_rightIcon_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/commontitle_title_rightIcon_width"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
@@ -49,7 +49,7 @@
         android:id="@+id/title_layout_signIn"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/top_layout_height"
-        android:layout_marginRight="12dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@id/title_layout_right_img"
         android:gravity="center"
         android:textColor="#1da1f2"

@@ -2,6 +2,7 @@ package com.yanxiu.gphone.faceshowadmin_android.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +28,8 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
     private final int TYPE_HEAD = 0X01;
     private final int TYPE_NORMAL = 0X02;
 
-    private int[] itemIconArray = new int[]{R.drawable.ic_home_black,
-            R.drawable.ic_person_black,};
+    private int[] itemIconArray = new int[]{R.drawable.selector_left_drawer_image_main,
+            R.drawable.selector_left_drawer_image_user};
     //            R.drawable.ic_person_black,
 //            R.drawable.ic_settings_black, R.drawable.ic_exit_to_app_black};
     private String[] itemNameArray = null;
@@ -83,7 +84,7 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
 
         } else {
             ((NormalViewHolder) holder).itemName.setText(itemNameArray[position - 1]);
-            ((NormalViewHolder) holder).itemIcon.setImageResource(itemIconArray[position - 1]);
+            ((NormalViewHolder) holder).itemIcon.setImageDrawable(ContextCompat.getDrawable(mContext,itemIconArray[position-1]));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -35,6 +35,7 @@
                 android:focusableInTouchMode="true"
                 android:gravity="start"
                 android:hint="@string/notice_edit_title_hint"
+                android:textColor="@color/color_333333"
                 android:textColorHint="@color/color_cccccc"
                 android:textSize="@dimen/text_size_16"
                 android:textStyle="bold" />
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@color/color_EBEFF2" />
 
             <RelativeLayout
@@ -63,6 +65,7 @@
                     android:hint="@string/notice_edit_content_hint"
                     android:paddingBottom="15dp"
                     android:paddingTop="15dp"
+                    android:textColor="@color/color_333333"
                     android:textColorHint="@color/color_cccccc"
                     android:textSize="14dp" />
 
@@ -94,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@color/color_EBEFF2" />
 
             <RelativeLayout
@@ -126,7 +130,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:scaleType="center"
                     android:src="@drawable/selector_delete_pic"
                     android:visibility="gone" />
             </RelativeLayout>

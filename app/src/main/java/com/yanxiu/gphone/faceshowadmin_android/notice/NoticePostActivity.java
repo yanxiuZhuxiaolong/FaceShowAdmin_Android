@@ -135,7 +135,23 @@ public class NoticePostActivity extends FaceShowBaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                setTexCountTips(s.toString());
+                setTexCountTips();
+            }
+        });
+        noticeEditTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                setTexCountTips();
             }
         });
         noticeEditContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -150,8 +166,8 @@ public class NoticePostActivity extends FaceShowBaseActivity {
         });
     }
 
-    private void setTexCountTips(String s) {
-        if (s.trim().length() < 1 || noticeEditTitle.getText().toString().length() < 1) {
+    private void setTexCountTips() {
+        if (noticeEditContent.getText().toString().trim().length() < 1 || noticeEditTitle.getText().toString().trim().length() < 1) {
             titleLayoutRightTxt.setEnabled(false);
             titleLayoutRightTxt.setTextColor(getResources().getColor(R.color.color_999999));
             editWordNum.setTextColor(getResources().getColor(R.color.color_999999));
@@ -160,7 +176,7 @@ public class NoticePostActivity extends FaceShowBaseActivity {
             titleLayoutRightTxt.setTextColor(getResources().getColor(R.color.color_0068BD));
             editWordNum.setTextColor(getResources().getColor(R.color.color_0068BD));
         }
-        editWordNum.setText(s.toString().length() + "");
+        editWordNum.setText(noticeEditContent.getText().toString().length() + "");
     }
 
     @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt, R.id.notice_pic_add, R.id.notice_pic_del})

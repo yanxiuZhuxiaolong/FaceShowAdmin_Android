@@ -23,13 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
-            android:ellipsize="end"
             android:gravity="center_horizontal"
-            android:lines="1"
             android:textColor="@color/color_333333"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:text="标题" />
+            tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
     </LinearLayout>
 
     <ScrollView
@@ -42,13 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.yanxiu.gphone.faceshowadmin_android.customView.FitXYImageView
                 android:id="@+id/schedule_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:scaleType="fitXY" />
+                android:layout_marginRight="15dp"/>
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

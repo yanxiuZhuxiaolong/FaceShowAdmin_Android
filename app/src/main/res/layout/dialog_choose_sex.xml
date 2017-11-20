@@ -20,7 +20,7 @@
                 android:id="@+id/ll_man"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/color_e6ffffff"
+                android:background="@drawable/selector_choose_sex"
                 android:gravity="center"
                 android:text="男"
                 android:textColor="@color/color_333333"
@@ -36,7 +36,7 @@
             android:id="@+id/ll_woman"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/color_e6ffffff"
+            android:background="@drawable/selector_choose_sex"
             android:gravity="center"
             android:text="女"
             android:textColor="@color/color_333333"
@@ -47,10 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:background="@color/color_e6ffffff"
+            android:background="@drawable/selector_dialog_cancel"
             android:gravity="center"
             android:text="确定"
-            android:textColor="@color/color_333333"
+            android:textColor="@drawable/selector_dialog_cancel_text_color"
             android:textSize="16dp" />
     </LinearLayout>
 
