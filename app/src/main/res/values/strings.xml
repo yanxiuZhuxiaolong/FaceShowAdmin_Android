@@ -163,7 +163,7 @@
     <string name="sign_in_number"><Data><![CDATA[<font color="#999999">%1$s :&#160;</font><font color="#666666">%2$d/%3$d</font>]]></Data></string>
     <string name="wait_for">待定</string>
     <string name="today_course">今日课程</string>
-    <string name="change_class">更换班级</string>
+    <string name="change_class">切换班级</string>
     <string name="yes">确定</string>
     <string name="manager_schedule">日程管理</string>
     <string name="publish_schedule">发布日程</string>

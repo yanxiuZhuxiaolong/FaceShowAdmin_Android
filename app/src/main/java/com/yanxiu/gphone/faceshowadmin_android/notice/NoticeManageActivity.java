@@ -111,7 +111,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
             mRootView.showLoadingView();
         NoticeRequest noticeRequest = new NoticeRequest();
         noticeRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
-        if(mRequestId != null) {
+        if (mRequestId != null) {
             noticeRequest.id = mRequestId;
         }
         noticeRequest.pageSize = Integer.toString(PAGESIZE);
@@ -164,7 +164,7 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightTxt.setVisibility(View.VISIBLE);
         titleLayoutRightImg.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_send_notice));
+        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.selector_send_notice));
         titleLayoutRightTxt.setText(R.string.notice_post);
         titleLayoutRightTxt.setTextColor(Color.parseColor("#0068BD"));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -201,14 +201,6 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         } else if (requestCode == NOTICE_POST) {
             if (resultCode == RESULT_OK) {
                 requestData(false);
-//                if (data != null) {
-//                    Boolean isPostSuccess = data.getBooleanExtra("isPostSuccess", false);
-//                    NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean bean = (NoticeRequestResponse.DataBean.NoticeInfosBean.ElementsBean) data.getSerializableExtra("noticeBean");
-//                    if (isPostSuccess) {
-//                        mNoticeList.add(0, bean);
-//                        setData();
-//                    }
-//                }
             }
         }
     }
