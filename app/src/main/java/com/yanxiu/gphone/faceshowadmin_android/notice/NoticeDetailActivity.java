@@ -84,7 +84,7 @@ public class NoticeDetailActivity extends FaceShowBaseActivity {
         detailTitle.setText(noticeBean.getTitle());
         noticeCreateTime.setText(DateFormatUtil.translationBetweenTwoFormat(noticeBean.getCreateTime(), DateFormatUtil.FORMAT_ONE, DateFormatUtil.FORMAT_TWO));
         readPercent.setText(noticeBean.getNoticeReadUserNum() + "/" + mNoticeNum);
-        noticeDescr.setText(noticeBean.getContent().replace("\\n","n"));
+        noticeDescr.setText(noticeBean.getContent());
         String attachUrl = noticeBean.getAttachUrl();
         if (attachUrl != null) {
             Glide.with(this).load(attachUrl).fitCenter().into(noticeAttachpic);
