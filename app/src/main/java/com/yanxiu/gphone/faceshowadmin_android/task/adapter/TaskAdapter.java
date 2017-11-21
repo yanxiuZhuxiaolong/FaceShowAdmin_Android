@@ -74,7 +74,7 @@ public class TaskAdapter extends BaseRecyclerViewAdapter {
 
         void setData(GetTasksResponse.TasksBean task) {
             mTvTaskName.setText(task.getInteractName());
-            mTvHaveReadPersonNumber.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_read_person_number, task.getFinishedStudentNum(), task.getTotalStudentNum())));
+            mTvHaveReadPersonNumber.setText(Html.fromHtml(itemView.getContext().getString(R.string.have_success_person_number, task.getFinishedStudentNum(), task.getTotalStudentNum())));
             switch (task.getInteractType()) {
                 case typeVote:
                     mImgTaskIcon.setImageResource(R.drawable.icon_vote);

@@ -91,6 +91,7 @@
 
     <!-- task-->
     <string name="have_read_person_number"><Data><![CDATA[<font color="#999999">已查看人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
+    <string name="have_success_person_number"><Data><![CDATA[<font color="#999999">已完成人数:&#160;</font><font color="#0068BD">%1$d/%2$d</font>]]></Data></string>
     <string name="vote_person_number"><Data><![CDATA[<font color="#99d5fe">投票人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>
     <string name="vote_person_number_title"><Data><![CDATA[<font color="#333333">投票人数:&#160;%1$d/%2$d</font>]]></Data></string>
     <string name="submit_person_number"><Data><![CDATA[<font color="#99d5fe">提交人数:&#160;</font><font color="#ffffff">%1$d/%2$d</font>]]></Data></string>

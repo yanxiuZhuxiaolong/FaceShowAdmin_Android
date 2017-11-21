@@ -1,5 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -128,6 +129,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         mRootView.setRetryButtonOnclickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     private void setData() {
         if (mData != null && mData.getProjectInfo() != null) {
             mProject_tv.setText(mData.getProjectInfo().getProjectName());
@@ -136,8 +138,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 mClass_tv.setText(mData.getClazsInfo().getClazsName());
             }
             if (mData.getClazsStatisticView() != null) {
-                mStudent_count.setText(mData.getClazsStatisticView().getStudensNum());
-                mTeacher_count.setText(mData.getClazsStatisticView().getMasterNum());
+                mStudent_count.setText(mData.getClazsStatisticView().getStudensNum()+"人");
+                mTeacher_count.setText(mData.getClazsStatisticView().getMasterNum()+"人");
                 mCourse_count.setText(mData.getClazsStatisticView().getCourseNum());
                 mTask_count.setText(mData.getClazsStatisticView().getTaskNum());
             }
