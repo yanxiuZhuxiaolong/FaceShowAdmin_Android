@@ -102,7 +102,7 @@
                         android:layout_height="@dimen/tag_height"
                         android:background="@drawable/shape_course_item"
                         android:gravity="center"
-                        android:text="授课"
+                        android:text="讲师"
                         android:textColor="@color/color_white"
                         android:textSize="@dimen/tag_textsize" />
 
