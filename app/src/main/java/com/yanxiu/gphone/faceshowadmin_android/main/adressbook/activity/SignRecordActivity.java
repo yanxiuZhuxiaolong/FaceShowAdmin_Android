@@ -14,6 +14,7 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.common.bean.SignRecordSuccessBean;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.customView.recyclerView.LoadMoreRecyclerView;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.adapter.SignRecordAdapter;
@@ -30,6 +31,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.
@@ -164,6 +167,7 @@ public class SignRecordActivity extends FaceShowBaseActivity implements View.OnC
                 rootView.hiddenLoadingView();
                 if (ret.getCode() == ResponseConfig.SUCCESS) {
                     mTimePickerView.dismiss();
+                    EventBus.getDefault().post(new SignRecordSuccessBean());
                     mAdapter.setSignSuccess(position);
                 } else {
                     ToastUtil.showToast(mContext, ret.getMessage());

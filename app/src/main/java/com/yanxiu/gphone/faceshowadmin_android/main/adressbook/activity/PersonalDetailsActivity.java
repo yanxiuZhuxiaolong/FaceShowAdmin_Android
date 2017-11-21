@@ -13,6 +13,7 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.common.bean.SignRecordSuccessBean;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.PersonalDetailsRequest;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.PersonalDetailsSignRequest;
@@ -24,6 +25,8 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import java.text.DecimalFormat;
 import java.util.UUID;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.
@@ -71,6 +74,7 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+        EventBus.getDefault().register(mContext);
         rootView = new PublicLoadLayout(mContext);
         rootView.setContentView(R.layout.activity_personaldetails);
         setContentView(rootView);
@@ -84,6 +88,7 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(mContext);
         if (mSignRequest!=null){
             RequestBase.cancelRequestWithUUID(mSignRequest);
             mSignRequest=null;
@@ -151,6 +156,12 @@ public class PersonalDetailsActivity extends FaceShowBaseActivity implements Vie
                 EventUpdate.onSeeStudentCheckKinRecord(mContext);
                 SignRecordActivity.LuanchActivity(mContext,mUserId,mUserName);
                 break;
+        }
+    }
+
+    public void onEventMainThread(SignRecordSuccessBean bean){
+        if (bean!=null){
+            startPersonalDetailsSignRequest();
         }
     }
 
