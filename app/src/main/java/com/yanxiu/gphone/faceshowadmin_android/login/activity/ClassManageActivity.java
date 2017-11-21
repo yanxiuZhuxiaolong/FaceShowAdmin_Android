@@ -23,6 +23,7 @@ import com.yanxiu.gphone.faceshowadmin_android.login.adapter.ClassManagerListAda
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
+import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -123,7 +124,15 @@ public class ClassManageActivity extends FaceShowBaseActivity {
                 requestClassList();
                 break;
             case R.id.title_layout_left_img:
+                finish();
+                break;
             case R.id.tv_back:
+                EventUpdate.onLogOut(this);
+                LoginActivity.toThisAct(this);
+                UserInfo.getInstance().setInfo(null);
+                SpManager.saveToken("");
+//                Constants.UPDATA_TYPE=0;
+                SpManager.loginOut();//设置为登出状态
                 finish();
                 break;
             default:
