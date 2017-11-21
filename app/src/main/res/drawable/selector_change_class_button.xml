@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="false" android:drawable="@drawable/shape_refresh_button_net_error_normal"/>
-    <item android:state_pressed="true" android:drawable="@drawable/shape_refresh_button_net_error_pressed"/>
+<!--    <item android:state_pressed="false" android:drawable="@drawable/shape_refresh_button_net_error_normal"/>
+    <item android:state_pressed="true" android:drawable="@drawable/shape_refresh_button_net_error_pressed"/>-->
 
+    <item android:state_pressed="false" android:drawable="@drawable/shape_main_change_class_normal"/>
+    <item android:state_pressed="true" android:drawable="@drawable/shape_main_change_class_pressed"/>
 </selector>
