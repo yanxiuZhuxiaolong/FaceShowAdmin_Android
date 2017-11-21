@@ -43,7 +43,7 @@ public class FSAApplication extends Application {
         }
 
         TCAgent.LOG_ON=true;
-        TCAgent.init(this,"您的 App ID", "渠道 ID");
+        TCAgent.init(this,"56E7747DFD1A4B9EB9A2DA6E7A2924EA", "");
         TCAgent.setReportUncaughtExceptions(true);
 
         CrashHandler.getInstance().init(this);
