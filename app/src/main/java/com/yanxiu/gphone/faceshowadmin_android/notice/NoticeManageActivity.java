@@ -43,9 +43,9 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
     ImageView titleLayoutLeftImg;
     @BindView(R.id.title_layout_title)
     TextView titleLayoutTitle;
-    @BindView(R.id.title_layout_right_img)
-    ImageView titleLayoutRightImg;
-    @BindView(R.id.title_layout_signIn)
+//    @BindView(R.id.title_layout_right_img)
+//    ImageView titleLayoutRightImg;
+    @BindView(R.id.title_layout_right_txt)
     TextView titleLayoutRightTxt;
     @BindView(R.id.recyclerView)
     LoadMoreRecyclerView recyclerView;
@@ -163,8 +163,8 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         titleLayoutTitle.setText(R.string.notice_manage_title);
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightTxt.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.selector_send_notice));
+//        titleLayoutRightImg.setVisibility(View.VISIBLE);
+//        titleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.selector_send_notice));
         titleLayoutRightTxt.setText(R.string.notice_post);
         titleLayoutRightTxt.setTextColor(Color.parseColor("#0068BD"));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -208,14 +208,13 @@ public class NoticeManageActivity extends FaceShowBaseActivity implements View.O
         }
     }
 
-    @OnClick({R.id.title_layout_left_img, R.id.title_layout_signIn, R.id.title_layout_right_img})
+    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
                 finish();
                 break;
-            case R.id.title_layout_right_img:
-            case R.id.title_layout_signIn:
+            case R.id.title_layout_right_txt:
                 EventUpdate.onSendNotify(mContext);
                 postNotice();
                 break;

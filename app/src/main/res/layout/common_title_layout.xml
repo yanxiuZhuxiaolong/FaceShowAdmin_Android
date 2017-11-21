@@ -38,7 +38,7 @@
 
     <ImageView
         android:id="@+id/title_layout_right_img"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/commontitle_title_rightIcon_width"
         android:layout_height="@dimen/commontitle_title_rightIcon_width"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

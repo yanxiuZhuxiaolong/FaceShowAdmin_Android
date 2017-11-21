@@ -32,8 +32,8 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
     ImageView titleLayoutLeftImg;
     @BindView(R.id.title_layout_title)
     TextView titleLayoutTitle;
-    @BindView(R.id.title_layout_right_img)
-    ImageView titleLayoutRightImg;
+//    @BindView(R.id.title_layout_right_img)
+//    ImageView titleLayoutRightImg;
     @BindView(R.id.title_layout_right_txt)
     TextView titleLayoutRightTxt;
     @BindView(R.id.recyclerView)
@@ -110,16 +110,16 @@ public class CheckInNotesActivity extends FaceShowBaseActivity {
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutRightTxt.setText(R.string.create_new_notes);
         titleLayoutRightTxt.setVisibility(View.VISIBLE);
-        titleLayoutRightImg.setVisibility(View.VISIBLE);
+//        titleLayoutRightImg.setVisibility(View.VISIBLE);
     }
 
-    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_img})
+    @OnClick({R.id.title_layout_left_img, R.id.title_layout_right_txt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
                 CheckInNotesActivity.this.finish();
                 break;
-            case R.id.title_layout_right_img:
+            case R.id.title_layout_right_txt:
                 EventUpdate.onSendCheckKin(this);
                 Intent intent = new Intent(CheckInNotesActivity.this, CreateNewCheckInActivity.class);
                 startActivityForResult(intent, 1);

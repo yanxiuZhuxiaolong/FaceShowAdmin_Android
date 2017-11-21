@@ -39,7 +39,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     private PublicLoadLayout rootView;
     private ImageView mBackView;
     private TextView mTitleView;
-    private ImageView mFunctionImgView;
+//    private ImageView mFunctionImgView;
     private TextView mFunctionTextView;
     private AdressBookAdapter mAdapter;
     private int mOffset=0;
@@ -78,9 +78,9 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         mBackView = findViewById(R.id.title_layout_left_img);
         mBackView.setVisibility(View.VISIBLE);
         mTitleView = findViewById(R.id.title_layout_title);
-        mFunctionImgView=findViewById(R.id.title_layout_right_img);
-        mFunctionTextView=findViewById(R.id.title_layout_signIn);
-        mFunctionImgView.setVisibility(View.VISIBLE);
+//        mFunctionImgView=findViewById(R.id.title_layout_right_img);
+        mFunctionTextView=findViewById(R.id.title_layout_right_txt);
+//        mFunctionImgView.setVisibility(View.VISIBLE);
         mFunctionTextView.setVisibility(View.VISIBLE);
 
         mRefreshLayout=findViewById(R.id.sw_adress);
@@ -96,7 +96,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         mAdressBookView.setLoadMoreListener(this);
         mAdapter.setItemClickListener(this);
         mBackView.setOnClickListener(this);
-        mFunctionImgView.setOnClickListener(this);
+//        mFunctionImgView.setOnClickListener(this);
         mFunctionTextView.setOnClickListener(this);
         rootView.setRetryButtonOnclickListener(this);
     }
@@ -105,7 +105,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         mTitleView.setText("通讯录");
         mFunctionTextView.setText(R.string.add_adress);
         mFunctionTextView.setTextColor(ContextCompat.getColor(mContext,R.color.color_0068BD));
-        mFunctionImgView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_adress_person_bg));
+//        mFunctionImgView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_adress_person_bg));
 
         startAdressRequest(String.valueOf(mOffset));
         mRefreshLayout.post(new Runnable() {
@@ -195,8 +195,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.title_layout_right_img:
-            case R.id.title_layout_signIn:
+            case R.id.title_layout_right_txt:
                 EventUpdate.onAddStudent(mContext);
                 AddStudentActivity.LuanchActivity(mContext);
                 break;

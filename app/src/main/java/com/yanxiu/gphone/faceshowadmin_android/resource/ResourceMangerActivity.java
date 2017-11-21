@@ -46,9 +46,9 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
     ImageView title_layout_left_img;
     @BindView(R.id.title_layout_title)
     TextView titleLayoutTitle;
-    @BindView(R.id.title_layout_right_img)
-    ImageView title_layout_right_img;
-    @BindView(R.id.title_layout_signIn)
+//    @BindView(R.id.title_layout_right_img)
+//    ImageView title_layout_right_img;
+    @BindView(R.id.title_layout_right_txt)
     TextView title_layout_signIn;
 
     @BindView(R.id.swipeRefreshLayout)
@@ -77,9 +77,9 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
         titleLayoutTitle.setText(R.string.manager_resource);
         title_layout_signIn.setText(R.string.upload);
         title_layout_signIn.setTextColor(getResources().getColor(R.color.color_0065b8));
-        title_layout_right_img.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_resource_updata_bg));
+//        title_layout_right_img.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_resource_updata_bg));
         title_layout_left_img.setVisibility(View.VISIBLE);
-        title_layout_right_img.setVisibility(View.VISIBLE);
+//        title_layout_right_img.setVisibility(View.VISIBLE);
         title_layout_signIn.setVisibility(View.VISIBLE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ResourceMangerAdapter(this);
@@ -113,11 +113,11 @@ public class ResourceMangerActivity extends FaceShowBaseActivity implements Recy
 
     }
 
-    @OnClick({R.id.title_layout_right_img, R.id.retry_button, R.id.title_layout_left_img, R.id.title_layout_signIn})
+    @OnClick({ R.id.retry_button, R.id.title_layout_left_img, R.id.title_layout_right_txt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.title_layout_right_img:
-            case R.id.title_layout_signIn:
+//            case R.id.title_layout_right_img:
+            case R.id.title_layout_right_txt:
                 EventUpdate.onEnterSendRecourseClass(this);
                 PublishResourceActivity.invoke(ResourceMangerActivity.this);
                 break;
