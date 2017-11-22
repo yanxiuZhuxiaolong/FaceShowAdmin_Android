@@ -54,7 +54,7 @@
                 app:contentTextColor="#333333"
                 app:contentTextSize="16dp"
                 app:maxLines="4"
-                app:moreTextColor="@color/color_1da1f2"
+                app:moreTextColor="@color/color_0068bd"
                 app:moreTextMaginTop="15dp"
                 app:moreTextSize="16dp" />
 
