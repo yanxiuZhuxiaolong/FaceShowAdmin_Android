@@ -57,9 +57,13 @@ public class LeftDrawerListAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
             HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-            if (UserInfo.getInstance().getInfo() != null && UserInfo.getInstance().getInfo().getAvatar() != null && UserInfo.getInstance().getInfo().getRealName() != null) {
-                YXPictureManager.getInstance().showRoundPic(mContext, UserInfo.getInstance().getInfo().getAvatar(), headViewHolder.user_icon, 6, R.drawable.discuss_user_default_icon);
-                headViewHolder.user_name.setText(UserInfo.getInstance().getInfo().getRealName());
+            if (UserInfo.getInstance().getInfo() != null) {
+                if (UserInfo.getInstance().getInfo().getAvatar() != null ) {
+                    YXPictureManager.getInstance().showRoundPic(mContext, UserInfo.getInstance().getInfo().getAvatar(), headViewHolder.user_icon, 6, R.drawable.discuss_user_default_icon);
+                }
+                if (UserInfo.getInstance().getInfo().getRealName() != null) {
+                    headViewHolder.user_name.setText(UserInfo.getInstance().getInfo().getRealName());
+                }
             }
             try {
                 if (mCourseData != null) {
