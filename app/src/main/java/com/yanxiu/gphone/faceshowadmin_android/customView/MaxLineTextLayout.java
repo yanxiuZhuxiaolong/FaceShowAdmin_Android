@@ -29,7 +29,7 @@ public class MaxLineTextLayout extends LinearLayout {
     private static final int CONTENT_TEXT_SIZE=42;
     private static final int MORE_TEXT_SIZE=28;
     private static final int CONTENT_TEXT_COLOR= Color.parseColor("#333333");
-    private static final int MORE_TEXT_COLOR= Color.parseColor("#1da1f2");
+    private static final int MORE_TEXT_COLOR= Color.parseColor("#0068bd");
     private static final int MORE_MARGIN_TOP=30;
 
     private MaxLineTextView mContentView;
