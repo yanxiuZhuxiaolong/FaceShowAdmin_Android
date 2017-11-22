@@ -143,7 +143,7 @@ public class Utils {
         }
         return time;
     }
-   private static Pattern mobileNoP = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,2-9]))\\d{8}$");
+   private static Pattern mobileNoP = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])|(147,145))\\\\d{8}$");
     /**
      * 验证注册手机号码是否正确
      */
