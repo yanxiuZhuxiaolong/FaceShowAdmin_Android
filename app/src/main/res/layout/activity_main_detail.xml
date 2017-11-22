@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/subtitle_height"
         android:background="@color/color_white"
+        app:tabBackground="@android:color/transparent"
         app:tabIndicatorColor="@color/color_0068bd"
         app:tabIndicatorHeight="@dimen/dimen_2dp"
         app:tabMode="fixed"

@@ -37,7 +37,7 @@ public class CourseBriefIntroductionFragment extends FaceShowBaseFragment {
         mPublicLoadLayout.setErrorLayoutFullScreen();
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
         GetCourseResponse.CourseBean course = getArguments() != null ? (GetCourseResponse.CourseBean) getArguments().get("data") : null;
-        if (course != null && !TextUtils.isEmpty(course.getBriefing())) {
+        if (course != null && !TextUtils.isEmpty(Html.fromHtml(course.getBriefing()))) {
             mTvContent.setText(course.getBriefing());
         } else {
             mPublicLoadLayout.showOtherErrorView(getString(R.string.no_brief));

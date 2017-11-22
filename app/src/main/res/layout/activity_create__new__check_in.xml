@@ -34,12 +34,13 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_white"
                 android:hint="@string/create_new_check_in_name_hint"
-                android:lineSpacingExtra="15dp"
+                android:lineSpacingExtra="8dp"
                 android:maxLength="20"
                 android:paddingBottom="22dp"
                 android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="22dp"
+                android:textStyle="bold"
                 android:textColorHint="@color/color_cccccc"
                 tools:layout_editor_absoluteX="8dp" />
 

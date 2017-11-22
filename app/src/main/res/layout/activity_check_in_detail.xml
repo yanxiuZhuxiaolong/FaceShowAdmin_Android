@@ -104,6 +104,7 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
+        app:tabBackground="@android:color/transparent"
         android:layout_height="40dp"
         android:background="@color/color_white"
         app:tabIndicatorColor="@color/color_0068BD"

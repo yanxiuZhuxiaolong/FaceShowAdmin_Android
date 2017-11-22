@@ -16,6 +16,8 @@ android {
         multiDexEnabled true
         flavorDimensions "1.0"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,6 +29,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+
+    }
+
 }
 
 dependencies {

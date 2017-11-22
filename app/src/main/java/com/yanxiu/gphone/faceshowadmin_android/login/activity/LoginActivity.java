@@ -263,6 +263,7 @@ public class LoginActivity extends FaceShowBaseActivity {
             @Override
             public void onSuccess(RequestBase request, GetClazzListResponse ret) {
                 if (ret != null && ret.getCode() == 0 && ret.getData().getClazsInfos() != null) {
+                    // 判断是否为班主任账号  再判断班主任账号下是否有班级
                     getUserInfo(activity, ret.getData());
                 } else {
                     rootView.finish();
