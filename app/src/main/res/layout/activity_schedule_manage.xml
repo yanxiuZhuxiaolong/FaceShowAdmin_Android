@@ -11,41 +11,47 @@
 
     <include layout="@layout/big_line" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/schedule_bg"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/schedule_bg" />
 
         <TextView
             android:id="@+id/schedule_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="21dp"
             android:gravity="center_horizontal"
             android:textColor="@color/color_333333"
             android:textSize="16dp"
             android:textStyle="bold"
             tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
-    </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingBottom="5dp">
-
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/schedule_text"
+            android:clipToPadding="false"
+            android:paddingBottom="5dp">
 
-            <com.yanxiu.gphone.faceshowadmin_android.customView.FitXYImageView
-                android:id="@+id/schedule_img"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
-        </RelativeLayout>
-    </ScrollView>
+                android:layout_height="wrap_content">
+
+                <com.yanxiu.gphone.faceshowadmin_android.customView.FitXYImageView
+                    android:id="@+id/schedule_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 </LinearLayout>

@@ -199,9 +199,13 @@ public class LoginActivity extends FaceShowBaseActivity {
                     passPort = ret.getPassport();
                     requestClassList(LoginActivity.this);
                 } else {
-                    Toast.makeText(mContext, ret.getError().getMessage(), Toast.LENGTH_SHORT).show();
-                    rootView.hiddenLoadingView();
-                    edt_account_password.setText(null);
+                    try {
+                        Toast.makeText(mContext, ret.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                        rootView.hiddenLoadingView();
+                        edt_account_password.setText(null);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
 
             }
