@@ -1,18 +1,25 @@
 package com.yanxiu.gphone.faceshowadmin_android.checkIn.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,8 +74,8 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-    @BindView(R.id.title_layout_right_txt)
-    TextView mTitleLayoutRightTxt;
+    @BindView(R.id.title_layout_right_img)
+    ImageView mTitleLayoutRightImg;
     private PublicLoadLayout mPublicLoadLayout;
 
     @Override
@@ -87,9 +94,8 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     private void initTitle() {
         titleLayoutLeftImg.setVisibility(View.VISIBLE);
         titleLayoutTitle.setText(R.string.check_in_detail);
-        mTitleLayoutRightTxt.setVisibility(View.VISIBLE);
-        mTitleLayoutRightTxt.setText("删除");
-
+        mTitleLayoutRightImg.setVisibility(View.VISIBLE);
+        mTitleLayoutRightImg.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selector_notice_detil_more));
     }
 
     private void initHead() {
@@ -173,7 +179,7 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
     }
 
 
-    @OnClick({R.id.title_layout_left_img, R.id.img_code, R.id.title_layout_right_txt})
+    @OnClick({R.id.title_layout_left_img, R.id.img_code, R.id.title_layout_right_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_layout_left_img:
@@ -183,13 +189,48 @@ public class CheckInDetailActivity extends FaceShowBaseActivity {
                 EventUpdate.onSeeSignInQrCode(CheckInDetailActivity.this);
                 toShowQRCode();
                 break;
-            case R.id.title_layout_right_txt:
-                toDeleteThisSignIn();
-                EventUpdate.onDeleteSignIn(this);
+            case R.id.title_layout_right_img:
+                showCancelPopupWindow(this);
                 break;
             default:
         }
     }
+    private PopupWindow mPopupWindow;
+    View.OnClickListener popupWindowClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.notice_delete:
+                    EventUpdate.onDeleteNotify(CheckInDetailActivity.this);
+                    toDeleteThisSignIn();
+                    dismissPopupWindow();
+                    break;
+                case R.id.notice_cancel:
+                    dismissPopupWindow();
+                    break;
+            }
+
+        }
+    };
+    private void showCancelPopupWindow(Activity context) {
+        if (mPopupWindow == null) {
+            View pop = LayoutInflater.from(context).inflate(R.layout.popupwindow_notice, null);
+            (pop.findViewById(R.id.notice_delete)).setOnClickListener(popupWindowClickListener);
+            (pop.findViewById(R.id.notice_cancel)).setOnClickListener(popupWindowClickListener);
+            mPopupWindow = new PopupWindow(pop, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mPopupWindow.setAnimationStyle(R.style.pop_anim);
+            mPopupWindow.setFocusable(true);
+            mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+        }
+        mPopupWindow.showAtLocation(context.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+    }
+
+    private void dismissPopupWindow() {
+        if (mPopupWindow != null) {
+            mPopupWindow.dismiss();
+        }
+    }
+
 
     private void toShowQRCode() {
         Intent intent = new Intent(CheckInDetailActivity.this, QrCodeShowActivity.class);
