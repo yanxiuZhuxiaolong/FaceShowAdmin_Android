@@ -369,4 +369,5 @@ public class MainActivity extends FaceShowBaseActivity {
 //            findViewById(R.id.line).setVisibility(visibility);
         }
     }
+
 }

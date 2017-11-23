@@ -39,25 +39,25 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     private PublicLoadLayout rootView;
     private ImageView mBackView;
     private TextView mTitleView;
-//    private ImageView mFunctionImgView;
+    //    private ImageView mFunctionImgView;
     private TextView mFunctionTextView;
     private AdressBookAdapter mAdapter;
-    private int mOffset=0;
-    private int mPeopleIndex=0;
+    private int mOffset = 0;
+    private int mPeopleIndex = 0;
     private SwipeRefreshLayout mRefreshLayout;
     private LoadMoreRecyclerView mAdressBookView;
     private UUID mBookRequest;
 
-    public static void LuanchActivity(Context context){
-        Intent intent=new Intent(context,AdressBookActivity.class);
+    public static void LuanchActivity(Context context) {
+        Intent intent = new Intent(context, AdressBookActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext=this;
-        rootView=new PublicLoadLayout(mContext);
+        mContext = this;
+        rootView = new PublicLoadLayout(mContext);
         rootView.setContentView(R.layout.activity_adressbook);
         setContentView(rootView);
         initView();
@@ -68,9 +68,9 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mBookRequest!=null){
+        if (mBookRequest != null) {
             RequestBase.cancelRequestWithUUID(mBookRequest);
-            mBookRequest=null;
+            mBookRequest = null;
         }
     }
 
@@ -79,14 +79,14 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         mBackView.setVisibility(View.VISIBLE);
         mTitleView = findViewById(R.id.title_layout_title);
 //        mFunctionImgView=findViewById(R.id.title_layout_right_img);
-        mFunctionTextView=findViewById(R.id.title_layout_right_txt);
+        mFunctionTextView = findViewById(R.id.title_layout_right_txt);
 //        mFunctionImgView.setVisibility(View.VISIBLE);
         mFunctionTextView.setVisibility(View.VISIBLE);
 
-        mRefreshLayout=findViewById(R.id.sw_adress);
-        mAdressBookView=findViewById(R.id.recy_adress);
+        mRefreshLayout = findViewById(R.id.sw_adress);
+        mAdressBookView = findViewById(R.id.recy_adress);
         mAdressBookView.setLayoutManager(new LinearLayoutManager(mContext));
-        mAdapter=new AdressBookAdapter(mContext);
+        mAdapter = new AdressBookAdapter(mContext);
         mAdressBookView.setAdapter(mAdapter);
         mAdressBookView.setLoadMoreEnable(true);
     }
@@ -104,7 +104,7 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     private void initData() {
         mTitleView.setText("通讯录");
         mFunctionTextView.setText(R.string.add_adress);
-        mFunctionTextView.setTextColor(ContextCompat.getColor(mContext,R.color.color_0068BD));
+        mFunctionTextView.setTextColor(ContextCompat.getColor(mContext, R.color.color_0068BD));
 //        mFunctionImgView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.selector_adress_person_bg));
 
         startAdressRequest(String.valueOf(mOffset));
@@ -116,40 +116,40 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
         });
     }
 
-    private void startAdressRequest(final String offset){
+    private void startAdressRequest(final String offset) {
 //        rootView.showLoadingView();
         rootView.hiddenNetErrorView();
-        if ("0".equals(offset)){
-            mPeopleIndex=0;
+        if ("0".equals(offset)) {
+            mPeopleIndex = 0;
         }
-        AdressBookRequest bookRequest=new AdressBookRequest();
-        bookRequest.offset=String.valueOf(Integer.parseInt(offset)*10);
-        mBookRequest=bookRequest.startRequest(AdressBookResponse.class, new HttpCallback<AdressBookResponse>() {
+        AdressBookRequest bookRequest = new AdressBookRequest();
+        bookRequest.offset = String.valueOf(Integer.parseInt(offset) * 10);
+        mBookRequest = bookRequest.startRequest(AdressBookResponse.class, new HttpCallback<AdressBookResponse>() {
             @Override
             public void onSuccess(RequestBase request, AdressBookResponse ret) {
 //                rootView.hiddenLoadingView();
-                mBookRequest=null;
+                mBookRequest = null;
                 mRefreshLayout.setRefreshing(false);
-                if (ret!=null&&ret.data!=null) {
+                if (ret != null && ret.data != null) {
                     mPeopleIndex += ret.data.students.elements.size();
-                    if (mPeopleIndex<ret.data.students.totalElements){
+                    if (mPeopleIndex < ret.data.students.totalElements) {
                         mAdressBookView.setLoadMoreEnable(true);
-                    }else {
+                    } else {
                         mAdressBookView.setLoadMoreEnable(false);
                     }
-                    if ("0".equals(offset)){
-                        List<AdressBookPeople> list=new ArrayList<>();
-                        AdressBookPeople bookPeople1=new AdressBookPeople(1,"班主任");
+                    if ("0".equals(offset)) {
+                        List<AdressBookPeople> list = new ArrayList<>();
+                        AdressBookPeople bookPeople1 = new AdressBookPeople(1, "班主任");
                         list.add(bookPeople1);
-                        for (AdressBookPeople people:ret.data.masters){
-                            people.isTeacher=true;
+                        for (AdressBookPeople people : ret.data.masters) {
+                            people.isTeacher = true;
                         }
                         list.addAll(ret.data.masters);
-                        AdressBookPeople bookPeople2=new AdressBookPeople(2,"学员");
+                        AdressBookPeople bookPeople2 = new AdressBookPeople(2, "学员");
                         list.add(bookPeople2);
                         list.addAll(ret.data.students.elements);
                         mAdapter.setData(list);
-                    }else {
+                    } else {
                         mAdressBookView.finishLoadMore();
                         mAdapter.addData(ret.data.students.elements);
                     }
@@ -159,19 +159,19 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
             @Override
             public void onFail(RequestBase request, Error error) {
 //                rootView.hiddenLoadingView();
-                mBookRequest=null;
+                mBookRequest = null;
                 mRefreshLayout.setRefreshing(false);
-                if (mAdapter.getItemCount()==0){
+                if (mAdapter.getItemCount() == 0) {
                     rootView.showNetErrorView();
                 }
-                ToastUtil.showToast(mContext,error.getMessage());
+                ToastUtil.showToast(mContext, error.getMessage());
             }
         });
     }
 
     @Override
     public void onRefresh() {
-        mOffset=0;
+        mOffset = 0;
         startAdressRequest(String.valueOf(mOffset));
     }
 
@@ -188,22 +188,22 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
 
     @Override
     public void onItemClick(int position, AdressBookPeople people) {
-        if (people.userId== UserInfo.getInstance().getInfo().getUserId()){
+        if (people.userId == UserInfo.getInstance().getInfo().getUserId()) {
             UserMessageActivity.LuanchActivity(mContext);
-        }else {
-            PersonalDetailsActivity.LuanchActivity(mContext, String.valueOf(people.userId),people.isTeacher);
+        } else {
+            PersonalDetailsActivity.LuanchActivity(mContext, String.valueOf(people.userId), people.isTeacher);
         }
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.title_layout_right_txt:
                 EventUpdate.onAddStudent(mContext);
                 AddStudentActivity.LuanchActivity(mContext);
                 break;
             case R.id.title_layout_left_img:
-                this.finish();
+                onBackPressed();
                 break;
             case R.id.retry_button:
                 mRefreshLayout.setRefreshing(true);
@@ -213,10 +213,26 @@ public class AdressBookActivity extends FaceShowBaseActivity implements SwipeRef
     }
 
     @Override
+    public void onBackPressed() {
+        if (mNeedRefershMain) {
+            mNeedRefershMain = false;
+            Intent i = new Intent();
+            this.setResult(RESULT_OK, i);
+            this.finish();
+        } else {
+            this.finish();
+        }
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data!=null) {
+        if (data != null) {
             onRefresh();
+            mNeedRefershMain = true;
         }
     }
+
+    private boolean mNeedRefershMain = false;
 }

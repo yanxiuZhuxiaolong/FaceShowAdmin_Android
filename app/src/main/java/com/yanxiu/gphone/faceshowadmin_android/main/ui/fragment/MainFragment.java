@@ -138,8 +138,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
                 mClass_tv.setText(mData.getClazsInfo().getClazsName());
             }
             if (mData.getClazsStatisticView() != null) {
-                mStudent_count.setText(mData.getClazsStatisticView().getStudensNum()+"人");
-                mTeacher_count.setText(mData.getClazsStatisticView().getMasterNum()+"人");
+                mStudent_count.setText(mData.getClazsStatisticView().getStudensNum() + "人");
+                mTeacher_count.setText(mData.getClazsStatisticView().getMasterNum() + "人");
                 mCourse_count.setText(mData.getClazsStatisticView().getCourseNum());
                 mTask_count.setText(mData.getClazsStatisticView().getTaskNum());
             }
@@ -274,6 +274,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     }
 
+    private final int TO_ADRESS_BOOK = 0X110;
 
     /**
      * 首页5个tab的点击
@@ -286,7 +287,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         switch (position) {
             case 0:
                 EventUpdate.onEnterAdressBook(getContext());
-                AdressBookActivity.LuanchActivity(getContext());
+                startActivityForResult(new Intent(this.getContext(), AdressBookActivity.class), TO_ADRESS_BOOK);
                 break;
             case 1:
                 EventUpdate.onEnterNotify(getContext());
@@ -352,6 +353,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         }
     }
 
+
+
     public CourseArrangeBean getmData() {
         return mData;
     }
@@ -397,10 +400,14 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (REQUEST_CODE_TO_SIGN_IN==requestCode){
-                if (resultCode==RESULT_OK){
-                    requestData();
-                }
+        if (REQUEST_CODE_TO_SIGN_IN == requestCode) {
+            if (resultCode == RESULT_OK) {
+                requestData();
+            }
+        }else if (TO_ADRESS_BOOK ==requestCode){
+            if (resultCode==RESULT_OK){
+                requestData();
+            }
         }
     }
 }
