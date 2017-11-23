@@ -293,10 +293,10 @@ public class LoginActivity extends FaceShowBaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == TO_FORGET_PASSWORD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    edt_account_number.setText(data.getStringExtra("phoneNumber"));
-                    edt_account_password.setText(data.getStringExtra("password"));
-                }
+//                if (data != null) {
+//                    edt_account_number.setText(data.getStringExtra("phoneNumber"));
+//                    edt_account_password.setText(data.getStringExtra("password"));
+//                }
             }
         }
     }
