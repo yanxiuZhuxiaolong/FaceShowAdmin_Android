@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
 
 import java.lang.ref.WeakReference;
 
@@ -31,7 +32,7 @@ public class QrCodeShowActivity extends FaceShowBaseActivity {
     TextView titleLayoutTitle;
     @BindView(R.id.img_code)
     ImageView imgQrCode;
-    private String qrCodeUrl = "http://orz.yanxiu.com/pxt/platform/data.api?method=interact.signInQrcode&stepId=";
+    private String qrCodeUrl;
     private int qrCodeRefreshInterval = 0;
     private MyHandler handler;
 
@@ -40,6 +41,8 @@ public class QrCodeShowActivity extends FaceShowBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_show);
         ButterKnife.bind(this);
+        qrCodeUrl= UrlRepository.getInstance().getServer()+"?method=interact.signInQrcode&stepId=";
+
         initTitle();
         getData();
         createQrCode();
