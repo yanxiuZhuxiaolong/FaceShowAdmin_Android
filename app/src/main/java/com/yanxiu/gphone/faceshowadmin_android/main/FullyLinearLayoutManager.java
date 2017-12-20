@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 public class FullyLinearLayoutManager extends LinearLayoutManager {
 
+
     private static final String TAG = FullyLinearLayoutManager.class.getSimpleName();
 
     private boolean isScrollEnabled = false;

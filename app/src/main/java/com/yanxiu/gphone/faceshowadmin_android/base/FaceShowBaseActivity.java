@@ -39,7 +39,7 @@ public class FaceShowBaseActivity extends FragmentActivity implements EasyPermis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFaceShowLocalName=ActivityNameUtils.getActivityName(this.getLocalClassName());
+        mFaceShowLocalName=ActivityNameUtils.getActivityName(this.getClass().getSimpleName());
         ActivityManger.addActicity(this);
 
     }
