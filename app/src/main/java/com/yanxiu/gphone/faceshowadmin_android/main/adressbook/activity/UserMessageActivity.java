@@ -50,10 +50,10 @@ import static com.yanxiu.gphone.faceshowadmin_android.main.adressbook.util.UserM
  */
 public class UserMessageActivity extends FaceShowBaseActivity implements View.OnClickListener, ChooseSexDialog.OnViewClickListener, UserMessageUpdateManager.onRequestCallback {
 
-    public static final int REQUEST_NAME=1000;
-    public static final String RESULT_NAME="result_name";
-    public static final int REQUEST_SCHOOL=1001;
-    public static final String RESULT_SCHOOL="result_school";
+    public static final int REQUEST_NAME = 1000;
+    public static final String RESULT_NAME = "result_name";
+    public static final int REQUEST_SCHOOL = 1001;
+    public static final String RESULT_SCHOOL = "result_school";
 
     private static final int REQUEST_CODE_ALBUM = 0x000;
     private static final int REQUEST_CODE_CAMERA = 0x001;
@@ -128,9 +128,9 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
         mSubjectView = findViewById(R.id.tv_subject);
         mSchoolView = findViewById(R.id.tv_school);
 
-        mNameClickView=findViewById(R.id.ll_name_click);
-        mSexClickView=findViewById(R.id.ll_sex_click);
-        mSchoolClickView=findViewById(R.id.ll_school_click);
+        mNameClickView = findViewById(R.id.ll_name_click);
+        mSexClickView = findViewById(R.id.ll_sex_click);
+        mSchoolClickView = findViewById(R.id.ll_school_click);
     }
 
     private void listener() {
@@ -164,7 +164,7 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
                 showDialog();
                 break;
             case R.id.ll_name_click:
-                EditNameActivity.LuanchActivity(mContext,REQUEST_NAME,mDetailsData.realName);
+                EditNameActivity.LuanchActivity(mContext, REQUEST_NAME, mDetailsData.realName);
                 break;
             case R.id.ll_sex_click:
                 if (mSexDialog == null) {
@@ -173,7 +173,7 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
                 mSexDialog.show();
                 break;
             case R.id.ll_school_click:
-                EditSchoolActivity.LuanchActivity(mContext,REQUEST_SCHOOL,mDetailsData.school);
+                EditSchoolActivity.LuanchActivity(mContext, REQUEST_SCHOOL, mDetailsData.school);
                 break;
 
                 /*
@@ -255,7 +255,7 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
                 if (ret != null && ret.data != null && ret.getCode() == 0) {
                     mDetailsData = ret.data;
                     setUserMessage(ret.data);
-                }else {
+                } else {
                     rootView.showNetErrorView();
                 }
             }
@@ -357,51 +357,53 @@ public class UserMessageActivity extends FaceShowBaseActivity implements View.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            switch (requestCode){
-                case REQUEST_NAME:
-                    if (data!=null) {
-                        mDetailsData.realName = data.getStringExtra(RESULT_NAME);
-                        setUserMessage(mDetailsData);
-                    }
-                    break;
-                case REQUEST_SCHOOL:
-                    if (data!=null) {
-                        mDetailsData.school = data.getStringExtra(RESULT_SCHOOL);
-                        setUserMessage(mDetailsData);
-                    }
-                    break;
-                case REQUEST_CODE_ALBUM:
-                    if (data != null) {
-                        Uri uri = data.getData();
-                        mCropPath=FileUtils.getImageCatchPath(System.currentTimeMillis()+".jpg");
-                        startPhotoZoom(uri,Uri.fromFile(new File(mCropPath)));
-                    }
-                    break;
-                case REQUEST_CODE_CAMERA:
-                    if (!TextUtils.isEmpty(mCameraPath)) {
-                        mCropPath=FileUtils.getImageCatchPath(System.currentTimeMillis()+".jpg");
-                        try {
-                            new FileInputStream(new File(mCameraPath));
-                            Uri imageUri;
-                            if (Build.VERSION.SDK_INT < 24) {
-                                imageUri = Uri.fromFile(new File(mCameraPath));
-                            } else {
-                                imageUri = FileProvider.getUriForFile(UserMessageActivity.this, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", new File(mCameraPath));
-                            }
-                            startPhotoZoom(imageUri,Uri.fromFile(new File(mCropPath)));
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
+        switch (requestCode) {
+            case REQUEST_NAME:
+                if (data != null) {
+                    mDetailsData.realName = data.getStringExtra(RESULT_NAME);
+                    setUserMessage(mDetailsData);
+                }
+                break;
+            case REQUEST_SCHOOL:
+                if (data != null) {
+                    mDetailsData.school = data.getStringExtra(RESULT_SCHOOL);
+                    setUserMessage(mDetailsData);
+                }
+                break;
+            case REQUEST_CODE_ALBUM:
+                if (data != null) {
+                    Uri uri = data.getData();
+                    mCropPath = FileUtils.getImageCatchPath(System.currentTimeMillis() + ".jpg");
+                    startPhotoZoom(uri, Uri.fromFile(new File(mCropPath)));
+                }
+                break;
+            case REQUEST_CODE_CAMERA:
+                if (!TextUtils.isEmpty(mCameraPath)) {
+                    mCropPath = FileUtils.getImageCatchPath(System.currentTimeMillis() + ".jpg");
+                    try {
+                        new FileInputStream(new File(mCameraPath));
+                        Uri imageUri;
+                        if (Build.VERSION.SDK_INT < 24) {
+                            imageUri = Uri.fromFile(new File(mCameraPath));
+                        } else {
+                            imageUri = FileProvider.getUriForFile(UserMessageActivity.this, "com.yanxiu.gphone.faceshowadmin_android.fileprovider", new File(mCameraPath));
                         }
+                        startPhotoZoom(imageUri, Uri.fromFile(new File(mCropPath)));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
-                    break;
-                case REQUEST_CODE_CROP:
-                    if (!TextUtils.isEmpty(mCropPath)) {
-                        if (new File(mCropPath).exists()) {
-                            mUpdateManager.updataHeadimg(mCropPath,this);
-                        }
+                }
+                break;
+            case REQUEST_CODE_CROP:
+                if (!TextUtils.isEmpty(mCropPath)) {
+                    if (new File(mCropPath).exists()) {
+                        mUpdateManager.updataHeadimg(mCropPath, this);
                     }
-                    break;
-            }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public void startPhotoZoom(Uri uri, Uri saveCroppedImageFileUri) {

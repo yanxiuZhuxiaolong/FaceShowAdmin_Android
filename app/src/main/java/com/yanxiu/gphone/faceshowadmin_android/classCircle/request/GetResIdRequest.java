@@ -31,7 +31,7 @@ public class GetResIdRequest extends SKRequestWithCookie {
         public String typeId = "1000";
         public String source = "android";
         public String uid = UserInfo.getInstance().getInfo().getUserId()+"";
-        public String from = "6";
+        public String from = "22";
         public String title;
         public String username = UserInfo.getInstance().getInfo().getRealName();
         public String description = "";

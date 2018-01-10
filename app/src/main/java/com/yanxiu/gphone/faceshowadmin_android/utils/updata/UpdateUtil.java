@@ -46,8 +46,8 @@ public class UpdateUtil {
     private static final String TAG="updata";
 
     private static InitializeRequest mInitializeRequest;
-//     private static UpdateDialog mUpdateDialog;
-    private static SystemUpdataDialog mUpdateDialog;
+     private static UpdateDialog mUpdateDialog;
+//    private static SystemUpdataDialog mUpdateDialog;
     private static NotificationManager mNotificationManager;
     private static Notification mNotification;
     public static final int NOTIFICATION_ID = 0x11;
@@ -155,45 +155,45 @@ public class UpdateUtil {
             mUpdateDialog.dismiss();
             mUpdateDialog = null;
         }
-//         mUpdateDialog = new UpdateDialog(context, data.upgradetype, new UpdateDialog.UpdateDialogCallBack() {
-//             @Override
-//             public void update() {
-//                 FaceShowBaseActivity.requestWriteAndReadPermission(new MyPermission(context, data, callBack));
-//             }
+         mUpdateDialog = new UpdateDialog(context, data.upgradetype, new UpdateDialog.UpdateDialogCallBack() {
+             @Override
+             public void update() {
+                 FaceShowBaseActivity.requestWriteAndReadPermission(new MyPermission(context, data, callBack));
+             }
+
+             @Override
+             public void cancel() {
+             }
+
+             @Override
+             public void exit() {
+                 if (callBack != null) {
+                     callBack.onExit();
+                 }
+             }
+         });
+         mUpdateDialog.setTitles(data.title, data.version);
+         mUpdateDialog.setContent(data.content);
+         mUpdateDialog.setCanceledOnTouchOutside(false);
+         mUpdateDialog.show();
+//       mUpdateDialog=new SystemUpdataDialog(context,data.content, data.upgradetype, new SystemUpdataDialog.UpdateDialogCallBack() {
+//           @Override
+//           public void update() {
+//                FaceShowBaseActivity.requestWriteAndReadPermission(new MyPermission(context, data, callBack));
+//           }
 //
-//             @Override
-//             public void cancel() {
-//             }
+//           @Override
+//           public void cancel() {
 //
-//             @Override
-//             public void exit() {
-//                 if (callBack != null) {
-//                     callBack.onExit();
-//                 }
-//             }
-//         });
-//         mUpdateDialog.setTitles(data.title, data.version);
-//         mUpdateDialog.setContent(data.content);
-//         mUpdateDialog.setCanceledOnTouchOutside(false);
-//         mUpdateDialog.show();
-       mUpdateDialog=new SystemUpdataDialog(context,data.content, data.upgradetype, new SystemUpdataDialog.UpdateDialogCallBack() {
-           @Override
-           public void update() {
-                FaceShowBaseActivity.requestWriteAndReadPermission(new MyPermission(context, data, callBack));
-           }
-
-           @Override
-           public void cancel() {
-
-           }
-
-           @Override
-           public void exit() {
-                if (callBack != null) {
-                    callBack.onExit();
-                }
-           }
-       });
+//           }
+//
+//           @Override
+//           public void exit() {
+//                if (callBack != null) {
+//                    callBack.onExit();
+//                }
+//           }
+//       });
         mUpdateDialog.setTitles(data.title, data.version);
         mUpdateDialog.setContent(data.content);
         mUpdateDialog.show();
