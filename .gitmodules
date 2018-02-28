@@ -1,3 +1,3 @@
 [submodule "libs/network"]
 	path = libs/network
-	url = git@gitee.com:yanxiu/yxnetworklib_android.git
+	url = git@github.com:caileiYanxiu/YXNetworkLib_Android.git
