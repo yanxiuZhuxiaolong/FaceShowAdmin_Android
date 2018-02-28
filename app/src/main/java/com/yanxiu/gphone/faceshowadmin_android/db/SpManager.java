@@ -18,7 +18,6 @@ public class SpManager {
     private static SharedPreferences mySharedPreferences = FSAApplication.getInstance().getApplicationContext()
             .getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
 
-
     private static final String USER_INFO = "userInfo";
     /**
      * 第一次启动
