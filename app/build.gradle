@@ -3,6 +3,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 
 android {
+
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
@@ -12,6 +13,7 @@ android {
         versionCode 2
         versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
         multiDexEnabled true
         flavorDimensions "1.0"
@@ -36,7 +38,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -55,7 +57,11 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     testCompile 'junit:junit:4.12'
+    compile project(':common_base')
+    compile project(':faceshow_ui_base')
+    compile project(':imagepicker')
     compile project(':libs:network')
+
     compile files('libs/eventbus-2.4.0.jar')
-    implementation files('libs/SaaS_AppAnalytics_Android_SDK_V4.0.12.jar')
+//    implementation filess('libs/SaaS_AppAnalytics_Android_SDK_V4.0.12.jar')
 }

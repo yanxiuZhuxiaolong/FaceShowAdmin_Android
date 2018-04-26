@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.classCircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
 import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
@@ -31,9 +30,11 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.UserMess
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
+import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
 import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -323,6 +324,12 @@ public class MainActivity extends FaceShowBaseActivity {
         }
     }
 
+    //TODO
+//    public void hideClassCircleRedDot() {
+//        if (mImgClassCircleRedCircle.getVisibility() == View.VISIBLE) {
+//            mImgClassCircleRedCircle.setVisibility(View.INVISIBLE);
+//        }
+//    }
     private void checkBottomBar(int index) {
         if (index >= 0 && index < mNavBarViews.length) {
             for (int i = 0; i < mNavBarViews.length; i++) {

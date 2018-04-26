@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.classCircle.response.ClassCircleResponse;
+import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.response.ClassCircleResponse;
 
 import java.util.ArrayList;
 

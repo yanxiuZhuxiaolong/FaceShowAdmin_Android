@@ -67,12 +67,13 @@ public abstract class RequestWithCookie extends RequestBase {
         return super.startRequest(clazz, baseCallback);
     }
 
-    @Override
-    protected OkHttpClient setClient() {
-
-
-        return addCookieByInterceptor();
-    }
+    //TODO
+//    @Override
+//    protected OkHttpClient setClient() {
+//
+//
+//        return addCookieByInterceptor();
+//    }
 
     private OkHttpClient addCookieByInterceptor() {
          /*添加Cookie*/

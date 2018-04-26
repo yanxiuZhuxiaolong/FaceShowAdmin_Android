@@ -26,13 +26,14 @@ import com.yanxiu.gphone.faceshowadmin_android.net.clazz.checkIn.SupplementalSig
 import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.

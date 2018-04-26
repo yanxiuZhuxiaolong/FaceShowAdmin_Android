@@ -1,8 +1,6 @@
 package com.yanxiu.gphone.faceshowadmin_android;
 
 import android.annotation.TargetApi;
-import android.app.Application;
-import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
@@ -15,12 +13,14 @@ import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
 import com.yanxiu.gphone.faceshowadmin_android.utils.CrashHandler;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 
+import org.litepal.LitePalApplication;
+
 /**
  *
  * Created by frc on 17-10-27.
  */
 
-public class FSAApplication extends Application {
+public class FSAApplication extends LitePalApplication {
     private static FSAApplication instance;
 
     public static FSAApplication getInstance() {
@@ -63,6 +63,5 @@ public class FSAApplication extends Application {
         UrlRepository.getInstance().setUrlBean(urlBean);
 
     }
-
 
 }

@@ -17,6 +17,33 @@ public class UrlBean implements Serializable {
     private String uploadServer;
     private String initializeUrl;
     private String mode;
+    private String chooseClassServer;
+    private String qiNiuServer;
+    private String imServer;
+
+    public String getChooseClassServer() {
+        return chooseClassServer;
+    }
+
+    public void setChooseClassServer(String chooseClassServer) {
+        this.chooseClassServer = chooseClassServer;
+    }
+
+    public String getQiNiuServer() {
+        return qiNiuServer;
+    }
+
+    public void setQiNiuServer(String qiNiuServer) {
+        this.qiNiuServer = qiNiuServer;
+    }
+
+    public String getImServer() {
+        return imServer;
+    }
+
+    public void setImServer(String imServer) {
+        this.imServer = imServer;
+    }
 
     public String getServer() {
         return server;

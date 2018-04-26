@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">common_base</string>
+    <!--publicloadlayout start-->
+    <string name="no_wrong_data">暂无课程</string>
+    <string name="net_data_error">无网络数据，请点击刷新</string>
+    <string name="retry">点击重试</string>
+    <string name="no_notify">暂无通知</string>
+
+    <!--publicloadlayout end-->
+
+    <string name="rationale_camera">此应用程序需要访问您的相机，以便您可以拍照.</string>
+    <string name="rationale_write_read">此应用程序需要读取sd卡权限，请前往设置.</string>
+    <string name="rationale_other">此应用程序需要申请使用权限，请前往设置.</string>
+
+    <string name="no_camera_permissions">相机权限被禁用，请在权限设置中开启</string>
+    <string name="no_storage_permissions">存储权限被禁用，请在权限设置中开启</string>
+</resources>

@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/color_EBEFF2">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/il_title"
@@ -24,21 +23,26 @@
             android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="top|start"
             android:hint="@string/send_class_circle_hint"
             android:lines="4"
-            android:gravity="top|start"
-            android:textCursorDrawable="@drawable/shape_fs_cursor"
+            android:maxLength="200"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_999999"
-            android:background="@null"
+            android:textCursorDrawable="@drawable/shape_fs_cursor"
             android:textSize="16dp" />
 
-        <ImageView
-            android:id="@+id/iv_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="90dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/selected_images_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
-
     </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/color_EBEFF2" />
 
 </LinearLayout>

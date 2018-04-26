@@ -8,6 +8,7 @@
 
     <string name="no_camera_permissions">相机权限被禁用，请在权限设置中开启</string>
     <string name="no_storage_permissions">存储权限被禁用，请在权限设置中开启</string>
+    <string name="data_refresh_fail">刷新数据失败</string>
 
 
     <!--PublicLoadLayout -->
@@ -212,5 +213,11 @@
     <string name="no_course">尚未发布课程</string>
     <string name="no_check_in">尚未设置签到</string>
     <string name="comment">评论(暂不支持表情)</string>
+    <string name="message">消息</string>
+    <string name="get_qiniu_token_error">获取七牛上传凭证失败</string>
+    <string name="sure">确定</string>
+    <string name="select">%1$s/%2$s</string>
+    <string name="new_message">%1$d条新消息</string>
+    <string name="publish">发布</string>
 
 </resources>

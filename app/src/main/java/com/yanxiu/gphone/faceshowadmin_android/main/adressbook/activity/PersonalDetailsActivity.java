@@ -23,10 +23,11 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.CornersImageTarget;
 import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.DecimalFormat;
 import java.util.UUID;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.

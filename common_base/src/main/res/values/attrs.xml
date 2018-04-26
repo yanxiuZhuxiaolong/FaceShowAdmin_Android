@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="WavesLayout">
+        <attr name="waves_alpha" format="integer" />
+        <attr name="waves_alpha_step" format="integer" />
+        <attr name="waves_framerate" format="integer" />
+        <attr name="waves_duration" format="integer" />
+        <attr name="waves_color" format="color" />
+        <attr name="waves_animend_alpha" format="integer" />
+        <attr name="waves_canshowwave" format="boolean" />
+        <attr name="waves_radius" format="dimension" />
+        <attr name="waves_radius_top_left" format="dimension" />
+        <attr name="waves_radius_top_right" format="dimension" />
+        <attr name="waves_radius_bottom_left" format="dimension" />
+        <attr name="waves_radius_bottom_right" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewfinderView">
+        <attr name="firstLineStr" format="string" />
+        <attr name="secondLineStr" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxLineTextLayout">
+        <attr name="maxLines" format="integer" />
+        <attr name="contentTextSize" format="dimension" />
+        <attr name="moreTextSize" format="dimension" />
+        <attr name="contentTextColor" format="color" />
+        <attr name="moreTextColor" format="color" />
+        <attr name="contentSpaceLineHeight" format="dimension" />
+        <attr name="moreTextMaginTop" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowImageView">
+        <attr name="shadowRound" format="dimension" />
+        <attr name="shadowSrc" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="NineGridView">
+        <attr name="ngv_singleImageSize" format="dimension" />
+        <attr name="ngv_singleImageRatio" format="float" />
+        <attr name="ngv_gridSpacing" format="dimension" />
+        <attr name="ngv_maxSize" format="integer" />
+        <attr name="ngv_mode" format="enum">
+            <enum name="fill" value="0" />
+            <enum name="grid" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

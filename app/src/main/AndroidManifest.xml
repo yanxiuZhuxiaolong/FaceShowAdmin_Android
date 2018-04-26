@@ -165,6 +165,23 @@
         <activity
             android:name=".task.activity.ReplyDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".newclasscircle.activity.ClassCircleDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newclasscircle.activity.ClassCircleMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newclasscircle.activity.PublishedMomentListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newclasscircle.activity.SendClassCircleActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".newclasscircle.ninegrid.preview.ImagePreviewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

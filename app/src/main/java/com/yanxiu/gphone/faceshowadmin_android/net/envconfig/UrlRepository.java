@@ -51,6 +51,27 @@ public class UrlRepository {
             return null;
         }
     }
+    public String getChooseClassServerr() {
+        if (mUrlBean != null) {
+            return mUrlBean.getChooseClassServer();
+        } else {
+            return null;
+        }
+    }
+    public String getqiNiuServer() {
+        if (mUrlBean != null) {
+            return mUrlBean.getQiNiuServer();
+        } else {
+            return null;
+        }
+    }
+    public String getimServer() {
+        if (mUrlBean != null) {
+            return mUrlBean.getImServer();
+        } else {
+            return null;
+        }
+    }
 
     public String getMode() {
         if (mUrlBean != null) {

@@ -19,7 +19,6 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.classCircle.dialog.ClassCircleDialog;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.dialog.ChooseSexDialog;
@@ -28,6 +27,7 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.response.Personal
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.util.UserMessageUpdateManager;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
+import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.dialog.ClassCircleDialog;
 import com.yanxiu.gphone.faceshowadmin_android.utils.CornersImageTarget;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 import com.yanxiu.gphone.faceshowadmin_android.utils.ToastUtil;

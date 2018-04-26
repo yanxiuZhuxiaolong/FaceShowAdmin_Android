@@ -12,8 +12,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
 import com.yanxiu.gphone.faceshowadmin_android.R;
-import com.yanxiu.gphone.faceshowadmin_android.classCircle.response.Comments;
+import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.response.Comments;
 
 import java.util.ArrayList;
 
@@ -80,12 +81,12 @@ public class ClassCircleCommentLayout extends RelativeLayout {
         mListView.setAdapter(adapter);
     }
 
-    private class CommentAdapter extends BaseAdapter {
+    private class CommentAdapter extends BaseAdapter{
 
         private Context mContext;
         private ArrayList<Comments> mData=new ArrayList<>();
 
-        CommentAdapter(Context context, ArrayList<Comments> list){
+        CommentAdapter(Context context,ArrayList<Comments> list){
             this.mContext=context;
             mData.clear();
             mData.addAll(list);
@@ -113,17 +114,17 @@ public class ClassCircleCommentLayout extends RelativeLayout {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             Comments comment=mData.get(position);
-            convertView= LayoutInflater.from(mContext).inflate(R.layout.adapter_classcircle_comment_item,null);
+            convertView=LayoutInflater.from(mContext).inflate(R.layout.adapter_classcircle_comment_item,null);
             TextView textView= (TextView) convertView.findViewById(R.id.tv_comment);
             String text="";
             if (comment.level.equals("1")){
                 if (comment.publisher!=null) {
-                    text="<b>"+comment.publisher.realName+"</b>: "+comment.content;
+                    text="<font color='#1da1f2'>"+comment.publisher.realName+"</font>: "+comment.content;
 //                    text = String.format(mContext.getString(R.string.comment_to_master), comment.publisher.realName, comment.content);
                 }
             }else {
                 if (comment.publisher != null) {
-                    text="<b>"+comment.publisher.realName+"</b>对"+"<b>"+comment.toUser.realName+"</b>: "+comment.content;
+                    text="<font color='#1da1f2'>"+comment.publisher.realName+"</font>回复"+"<font color='#1da1f2'>"+comment.toUser.realName+"</font>: "+comment.content;
 //                    text = String.format(mContext.getString(R.string.comment_to_user), comment.publisher.realName, comment.toUser.realName, comment.content);
                 }
             }

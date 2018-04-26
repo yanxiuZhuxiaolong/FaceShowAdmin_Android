@@ -79,7 +79,17 @@ public class FileUtils {
         }
         return fileContent;
     }
-
+    /**
+     * 获取文件后缀
+     *
+     * @param filePath 文件路径
+     * @return 文件后缀
+     */
+    public static String getFileSuffix(String filePath) {
+        File file = new File(filePath);
+        String fileName = file.getName();
+        return fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+    }
     public static String getFromAssets(Context context, String fileName) {
         try {
             InputStreamReader inputReader = new InputStreamReader(context.getAssets().open(fileName));

@@ -2,7 +2,6 @@ package com.yanxiu.gphone.faceshowadmin_android.customView;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.widget.ListView;
 
 /**
@@ -29,16 +28,16 @@ public class UnMoveListView extends ListView {
      * MeasureSpec.AT_MOST的意思就是子控件需要多大的控件就扩展到多大的空间
      * 之后在ScrollView中添加这个组件就OK了，同样的道理，ListView也适用。
      */
+    @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
                 MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
-
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return false;
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent ev) {
+//        return false;
+//    }
 }

@@ -15,10 +15,11 @@ import com.yanxiu.gphone.faceshowadmin_android.common.adapter.PhotoPagerAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.common.bean.PhotoDeleteBean;
 import com.yanxiu.gphone.faceshowadmin_android.customView.ZoomImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Canghaixiao.

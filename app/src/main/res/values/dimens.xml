@@ -47,4 +47,6 @@
     <dimen name="home_nav_bar_textsize">10dp</dimen>
     <!--首页tab end-->
     <dimen name="dialog_class_circle">157dp</dimen>
+    <dimen name="dialog_choose_pics">167dp</dimen>
+
 </resources>

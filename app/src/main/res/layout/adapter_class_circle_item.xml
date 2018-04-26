@@ -16,11 +16,12 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_head_img_bg"
                 android:layout_width="40dp"
-                android:layout_marginTop="31dp"
-                android:layout_height="10dp"/>
+                android:layout_height="10dp"
+                android:layout_marginTop="31dp" />
 
             <ImageView
                 android:id="@+id/iv_head_img"
@@ -54,19 +55,20 @@
                 app:contentTextColor="#333333"
                 app:contentTextSize="16dp"
                 app:maxLines="4"
-                app:moreTextColor="@color/color_0068bd"
+                app:moreTextColor="@color/color_1da1f2"
                 app:moreTextMaginTop="15dp"
                 app:moreTextSize="16dp" />
-
-            <ImageView
+            <com.yanxiu.gphone.faceshowadmin_android.newclasscircle.ninegrid.NineGridView
                 android:id="@+id/gv_imgs"
                 android:layout_width="match_parent"
                 android:layout_height="174dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/color_dadde0"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:ngv_mode="grid"
+                app:ngv_singleImageRatio="1.7" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -102,11 +104,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="38dp"
-                    android:paddingTop="10dp"
-                    android:background="@drawable/shape_class_circle_common_bg"
+                    android:background="@drawable/classcircle_like_comment"
                     android:orientation="vertical"
                     android:visibility="visible">
-                    <!--android:background="@drawable/classcircle_like_comment"-->
+
                     <com.yanxiu.gphone.faceshowadmin_android.customView.ClassCircleThumbView
                         android:id="@+id/cc_thumb"
                         android:layout_width="wrap_content"
@@ -138,8 +139,36 @@
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="35dp"
-                    android:background="@drawable/shape_class_circle_aime_normal_2"
+                    android:background="@drawable/shape_class_circle_aime_normal"
                     android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/tv_delete"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginEnd="3dp"
+                                android:background="@drawable/selector_classcircle_delete" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/class_circle_delete"
+                                android:textColor="#ffffff"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/tv_thumb"
@@ -160,6 +189,7 @@
                                 android:background="@drawable/selector_classcircle_like" />
 
                             <TextView
+                                android:id="@+id/tv_thumb_content"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
@@ -197,33 +227,6 @@
                         </LinearLayout>
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/tv_delete"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginEnd="3dp"
-                                android:background="@drawable/selector_classcircle_delete" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="@string/class_circle_delete"
-                                android:textColor="#ffffff"
-                                android:textSize="16dp" />
-                        </LinearLayout>
-                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -231,9 +234,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_marginTop="15dp"
-        android:background="#d7dde0" />
+
 </LinearLayout>
