@@ -1,4 +1,4 @@
-package com.yanxiu.gphone.faceshowadmin_android.main;
+package com.yanxiu.gphone.faceshowadmin_android.main.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +25,7 @@ public class MainFragmentTabAdapter extends BaseRecyclerViewAdapter {
 
     private Context mContext;
 
-    private ArrayList<MainTabBean> mList;
+    private ArrayList<com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean> mList;
     private MainFragmentRecyclerViewItemClickListener mListener;
 
     public MainFragmentTabAdapter(Context context, MainFragmentRecyclerViewItemClickListener listener) {
@@ -33,7 +33,7 @@ public class MainFragmentTabAdapter extends BaseRecyclerViewAdapter {
         mListener = listener;
     }
 
-    public void setData(ArrayList<MainTabBean> list) {
+    public void setData(ArrayList<com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean> list) {
         mList = list;
     }
 
@@ -52,7 +52,7 @@ public class MainFragmentTabAdapter extends BaseRecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final MainTabBean data = mList.get(position);
+        final com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean data = mList.get(position);
 
         ViewHolder holder2 = (ViewHolder) holder;
         holder2.name.setText(data.getName());

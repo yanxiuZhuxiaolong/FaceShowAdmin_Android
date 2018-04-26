@@ -38,9 +38,9 @@
             android:id="@+id/tab_main"
             layout="@layout/home_nav_bar_1_layout" />
 
-        <include
-            android:id="@+id/tab_course"
-            layout="@layout/home_nav_bar_2_layout" />
+        <!--<include-->
+            <!--android:id="@+id/tab_course"-->
+            <!--layout="@layout/home_nav_bar_2_layout" />-->
 
 
         <include
@@ -50,6 +50,10 @@
         <include
             android:id="@+id/tab_class_circle"
             layout="@layout/home_nav_bar_4_layout" />
+
+        <include
+            android:id="@+id/tab_im"
+            layout="@layout/home_nav_bar_5_layout" />
     </LinearLayout>
 
 </LinearLayout>

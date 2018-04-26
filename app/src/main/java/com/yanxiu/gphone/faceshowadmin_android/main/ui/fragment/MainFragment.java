@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,14 +21,16 @@ import com.yanxiu.gphone.faceshowadmin_android.MainActivity;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInDetailActivity;
 import com.yanxiu.gphone.faceshowadmin_android.checkIn.activity.CheckInNotesActivity;
+import com.yanxiu.gphone.faceshowadmin_android.course.activity.CourseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.interf.MainFragmentRecyclerViewItemClickListener;
 import com.yanxiu.gphone.faceshowadmin_android.main.FullyLinearLayoutManager;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCheckInAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentCourseAdapter;
-import com.yanxiu.gphone.faceshowadmin_android.main.MainFragmentTabAdapter;
+
 import com.yanxiu.gphone.faceshowadmin_android.main.MainTabBean;
+import com.yanxiu.gphone.faceshowadmin_android.main.adapter.MainFragmentTabAdapter;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.AdressBookActivity;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseArrangeBean;
 import com.yanxiu.gphone.faceshowadmin_android.main.bean.CourseBean;
@@ -70,7 +73,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     private MainFragmentCourseAdapter mCourseAdapter;
 
     private CourseArrangeBean mData;
-    private ArrayList mTabList = new ArrayList(5);
+
+    private final int TAB_LIST_SIZE=6;
+    private ArrayList mTabList = new ArrayList(TAB_LIST_SIZE);
     private ArrayList<TodaySignInBean> mCheckInList = new ArrayList();
     private ArrayList<CourseBean> mCourseList = new ArrayList();
 
@@ -190,9 +195,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         mTab_recyclerView = mRootView.findViewById(R.id.tab_recyclerView);
 
         mTabAdapter = new MainFragmentTabAdapter(getActivity(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mTab_recyclerView.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),4,GridLayoutManager.VERTICAL,false);
+        mTab_recyclerView.setLayoutManager(gridLayoutManager);
 
     }
 
@@ -234,11 +238,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         MainTabBean mb5 = new MainTabBean();
         mb5.setImgResourcesId(R.drawable.resources_img);
         mb5.setName("资源管理");
+        MainTabBean mb6 = new MainTabBean();
+        mb6.setImgResourcesId(R.drawable.resources_img);
+        mb6.setName("课程管理");
         mTabList.add(mb1);
         mTabList.add(mb2);
         mTabList.add(mb3);
         mTabList.add(mb4);
         mTabList.add(mb5);
+        mTabList.add(mb6);
     }
 
     private void requestData() {
@@ -303,6 +311,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             case 4:
                 EventUpdate.onEnterResource(getContext());
                 ResourceMangerActivity.invoke(getActivity());
+                break;
+            case 5:
+                //跳转到课程页面
+                EventUpdate.onEnterCourse(getContext());
+                CourseActivity.invoke(getActivity());
                 break;
             default:
 

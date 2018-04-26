@@ -49,8 +49,8 @@ public class MainActivity extends FaceShowBaseActivity {
     DrawerLayout mDrawerLayout;
     @BindView(R.id.tab_main)
     View tabMain;
-    @BindView(R.id.tab_course)
-    View tabCourse;
+//    @BindView(R.id.tab_course)
+//    View tabCourse;
     @BindView(R.id.tab_task)
     View tabTask;
     @BindView(R.id.tab_class_circle)
@@ -70,8 +70,11 @@ public class MainActivity extends FaceShowBaseActivity {
     private final String TAB_TASK = "tab_task";
     private final String TAB_COURSE = "tab_course";
     private final String TAB_CLASS_CIRCLE = "tab_class_circle";
+    private final String TAB_IM = "tab_im";
     private PublicLoadLayout mPublicLoadLayou;
     private MainFragment mMainFragment;
+    //插入im fragment
+//    private MainFragment mMainFragment;
 
     private final int mNavBarViewsCount = 4;
     private View[] mNavBarViews = new View[mNavBarViewsCount];
@@ -136,9 +139,10 @@ public class MainActivity extends FaceShowBaseActivity {
         mSelNavTxtColor = getResources().getColor(R.color.color_0065b8);
         mNormalNavTxtColor = getResources().getColor(R.color.color_aab1bd);
         mNavBarViews[0] = findViewById(R.id.tab_main);
-        mNavBarViews[1] = findViewById(R.id.tab_course);
-        mNavBarViews[2] = findViewById(R.id.tab_task);
-        mNavBarViews[3] = findViewById(R.id.tab_class_circle);
+//        mNavBarViews[1] = findViewById(R.id.tab_course);
+        mNavBarViews[1] = findViewById(R.id.tab_task);
+        mNavBarViews[2] = findViewById(R.id.tab_class_circle);
+        mNavBarViews[3] = findViewById(R.id.tab_im);
         for (int i = 0; i < mNavBarViews.length; i++) {
             mNavIconViews[i] = mNavBarViews[i].findViewById(R.id.nav_icon);
             mNavTextViews[i] = mNavBarViews[i].findViewById(R.id.nav_txt);
@@ -255,7 +259,7 @@ public class MainActivity extends FaceShowBaseActivity {
         this.finish();
     }
 
-    @OnClick({R.id.tab_main, R.id.tab_course, R.id.tab_task, R.id.tab_class_circle, R.id.exit})
+    @OnClick({R.id.tab_main, R.id.tab_task, R.id.tab_class_circle,R.id.tab_im, R.id.exit})
     public void onViewClicked(View view) {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
@@ -268,26 +272,26 @@ public class MainActivity extends FaceShowBaseActivity {
                 mNavIconViews[3].setEnabled(true);
                 changeTabFragment(TAB_MAIN, 0);
                 break;
-            case R.id.tab_course:
+            case R.id.tab_task:
                 mNavIconViews[0].setEnabled(true);
                 mNavIconViews[1].setEnabled(false);
                 mNavIconViews[2].setEnabled(true);
                 mNavIconViews[3].setEnabled(true);
-                changeTabFragment(TAB_COURSE, 1);
-                break;
-            case R.id.tab_task:
-                mNavIconViews[0].setEnabled(true);
-                mNavIconViews[1].setEnabled(true);
-                mNavIconViews[2].setEnabled(false);
-                mNavIconViews[3].setEnabled(true);
-                changeTabFragment(TAB_TASK, 2);
+                changeTabFragment(TAB_TASK, 1);
                 break;
             case R.id.tab_class_circle:
                 mNavIconViews[0].setEnabled(true);
                 mNavIconViews[1].setEnabled(true);
+                mNavIconViews[2].setEnabled(false);
+                mNavIconViews[3].setEnabled(true);
+                changeTabFragment(TAB_CLASS_CIRCLE, 2);
+                break;
+            case R.id.tab_im:
+                mNavIconViews[0].setEnabled(true);
+                mNavIconViews[1].setEnabled(true);
                 mNavIconViews[2].setEnabled(true);
                 mNavIconViews[3].setEnabled(false);
-                changeTabFragment(TAB_CLASS_CIRCLE, 3);
+                changeTabFragment(TAB_IM, 3);
                 break;
             case R.id.exit:
                 exitApp();
@@ -307,17 +311,20 @@ public class MainActivity extends FaceShowBaseActivity {
         mLastSelectTabIndex = index;
     }
 
+
     private Fragment createdNewFragment(String tab) {
         switch (tab) {
             case TAB_MAIN:
                 mMainFragment = new MainFragment();
                 return mMainFragment;
-            case TAB_COURSE:
-                return new CourseFragment();
+//            case TAB_COURSE:
+//                return new CourseFragment();
             case TAB_TASK:
                 return new TaskFragment();
             case TAB_CLASS_CIRCLE:
                 return new ClassCircleFragment();
+            case TAB_IM:
+                throw new NullPointerException("还未引入im");
             default:
                 return null;
         }
