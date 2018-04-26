@@ -180,7 +180,7 @@ public class MainActivity extends FaceShowBaseActivity {
         mMainFragment = new MainFragment();
         fragmentManager.beginTransaction().add(R.id.fragment_content, mMainFragment, TAB_MAIN).commit();
 
-        // TODO: 2018/4/26  设置imTopicListFragment 的回调  
+        // TODO: 2018/4/26  设置imTopicListFragment 的回调 git 
     }
 
     public void onEventMainThread(UserMessageChangedBean bean) {
