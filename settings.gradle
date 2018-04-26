@@ -1,1 +1,1 @@
-include ':app', 'libs:network'
+include ':app', 'libs:network', ':faceshow_ui_base', ':im_core', ':imagepicker', ':common_base', ':im_ui'

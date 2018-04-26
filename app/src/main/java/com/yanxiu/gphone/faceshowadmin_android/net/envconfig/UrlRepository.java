@@ -63,4 +63,33 @@ public class UrlRepository {
     public void setUrlBean(UrlBean urlBean) {
         this.mUrlBean = urlBean;
     }
+
+
+
+    public String getChooseClassServer() {
+        if (mUrlBean != null) {
+            return mUrlBean.getChooseClassServer();
+        } else {
+            return null;
+        }
+    }
+
+
+    public String getImServer(){
+        if (mUrlBean != null) {
+            return mUrlBean.getImServer();
+        } else {
+            return null;
+        }
+    }
+
+
+    public String getQiNiuServer() {
+        if (mUrlBean != null) {
+            return mUrlBean.getQiNiuServer();
+        } else {
+            return null;
+        }
+    }
+
 }

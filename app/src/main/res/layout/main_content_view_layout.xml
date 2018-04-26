@@ -50,10 +50,52 @@
         <include
             android:id="@+id/tab_class_circle"
             layout="@layout/home_nav_bar_4_layout" />
+        
 
-        <include
+        <LinearLayout
             android:id="@+id/tab_im"
-            layout="@layout/home_nav_bar_5_layout" />
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/home_bottom_bar_paddingbottom"
+            android:layout_marginTop="@dimen/home_bottom_bar_paddingtop">
+            <RelativeLayout
+                android:layout_width="@dimen/nav_icon_width"
+                android:layout_height="@dimen/nav_icon_width">
+                <ImageView
+                    android:id="@+id/nav_icon"
+                    android:layout_width="@dimen/nav_icon_width"
+                    android:layout_height="@dimen/nav_icon_width"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:id="@+id/im_red_circle"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/shape_red_circle"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/nav_txt"
+                style="@style/HomeNavBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/home_nav_bar_marginleft"
+                android:gravity="center_vertical"
+                android:text="@string/talk"/>
+        </LinearLayout>
+
+        <!--<include-->
+            <!--android:id="@+id/tab_im"-->
+            <!--layout="@layout/home_nav_bar_5_layout" />-->
     </LinearLayout>
 
 </LinearLayout>
