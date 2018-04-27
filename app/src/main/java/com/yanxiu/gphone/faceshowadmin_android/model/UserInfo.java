@@ -1,5 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.model;
 
+import com.test.yanxiu.im_core.http.common.ImTokenInfo;
+
 /**
  * Created by Canghaixiao.
  * Time : 2017/9/14 17:26.
@@ -32,6 +34,15 @@ public class UserInfo {
     }
 
     public class Info {
+        private ImTokenInfo imTokenInfo;
+
+        public ImTokenInfo getImTokenInfo() {
+            return imTokenInfo;
+        }
+
+        public void setImTokenInfo(ImTokenInfo imTokenInfo) {
+            this.imTokenInfo = imTokenInfo;
+        }
 
         private int id;
         private int userId;

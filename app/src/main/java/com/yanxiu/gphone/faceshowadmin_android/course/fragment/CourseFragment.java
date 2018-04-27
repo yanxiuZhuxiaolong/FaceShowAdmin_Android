@@ -56,7 +56,7 @@ public class CourseFragment extends FaceShowBaseFragment {
         mPublicLoadLayout.setContentView(R.layout.fragment_course_layout);
         unbinder = ButterKnife.bind(this, mPublicLoadLayout);
         mTitleLayoutLeftImg.setVisibility(View.VISIBLE);
-        mTitleLayoutLeftImg.setImageResource(R.drawable.selector_main_leftdrawer);
+//        mTitleLayoutLeftImg.setImageResource(R.drawable.selector_main_leftdrawer);
         mTitleLayoutTitle.setText(R.string.course);
         mTitleLayoutTitle.setVisibility(View.VISIBLE);
         mPublicLoadLayout.setRetryButtonOnclickListener(new View.OnClickListener() {
@@ -140,6 +140,6 @@ public class CourseFragment extends FaceShowBaseFragment {
 
     @OnClick(R.id.title_layout_left_img)
     public void onViewClicked() {
-        ((MainActivity) getActivity()).openLeftDrawer();
+        getActivity().finish();
     }
 }

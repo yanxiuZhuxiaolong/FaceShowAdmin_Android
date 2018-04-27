@@ -88,6 +88,12 @@ public class EventUpdate {
     public static void onEnterResource(Context context) {
         TCAgent.onEvent(context, "进入资源管理");
     }
+    /**
+     * 首页
+     */
+    public static void onEnterCourse(Context context) {
+        TCAgent.onEvent(context, "进入课程管理");
+    }
 
     /**
      * 通知管理页面

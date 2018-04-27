@@ -182,6 +182,7 @@
         <activity
             android:name=".newclasscircle.ninegrid.preview.ImagePreviewActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".course.activity.CourseActivity"></activity>
     </application>
 
 </manifest>

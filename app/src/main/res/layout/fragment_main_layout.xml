@@ -68,6 +68,7 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="14dp"
             android:layout_marginTop="15dp">
@@ -142,7 +143,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tab_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:clipToPadding="false"
         android:paddingLeft="@dimen/maintab_recyclerView_marginleft" />
 
@@ -159,6 +160,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:orientation="horizontal">
@@ -255,7 +257,7 @@
 
             </LinearLayout>
 
-            <include layout="@layout/big_line" />
+            <!--<include layout="@layout/big_line" />-->
 
             <TextView
                 android:layout_width="match_parent"
