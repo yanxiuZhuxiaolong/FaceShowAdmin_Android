@@ -74,7 +74,7 @@ import top.zibin.luban.OnCompressListener;
 /**
  * @author frc
  *         Time : 2018/1/12
- *         Function :
+ *         Function 发布朋友圈页面:
  */
 public class SendClassCircleActivity extends FaceShowBaseActivity implements View.OnClickListener, TextWatcher {
 
@@ -174,7 +174,7 @@ public class SendClassCircleActivity extends FaceShowBaseActivity implements Vie
         mBackView.setText(R.string.cancle);
         mFunctionView.setText(R.string.send);
         mFunctionView.setEnabled(false);
-        mFunctionView.setTextColor(ContextCompat.getColor(mContext, R.color.color_999999));
+        mFunctionView.setTextColor(ContextCompat.getColor(mContext, R.color.color_0068BD));
         mContentView.setText("");
 
         //生成添加图片item的数据
@@ -373,7 +373,7 @@ public class SendClassCircleActivity extends FaceShowBaseActivity implements Vie
     private void openPublishButton(boolean bool) {
         if (bool) {
             mFunctionView.setEnabled(true);
-            mFunctionView.setTextColor(ContextCompat.getColor(mContext, R.color.color_1da1f2));
+            mFunctionView.setTextColor(ContextCompat.getColor(mContext, R.color.color_0068BD));
         } else {
             mFunctionView.setEnabled(false);
             mFunctionView.setTextColor(ContextCompat.getColor(mContext, R.color.color_999999));
