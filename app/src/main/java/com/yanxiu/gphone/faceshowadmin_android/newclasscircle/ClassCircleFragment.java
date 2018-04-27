@@ -208,7 +208,7 @@ public class ClassCircleFragment extends FaceShowBaseFragment implements LoadMor
         mTitleView = (TextView) rootView.findViewById(R.id.title_layout_title);
         mFunctionView = (TextView) rootView.findViewById(R.id.title_layout_right_txt);
         mFunctionView.setText(R.string.publish);
-        mFunctionView.setTextColor(ContextCompat.getColor(ClassCircleFragment.this.getContext(), R.color.color_1da1f2));
+        mFunctionView.setTextColor(ContextCompat.getColor(ClassCircleFragment.this.getContext(), R.color.color_0068BD));
         mFunctionView.setVisibility(View.VISIBLE);
         mTvSureComment = (TextView) rootView.findViewById(R.id.tv_sure);
         mCommentLayout = (RelativeLayout) rootView.findViewById(R.id.ll_edit);
