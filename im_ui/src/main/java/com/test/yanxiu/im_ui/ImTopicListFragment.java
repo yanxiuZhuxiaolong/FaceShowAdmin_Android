@@ -108,6 +108,10 @@ public class ImTopicListFragment extends FaceShowBaseFragment {
         return rootView;
     }
 
+    public void initData(){
+        setupData();
+    }
+
     @Override
     public void onDestroyView() {
         stopMqttService();
@@ -147,17 +151,17 @@ public class ImTopicListFragment extends FaceShowBaseFragment {
         mTitleLayout.setLeftView(mNaviLeftImageView);
 
         // set navi right
-        mNaviRightTextView = v.findViewById(R.id.navi_right_textview);
-        mNaviRightTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //事件统计 点击通讯录
-                EventUpdate.onClickContactEvent(getActivity());
-                Intent intent = new Intent(ImTopicListFragment.this.getContext(), ContactsActivity.class);
-                getActivity().startActivityForResult(intent, Constants.IM_REQUEST_CODE_CONTACT);
-            }
-        });
-        mTitleLayout.setRightView(mNaviRightTextView);
+//        mNaviRightTextView = v.findViewById(R.id.navi_right_textview);
+//        mNaviRightTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //事件统计 点击通讯录
+//                EventUpdate.onClickContactEvent(getActivity());
+//                Intent intent = new Intent(ImTopicListFragment.this.getContext(), ContactsActivity.class);
+//                getActivity().startActivityForResult(intent, Constants.IM_REQUEST_CODE_CONTACT);
+//            }
+//        });
+//        mTitleLayout.setRightView(mNaviRightTextView);
 
         // set topic list
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_refresh_layout);

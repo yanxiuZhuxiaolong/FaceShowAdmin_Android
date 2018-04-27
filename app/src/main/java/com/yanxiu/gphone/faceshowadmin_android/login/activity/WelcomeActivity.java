@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 
+import com.test.yanxiu.im_core.Constants;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.FSAApplication;
@@ -198,6 +199,7 @@ public class WelcomeActivity extends FaceShowBaseActivity {
             public void onSuccess(RequestBase request, GetUserInfoResponse ret) {
                 if (ret.getCode() == 0) {
                     UserInfo.getInstance().setInfo(ret.getData());
+
                 } else {
                     UserInfo.getInstance().setInfo(SpManager.getUserInfo());
                 }

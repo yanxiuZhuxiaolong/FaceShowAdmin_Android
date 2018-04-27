@@ -132,6 +132,10 @@ public class MainActivity extends FaceShowBaseActivity {
         setMainContentView();
         UpdateUtil.Initialize(this, false);
         EventBus.getDefault().register(this);
+
+        //im 信息获取
+        com.test.yanxiu.im_ui.Constants.imId=SpManager.getUserInfo().getImTokenInfo().imMember.imId;
+        com.test.yanxiu.im_ui.Constants.imToken=SpManager.getUserInfo().getImTokenInfo().imToken;
     }
 
     @Override
@@ -249,13 +253,13 @@ public class MainActivity extends FaceShowBaseActivity {
 
     private void toClassHomePage() {
         EventUpdate.onMainClass(mContext);
-        if (SpManager.getCurrentClassInfo()!=null) {
+        if (SpManager.getCurrentClassInfo() != null) {
             mNavIconViews[0].setEnabled(false);
             mNavIconViews[1].setEnabled(true);
             mNavIconViews[2].setEnabled(true);
             mNavIconViews[3].setEnabled(true);
             changeTabFragment(TAB_MAIN, 0);
-        }else {
+        } else {
             mDrawerLayout.closeDrawer(mLeftDrawerLayout);
         }
     }
@@ -328,6 +332,21 @@ public class MainActivity extends FaceShowBaseActivity {
         if (mLastSelectTabIndex == index)
             return;
         checkBottomBar(index);
+//        switch (tabName) {
+//            case TAB_MAIN:
+//                fragmentManager.beginTransaction().replace(R.id.fragment_content,)
+//                break;
+//            case TAB_TASK:
+//                break;
+//            case TAB_CLASS_CIRCLE:
+//                break;
+//            case TAB_IM:
+//                break;
+//            default:
+//                break;
+//        }
+
+
         fragmentManager.beginTransaction().
                 replace(R.id.fragment_content, fragmentManager.findFragmentByTag(tabName) != null ?
                         fragmentManager.findFragmentByTag(tabName) : createdNewFragment(tabName)).commit();

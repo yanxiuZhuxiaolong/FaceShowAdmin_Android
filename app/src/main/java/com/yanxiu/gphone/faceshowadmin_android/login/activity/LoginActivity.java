@@ -235,12 +235,6 @@ public class LoginActivity extends FaceShowBaseActivity {
                     SpManager.saveUserInfo(userInfoStr);
                     UserInfo.getInstance().setInfo(ret.getData());
                     SpManager.saveClassListInfo(data);
-
-                    //im 登陆相关参数
-                    Constants.imId = SpManager.getUserInfo().getImTokenInfo().imMember.imId;
-                    Constants.imToken =  SpManager.getUserInfo().getImTokenInfo().imToken;
-                    Constants.imAvatar =  SpManager.getUserInfo().getImTokenInfo().imMember.avatar;
-
                     if (data.getClazsInfos().size() == 0) {
                         MainActivity.invoke(activity,null);
                     } else if (data.getClazsInfos().size() == 1) {

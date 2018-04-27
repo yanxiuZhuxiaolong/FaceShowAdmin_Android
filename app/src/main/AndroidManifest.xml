@@ -183,6 +183,11 @@
             android:name=".newclasscircle.ninegrid.preview.ImagePreviewActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".course.activity.CourseActivity"></activity>
+
+
+        <!--IM -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <service android:name="com.test.yanxiu.im_core.mqtt.MqttService" />
     </application>
 
 </manifest>

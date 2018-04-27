@@ -2,7 +2,7 @@
     android:id="@+id/tab_item_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="100dp"
+    android:layout_height="93dp"
     android:gravity="center">
 
     <ImageView

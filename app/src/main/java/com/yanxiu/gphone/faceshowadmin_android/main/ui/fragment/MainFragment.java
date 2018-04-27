@@ -238,7 +238,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         mb5.setImgResourcesId(R.drawable.resources_img);
         mb5.setName("资源管理");
         MainTabBean mb6 = new MainTabBean();
-        mb6.setImgResourcesId(R.drawable.resources_img);
+        mb6.setImgResourcesId(R.drawable.course_img);
         mb6.setName("课程管理");
         mTabList.add(mb1);
         mTabList.add(mb2);
