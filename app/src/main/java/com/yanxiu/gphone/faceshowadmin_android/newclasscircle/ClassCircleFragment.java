@@ -860,7 +860,7 @@ public class ClassCircleFragment extends FaceShowBaseFragment implements LoadMor
                 public void onClick(View view) {
                     dismissPopupWindow();
 //                    discardMoment(data);
-                    startDeleteRequest(mMomentPosition,data.get(mMomentPosition));
+                    startDeleteRequest(mMomentPosition,data.get(mMomentPosition-1));
                 }
             });
             (pop.findViewById(R.id.tv_cancel)).setOnClickListener(new View.OnClickListener() {

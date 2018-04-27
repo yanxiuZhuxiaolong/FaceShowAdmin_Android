@@ -8,13 +8,28 @@
     android:duplicateParentState="true"
     android:gravity="center"
     android:orientation="vertical">
+    <!--android:layout_margin="@dimen/home_nav_bar_margin"-->
+    <!--android:background="@drawable/home_nav_bar_selecter"-->
 
-    <ImageView
-        android:id="@+id/nav_icon"
-        android:layout_width="@dimen/nav_icon_width"
-        android:layout_height="@dimen/nav_icon_width"
-        android:scaleType="centerCrop"
-        android:src="@drawable/selector_friend_circle" />
+    <RelativeLayout
+        android:layout_width="25dp"
+        android:layout_height="25dp">
+
+        <ImageView
+            android:id="@+id/nav_icon"
+            android:layout_width="@dimen/nav_icon_width"
+            android:layout_height="@dimen/nav_icon_width"
+            android:scaleType="centerCrop"
+            android:src="@drawable/selector_friend_circle" />
+        <ImageView
+            android:id="@+id/img_class_circle_red_circle"
+            android:layout_alignParentEnd="true"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:visibility="gone"
+            android:src="@drawable/shape_red_circle"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/nav_txt"

@@ -67,7 +67,7 @@ public class MainActivity extends FaceShowBaseActivity {
     @BindView(R.id.exit)
     TextView mExitView;
 
-
+    private ImageView mImgClassCircleRedCircle;
     private Context mContext;
     private final String TAB_MAIN = "tab_main";
     private final String TAB_TASK = "tab_task";
@@ -145,6 +145,7 @@ public class MainActivity extends FaceShowBaseActivity {
     }
 
     private void initBottomBar() {
+        mImgClassCircleRedCircle = (ImageView) findViewById(R.id.img_class_circle_red_circle);
         mSelNavTxtColor = getResources().getColor(R.color.color_0065b8);
         mNormalNavTxtColor = getResources().getColor(R.color.color_aab1bd);
         mNavBarViews[0] = findViewById(R.id.tab_main);
@@ -307,6 +308,9 @@ public class MainActivity extends FaceShowBaseActivity {
                 changeTabFragment(TAB_TASK, 1);
                 break;
             case R.id.tab_class_circle:
+                if (mImgClassCircleRedCircle.getVisibility() == View.VISIBLE) {
+                    mImgClassCircleRedCircle.setVisibility(View.GONE);
+                }
                 mNavIconViews[0].setEnabled(true);
                 mNavIconViews[1].setEnabled(true);
                 mNavIconViews[2].setEnabled(false);
@@ -374,12 +378,11 @@ public class MainActivity extends FaceShowBaseActivity {
         }
     }
 
-    //TODO
-//    public void hideClassCircleRedDot() {
-//        if (mImgClassCircleRedCircle.getVisibility() == View.VISIBLE) {
-//            mImgClassCircleRedCircle.setVisibility(View.INVISIBLE);
-//        }
-//    }
+    public void hideClassCircleRedDot() {
+        if (mImgClassCircleRedCircle.getVisibility() == View.VISIBLE) {
+            mImgClassCircleRedCircle.setVisibility(View.INVISIBLE);
+        }
+    }
     private void checkBottomBar(int index) {
         if (index >= 0 && index < mNavBarViews.length) {
             for (int i = 0; i < mNavBarViews.length; i++) {

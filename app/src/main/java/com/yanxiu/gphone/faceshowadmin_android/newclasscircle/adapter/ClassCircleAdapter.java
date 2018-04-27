@@ -460,23 +460,23 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             classCircleViewHolder.mCommentView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        if (checkIsThumb(moments.likes)) {
-                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_80);
-                        } else {
-                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_right);
-                        }
-                    } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                        if (checkIsThumb(moments.likes)) {
-                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal_80);
-                        } else {
-                            if (isSelf(moments)) {
-                                classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal);
-                            } else {
-                                classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal2);
-                            }
-                        }
-                    }
+//                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                        if (checkIsThumb(moments.likes)) {
+//                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_80);
+//                        } else {
+//                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_right);
+//                        }
+//                    } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+//                        if (checkIsThumb(moments.likes)) {
+//                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal_80);
+//                        } else {
+//                            if (isSelf(moments)) {
+//                                classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal);
+//                            } else {
+//                                classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal2);
+//                            }
+//                        }
+//                    }
 
                     return false;
                 }
@@ -499,15 +499,15 @@ public class ClassCircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             classCircleViewHolder.mThumbView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_left);
-                    } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                        if (isSelf(moments)) {
-                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal);
-                        } else {
-                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal2);
-                        }
-                    }
+//                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                        classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_press_left);
+//                    } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+//                        if (isSelf(moments)) {
+//                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal);
+//                        } else {
+//                            classCircleViewHolder.mAnimLayout.setBackgroundResource(R.drawable.shape_class_circle_aime_normal2);
+//                        }
+//                    }
                     return false;
                 }
             });
