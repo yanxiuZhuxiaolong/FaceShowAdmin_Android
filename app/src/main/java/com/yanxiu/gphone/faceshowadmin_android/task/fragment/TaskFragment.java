@@ -88,7 +88,9 @@ public class TaskFragment extends FaceShowBaseFragment {
         }
     };
 
-
+    public void refresh(){
+        getTasks();
+    }
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPublicLoadLayout = new PublicLoadLayout(getContext());

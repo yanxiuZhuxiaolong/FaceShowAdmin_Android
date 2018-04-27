@@ -73,7 +73,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     private CourseArrangeBean mData;
 
-    private final int TAB_LIST_SIZE=6;
+    private final int TAB_LIST_SIZE = 6;
     private ArrayList mTabList = new ArrayList(TAB_LIST_SIZE);
     private ArrayList<TodaySignInBean> mCheckInList = new ArrayList();
     private ArrayList<CourseBean> mCourseList = new ArrayList();
@@ -104,6 +104,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
 
     private void initData() {
         initTabData();
+        requestData();
+    }
+
+    public void refresh() {
         requestData();
     }
 
@@ -194,7 +198,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
         mTab_recyclerView = mRootView.findViewById(R.id.tab_recyclerView);
 
         mTabAdapter = new MainFragmentTabAdapter(getActivity(), this);
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getActivity(),4,GridLayoutManager.VERTICAL,false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4, GridLayoutManager.VERTICAL, false);
         mTab_recyclerView.setLayoutManager(gridLayoutManager);
 
     }
@@ -366,7 +370,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
     }
 
 
-
     public CourseArrangeBean getmData() {
         return mData;
     }
@@ -416,8 +419,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Main
             if (resultCode == RESULT_OK) {
                 requestData();
             }
-        }else if (TO_ADRESS_BOOK ==requestCode){
-            if (resultCode==RESULT_OK){
+        } else if (TO_ADRESS_BOOK == requestCode) {
+            if (resultCode == RESULT_OK) {
                 requestData();
             }
         }

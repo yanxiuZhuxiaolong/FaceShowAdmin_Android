@@ -25,6 +25,7 @@ import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
+import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
 import com.yanxiu.gphone.faceshowadmin_android.course.fragment.CourseFragment;
 import com.yanxiu.gphone.faceshowadmin_android.customView.PublicLoadLayout;
@@ -44,6 +45,7 @@ import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
 
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -98,6 +100,7 @@ public class MainActivity extends FaceShowBaseActivity {
 
 
     private FragmentManager fragmentManager;
+    private ArrayList<Fragment> fragments;
 
     private DrawerLayout.DrawerListener mDrawerToggle = new DrawerLayout.DrawerListener() {
         @Override
@@ -267,12 +270,26 @@ public class MainActivity extends FaceShowBaseActivity {
 
     private void initFragments() {
         fragmentManager = getSupportFragmentManager();
+
+        fragments=new ArrayList<>(4);
         mMainFragment = new MainFragment();
         mImTopicListFragment = new ImTopicListFragment();
         mTaskFragment = new TaskFragment();
         mClassCircleFragment = new ClassCircleFragment();
+
+        fragments.add(mMainFragment);
+        fragments.add(mTaskFragment);
+        fragments.add(mClassCircleFragment);
+        fragments.add(mImTopicListFragment);
+
+
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_content, mMainFragment).commit();
+        for (Fragment fragment : fragments) {
+            fragmentTransaction.add(R.id.fragment_content,fragment).hide(fragment);
+        }
+        fragmentTransaction.show(mMainFragment);
+        fragmentTransaction.commit();
+
         // 新消息提示监听
         mImTopicListFragment.setNewMessageListener(new ImTopicListFragment.NewMessageListener() {
             @Override
@@ -416,24 +433,31 @@ public class MainActivity extends FaceShowBaseActivity {
         if (mLastSelectTabIndex == index)
             return;
         checkBottomBar(index);
-//        switch (tabName) {
-//            case TAB_MAIN:
-//                fragmentManager.beginTransaction().replace(R.id.fragment_content,)
-//                break;
-//            case TAB_TASK:
-//                break;
-//            case TAB_CLASS_CIRCLE:
-//                break;
-//            case TAB_IM:
-//                break;
-//            default:
-//                break;
-//        }
-
-
-        fragmentManager.beginTransaction().
-                replace(R.id.fragment_content, fragmentManager.findFragmentByTag(tabName) != null ?
-                        fragmentManager.findFragmentByTag(tabName) : createdNewFragment(tabName)).commit();
+        //采用hide show 的方式 切换fragment
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        //隐藏上一个界面
+        transaction.hide(fragments.get(mLastSelectTabIndex));
+        //根据点击情况显示目标界面 并执行数据刷新
+        switch (tabName) {
+            case TAB_MAIN:
+                transaction.show(mMainFragment);
+                mMainFragment.refresh();
+                break;
+            case TAB_TASK:
+                transaction.show(mTaskFragment);
+                mTaskFragment.refresh();
+                break;
+            case TAB_CLASS_CIRCLE:
+                transaction.show(mClassCircleFragment);
+                mClassCircleFragment.toRefresh();
+                break;
+            case TAB_IM:
+                transaction.show(mImTopicListFragment);
+                break;
+            default:
+                break;
+        }
+        transaction.commit();
         mLastSelectTabIndex = index;
     }
 
