@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">im_ui</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacts">通讯录</string>
+    <string name="im_ui_sure">确定</string>
+</resources>

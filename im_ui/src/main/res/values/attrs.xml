@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundCornerImageView">
+        <attr name="radius" format="dimension"/>
+        <attr name="over_color" format="color"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_eceff2"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/color_white">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@null"
+            android:src="@drawable/selector_title_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/contacts"
+            android:textColor="@color/color_333333"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/im_ui_shape_search_background"
+        app:closeIcon="@drawable/selector_search_delete"
+        app:iconifiedByDefault="false"
+        app:queryBackground="@null"
+        app:queryHint="搜索"
+        app:searchIcon="@drawable/icon_search" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_change_class"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_white">
+
+        <TextView
+            android:id="@+id/tv_current_class_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toLeftOf="@+id/img_change_class"
+            android:layout_toStartOf="@+id/img_change_class"
+            android:maxLines="1"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            tools:text="面授一班" />
+
+
+        <ImageView
+            android:id="@+id/img_change_class"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:contentDescription="@null"
+            android:src="@drawable/selector_open_change_class_window" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white" />
+
+        <LinearLayout
+            android:id="@+id/ll_change_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#55000000"
+            android:visibility="gone">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_change_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white" />
+
+            <TextView
+                android:id="@+id/tv_sure_change_class"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/color_1da1f2"
+                android:gravity="center"
+                android:text="@string/im_ui_sure"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/back_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.test.yanxiu.im_ui">
+
+    <application>
+        <activity
+            android:name=".contacts.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/im_ui"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ImMsgListActivity"
+            android:screenOrientation="portrait"
+             />
+        <activity android:name=".view.PhotoActivity"
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustResize"/>
+    </application>
+
+</manifest>

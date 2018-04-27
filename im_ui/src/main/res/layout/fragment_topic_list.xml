@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebeff2"
+    tools:context="com.test.yanxiu.im_ui.ImTopicListFragment">
+
+    <com.test.yanxiu.im_ui.ImTitleLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:background="#ebeff2" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/topic_list_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_white" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!-- 以下为界面中用到的元素，需要用代码加入，xml中只是为了方便生成 -->
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/navi_left_imageview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="-10dp"
+        android:src="@drawable/selector_icon_drawer" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/navi_right_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@drawable/selector_1da1f2_1884c7"
+        android:text="通讯录"/>
+
+</LinearLayout>

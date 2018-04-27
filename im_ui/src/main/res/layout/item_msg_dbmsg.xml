@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:im="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#dfe3e5"
+    android:paddingLeft="15dp"
+    android:paddingRight="64dp"
+    android:paddingTop="15dp">
+
+
+    <ImageView
+        android:id="@+id/avatar_imageview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY" />
+
+    <com.test.yanxiu.im_ui.view.RoundCornerMaskView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        im:corner_radius="5dp"
+        im:mask_color="#dfe3e5" />
+
+    <TextView
+        android:id="@+id/name_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/avatar_imageview"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/avatar_imageview"
+        android:textColor="#999999"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/msg_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_textview"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@id/avatar_imageview"
+        android:background="@drawable/bg_msg_white"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp"
+        android:textColor="#333333"
+        tools:text="这就是个测试行高 测试测试测试测试测试测试测绘测试"
+        android:lineSpacingExtra="4dp"
+        android:textSize="16dp" />
+
+
+    <com.test.yanxiu.im_ui.view.ProgressImageContainer
+        android:id="@+id/msg_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_textview"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/avatar_imageview"
+        android:gravity="center_vertical" />
+
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="CircleView" tools:ignore="ResourceName">
+        <attr name="circle_color" format="color" tools:ignore="ResourceName"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerMaskView" tools:ignore="ResourceName">
+        <attr name="mask_color" format="color" tools:ignore="ResourceName"/>
+        <attr name="corner_radius" format="dimension" tools:ignore="ResourceName"/>
+    </declare-styleable>
+
+    <style name="im_ui" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="colorPrimarcolorolor/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDarcolorolor/colorPrimaryDark</item>-->
+        <!--<item name="colorAccencolorolor/colorAccent</item>-->
+    </style>
+    <style name="ChoosePicDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <style name="ClassCircleDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+
+
+    <style name="Transparent" parent="im_ui">
+        <!--将Activity的Theme设置成透明-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

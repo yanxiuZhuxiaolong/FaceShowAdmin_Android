@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <View
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:background="#e6e6e6" />
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="59dp">
+
+        <ImageView
+            android:id="@+id/img_hard"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_search"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@null" />
+
+        <com.test.yanxiu.im_ui.view.RoundCornerMaskView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:corner_radius="5dp"
+            app:mask_color="@color/color_white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/img_hard"
+            android:layout_toRightOf="@id/img_hard"
+            android:textColor="@color/color_333333"
+            android:textSize="15sp"
+            tools:text="古力娜扎" />
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            tools:text="15655248880" />
+    </RelativeLayout>
+
+
+</LinearLayout>
