@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.yanxiu.im_ui.ImTopicListFragment;
+import com.test.yanxiu.network.HttpCallback;
+import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.ActivityManger;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
 import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
@@ -32,11 +36,15 @@ import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.activity.UserMess
 import com.yanxiu.gphone.faceshowadmin_android.main.ui.fragment.MainFragment;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
 import com.yanxiu.gphone.faceshowadmin_android.net.clazz.GetClazzListResponse;
+import com.yanxiu.gphone.faceshowadmin_android.net.main.RedDotRequest;
+import com.yanxiu.gphone.faceshowadmin_android.net.main.RedDotResponse;
 import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.ClassCircleFragment;
 import com.yanxiu.gphone.faceshowadmin_android.task.fragment.TaskFragment;
 import com.yanxiu.gphone.faceshowadmin_android.utils.EventUpdate;
 import com.yanxiu.gphone.faceshowadmin_android.utils.updata.UpdateUtil;
 
+
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,6 +121,7 @@ public class MainActivity extends FaceShowBaseActivity {
         }
     };
     private LeftDrawerListAdapter mLeftDrawerListAdapter;
+    private UUID mGetRedDotRequestUUID;
 
     public static void invoke(Activity activity, GetClazzListResponse.DataBean.ClazsInfosBean clazsInfosBean) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -132,15 +141,86 @@ public class MainActivity extends FaceShowBaseActivity {
         setMainContentView();
         UpdateUtil.Initialize(this, false);
         EventBus.getDefault().register(this);
-
+        //轮询检查红点
+        pollingRedPointer();
         //im 信息获取
-        com.test.yanxiu.im_ui.Constants.imId=SpManager.getUserInfo().getImTokenInfo().imMember.imId;
-        com.test.yanxiu.im_ui.Constants.imToken=SpManager.getUserInfo().getImTokenInfo().imToken;
+        com.test.yanxiu.im_ui.Constants.imId = SpManager.getUserInfo().getImTokenInfo().imMember.imId;
+        com.test.yanxiu.im_ui.Constants.imToken = SpManager.getUserInfo().getImTokenInfo().imToken;
+    }
+
+    /**
+     * 轮询小红点
+     */
+    private void pollingRedPointer() {
+        getRedDotRequest();
+    }
+
+    private static final int GET_RED_POINT = 1000;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case GET_RED_POINT:
+                    getRedDotRequest();
+                    break;
+            }
+        }
+    };
+    private boolean showCommentRedDot = false;
+
+    private void getRedDotRequest() {
+        RedDotRequest redDotRequest = new RedDotRequest();
+        redDotRequest.clazsId = String.valueOf(SpManager.getCurrentClassInfo().getId());
+        redDotRequest.bizIds = "taskNew,momentNew,resourceNew,momentMsgNew";
+        mGetRedDotRequestUUID = redDotRequest.startRequest(RedDotResponse.class, new HttpCallback<RedDotResponse>() {
+            @Override
+            public void onSuccess(RequestBase request, RedDotResponse ret) {
+                if (0 == ret.getCode()) {
+                    //有新的班级圈消息
+                    if (ret.getData().getMomentNew() != null) {
+                        if (ret.getData().getMomentNew().getPromptNum() >= 0) {
+                            //当前不在班级圈页面
+                            mImgClassCircleRedCircle.setVisibility(View.VISIBLE);
+                            showCommentRedDot = true;
+
+                        } else {
+                            showCommentRedDot = false;
+                            mImgClassCircleRedCircle.setVisibility(View.GONE);
+                        }
+                    }
+                    //新的班级圈回复消息
+                    if (ret.getData().getMomentMsgNew() != null) {
+                        int redNumber = ret.getData().getMomentMsgNew().getPromptNum();
+                        if (redNumber > 0) {
+                            if (mClassCircleFragment != null) {
+                                mClassCircleFragment.showMomentMsg(redNumber);
+                            }
+                        } else {
+                            if (mClassCircleFragment != null) {
+                                mClassCircleFragment.hideMomentMsg();
+                            }
+                        }
+                    }
+
+                }
+                handler.sendEmptyMessageDelayed(GET_RED_POINT, 10000);
+            }
+
+            @Override
+            public void onFail(RequestBase request, Error error) {
+                handler.sendEmptyMessageDelayed(GET_RED_POINT, 10000);
+
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mGetRedDotRequestUUID != null) {
+            RequestBase.cancelRequestWithUUID(mGetRedDotRequestUUID);
+        }
         EventBus.getDefault().unregister(this);
     }
 
@@ -383,6 +463,7 @@ public class MainActivity extends FaceShowBaseActivity {
             mImgClassCircleRedCircle.setVisibility(View.INVISIBLE);
         }
     }
+
     private void checkBottomBar(int index) {
         if (index >= 0 && index < mNavBarViews.length) {
             for (int i = 0; i < mNavBarViews.length; i++) {
