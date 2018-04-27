@@ -1,7 +1,7 @@
 package com.yanxiu.gphone.faceshowadmin_android.newclasscircle.request;
 
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseRequest;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
 
 
 /**
@@ -28,6 +28,6 @@ public class GetQiNiuTokenRequest extends FaceShowBaseRequest {
 
     @Override
     protected String urlServer() {
-        return UrlRepository.getInstance().getqiNiuServer();
+        return UrlRepository.getInstance().getQiNiuServer();
     }
 }

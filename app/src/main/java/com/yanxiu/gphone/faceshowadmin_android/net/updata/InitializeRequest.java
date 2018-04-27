@@ -1,9 +1,10 @@
 package com.yanxiu.gphone.faceshowadmin_android.net.updata;
 
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
 import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 import com.yanxiu.gphone.faceshowadmin_android.utils.NetWorkUtils;
 
 /**

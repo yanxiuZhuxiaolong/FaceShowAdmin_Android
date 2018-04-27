@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.test.yanxiu.network.HttpCallback;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.common.bean.UserMessageChangedBean;
@@ -11,7 +12,7 @@ import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.UpLoadRequest;
 import com.yanxiu.gphone.faceshowadmin_android.main.adressbook.request.UserMessageUpdataRequest;
 import com.yanxiu.gphone.faceshowadmin_android.net.base.FaceShowBaseResponse;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 import com.yanxiu.gphone.faceshowadmin_android.newclasscircle.response.HeadimgUploadBean;
 
 import org.greenrobot.eventbus.EventBus;

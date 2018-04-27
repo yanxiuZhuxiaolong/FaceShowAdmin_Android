@@ -1,8 +1,9 @@
 package com.yanxiu.gphone.faceshowadmin_android.net.base;
 
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 
 
 /**

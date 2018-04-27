@@ -2,10 +2,11 @@ package com.yanxiu.gphone.faceshowadmin_android.net.base;
 
 import android.util.Log;
 
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 
 import java.util.Map;
 

@@ -1,9 +1,8 @@
 package com.yanxiu.gphone.faceshowadmin_android.newclasscircle.request;
 
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.test.yanxiu.network.RequestBase;
 import com.yanxiu.gphone.faceshowadmin_android.db.SpManager;
-import com.yanxiu.gphone.faceshowadmin_android.model.UserInfo;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
 
 /**
  * Created by Canghaixiao.

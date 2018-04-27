@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.yanxiu.gphone.faceshowadmin_android.R;
 import com.yanxiu.gphone.faceshowadmin_android.base.FaceShowBaseActivity;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 
 import java.lang.ref.WeakReference;
 

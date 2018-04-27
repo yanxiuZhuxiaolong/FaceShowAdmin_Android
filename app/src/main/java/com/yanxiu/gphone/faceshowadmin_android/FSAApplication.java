@@ -6,10 +6,11 @@ import android.os.StrictMode;
 
 import com.google.gson.Gson;
 import com.tendcloud.tenddata.TCAgent;
+import com.test.yanxiu.common_base.utils.EnvConfigBean;
+import com.test.yanxiu.common_base.utils.UrlBean;
+import com.test.yanxiu.common_base.utils.UrlRepository;
 import com.yanxiu.gphone.faceshowadmin_android.base.Constants;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.EnvConfigBean;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlBean;
-import com.yanxiu.gphone.faceshowadmin_android.net.envconfig.UrlRepository;
+
 import com.yanxiu.gphone.faceshowadmin_android.utils.CrashHandler;
 import com.yanxiu.gphone.faceshowadmin_android.utils.FileUtils;
 
